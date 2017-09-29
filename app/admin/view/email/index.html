@@ -1,0 +1,133 @@
+{extend name="public:base" /}
+{block name="content"}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">邮件配置</h3>
+    </div>
+    <div class="panel-body">
+
+        <form class="form-horizontal form-fixed form-submit" id="mail-form" action="{:url('update')}">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">邮件发送方式</label>
+                <div class="col-sm-2">
+                    <select id="form_email_send_type" class="form-control" name="send_type">
+                        <option value="smtp" {neq name="config['send_type']" value="mail"}selected="selected"{/neq}>远程smtp</option>
+                        <option value="mail" {eq name="config['send_type']" value="mail"}selected="selected"{/eq}>本地mail</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">SMTP地址</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" value="{$config['host']|default='smtp.admin.com'}" name="host">
+                    <span class="help-block">发送邮箱的smtp地址，如: smtp.qq.com</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">是否启用SSL连接</label>
+                <div class="col-sm-6">
+                    <label class="radio-inline i-radios">
+                        <input type="radio" name="ssl" value="1" {if condition="$config.ssl == 1"}checked {/if}>是
+                    </label>
+                    <label class="radio-inline i-radios">
+                        <input type="radio" name="ssl" value="0" {if condition="$config.ssl== 0"}checked {/if}>否
+                    </label>
+                    <span class="help-block">本地邮件服务器，需要php开启支持ssl</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">端口</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" style="width:80px" value="{$config['port']|default='25'}" name="port">
+                    <p class="help-block">smtp的端口默认为25。具体请参看各STMP服务商的设置说明 （如果使用Gmail或QQ邮箱，请将端口设为465）</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">服务器用户名</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" value="{$config['account']|default='admin@admin.com'}" name="account">
+                    <p class="help-block">邮箱地址请输入完整地址email@email.com格式</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">服务器密码</label>
+                <div class="col-sm-4">
+                    <input type="password" class="form-control"  value="{$config['password']|default='admin'}" name="password">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">发送者名称</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" value="{$config['sender_name']|default='JYmusic音乐程序'}" name="sender_name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">发送者邮箱</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" value="{$config['sender_email']|default='admin@admin.com'}" name="sender_email">
+                    <p class="help-block">邮件中显示的发送者邮箱</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">测试邮邮箱</label>
+                <div class="col-sm-5">
+                    <div class="input-group m-t-10">
+                        <input type="email" id="example-email" class="form-control" placeholder="填写测试邮箱地址">
+                        <span class="input-group-btn">
+                            <a id="send-test-email" href="javascript:;" class="btn waves-effect waves-light btn-primary">点击测试发送</a>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-lg-6 text-left">
+                    <button onclick="" type="button"
+                            class="btn btn-default btn-return">
+                        <i class=" icon-arrow-left16 position-right"></i>返回上页
+                    </button>
+                    <button type="submit" class="btn btn-primary" type="submit">
+                        确认保存<i class="icon-arrow-right16 position-right"></i>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script type="application/javascript">
+    var sendUrl = "{:url('test')}";
+
+    $('#send-test-email').click(function () {
+        var testMail = $('#example-email').val();
+        if (!$.trim(testMail)) {
+            $.Notify.topMsg('请填写测试邮件发送地址');
+            return ;
+        }
+        var query = $('#mail-form').serialize() + '&test_email=' + testMail;
+
+        $.Notify.loading('正在发送测试邮件...');
+        $.post(sendUrl, query, function (res) {
+            $.Notify.close();
+            if (res.code) {
+                $.Notify.topMsg('测试邮件发送成功', 'success');
+            } else {
+                $.Notify.topMsg('测试邮件发送失败' + res.msg);
+            }
+
+        });
+    })
+</script>
+{/block}

@@ -1,0 +1,23 @@
+{extend name="public/common"/}
+{block name="topnav"}
+{/block}
+{block name="content"}
+<div class="tour_div">
+    <ul class="rank-list">
+        {JY:ranks result="rank" order = "id asc"}
+        <li class="rank-item">
+            <a href="{$rank.url}" title="{$rank.name}">
+                <div class="t-i t-{$key%2}">
+                    {$rank.name}
+                </div>
+                <div class="t-t">
+                    {JY:songs result="lv" field="name,id,artist_name" rank="$rank['id']" limit="3" cache="86400" order="id"}
+                    <p><span>{$lv['name']}</span>{$lv['artist_name']? ' - '.$lv['artist_name'] : '' }</p>
+                    {/JY:songs}
+                </div>
+            </a>
+        </li>
+        {/JY:ranks}
+    </ul>
+</div>
+{/block}

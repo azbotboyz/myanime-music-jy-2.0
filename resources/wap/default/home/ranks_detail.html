@@ -1,0 +1,19 @@
+{extend name="public/common"/}
+{block name="topnav"}{/block}
+{block name="content"}
+<div class="rank-info">
+    <span>{$data.name}</span>
+</div>
+<div class="tour_div ">
+	<ul class="song_con">
+		{JY:songs result="v" rank="$data['id']" page="1" limit="20" cache="86400" total="100" order="id"}
+		<li>
+			<span class="numb"></span>
+			<a class="sname text-ellipsis" title="{$v['name']}" href="{$v['url']}">{$v['name']}</a>
+			<a class="gname text-ellipsis" title="{$v['name']}" href="{$v['artist_url']}">{$v['artist_name']}</a>
+			<a class="play" title="播放小{$v['name']}" href="{$v['url']}"></a>		
+		</li>
+		{/JY:songs}	
+	</ul>				
+</div>
+{/block}

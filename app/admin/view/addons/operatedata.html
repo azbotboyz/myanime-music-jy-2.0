@@ -1,0 +1,158 @@
+{extend name="public/base" /}
+{block name="content"}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{$meta_title}</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal form-fixed form-submit" action="{:url('?name='.$name)}">
+            {foreach name="fields" item="field"}
+            <div class="form-group">
+                <label class="col-sm-2 control-label">
+                    {$field.title|default=''}
+                </label>
+                {switch name="field.type"}
+                {case value="num"}
+                <div class="col-sm-1">
+                    <input type="text" class="form-control" name="{$field.name}" value="{$info[$field['name']]|default=''}">
+                </div>
+                {/case}
+                {case value="text"}
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="{$field.name}" value="{$info[$field['name']]|default=''}">
+                </div>
+                {/case}
+                {case value="long_text"}
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="{$field.name}" value="{$info[$field['name']]|default=''}">
+                </div>
+                {/case}
+                {case value="password"}
+                <div class="col-sm-2">
+                    <input type="password" name="config[{$o_key}]" name="{$field.name}" value="{$info[$field['name']]|default=''}">
+                </div>
+                {/case}
+                {case value="hidden"}
+                    <input type="hidden" name="{$field.name}" value="{$info[$field['name']]|default=''}">
+                {/case}
+                {case value="radio"}
+                <div class="col-sm-10">
+                    {php} 
+                        if (isset($info[$field['name']])) {
+                            $field['value'] = $info[$field['name']];
+                        }
+                    {/php}
+                    {foreach name="field.options" item="opt" key="opt_k"}
+                    <label class="radio-inline i-radios">
+                        <input type="radio" name="{$field.name}" value="{$opt_k}" {eq name="field.value" value="$opt_k"} checked{/eq} >{$opt}
+                    </label>
+                    {/foreach}
+                </div>
+                {/case}
+                {case value="checkbox"}
+                <div class="col-sm-4">
+                    {php} 
+                        if (isset($info[$field['name']])) {
+                            $field['value'] = $info[$field['name']];
+                        } else {
+                            is_null($field["value"]) && $field["value"] = array();
+                        }
+                    {/php}
+                    {foreach name="field.options" item="opt" key="opt_k"}
+                    <label class="checkbox-inline i-checkboxs">
+                    <input type="checkbox" name="config[{$o_key}][]" value="{$opt_k}" {in name="opt_k" value="$field.value"} checked{/in} >{$opt}
+                    </label>
+                    {/foreach}
+                </div>
+                {/case}
+                {case value="select"}
+                <div class="col-sm-2">
+                    <select name="config[{$o_key}]" class="form-control">
+                        {php} 
+                            if (isset($info[$field['name']])) {
+                                $field['value'] = $info[$field['name']];
+                            }
+                        {/php}
+                        {foreach name="field.options" item="opt" key="opt_k"}
+                         <option value="{$opt_k}" {eq name="field.value" value="$opt_k"} selected{/eq} >{$opt}</option>
+                        {/foreach}
+                    </select>
+                </div>
+                {/case}
+                {case value="server"}
+                <div class="col-sm-3">
+                    <select name="config[{$o_key}]" class="form-control">
+                        <option value="0">选择绑定服务器</option>
+                        {php} 
+                            if (isset($info[$field['name']])) {
+                                $field['value'] = $info[$field['name']];
+                            }
+                        {/php}
+                        {volist name=":get_server()" id="vo"}
+                        <option value="{$vo['id']}" {eq name="field.value" value="$vo['id']"} selected{/eq} >{$vo['name']}</option>
+                        {/volist}
+                    </select>
+                </div>
+                {/case}
+                {case value="textarea"}
+                <div class="col-sm-6">
+                    <textarea name="{$field.name}" class="form-control" rows="5">{$info[$field['name']]|default=''}</textarea>
+                </div>
+                {/case}
+
+                {case value="image"}
+                <div class="col-md-6">
+                    <div class="bootstrap-filestyle input-group">
+                        <input type="text" id="cover-file-path" name="{$field.name}" class="form-control" value="{$info[$field['name']]|default=''}" placeholder="可以填写外链地址">
+                        <span class="input-group-btn">
+                            <label class="btn btn-default fileinput-button">
+                                <span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span>
+                                <span class="buttonText">选择文件</span>
+                                <input id="upload-cover" type="file" name="files[]" multiple
+                                data-file-type="image"
+                                data-upload-type="cover"
+                                data-target-path="#cover-file-path">
+                            </label>
+                        </span>
+                    </div>
+                </div>
+                {:hook('file', ['wiget'=>'Uplaod', 'is_admin' => true, 'element' => ['#upload-cover']])}
+                {/case}
+                {/switch}
+                {present name="field.remark"}
+                <div class="help-block">
+                    <span class="col-md-8 col-md-offset-2">
+                        {$field.remark}
+                    </span>
+                </div>
+                {/present}
+            </div>
+            {/foreach}
+
+            <input type="hidden" name="id" value="{$info.id|default=''}">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-lg-6 text-left">
+                    <button onclick="" type="button"
+                            class="btn btn-default btn-return">
+                        <i class=" icon-arrow-left16 position-right"></i>返回上页
+                    </button>
+                    <button type="submit" class="btn btn-primary" type="submit">
+                        确认提交<i class="icon-arrow-right16 position-right"></i>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+ </div>
+
+{/block}
+{block name="script"}
+<script type="text/javascript">
+$(function($){
+    $('#sidebar-menu').find('a').removeClass('active');
+    $('#sidebar-menu').find("a[href='{:url('addons/adminlist?addon_name='.$name)}']").addClass('active');
+})
+</script>
+{/block}

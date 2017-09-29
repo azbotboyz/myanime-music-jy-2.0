@@ -1,0 +1,93 @@
+{extend name="public/common" /}
+
+{block name="warp"}
+<div class="tabbable tabbable-custom tabbable-reversed">
+    <ul class="nav nav-tabs">
+        <li>
+            <a href="{JY:url name='user_msg'}">我的消息</a>
+        </li>
+
+        <li>
+            <a href="{JY:url name='user_notice'}">系统消息</a>
+        </li>
+
+        <li class="active">
+            <a href="javascript:;">消息详情</a>
+        </li>
+    </ul>
+    <div class="tab-content clearfix">
+        <ul class="media-list">
+            <li class="media">
+                <div class="media-left">
+                    <a href="{:url('user/Message/read', ['uid' => $data['post_uid']])}">
+                      <img class="media-object" src="{:get_user_avatar($data['post_uid'])}" alt="{$data['post_uname']}">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{$data['title']}</h4>
+                    {$data['content']}
+                    <div class="media-footer">
+                        <span class="m-time pull-left"><i class="jy jy-clock-o"></i>{$data['create_time']|beforeTime}</span>
+                    </div>
+                </div>
+                
+            </li>
+            
+            <li class="media">
+                <div class="media-left">
+                    <a href="{:url('user/Message/read', ['uid' => $user['uid']])}">
+                      <img class="media-object" src="{:get_user_avatar($user['uid'])}" alt="{$user['nickname']}">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <form class="form-horizontal" action="{:url('user/Message/create')}" method="post" id="msg-form">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <textarea  id="msg-content"  rows="3" name="content"></textarea>
+                            </div>
+                        </div>
+                        <input type="hidden" name="reply_id" value="{$data['id']}">
+                        <input type="hidden" name="__token__" value="{$Request.token}" />
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button class="btn btn-success" id="send-msg">发送</button>
+                            </div>
+                        </div>
+                    <form >
+                </div>
+                
+            </li>
+        </ul>
+    </div>
+
+</div>
+{/block}
+{block name="script"}
+<script script type="text/javascript">
+$().ready(function() {
+    $("#msg-form").validate({
+        rules: {
+            content:{
+                required: true,
+                rangelength:[2,400]
+            },
+            reply_id: {
+                required: true,
+                digits: true
+            }
+        },
+        messages: {
+            content: {
+                required: '信息不能为空',
+                rangelength:'信息长度2-400个字符'
+            },
+            reply_id: {
+                required: "你回复的消息不存在",
+                digits: "你回复的消息不存在"
+            }
+        }
+    });
+});
+</script>
+{/block}
+

@@ -1,0 +1,60 @@
+{extend name="public/common"/}
+{block name="content"}
+
+<div class="page_content_offset">
+	<div class="container">	
+		<div class="row clearfix">
+			<aside class="col-sm-2">
+				<h2 class="pt_10">音乐排行榜单</h2>
+				<hr>	
+				<div class="sidebar_content">
+					<ul class="main_menu c_rank">
+						{JY:ranks result="vo" order = "id asc"}
+						<li class="">
+						    <a class="" href="{$vo.url}">
+                                <i class="jy jy-radio mr_5"></i>{$vo.name}
+                            </a>
+						</li>
+						{/JY:ranks}
+					</ul>
+				</div>					
+			</aside>
+			<!--右侧歌曲列表-->			
+			<section class="col-sm-10">
+                <div class="row">
+                    {JY:ranks result="rank" limit="9" order = "id asc"}
+                    <div class="col-sm-4 mt_20">
+                        <div class="clearfix new-title">
+                            <h2 class="pull-left">{$rank.name}</h2>
+                            <div class="more mb_10">
+                                <a href="{$rank.url}">查看完整榜单</a>
+                            </div>
+                        </div>
+                        <hr class="mb_15">
+                        {JY:songs result="lv" rank="$rank['id']" limit="10" cache="86400" order="id"}
+                        <div class="mb_10 clearfix relative play_box">
+                            <div class="row clearfix song_list">
+							    <span class="col-sm-8">
+									<span class="ls_num {lt name="i" value="4"}ls_num_top{/lt}">{$i}</span>
+                                    <a class="text-ellipsis" target="_play" href="{$lv['url']}">{$lv['name']}</a>
+                                </span>
+                                <span class="col-sm-4 ls_btns">
+                                    <a class="music-action-btn hidden-xs" data-id="{$lv['id']}" data-action="fav" href="javascript:;"><i class="jy jy-like"></i></a>
+                                    <a class="jp-play-me" data-id="{$lv['id']}" href="javascript:;"><i class="jy jy-play"></i></a>
+                                </span>
+                            </div>
+                            <hr class="l_hr">
+                        </div>
+                        {/JY:songs}
+                    </div>
+                    {/JY:ranks}
+                </div>
+
+			</section>
+		</div>
+	</div>
+
+
+</div>
+{/block}
+{block name="player"}{include file="player/default"}{/block}

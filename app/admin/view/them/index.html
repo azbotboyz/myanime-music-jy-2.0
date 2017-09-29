@@ -1,0 +1,79 @@
+{extend name="public/base" /}
+{block name="content"}
+<div class="row port">
+
+    <div class="portfolioContainer m-b-15 clearfix">
+        <div class="col-sm-12">
+            <div role="tabpanel">
+                <ul class="nav nav-tabs tabs nav-line">
+                    <li class="{eq name='type' value='web'}active{/eq}">
+                        <a href="{:url('?type=web')}">WEB主题</a>
+                    </li>
+                    <li class="{eq name='type' value='wap'}active{/eq}">
+                        <a href="{:url('?type=wap')}">WAP主题</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        {volist name="_list" id="vo"}
+        <div class="col-sm-6 col-lg-3 col-md-4 mobiles">
+            <div class="product-list-box thumb list-{$type}">
+                {if condition="$vo['status']"}
+                <a class="image-popup" title="" style="width: 100%;">
+                    <?php
+                        $file = ROOT_PATH . $vo['cover'];
+                        if (is_file($file)){
+                            echo '<img src="'.$vo['cover'].'"  alt="'.$vo['info']['theme_title'].'" class="img">';
+                        }else{
+                            echo '<div class="no-img"><i class="fa fa-credit-card fa-4x"></i></div>';
+                        }
+                    ?>
+                </a>
+                {if condition="$vo['active']"}
+                <div class="product-checked" style="position: absolute; top:15px; left: 15px">
+                    <i class="fa fa-check text-success fa-2x"></i>
+                </div>
+                {else /}
+                <div class="product-action">
+                    <a class="ajax-get btn btn-xs btn-success mr-xs" href="{:url('enable',['type'=>$vo['type'], 'filename' => $vo['basename']])}">启用</a>
+                </div>
+                {/if}
+                <div class="detail">
+                    <h5 class="m-t-0 m-b-5">
+                        <span class="text-dark">{$vo['info']['theme_title']}</span>
+                    </h5>
+                    <h5 class="m-0">
+                        <div class="dropdown">
+                            <a class="btn btn-success btn-sm" href="javascript:;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                作者信息
+                                <span class="caret"></span>
+                            </a>
+                            <ul  class="dropdown-menu" aria-labelledby="dLabel">
+                                <li><a href="javascript:;" >主页：{$vo['info']['author']['url'] ?? '未知'}</a></li>
+                                <li><a href="javascript:;" >QQ：{$vo['info']['author']['qq'] ?? '未知'}</a></li>
+                                <li><a href="javascript:;" >邮箱：{$vo['info']['author']['email'] ?? '未知'}</a></li>
+                            </ul>
+                        </div>
+                    </h5>
+                </div>
+                {else /}
+                <p class="text-danger">{$vo['error']}</p>
+                {/if}
+
+            </div>
+        </div>
+        {/volist}
+
+    </div>
+</div>
+
+
+{/block}
+
+{block name="script"}
+    <script type="text/javascript">
+       // highlight_subnav("{:url('Addons/index')}");
+    </script>
+{/block}

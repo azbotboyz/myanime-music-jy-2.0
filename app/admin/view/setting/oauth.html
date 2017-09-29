@@ -1,0 +1,120 @@
+{extend name="public:base" /}
+{block name="content"}
+<section class="row m-b-md">
+    <div class="col-sm-6">
+        <h3 class="m-b-xs text-black">网站设置</h3>
+    </div>
+    <div class="col-sm-6 text-right text-left-xs m-t-md"></div>
+</section>
+<div class="panel panel-flat">
+    <div class="panel-heading clearfix" style="font-size: 16px; margin-bottom: 10px">
+        <div role="tabpanel">
+            <ul class="nav nav-tabs tabs nav-line">
+                {volist name=":config('config_group_list')" id="group"}
+                <li>
+                <a href="{:url('?group='.$key)}">{$group}配置</a>
+                </li>
+                {/volist}
+                <li class="active">
+                <a href="javascript:;">同步登陆</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <form class="form-horizontal form-fixed form-submit" action="{:url('?group=oauth')}">
+            <div class="form-group">
+                <label class="col-md-2 col-xs-12 text-right control-label">开启同步登录功能</label>
+                <div class="col-md-10 col-xs-12">
+                    <label class="checkbox-inline i-checkboxs">
+                        <input type="checkbox" {if condition="isset($info['open']) && in_array('weibo', $info['open'])"}checked{/if} name="open[]" value="weibo">新浪微博
+                    </label>
+                    <label class="checkbox-inline i-checkboxs">
+                        <input type="checkbox" {if condition="isset($info['open']) && in_array('qq', $info['open'])"}checked{/if} name="open[]" value="qq">腾讯QQ
+                    </label>
+                    <label class="checkbox-inline i-checkboxs">
+                        <input type="checkbox" {if condition="isset($info['open']) && in_array('wechat_open', $info['open'])"}checked{/if} name="open[]" value="wechat_open">微信开发平台
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">接口验证代码</label>
+                <div class="col-sm-5">
+                    <textarea name="oauth_meta" class="form-control" rows="2"></textarea>
+                    <p class="help-block">
+                        需要在Meta标签中写入验证信息时，拷贝代码到这里。
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">新浪微博Key</label>
+                <div class="col-sm-4">
+                    <input type="text" name="weibo[client_id]" class="form-control"  value="{$info['weibo']['client_id']|default=''}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">新浪微博Secret</label>
+                <div class="col-sm-4">
+                    <input type="text" name="weibo[client_secret]" class="form-control"  value="{$info['weibo']['client_secret']|default=''}">
+                    <p class="help-block">
+                        申请地址：<a href="http://open.weibo.com" target="_blank">http://open.weibo.com/</a>
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">QQ互联Key</label>
+                <div class="col-sm-4">
+                    <input type="text" name="qq[client_id]" class="form-control"  value="{$info['qq']['client_id']|default=''}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">QQ互联Secret</label>
+                <div class="col-sm-4">
+                    <input type="text" name="qq[client_secret]" class="form-control"  value="{$info['qq']['client_secret']|default=''}">
+                    <p class="help-block">
+                        申请地址：<a href="http://connect.qq.com" target="_blank">http://connect.qq.com</a>
+                    </p>
+                </div>
+            </div>
+            <hr>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">微信Key</label>
+                <div class="col-sm-4">
+                    <input type="text" name="wechat_open[client_id]" class="form-control"  value="{$info['wechat_open']['client_id']|default=''}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">微信Secret</label>
+                <div class="col-sm-4">
+                    <input type="text" name="wechat_open[client_secret]" class="form-control"  value="{$info['wechat_open']['client_secret']|default=''}">
+                    <p class="help-block">
+                        申请地址：<a href="https://open.weixin.qq.com" target="_blank">https://open.weixin.qq.com</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-lg-6 text-left">
+                    <button type="button" class="btn btn-default btn-return">
+                        返回上页
+                    </button>
+                    <button type="submit" class="btn btn-primary" type="submit">
+                        确认提交<i class="icon-arrow-right16 position-right"></i>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+{/block}
+

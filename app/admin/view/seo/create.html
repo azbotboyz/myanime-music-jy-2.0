@@ -1,0 +1,84 @@
+{extend name="public:base" /}
+{block name="content"}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{:isset($info['id'])?'编辑':'新增'}标签</h3>
+    </div>
+    <div class="panel-body">        
+        <form class="form-horizontal form-fixed form-submit" action="{:isset($info['id'])? url('update') : url('save')}">
+            <div class="form-group">
+                <label class="col-md-2 col-xs-12 text-right control-label">规则标题</label>
+                <div class="col-md-6 col-xs-12">
+                    <input type="text" name="title" class="form-control" value="{$info.title|default=''}">
+                    <span class="help-block">标题不能为空</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">点击插入变量</label>
+                <div class="col-md-10">
+                    <a class="btn btn-skype btn-xs m-b-5 check-variable" data-val="$web_site_name" href="javascript:;">网站名称</a>
+                    <a class="btn btn-skype btn-xs m-b-5 check-variable" data-val="$web_site_title" href="javascript:;">网站标题</a>
+                    <a class="btn btn-skype btn-xs m-b-5 check-variable" data-val="$web_site_keyword" href="javascript:;">网站关键字</a>
+                    <a class="btn btn-skype btn-xs m-b-5 check-variable" data-val="$web_site_description" href="javascript:;">网站描述</a>
+                    <a class="btn btn-skype btn-xs m-b-5 check-variable" data-val="$name" href="javascript:;">当前页名称</a>
+                    <a class="btn btn-skype btn-xs m-b-5 check-variable" data-val="$album_name" href="javascript:;">专辑名称</a>
+                    <a class="btn btn-skype btn-xs m-b-5 check-variable" data-val="$artist_name" href="javascript:;">艺人名称</a>
+                    <a class="btn btn-skype btn-xs m-b-5 check-variable" data-val="$user_name" href="javascript:;">用户昵称</a>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">标题规则</label>
+                <div class="col-md-10">
+                    <textarea rows="2" class="form-control rule-focus" name="title_rule">{$info.title_rule|default=''}</textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">关键字规则</label>
+                <div class="col-md-10">
+                    <textarea rows="4" class="form-control rule-focus" name="keywords_rule">{$info.keywords_rule|default=''}</textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">描述规则</label>
+                <div class="col-md-10">
+                    <textarea rows="4" class="form-control rule-focus" name="description_rule">{$info.description_rule|default=''}</textarea>
+                </div>
+            </div>
+
+            <input type="hidden" name="id" value="{$info.id|default=''}">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-lg-6 text-left">
+                    <button onclick="" type="button"
+                            class="btn btn-default btn-return">
+                        <i class=" icon-arrow-left16 position-right"></i>返回上页
+                    </button>
+                    <button type="submit" class="btn btn-primary" type="submit">
+                        确认提交<i class="icon-arrow-right16 position-right"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="application/javascript">
+    var $focus = false;
+    $(".rule-focus").focusin(function() {
+        $focus = $(this);
+    });
+    
+    $('.check-variable').click(function () {
+        if (!$focus) {
+            $.Notify.msg('鼠标点击你要插入的规则');
+            return false;
+        }
+        var val = $focus.val();
+        var selVal = '{' +$(this).data('val') + '}';
+        $focus.val(val + selVal);
+    });
+
+</script>
+{/block}

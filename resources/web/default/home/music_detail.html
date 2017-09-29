@@ -1,0 +1,201 @@
+{extend name="public/common"/}
+{block name="style"}
+<link rel="stylesheet" href="__CSS__/play.css?1.0" type="text/css" />
+{/block}
+{block name="content"}
+<div class="page_content_offset">
+    <div class="container">
+        <div class="row clearfix">
+            <!--左侧详细页面-->
+            <section class="col-sm-8">
+                <div class="row clearfix mb_20">
+                    <div class="col-sm-4">
+                        <div class="photoframe shadow wrapper mb_10">
+                            <div class=" thumbnail mb_0">
+                                <a  href="javascript:;">
+                                    <img src="{$data['cover_url']}" class="tr_all_hover">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h2 class="pt_10 text-ellipsis">
+                            <a class="jp-play-me play" id="one-play" href="javascript:;" data-id="{$data.id}">
+                                <i class="jy jy-play-f"></i>
+                            </a>{$data.artist_name? $data.artist_name. ' - ' : '' } {$data.name}
+                        </h2>
+                        <hr>
+                        <!--单曲播放页-->
+                        <div class="play">
+                            <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+                            <div id="jp_container_1" class="jp-audio" onselectstart="return false;">
+                                <div class="player" id="play">
+                                    <div class="nplay_btn">
+                                        <a href="#" class="jp-play">播放</a>
+                                        <a href="#" class="jp-pause">暂停</a>
+                                    </div>
+
+                                    <div class="player_top" style="display:;">
+                                        <div class="nplay_plan">
+                                            <div class="nplay_buffered jp-seek-bar" style="width: 0px;"></div>
+                                            <div class="nplay_loading_time jp-play-bar" style="width: 0px;"></div>
+                                        </div>
+                                        <div class="nplay_time">
+                                            <em class="jp-current-time">00:00</em>/<em class="jp-duration">00:00</em>
+                                        </div>
+                                        <div class="nplay_voice">
+                                            <a href="#" class="jp-mute" title="静音">静音</a>
+                                            <a href="#" class="jp-unmute" title="取消静音">取消静音</a>
+                                            <div class="jp-volume-bar">
+                                                <div class="jp-volume-bar-value"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="player_error" style="display:none">
+                                        <p class="fa_green">无法播放，要Silverlight插件支持，<a href="#">点击下载</a></p>
+                                    </div>
+
+                                    <div class="player_down">
+                                        <ul>
+                                            <li class="player_icon2"><a href="#"><b class="p_ic"></b>人气</a>({$data['listens']})</li>
+                                            <li class="player_icon5"><a class="music-action-btn" href="javascript:;" data-id="{$data['id']}" data-action="fav"><b class="p_ic"></b>收藏</a>({$data['favtimes']})</li>
+                                            <li class="player_icon3"><a href="{$data['down_url']}" target="fav"><b class="p_ic"></b>下载</a>({$data['download']})</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/单曲播放页-->
+                        <div class="clearfix mt_10 mb_20">
+                            <ul class="horizontal_list l_width_divider">
+                                <li class="mr_15">分享:<a href="{$data['user_url']}">
+                                {$data['up_uname']}</a></li>
+                                 <li class="mr_15">类别:<a href="{$data['genre_url']}">{$data.genre_name}</a></li>
+                                <li>试听:{$data['listens']}</li>
+                            </ul>
+                        </div>
+
+                        <div class="clearfix mb_20">
+                            <ul class="horizontal_list l_width_divider">
+                                <li class="mr_15">专辑:
+                                    <a href="{$data['album_url']}">{$data.album_name|default="单曲"}</a>
+                                </li>
+                                {notempty name="data['artist_name']"}
+                                <li class="mr_15">歌手:
+                                    <a href="{$data['artist_url']}">{$data.artist_name}</a>
+                                </li>
+                                {/notempty}
+                                {notempty name="data['tags']"}
+                                <li class="mr_15">风格标签:
+                                    {JY:loop name="data['tags']" res="tag"}
+                                    <a href="{$tag['url']}">{$tag.name}</a>
+                                    {/JY:loop}
+                                </li>
+                                {/notempty}
+                            </ul>
+                        </div>
+                        <ul class="horizontal_list clearfix mb_10">
+                            <li class="mr_5">
+                                <a href="javascript:;" data-id="{$data['id']}" class="btn_1 pull-right relative music-action-btn" data-action="fav">
+                                    <span class="tooltip tr_all_hover">收藏[<span class="num">{$data.favtimes}</span>]</span>
+                                    <i class="jy jy-fav-music"></i>
+                                </a>
+                            </li>
+                            <li class="mr_5">
+                                <a href="javascript:;"  class="btn_1 pull-right relative music-action-btn" data-id="{$data['id']}" data-action="digg">
+                                    <span class="tooltip tr_all_hover">赞[<span class="num">{$data.digg}</span>]</span>
+                                    <i class="jy jy-digg"></i>
+                                </a>
+                            </li>
+                            <li class="mr_5">
+                                <a class="down btn_1 pull-right relative tr_delay_hover" target="_down" href="{$data['down_url']}">
+                                    <span class="tooltip tr_all_hover">下载[<span class="num">{$data.download}</span>]</span>
+                                    <i class="jy jy-cloud-down"></i>
+                                </a>
+                            </li>
+
+                            <li class="pull-right mt_10">
+                            {JY:next name="songs"}
+                                <a class="btn_1" href="{$next['url']}" class="btn pull-right jp-next">下一曲</a>
+                            {/JY:next}
+                            </li>
+
+                            <li class="pull-right mr_5 mt_10">
+                            {JY:prev name="songs"}
+                            <a class="btn_1" href="{$prev['url']}" class="btn pull-right jp-previous">上一曲</a>
+                            {/JY:prev}
+                            </li>
+                        </ul>
+                        <div class="d_inline_middle">{:hook('pageBody',array('widget'=>'Baidushare'))}</div>
+
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                    {:hook('contentAfter', ['type'=>'song','id'=>$data['id']])}
+                </div>
+
+            </section>
+            <aside class="col-sm-4">
+                <h2 class="pt_10">最新添加</h2>
+                <hr>
+                <div class="sidebar_content">
+                    {JY:songs result="v" limit="15" cache_time="86400" order="create_time"}
+                    <div class="mb_10 clearfix relative play_box">
+                        <div class="row clearfix song_list">
+                            <span class="col-sm-7 col-xs-8">
+                                <span class="ls_num {lt name="i" value="4"}ls_num_top{/lt}">{$i}</span>
+                                 <a class="text-ellipsis" target="_self" title="{$v['name']}" href="{$v['url']}">{$v['name']}</a>
+                            </span>
+                            <span class="col-sm-3 col-xs-4 hidden-xs">
+                                <a class="text-ellipsis" href="{$v['artist_url']}" target=_singer" title="{$v['artist_name']}">{$v['artist_name']}</a>
+                            </span>
+                            <span class="col-sm-2 col-xs-4 ls_btns">
+                                <a class="jp-play-me" href="{$v['url']}"><i class="jy jy-play"></i>	</a>
+                            </span>
+                        </div>
+                        <hr class="l_hr">
+                    </div>
+                    {/JY:songs}
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="player"}
+<script type="text/javascript" src="__LIBS__/jplayer/jquery.jplayer.min.js"></script>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+    $(document).ready(function () {
+        var playId = '{$data.id}';
+        var player = $("#jquery_jplayer_1").jPlayer({
+            ready: function () {
+                var $this = $(this);
+                $.get(U("api/songs/"+ playId), function (res) {
+                    if (res.code == 0) {
+                        var song = res.result;
+                        $this.jPlayer("setMedia", {
+                            mp3: song.sub.listen_url,
+                            title: song.artist_name + ' - ' + song.name
+                        });
+                        $this.jPlayer("play");
+                        $.ajax({
+                            url: U("/api/actions/listen"),
+                            data: {id: playId},
+                            dataType: "jsonp"
+                        });
+                    }
+                }, "json");
+            },
+            swfPath: JY.PUBLIC + '/static/js/jPlayer', //swfUrl,
+            supplied: "mp3",
+            volume: "1",
+            wmode: "window"
+        });
+    })
+</script>
+{/block}

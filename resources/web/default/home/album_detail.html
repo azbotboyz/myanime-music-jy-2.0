@@ -1,0 +1,129 @@
+{extend name="public/common"/}
+{block name="content"}
+<div class="page_content_offset">
+	<div class="container">
+		<div class="row clearfix">
+			<!--左侧专辑-->
+			<section class="col-sm-8 ">
+				<div class="row clearfix">
+					<div class="col-sm-4">
+						<div class="photoframe a_cover">
+							<img src="{$data['cover_url']}" class="tr_all_hover " alt="{$data['name']}" >
+						</div>
+					</div>
+
+					<div class="col-sm-7">
+						<h2 class="mt_10"><i class="jy jy-cdcover mr_10"></i>{$data.name}</h2>
+						<p class="mt_5">所属歌手:<a href="{$data['artist_url']}" class="color_green">{$data['artist_name']}</a></td>
+						<p class="mt_5">所属类型:<a href="javascript:;" class="color_grey mr_20">{$data['type_name']}</a></p>
+						<p class="mt_5">发行时间:{:empty($data.pub_time)? '未知' : $data.pub_time}</p>
+						<p class="mt_5">唱片公司:{:empty($data.company)? '未知' : $data.company}</p>
+						<p>{:hook('pageBody',array('widget'=>'Baidushare'))}</p>
+						<p class="mt_10">
+							<button class="btn_1 album_play pull-left mr_10"  title="{$data['name']}" data-id="{$data['id']}"><i class="jy jy-listen mr_10"></i>播放专辑</button>
+							<button class="btn_1 pull-left music-action-btn mr_10 relative" data-id="{$data['id']}" data-action="fav" data-type="album" ><span class="tooltip tr_all_hover  ">收藏[{$data.favtimes}]</span><i class="jy jy-fav"></i></button>
+						</p>
+					</div>
+				</div>
+
+				<div class="clearfix">
+					<!--tabs-->
+					<div class="mt_15 mb_20">
+						<ul class="tabs_nav horizontal_list clearfix " role="tablist">
+							<li class="f_xs_none active"><a href="#ta-1" data-toggle="tab" role="tab" class=" tr_delay_hover  d_block ">歌曲列表</a></li>
+							<li class="f_xs_none"><a href="#ta-2" data-toggle="tab" role="tab" class=" tr_delay_hover  d_block ">详细介绍</a></li>
+						</ul>
+						<hr>
+						<div class="tab-content">
+							<div id="ta-1" class="tab-pane fade in active">
+								{JY:songs result="v" album="$data['id']" limit="20" page="1" order="create_time"}
+								<div class="mb_10 clearfix relative play_box">
+									<div class="row clearfix song_list">
+										<span class="col-sm-5 col-xs-8">
+											<span class="ls_num {lt name="i" value="11"}ls_num_top{/lt}">{$i}</span>
+											<a class="text-ellipsis" target="_play" href="{$v['url']}">{$v['name']}</a>
+										</span>
+										<span class="col-sm-3 col-xs-2 p_hr_0">
+											<a class="text-ellipsis singer" target="_sing" href="{$v['genre_url']}">{$v['genre_name']}</a>
+										</span>
+										<span class="col-sm-2 ls_listen hidden-xs">{:number_format($v['listens'])}</span>
+										<span class="col-sm-2 col-xs-2 ls_btns">
+											<a class="hidden-xs " target="_down" href="{$v['down_url']}"><i class="jy jy-cloud-down-f"></i></a>
+											<a class="music-action-btn hidden-xs" data-id="{$v['id']}" data-action="fav" href="javascript:;"><i class="jy jy-like"></i></a>
+											<a class="jp-play-me" data-id="{$v['id']}" href="javascript:;"><i class="jy jy-play"></i></a>
+										</span>
+									</div>
+									<hr class="l_hr">
+								</div>
+								{/JY:songs}
+
+                                <div class="clearfix mb_5 t_align_c">
+                                    <ul class="clearfix d_inline_middle ml_10 page_list">{$v_page}</ul>
+                                </div>
+
+							</div>
+
+							<div id="ta-2" class="tab-pane fade">
+								<div>{$data.introduce}</div>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix">
+						<h2 class="pull-left mb_15 ">热门专辑</h2>
+					</div>
+					<div class="hot-carousel mb_15">
+						{JY:album result="v" limit="5" limit="20" cache="86400" order="hits"}
+						<figure class=" photoframe shadow relative tr_all_hover">
+							<a href="{$v['url']}" target="_album" class="d_block relative animate_half_tc" >
+								<img src="{$v['cover_url']}" width="100%">
+							</a>
+							<figcaption class="t_align_c mt_10">
+								<h5 class="mb_5">
+									<a href="{$v['url']}" target="_album" class="text-ellipsis">{$v['name']}</a>
+								</h5>
+							</figcaption>
+						</figure>
+						{/JY:album}
+					</div>
+
+					<div class="clearfix">
+						{:hook('documentDetailAfter',array('type'=>'album','id'=>$data['id']))}
+					</div>
+			</section>
+
+			<aside class="col-sm-4">
+				{JY:songs result="v" limit="15" cache="86400" order="listens"}
+				<div class="mb_10 clearfix relative play_box">
+					<div class="row clearfix song_list">
+							<span class="col-sm-7 col-xs-8">
+								<span class="ls_num {lt name="i" value="4"}ls_num_top{/lt}">{$i}</span>
+						<a class="text-ellipsis" target="_play" title="{$v['name']}" href="{$v['url']}">{$v['name']}</a>
+						</span>
+						<span class="col-sm-3 col-xs-4 hidden-xs">
+								<a class="text-ellipsis" href="{$v['artist_url']}" target=_singer" title="{$v['artist_name']}">{$v['artist_name']}</a>
+							</span>
+						<span class="col-sm-2 col-xs-4 ls_btns">
+								<a class="jp-play-me" data-id="{$v['id']}" href="javascript:;"><i class="jy jy-play"></i>	</a>
+							</span>
+					</div>
+					<hr class="l_hr">
+				</div>
+				{/JY:songs}
+			{include file="sidebar/adver"/}
+			</aside>
+		</div>
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+$(document).ready(function () {
+    $.ajax({
+        url: U("/api/actions/hits"),
+        data: {id: "{$data['id']}", type : 'album'},
+        dataType: "jsonp"
+    });
+});
+</script>
+{/block}
+{block name="player"}{include file="player/default"/}{/block}

@@ -1,0 +1,93 @@
+{extend name="public:base" /}
+{block name="content"}
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h3 class="panel-title">{:isset($data['id'])?'编辑':'新增'}导航</h3>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal form-fixed form-submit" action="{:isset($info['id'])? url('update') : url('save')}">
+
+                    <div class="form-group">
+                        <label class="control-label text-right col-md-2 col-xs-12 ">
+                            上级导航
+                        </label>
+                        <div class="col-md-4 col-xs-12">
+                            {if condition="isset($parent['id'])"}
+                            <select name="pid" class="form-control" >
+                                <option value="{$parent['id']}">{$parent['title']}</option>
+                                <option value="0">无</option>
+                            </select>
+                            {else/}
+                            <input type="hidden" name="pid" value="{$info['pid']|default=" 0"}">
+                            <input type="text" class="form-control" disabled="disabled" value="无"/>
+                            {/if}
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 col-xs-12 text-right control-label">导航名称</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="text" name="title" class="form-control" value="{$info.title|default=''}">
+                            <span class="help-block">名称不能为空</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 col-xs-12 text-right control-label">URL</label>
+                        <div class="col-md-6 col-xs-12">
+                            <input type="text" name="url" class="form-control" value="{$info.url|default=''}">
+                            <span class="help-block">可以填写带http://的绝对地址</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label text-right col-lg-2">是否新窗口</label>
+                        <div class="col-sm-8">
+                            {if condition="isset($info)"}
+                            <label class="radio-inline i-radios">
+                                <input type="radio" name="target" {if condition="$info.target == 1" }checked="checked"{/if} value="1"> 是
+                            </label>
+                            
+                            <label class="radio-inline i-radios">
+                                <input type="radio" name="target" {if condition="$info.target == 0" }checked="checked"{/if} value="0">否
+                            </label>
+                            {else /}
+                            <label class="radio-inline i-radios">
+                                <input type="radio" name="target" value="1">是
+                            </label>
+                            
+                            <label class="radio-inline i-radios">
+                                <input type="radio" name="target" checked="checked" value="0">否
+                            </label>
+                            {/if} 
+                            <span class="help-block">选择是将会在浏览器开启新的窗口</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 col-xs-12 text-right  control-label">排序</label>
+                        <div class="col-md-4 col-xs-12">
+                            <input type="text" name="sort" class="form-control" value="{$info.sort|default=0}">
+                            <span class="help-block">仅对当前层级分类有效</span>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="id" value="{$info.id|default=''}">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-lg-6 text-left">
+                            <button onclick="" type="button"
+                                    class="btn btn-default btn-return">
+                                <i class=" icon-arrow-left16 position-right"></i>返回上页
+                            </button>
+                            <button type="submit" class="btn btn-primary" type="submit">
+                                确认提交<i class="icon-arrow-right16 position-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

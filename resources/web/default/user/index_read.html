@@ -1,0 +1,79 @@
+{extend name="index/common" /}
+{block name="content"}
+<div class="row">
+	<div class="col-sm-8">
+		<div class="header">TA的分享<a class="more" href="{JY:url name='user_home_music']}">更多&gt;&gt;</a></div>
+		{JY:songs result="v" uid="$user['uid']" limit="10" cache="7200" order="create_time"}
+		<div class="row clearfix song_list">								
+			<span class="col-sm-5 col-xs-8">	
+				<span class="ls_num {lt name="i" value="4"}ls_num_top{/lt}">{$i}</span>									
+				<a class="text-ellipsis" target="_play" href="{$v['url']}">{$v['name']}</a>									
+			</span>
+			<span class="col-sm-3 col-xs-2 p_hr_0">
+				<a class="text-ellipsis singer" target="_sing" href="{$v['artist_url']}">{$v['artist_name']}</a>	
+			</span>
+			<span class="col-sm-2 hidden-xs singer"><a href="{$v['genre_url']}">{$v['genre_name']}</a></span>
+			<span class="col-sm-2 col-xs-2 ls_btns">	
+				<a class="hidden-xs" target="_down" href="{$v['down_url']}"><i class="jy jy-cloud-down-f"></i></a>								
+				<a class="music-action-btn hidden-xs" data-id="{$v['id']}" data-action="fav" href="javascript:;"><i class="jy jy-like"></i></a>
+				<a class="jp-play-me " data-id="{$v['id']}" href="javascript:;"><i class="jy jy-play"></i>							</a>
+			</span>
+		</div>
+		<hr class="l_hr">
+		{/JY:songs}
+
+		<div class="header">TA的专辑<a class="more" href="{JY:url name='user_home_album']}">更多&gt;&gt;</a></div>
+		<div class="row clearfix album_list">
+			{JY:album result="v" uid="$user['uid']" limit="6" cache="7200" order="create_time"}
+			<div class="col-sm-4">
+				<a class="acover" href="{$v['url']}"> <img alt="{$v['name']}" src="{$v['cover_url']}"></a>
+				<span class="aname text-ellipsis">
+				<a href="{$v['url']}"> {$v['name']}</a>
+				</span>
+			</div>
+			{/JY:album}
+		</div>
+
+	</div>
+	<div class="col-sm-4 aside">
+		<div class="user-fans">
+			<div class="header">TA的粉丝<a class="more" href="{JY:url name='user_home_fans']}">更多&gt;&gt;</a></div>
+			<ul class="clearfix">
+				{JY:fans result="v" uid="$user['uid']" limit="12"}
+				<li>
+					<div class="image">
+						<a href="{$v['url']}">
+							<img alt="" src="{$v['avatar']}"></a>
+						</div>
+					<div class="name"><a href="{$v['url']}">{$v['nickname']}</a></div>
+				</li>
+				{/JY:fans}
+			</ul>
+		</div>
+
+		<div class="user-fans">
+			<div class="header">TA的访客</div>
+			<ul class="clearfix">				
+				{JY:visitor result="v" uid="$user['uid']" limit="12"}
+				<li>
+					<div class="image"><a href="{$v['url']}"><img alt="" src="{:get_user_avatar($v['uid'])}"></a></div>
+					<div class="name"><a href="{$v['url']}">{$v['nickname']}</a></div>
+				</li>
+				{/JY:visitor}
+			</ul>
+		</div>
+	</div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+$(document).ready(function () {
+    $.ajax({
+        url: U("/api/actions/hits"),
+        data: {id: "{$user['uid']}", type : 'album'},
+        dataType: "jsonp"
+    });
+});
+</script>
+{/block}
+{block name="player"}{include file="player/default"/}{/block} 

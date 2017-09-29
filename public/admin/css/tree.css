@@ -1,0 +1,198 @@
+.cf::before, .cf::after, .nav::before, .nav::after, .container-span::before, .container-span::after {
+    content: "";
+    display: table;
+}
+.cf::after, .nav::after, .container-span::after {
+    clear: both;
+}
+.text, .textarea {
+    background-color: #fff;
+    border: 1px solid #eeeeee;
+    padding: 4px;
+    transition: all 0.3s linear 0s;
+}
+
+.category .header {
+    border-bottom: 2px solid #ebeff2;
+}
+
+.category .cate-item dt {
+    border-bottom: 1px solid #ebeff2;
+    padding: 5px 0;
+}
+.category dl,
+.category dd,
+.category input {
+    margin: 0;
+}
+
+.category .header div,
+.category .cate-item-line {
+    float: left;
+    height: 38px;
+    line-height: 38px;
+    margin: 0 5px;
+}
+
+.category .cate-item-line input {
+    margin-bottom: 2px;
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+    color: #565656;
+    padding: 7px 12px;
+}
+
+.category  .cate-item .cate-item {
+    padding-left: 30px
+}
+
+.category .opt {
+    float: right;
+    width: 120px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+}
+
+.cate-item-btn {
+    float: right;
+    margin: 6px 10px 0 0;
+}
+
+.category .check {
+    width: 40px;
+    text-align: center;
+}
+.category .fold {
+    width: 50px;
+    padding-left: 15px;
+    float: left;
+}
+
+.category .fold i {
+    display: inline-block;
+    vertical-align: middle;
+    width: 17px;
+    height: 17px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    font-size:18px;
+}
+
+.category .order {
+    width: 60px;
+    padding-left: 15px;
+}
+.category .order input{
+    text-align: center;
+}
+
+.category .url {
+    width: 190px;
+}
+
+.category .name{
+    width: 120px;
+ }
+
+.category .btn-mod {
+    margin-left: 15px;
+}
+.category .root {
+    font-weight: bold;
+}
+
+
+.category dl, .category  dt{
+    font-weight: 400;
+    display: block;
+}
+
+/* 顶级分类 */
+.category > dl > dt .tab-sign {
+    display: none;
+
+}
+
+/* 二级分类 */
+.category > dl > dd > dl > dt .tab-sign {
+    width: 55px;
+    background-position: 0 0;
+}
+.category > dl > dd > dl:last-child > dt .tab-sign {
+    background-position: -55px 0;
+}
+
+/* 三级分类 */
+.category > dl > dd > dl > dd > dl > dt  .tab-sign {
+    width: 110px;
+    background-position: 0 -30px;
+}
+.category > dl > dd > dl > dd > dl:last-child > dt .tab-sign {
+    background-position: 0 -60px;
+}
+
+.category > dl > dd > dl:last-child > dd > dl > dt .tab-sign {
+    background-position: 0 -90px;
+}
+.category > dl > dd > dl:last-child > dd > dl:last-child > dt .tab-sign {
+    background-position: 0 -120px;
+}
+.category > dl > dd > dl:last-child > dd > dl:last-child > dt .add-sub-cate{
+    display: none;
+}
+.category input{
+    height: 30px;
+    line-height:30px;
+    border: 1px solid #d5d5d5;
+   
+}
+
+.add-on {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    position: relative;
+    top: 7px;
+    right: 25px;
+}
+.sort_bottom {
+    margin-top: 105px;
+}
+.sort_option select {
+    height: 250px;
+    width: 220px;
+}
+.sort_top {
+    margin-bottom: 10px;
+}
+.sort_top input {
+    height: 24px;
+    line-height: 26px;
+    margin-right: 30px;
+    border: 1px solid #ccc;
+    padding-left:5px;
+}
+.sort_btn button{
+    display: block;
+    margin-bottom: 15px;
+}
+.sort_option {
+    float: left;
+    margin-right: 16px;
+}
+.sort_confirm {
+    float: left;
+}
+
+.cate-item .table-action-btn {
+    color: #98a6ad;
+    display: inline-block;
+    width: 28px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-size: 20px;
+}

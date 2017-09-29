@@ -1,0 +1,206 @@
+{extend name="public/common" /}
+{block name="warp"}
+<div class="tabbable tabbable-custom tabbable-reversed">
+	<ul class="nav nav-tabs">
+		<li class="active">
+			<a data-toggle="tab"  href="#tab_in">基本设置</a>
+		</li>
+		<li>
+			<a data-toggle="tab" id="tab-pwd" href="#tab_pwd">密码设置</a>
+		</li>
+		<li>
+			<a  href="{JY:url name='user_avatar'}">头像设置</a>
+		</li>
+	</ul>
+	<div class="tab-content">
+		<div class="alert alert-warning avatar-alert alert-dismissable">
+			每月能修改{:config('user_send_limit')}次
+		</div>
+		<div id="tab_in" class="tab-pane active">
+			<div class="alert alert-warning d_none"></div>
+			<form class="form-horizontal" onsubmit="return false;" action="{JY:url name='user_send_set'}" method="post" id="info-form">
+				<div class="form-body">
+					<div class="form-group">
+						<label class="col-md-3 control-label">用户ID</label>
+						<div class="col-md-5">
+							<p class="form-control-static">{$user['uid']}</p>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label">修改昵称</label>
+						<div class="col-md-5">
+							<input type="text"  name="nickname" class="form-control" value="{$user['nickname']}">
+							<span class="help-block">昵称：4-32个字符，不能用纯数字或"_"</span>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label">修改性别</label>
+						<div class="col-md-4">
+                			<label class="radio-inline">
+                                <input type="radio" value="1" {eq name="user['sex']" value="1"}checked="checked"{/eq} name="sex"> 男
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" value="2" {eq name="user['sex']" value="2"}checked="checked"{/eq}  name="sex"> 女
+                            </label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">修改QQ</label>
+						<div class="col-md-5">
+							<input type="text" name="qq" class="form-control" value="{$user['qq']}">
+						</div>
+					</div>
+
+					<div class="form-group form-inline">
+						<label class="col-md-3 control-label">修改生日</label>
+						<div class="col-md-5">
+							<input type="text"  class="form-control" name="birthday" id="birthday" value="{$user['birthday']}">
+							<span class="help-block">格式：1990-10-12</span>
+						</div>
+					</div>
+
+					<div class="form-group form-inline">
+						<label class="col-md-3 control-label">所在地</label>
+						<div class="col-md-9">						
+							<div id="distpicker">
+								<input type="hidden" name="location" value="{$user['location']}">
+							  	<select name="province" data-province="{if condition="is_string($user['province'])"}{$user['province']}{/if}" class="form-control"></select>
+							  	<select name="city"  data-city="{if condition="is_string($user['city'])"}{$user['city']}{/if}" class="form-control"></select>
+							  	<select name="district"  data-district="{if condition="is_string($user['district'])"}{$user['district']}{/if}" class="form-control"></select>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label">自我介绍</label>
+	                    <div class="col-md-9">
+	                        <textarea class="form-control" name="signature" rows="4" placeholder="请填写签名~~~">{$user['signature']}</textarea>
+	                    </div>
+	                </div>
+
+					<input type="hidden" name="__token__" value="{$Request.token}" />
+					<div class="form-group ">
+						<div class="col-md-4 col-md-offset-3">
+							<button class="btn_8" tagform="#info-form">确认提交</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div id="tab_pwd" class="tab-pane">
+          	<form class="form-horizontal"  action="{JY:url name='user_send_pwd'}" id="pwd-form" method="post">
+				<div class="form-body">
+					<div class="form-group">
+						<label class="col-md-3 control-label">旧密码</label>
+						<div class="col-md-4">					
+							<input type="password" name="oldpassword" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">新密码</label>
+						<div class="col-md-4">
+							<input type="password" id="inpwd" name="password" class="form-control">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">确认新密码</label>
+						<div class="col-md-4">
+							<input type="password" name="repassword" class="form-control">
+						</div>
+					</div>
+					<input type="hidden" name="__token__" value="{$Request.token}" />
+					<div class="form-group ">
+						<div class="col-md-4 col-md-offset-3">
+							<button class="btn btn-danger" tagform="#pwd-form">确认提交</button>
+						</div>
+					</div>
+				</div>
+	    	</form>
+		</div>
+	</div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="__LIBS__/distpicker/distpicker.min.js"></script>
+<script type="text/javascript">
+$().ready(function() {
+	$("#distpicker").distpicker({
+	  	province: "---- 所在省 ----",
+	  	city: "---- 所在市 ----",
+	  	district: "---- 所在区 ----"
+	});
+
+	if (location.hash == '#tab_pwd'){
+		$('#tab-pwd').click();
+	}
+	$("#info-form").validate({
+		rules: {
+			nickname:{
+				required: true,
+				rangelength:[4,32]
+			},
+			qq: {
+				required: true,
+				digits: true
+			},
+			province:{
+				required: true,
+			},
+			city:{
+				required: true,
+			}
+		},
+		messages: {
+			nickname: {
+				required: '昵称不能为空',
+				rangelength:'昵称长度4-32个字符'
+			},
+			qq: {
+				required: "请填写QQ号",
+				digits: "请输入正确的QQ号"
+			},
+			province:{
+				required: '请选择所在省',
+			},
+			city:{
+				required: '请选择所在市',
+				digits: '请正确选择所在市'
+			}
+		}
+	});
+
+	$("#pwd-form").validate({
+		rules: {
+			oldpassword:{
+				required: true,
+				rangelength:[5,30]
+			},
+			password: {
+				required: true,
+				rangelength:[6,30]
+			},
+			repassword:{
+				equalTo: '#inpwd'
+			}
+		},
+		messages: {
+			oldpassword: {
+				required: '原密码不能为空',
+				rangelength:'密码长度6-30个字符'
+			},
+			password: {
+				required: '新密码不能为空',
+				rangelength:'密码长度6-30个字符'
+			},
+			repassword:{
+				equalTo:'两次密码输入不一致'
+			}
+		}
+	});
+
+});
+</script>
+{/block}

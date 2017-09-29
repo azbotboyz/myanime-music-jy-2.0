@@ -1,0 +1,88 @@
+{extend name="public:base" /}
+{block name="content"}
+<!-- Page-Title -->
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="input-group m-t-10">
+            <input type="text" id="find-search-input" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" data-url="{:url('Tags/read')}" id="find-search-btn">
+                    <i class="fa fa-search m-r-5"></i>搜索
+                </button>
+                <button type="button" class="btn btn-danger" style="display: none" id="find-search-back">
+                返回
+                </button>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row find-warp" id="default-list">
+    {foreach $_list as $vo} 
+    <div class="col-sm-6 col-md-4 col-lg-2">
+        <a class="btn btn-white btn-custom btn-check-tag" title="{$vo.name}" data-id="{$vo.id}" href="javascript:;">{$vo.name}</a>
+    </div>
+    {/foreach}
+</div>
+<div class="row find-warp" id="search-results"></div>
+
+<script type="text/javascript">
+$(function ($) {
+    var $input = $("input[name='tags']");
+
+    $(document).on('click', '.btn-check-tag', function() {
+        var $this = $(this);
+        if ($this.hasClass('btn-success')) {
+            $this.removeClass('btn-success');
+            $("input[name='tags']").tagsinput('remove', $.trim($(this).text()));
+        } else {
+            $this.addClass('btn-success');
+            $("input[name='tags']").tagsinput('add', $.trim($(this).text()));
+        }
+    });
+
+    //搜索功能
+    var $input = $("#find-search-input"), $btn = $("#find-search-btn");
+
+    $btn.click(function() {
+        var url = $(this).data('url'), 
+            val = $input.val(), 
+            $res = $('#search-results'),
+            $def = $('#default-list');
+        
+        if (!$.trim(val)) { return;}
+        $.post(url, {keys : val}, function(res){   
+            $def.hide();
+            if (res.code) {
+                var html ='';
+                $.each(res.data, function(i, n){
+                 html += '<div class="col-sm-6 col-md-4 col-lg-3"><a class="btn btn-white btn-custom btn-check-tag" title="'+n.name+'" data-id="'+n.id+'" href="javascript:;">'+n.name+'</a></div>';
+                });
+                $res.html(html).show();
+                $('#find-search-back').show();
+            } else {
+                $res.html('<span class="text-center">暂时没有搜索到与'+val+'相关的结果</span>');
+                setTimeout(function(){
+                    $res.hide();
+                    $def.show();               
+                },1500);
+            }
+        });
+    });
+
+    $(document).on('click', '#find-search-back', function(){
+        $('#search-results').hide();
+        $('#default-list').show();
+        $(this).hide();
+    });
+    //回车搜索
+    $input.keyup(function(e) {
+        if (e.keyCode === 13) {
+            $btn.click();
+            return false;
+        }
+    });
+
+});
+</script>
+{/block}
+

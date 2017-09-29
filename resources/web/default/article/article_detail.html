@@ -1,0 +1,42 @@
+{extend name="public/common"/}
+{block name="content"}
+<!--内容-->
+<div class="page_content_offset">
+	<div class="container">
+		<div class="row clearfix">
+			<section class="col-sm-12 m_bottom_20">
+
+				<!--详细-->
+				<article class="m_bottom_15">
+					<div class="widget_content article_inner m_bottom_15">
+						<div class="article_title m_bottom_15">
+							<h1>{$data['title']}</h1>
+							<p>{$data.create_time|time_format='Y年m月d日'}</p>
+						</div>
+						<div class="article_content">{$data.content}</div>
+						
+						<div class="share">
+							{:hook('pageBody',array('widget'=>'Baidushare'))}
+						</div>
+						
+						<div class="siblings">
+							{JY:prev name="info" data="data"}
+							<a title="{$prev['title']}" href="{$prev['url']}"><b>上一篇：</b>{$prev['title']}</a>
+							{/JY:prev}
+							{JY:next name="info" data="data"}
+							<a title="{$next['title']}" href="{$next['url']}"><b>下一篇：</b>{$next['title']}</a>	
+							{/JY:next}
+						</div>
+					</div>
+										
+				</article>
+				<!--评论-->
+				<div class="m_bottom_45">
+					{:hook('documentDetailAfter',array('type'=>'info','id'=>$data['id']))}
+				</div>			
+			</section>
+
+		</div>
+	</div>
+</div>
+{/block}

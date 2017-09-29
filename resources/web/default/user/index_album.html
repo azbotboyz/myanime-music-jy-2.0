@@ -1,0 +1,49 @@
+{extend name="index/common" /}
+
+{block name="content"}
+<div class="row">
+	<div class="col-sm-8">
+		<div class="header">TA的专辑</div>
+		<div class="row clearfix album_list">
+			{JY:album result="v" uid="$user['uid']" limit="32" page="1" order="create_time"}
+			<div class="col-sm-3">
+				<a class="acover" href="{$v['url']}"> <img alt="{$v['name']}" src="{$v['cover_url']}"></a>
+				<span class="aname text-ellipsis">
+				<a href="{$v['url']}"> {$v['name']}</a>
+				</span>
+			</div>
+			{/JY:album}
+		</div>
+		<ul class="horizontal_list clearfix mt_10 page_list">{$v_page}</ul>
+	</div>
+	<div class="col-sm-4 aside">
+		<div class="user-fans">
+			<div class="header">TA的粉丝<a class="more" href="{JY:url name='user_home_fans']}">更多&gt;&gt;</a></div>
+			<ul class="clearfix">
+				{JY:fans result="v" uid="$user['uid']" limit="12"}
+				<li>
+					<div class="image">
+						<a href="{$v['url']}">
+							<img alt="" src="{$v['avatar']}"></a>
+						</div>
+					<div class="name"><a href="{$v['url']}">{$v['nickname']}</a></div>
+				</li>
+				{/JY:fans}
+			</ul>
+		</div>
+
+		<div class="user-fans">
+			<div class="header">TA的访客</div>
+			<ul class="clearfix">				
+				{JY:visitor result="v" uid="$user['uid']" limit="24"}
+				<li>
+					<div class="image"><a href="{$v['url']}"><img alt="" src="{:get_user_avatar($v['uid'])}"></a></div>
+					<div class="name"><a href="{$v['url']}">{$v['nickname']}</a></div>
+				</li>
+				{/JY:visitor}
+			</ul>
+		</div>
+	</div>
+</div>
+{/block}
+

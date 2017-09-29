@@ -1,0 +1,289 @@
+{extend name="public:base" /}
+{block name="content"}
+<style type="text/css">
+	.side-menu {
+		display: none;
+	}
+	.content-page {
+	    margin-left: 0;
+	}
+	.footer {
+		left: 0;
+	}
+</style>
+<div class="container-default">
+    <div class="row">
+		<div class="col-sm-6 col-md-6 col-lg-3">
+			<div class="widget-bg-color-icon card-box">
+				<div class="bg-icon bg-icon-info pull-left">
+					<i class="fa fa-music text-info"></i>
+				</div>
+				<div class="text-right">
+					{php}
+						$songsCount = db('songs')->where('status',1)->count();
+					{/php}
+					<h3 class="text-dark"><b class="counter">{$songsCount}</b></h3>
+					<p class="text-muted">歌曲总数</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+		<div class="col-sm-6 col-md-6 col-lg-3">
+			<div class="widget-bg-color-icon card-box">
+				<div class="bg-icon bg-icon-pink pull-left">
+					<i class="fa fa-bullseye text-pink"></i>
+				</div>
+				<div class="text-right">
+					{php}
+						$albumCount = db('album')->where('status',1)->count();
+					{/php}
+					<h3 class="text-dark"><b class="counter">{$albumCount}</b></h3>
+					<p class="text-muted">专辑总数</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+		<div class="col-sm-6 col-md-6 col-lg-3">
+			<div class="widget-bg-color-icon card-box">
+				<div class="bg-icon bg-icon-purple pull-left">
+					<i class="fa fa-user text-purple"></i>
+				</div>
+				<div class="text-right">
+					{php}
+						$userCount = db('member')->where('status',1)->count();
+					{/php}
+					<h3 class="text-dark"><b class="counter">{$userCount}</b></h3>
+					<p class="text-muted">用户总数</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		
+		
+		<div class="col-sm-6 col-md-6 col-lg-3">
+			<div class="widget-bg-color-icon card-box">
+				<div class="bg-icon bg-icon-success pull-left">
+					<i class="fa fa-microphone text-success"></i>
+				</div>
+				<div class="text-right">
+					{php}
+						$artistCount = db('artist')->where('status',1)->count();
+					{/php}
+					<h3 class="text-dark"><b class="counter">{$artistCount}</b></h3>
+					<p class="text-muted">歌手总数</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+        <!-- Transactions -->
+        <div class="col-lg-4">
+        	<div class="card-box">
+				<h4 class="m-t-0 m-b-20 header-title"><b>系统信息</b></h4>
+
+				<div class="nicescroll" tabindex="5001" style="height: 280px; overflow: hidden; outline: none;">
+                    <ul class="list-unstyled transaction-list m-r-5">
+                        <li>
+                            <i class="ti-download text-success"></i>
+                            <span class="tran-text">系统版本</span>
+                            <span class="pull-right text-danger">
+                            	{:config('jymusic_update_time')}
+                            </span>
+                            <span class="pull-right text-muted">
+                            	JYmusic-V{$Think.const.JYMUSIC_VERSION}-
+                            </span>
+                            <span class="clearfix"></span>
+                        </li>
+
+                        <li>
+                            <i class="ti-upload text-danger"></i>
+                            <span class="tran-text">
+                            	操作系统
+                            </span>
+                            <span class="pull-right text-danger tran-price">
+                            	{$Think.const.PHP_OS}
+                            </span>
+                            <span class="clearfix"></span>
+                        </li>
+
+                        <li>
+                            <i class="ti-download text-success"></i>
+                            <span class="tran-text">运行环境</span>
+                            <span class="pull-right text-muted">
+                            	{$_SERVER['SERVER_SOFTWARE']}
+                            </span>
+                            <span class="clearfix"></span>
+                        </li>
+
+                        <li>
+                            <i class="ti-download text-success"></i>
+                            <span class="tran-text">MYSQL版本</span>
+                            {php}
+        						$system_info_mysql = db()->query("select version() as v;");
+        					{/php}
+                            <span class="pull-right text-success tran-price">
+								{$system_info_mysql.0.v}
+                            </span>
+                            <span class="clearfix"></span>
+                        </li>
+
+                        <li>
+                            <i class="ti-upload text-danger"></i>
+                            <span class="tran-text">php上传限制</span>
+                            <span class="pull-right text-info tran-price">
+                            	{:ini_get('upload_max_filesize')}B
+                            </span>
+                            <span class="clearfix"></span>
+                        </li>
+
+                        <li>
+                            <i class="ti-upload text-danger"></i>
+                            <span class="tran-text" style="width: 125px;">POST上传限制</span>
+                            <span class="pull-right text-info tran-price">
+                            	{:ini_get('post_max_size')}B
+                            </span>
+                            <span class="clearfix"></span>
+                        </li>
+
+                        <li>
+                            <i class="ti-upload text-danger"></i>
+                            <span class="tran-text">脚本执行时间</span>
+                            <span class="pull-right text-info tran-price">
+                            	{:ini_get('max_execution_time')}秒
+                            </span>
+                            <span class="clearfix"></span>
+                        </li>
+
+                    </ul>
+                </div>
+			</div>
+
+        </div>
+
+        <!-- CHAT -->
+        <div class="col-lg-4">
+        	<div class="card-box">
+				<h4 class="m-t-0 m-b-20 header-title"><b>产品团队</b></h4>
+
+				<div class="nicescroll" tabindex="5001" style="height: 280px;overflow: hidden; outline: none;">
+                    <ul class="list-unstyled transaction-list m-r-5">
+                        <li>
+                            <i class="ti-download text-success"></i>
+                            <span class="tran-text">总策划</span>
+                            <span class="pull-right">
+                            	战神~~巴蒂[QQ:378020023]
+                            </span>
+                            <span class="clearfix"></span>
+                        </li>
+
+                        <li>
+                            <i class="ti-upload text-danger"></i>
+                            <span class="tran-text">
+                            	系统名称
+                            </span>
+                            <span class="pull-right tran-price">
+                            	JYmusic音乐(DJ)管理系统
+                            </span>
+                            <span class="clearfix"></span>
+                        </li>
+
+                        <li>
+                            <i class="ti-download text-success"></i>
+                            <span class="tran-text" style="width: 155px;">官方界面体验团队</span>
+                            <span class="pull-right text-muted">
+                            	JYniuniu、猎天
+                            </span>
+                            <span class="clearfix"></span>
+                        </li>
+
+                        <li>
+                            <i class="ti-download text-success"></i>
+                            <span class="tran-text">责任声明</span>
+                            <span class="pull-right text-success tran-price">
+								本系统完全免费开源，本程序仅供个人交流使用，不得用于商业用途，因此带来的后果与程序作者无关！
+                            </span>
+                            <span class="clearfix"></span>
+                        </li>
+
+                        <li>
+                            <i class="ti-upload text-danger"></i>
+                            <span class="tran-text">官方网址</span>
+                            <span class="pull-right text-info tran-price">
+                            	<a href="http://www.jyuu.cn" target="_blank">www.jyuu.cn</a>
+                            </span>
+                            <span class="clearfix"></span>
+                        </li>
+
+                        <li>
+                            <i class="ti-upload text-danger"></i>
+                            <span class="tran-text">BUG反馈</span>
+                            <span class="pull-right text-info tran-price">
+                            	<a href="http://topic.jyuu.cn/tag/%E7%A8%8B%E5%BA%8F%E5%8F%8D%E9%A6%88" target="_blank">topic.jyuu.cn</a>
+                            </span>
+                            <span class="clearfix"></span>
+                        </li>
+
+                    </ul>
+                </div>
+			</div>
+        </div> <!-- end col-->
+
+
+        <!-- Todos app -->
+        <div class="col-lg-4">
+        	<div class="card-box">
+				<h4 class="m-t-0 m-b-20 header-title"><b>歌曲审核</b></h4>
+				<div class="todoapp">
+                    <div class="row">
+                        {notempty name="songsAuditList"}
+                        <div class="col-sm-6">
+                            <h4 id="todo-message">
+                                <span id="todo-total">{:count($songsAuditList)}</span> 首歌曲需要审核
+                            </h4>
+                        </div>
+                        <div class="col-sm-6">
+                           
+                            <a href="{:url('songs/index?status=audit')}" class="pull-right btn btn-primary btn-sm waves-effect waves-light" id="btn-archive">点击审核</a>
+                            
+                        </div>
+                        {/notempty}
+                    </div>
+                    
+                    <ul class="list-group no-margn nicescroll todo-list" style="height: 220px; overflow: hidden; outline: none;" id="todo-list" tabindex="5003">
+                        {notempty name="songsAuditList"}
+                            {foreach $songsAuditList as $vo} 
+                            <li class="list-group-item">
+                                {$vo['name']}
+                            </li>
+                            {/foreach}
+                        {else /}
+                            暂时没有要审核的歌曲
+                        {/notempty}
+                    </ul>
+
+
+                </div>
+			</div>
+        </div>
+
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript">
+    $(function () {
+
+        $.post("{:url('Update/check')}",function(data){
+            if (data && data.status === 1){
+                var html = '<div style="padding: 10px">发现新更新可用,升级内容:<br>'+data.info+'<br><a  href="{:url('/update/index')}">点此更新</a></div>';
+                $.Notify.open(html);
+            }
+        });
+    })
+</script>
+{/block}

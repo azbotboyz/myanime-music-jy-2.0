@@ -1,0 +1,75 @@
+{extend name="public:base" /}
+{block name="content"}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">添加到用户组</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal form-fixed form-submit" action="{:url('togroup')}">
+            <div class="form-group">
+                <label class="col-md-2 col-xs-12 text-right control-label">当前用户</label>
+                <div class="col-md-6 col-xs-12">
+                    <p class="form-control-static">{$info.member.nickname}[{$info.id}]</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 col-xs-12 text-right control-label">选择组</label>
+                <div class="col-md-8 col-xs-12">
+                    {volist name=":get_user_groups()" id="vo"}
+                    <label class="radio-inline i-radios">
+                        <input type="radio" name="group_id" {if condition="$userGroup.id == $vo.id" }checked="checked"{/if} value="{$vo.id}">{$vo.name}
+                    </label>
+                    {/volist}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">设置时长</label>
+                <div class="col-md-8 col-xs-12">
+                    <label class="radio-inline i-radios">
+                        <input type="radio" name="len_time" checked="checked" value="30">一个月
+                    </label>
+                    <label class="radio-inline i-radios">
+                        <input type="radio" name="len_time" value="90">三个月
+                    </label>
+                    <label class="radio-inline i-radios">
+                        <input type="radio" name="len_time" value="180">半年
+                    </label>
+                    <label class="radio-inline i-radios">
+                        <input type="radio" name="len_time" value="365">一年
+                    </label>
+                </div>
+            </div>
+            {if condition="$userGroup['end_time'] > 0"}
+            <div class="form-group">
+                <label class="col-md-2 col-xs-12 text-right control-label">到期时间</label>
+                <div class="col-md-6 col-xs-12">
+                    <p class="form-control-static">{$userGroup['end_time']|time_format}</p>
+                </div>
+            </div>
+            {/if}
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">自定义时长</label>
+                <div class="col-md-2 col-xs-12">
+                    <input type="text" name="custom_len_time" class="form-control" value="">
+                </div>
+                天
+            </div>
+            <input type="hidden" name="uid" value="{$info.id|default=''}">
+            <div class="form-group">
+                <div class="col-md-offset-2 col-lg-6 text-left">
+                    <button onclick="" type="button"
+                            class="btn btn-default btn-return">
+                        <i class=" icon-arrow-left16 position-right"></i>返回上页
+                    </button>
+                    <button type="submit" class="btn btn-primary" type="submit">
+                        确认提交<i class="icon-arrow-right16 position-right"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}

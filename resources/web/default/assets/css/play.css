@@ -1,0 +1,61 @@
+.player {
+  background: #fff none repeat scroll 0 0;
+  border: 2px solid #ccc;
+  height: 105px;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* 播放器 */
+
+/*播放/暂停*/
+.nplay_btn{ border:2px solid #fff; float:left; width:100px;}
+.nplay_btn a{ display:block; width:100px; height:101px; text-indent:-9999px; overflow:hidden; background:url(play_icon.png) no-repeat 0 0;}
+.nplay_btn .jp-play:hover{display: none; background-position:-100px 0}
+.nplay_btn .jp-pause{display:block; background-position:0 -100px;}
+.nplay_btn .jp-pause:hover{display:block; background-position:-100px -100px;}
+
+/*进度条 和错误提示*/
+.player_top,.player_error{ float:left; width:385px; height:67px; border-bottom:1px solid #eaeaea; border-left:1px solid #eaeaea;}
+.player_error p{ font-size:14px; padding:22px 0 0 22px;}
+.player_error p a:link,.player_error a:visited{ text-decoration:underline;}
+.player_error p a:hover{}
+.player_down{ float:left; width:385px; height:37px; border-left:1px solid #eaeaea;}
+.nplay_plan{ float:left; width:190px; height:7px; font-size:0; background:#e0e0e0; position:relative; cursor:pointer; margin:30px 0 0 10px; _display:inline;}
+.nplay_buffered,.nplay_loading_time{ position:absolute; left:0; top:0; height:7px; background:#ccc;}
+.nplay_loading_time{ background:#f36565;}
+
+/*播放时间*/
+.nplay_time{float:left; width:70px; margin:24px 20px 0 10px;}
+
+/*音量+音量条*/
+.nplay_voice{float:left; overflow:hidden; zoom:1; margin:28px 0 0 0; width:78px;}
+.nplay_voice a{float:left; border:0; text-indent:-9999px; background:url(play_icon.png) no-repeat 0 0; width:11px; height:11px; cursor:pointer; overflow:hidden; padding:0; margin:0;}
+.nplay_voice .jp-mute{display:block; background-position:0 -202px;}
+.nplay_voice .jp-unmute{display: none; background-position:-11px -202px;}
+
+.jp-volume-bar{float:left; position:relative; width:60px; height:5px; font-size:0; background:#e0e0e0; cursor:pointer; margin:3px 0 0 6px;}
+.jp-volume-bar-value{position:absolute; width: 47px; left:0; top:0; height:5px; background:#f36565;;}
+
+/*连接*/
+.player_down ul{ padding:12px 0 0 22px; overflow:hidden; zoom:1;}
+.player_down ul li{color:#999; float:left; width:108px; line-height:14px; *line-height:16px; overflow:hidden; zoom:1;}
+.player_down ul li a:link,.player_down ul li a:visited{ color:#999; zoom:1;}
+.player_down ul li a:hover{ color:#79a13a; text-decoration:none;}
+.player_down ul .player_icon4{width:70px;}
+.player_down ul li .p_ic{ display:block; float:left; width:14px; height:14px; font-size:0; line-height:0; background:url(play_icon.png) no-repeat -22px -202px; margin:1px 4px 0 0;}
+.player_down ul .player_icon2 .p_ic{ background-position:-50px -202px;}
+.player_down ul .player_icon3 .p_ic{ background-position:-78px -202px;}
+.player_down ul .player_icon4 .p_ic{ background-position:-106px -202px;}
+.player_down ul .player_icon5 .p_ic{ background-position:-134px -202px;}
+.player_down ul .player_icon6 .p_ic{background:url(./images/bg.png) no-repeat -120px -80px;}
+
+.player_down ul .player_icon1 a:hover .p_ic{ background-position:-36px -202px;}
+.player_down ul .player_icon2 a:hover .p_ic{ background-position:-64px -202px;}
+.player_down ul .player_icon3 a:hover .p_ic{ background-position:-92px -202px;}
+.player_down ul .player_icon4 a:hover .p_ic{ background-position:-120px -202px;}
+.player_down ul .player_icon5 a:hover .p_ic{ background-position:-148px -202px;}
+
+.player_down ul .player_icon4{ _top:80px; _right:95px; _position:absolute;}
+.player_down ul .player_icon5{ _top:80px; _right:0px; _position:absolute;}
+

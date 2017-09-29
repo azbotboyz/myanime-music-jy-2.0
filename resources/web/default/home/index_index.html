@@ -1,0 +1,233 @@
+{extend name="public/common"/}
+{block name="content"}
+{:hook('indexSlider', ['widget'=>'Slider'])}
+<div class="page_content_offset">
+	<div class="container">
+		<div class="row clearfix ">
+			<div class="col-sm-8">
+				<div class="new-title clearfix mb_15">
+					<h2 class="pull-left hidden-xs"><i class="jy jy-hot-s mr_10"></i>歌曲TOP12</h2>
+					<ul class="pull-right tabs_nav mb_10" role="tablist">
+						<li class="active"><a class="tr_delay_hover" data-toggle="tab" role="tab" href="#new">最新添加</a></li>
+						<li><a class="tr_delay_hover" data-toggle="tab" role="tab" href="#hot">热门试听</a></li>
+						<li><a class="tr_delay_hover" data-toggle="tab" role="tab" href="#listens">推荐单曲</a></li>
+					</ul>
+				</div>
+
+				<div class="tab-content mb_15">
+					<div class="tab-pane fade" id="listens">
+						{JY:songs result="v" limit="12" pos="1" cache="86400" order="create_time"}
+						<div class="mb_10 clearfix relative play_box">
+							<div class="row clearfix song_list">
+								<span class="col-sm-5 col-xs-8">
+									<span class="ls_num {lt name="i" value="4"}ls_num_top{/lt}">{$i}</span>
+									<a class="text-ellipsis" target="_play" href="{$v['url']}">{$v['name']}</a>
+								</span>
+								<span class="col-sm-3 col-xs-2 p_hr_0">
+									<a class="text-ellipsis singer" target="_sing" href="{$v['artist_url']}">{$v['artist_name']}</a>
+								</span>
+								<span class="col-sm-2 hidden-xs singer"><a href="{$v['genre_url']}">{$v['genre_name']}</a></span>
+								<span class="col-sm-2 col-xs-2 ls_btns">
+									<a class="hidden-xs" target="_down" href="{$v['down_url']}"><i class="jy jy-cloud-down-f"></i></a>
+									<a data-id="{$v['id']}" data-action="fav" href="javascript:;"><i class="jy jy-like"></i></a>
+									<a class="jp-play-me " data-id="{$v['id']}" href="javascript:;"><i class="jy jy-play"></i>							</a>
+								</span>
+							</div>
+							<hr class="l_hr">
+						</div>
+						{/JY:songs}
+					</div>
+					<div class="tab-pane fade" id="hot">
+						{JY:songs result="v" limit="12" order="listens" cache="86400"}
+						<div class="mb_10 clearfix relative play_box">
+							<div class="row clearfix song_list">
+								<span class="col-sm-5 col-xs-8">
+									<span class="ls_num {lt name="i" value="4"}ls_num_top{/lt}">{$i}</span>
+									<a class="text-ellipsis" target="_play" href="{$v['url']}">{$v['name']}</a>
+								</span>
+								<span class="col-sm-3 col-xs-2 p_hr_0">
+									<a class="text-ellipsis singer" target="_sing" href="{$v['artist_url']}">{$v['artist_name']}</a>
+								</span>
+								<span class="col-sm-2 hidden-xs singer"><a href="{$v['genre_url']}">{$v['genre_name']}</a></span>
+								<span class="col-sm-2 col-xs-2 ls_btns">
+									<a class="hidden-xs" target="_down" href="{$v['down_url']}"><i class="jy jy-cloud-down-f"></i></a>
+									<a data-id="{$v['id']}" data-action="fav" href="javascript:;">
+										<i class="jy jy-like"></i>
+									</a>
+									<a class="jp-play-me" data-id="{$v['id']}" href="javascript:;">
+										<i class="jy jy-play"></i>
+									</a>
+								</span>
+							</div>
+							<hr class="l_hr">
+						</div>
+						{/JY:songs}
+					</div>
+					<div class="tab-pane fade in active" id="new">
+						{JY:songs result="v" limit="12" order="create_time" cache="86400"}
+						<div class="mb_10 clearfix relative play_box">
+							<div class="row clearfix song_list">
+								<span class="col-sm-5 col-xs-8">
+									<span class="ls_num {lt name="i" value="4"}ls_num_top{/lt}">{$i}</span>
+									<a class="text-ellipsis" target="_play" href="{$v['url']}">{$v['name']}</a>
+								</span>
+								<span class="col-sm-3 col-xs-2 p_hr_0">
+									<a class="text-ellipsis singer" target="_sing" href="{$v['artist_url']}">{$v['artist_name']}</a>
+								</span>
+								<span class="col-sm-2 hidden-xs singer"><a href="{$v['genre_url']}">{$v['genre_name']}</a></span>
+								<span class="col-sm-2 col-xs-2 ls_btns">
+									<a class="hidden-xs" target="_down" href="{$v['down_url']}"><i class="jy jy-cloud-down-f"></i></a>
+									<a class="hidden-xs" data-id="{$v['id']}" data-action="fav" href="javascript:;"><i class="jy jy-like"></i></a>
+									<a class="jp-play-me" data-id="{$v['id']}" href="javascript:;"><i class="jy jy-play"></i>							</a>
+								</span>
+							</div>
+							<hr class="l_hr">
+						</div>
+						{/JY:songs}
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-4">
+				<div class="clearfix new-title mb_15">
+					<h2 class="pull-left">推荐专辑</h2>
+					<div class="more mb_10">
+						<a href="{JY:url name='album')}">更多>></a>
+					</div>
+				</div>
+				{JY:album result="v" limit="5" pos="1" order="update_time" cache="86400"}
+				<div class="clearfix row">
+					<div class="col-sm-4 col-xs-5">
+						<a href="{$v['url']}" target="_album" class="pull-left rca_cover">
+							<img class="s_animate animate_ftr" src="{$v['cover_url']}" alt="{$v['name']}">
+						</a>
+					</div>
+					<div class="col-sm-8 col-xs-7 pl_0">
+						<h4 class="mb_5 mt_5 text-ellipsis"><a href="{$v['url']}" target="_album" >{$v['name']}</a></h4>
+						<p class="small">{$v['create_time']|time_format='Y-m-d'} ，{$v['hits']}次浏览</p>
+						<p>{$v['description']|msubstr=0,30} <a class="ml_10" href="{$v['url']}" target="_album" >详细</a></p>
+					</div>
+				</div>
+				<hr>
+				{/JY:album}
+			</div>
+		</div>
+
+		{:hook('Ads','index_center')}
+
+		<div class="clearfix new-title">
+			<h2 class="pull-left mb_15">
+				<i class="jy jy-new-s mr_10"></i>新碟上架
+				<a href="{JY:url name='album')}" class="">/更多</a>
+			</h2>
+			<div class="pull-right clearfix">
+				<button class="button_type_7 pull-left bestalbum_prev">
+					<i class="jy jy-left"></i>
+				</button>
+				<button class="button_type_7 pull-left ml_5 bestalbum_next">
+					<i class="jy jy-right"></i>
+				</button>
+			</div>
+		</div>
+		<div class="bestalbum_carousel mb_30">
+			{JY:album result="v" limit="10" order="create_time" cache="86400"}
+			<figure class="photoframe shadow relative tr_all_hover animate_ftb">
+				<a href="{$v['url']}" target="_album" title="{$v['name']}" class="d_block relative wrapper a_cover">
+					<img class="tr_all_hover"  src="{$v['cover_url']}" alt="{$v['name']}">
+					<span class="clearfix p_buttons d_block tr_all_hover">
+						<button class="add_fav btn_5 tr_delay_hover pull-left" title="收藏专辑" data-action="fav"  data-id="{$v['id']}" data-type="album">
+							<i class="jy jy-like"></i>
+						</button>
+						<span class=" btn_5 tr_delay_hover pull-left album_play" title="播放专辑" data-id="{$v['id']}">
+							<i class="jy jy-play"></i>
+						</span>
+					</span>
+				</a>
+				<figcaption class="clearfix">
+					<h5 class="mb_10 mt_10">
+						<a href="{$v['url']}" target="_album" title="{$v['name']}" class="ellipsis">{$v['name']}</a>
+					</h5>
+					<p class="scheme_color  pull-left">
+						<i class="jy jy-fire"></i>{$v['hits']}
+					</p>
+				</figcaption>
+			</figure>
+			{/JY:album}
+		</div>
+
+		<div class="row clearfix mb_30">
+			<!--音乐人-->
+			<div class="col-md-7 col-sm-12 ">
+				<div class="clearfix new-title mb_10">
+					<h2 class="pull-left"><i class="jy jy-hot-s mr_10"></i>音乐人</h2>
+					<div class="more mb_10">
+						<a target="_blank" href="{JY:url name='artist')}">更多>></a>
+					</div>
+				</div>
+
+				{JY:artist result="v" limit="9"  pos="1" order="update_time"}
+				<div class="{eq name="i" value="1"}col-sm-4 c_md{else/}col-sm-2 c_sm{/eq} col-xs-6">
+					<div class="a_cover_info photoframe tr_all_hover animate_ftr wrapper s_animate">
+						<a href="{$v['url']}" title="{$v['name']}">
+							<img class="a_cover" src="{$v['cover_url']}" alt="{$v['name']}">
+						</a>
+					</div>
+				</div>
+				{/JY:artist}
+			</div>
+
+			<div class="col-md-5 col-sm-12">
+				<div class="clearfix new-title mb_15">
+					<h2 class="pull-left"><i class="jy jy-hot-s mr_10"></i>分类精选</h2>
+					<div class="more mb_10">
+						<a target="_genre" title="音乐分类" href="{JY:url name='cate')}">更多>></a>
+					</div>
+				</div>
+				<div class="clearfix s_cats">
+					{JY:genre result="v" limit="20"}
+					<a title="{$v['name']}" target="_genre" href="{$v['url']}">{$v['name']}</a>
+					{/JY:genre}
+				</div>
+			</div>
+		</div>
+		<div class="row clearfix mb_20">
+			<div class="col-md-12">
+				<div class="clearfix new-title mb_15">
+					<h2 class=" pull-left mb_10">
+						<i class="jy jy-hot-s mr_10"></i>分享达人
+						<a href="#" class="animate_ftr">/更多</a>
+					</h2>
+					<div class="pull-right clearfix nav_buttons_wrap animate_fade">
+						<button class="button_type_7 bg_cs_hover pull-left tr_delay_hover  bestuser_prev"><i class="jy jy-left"></i></button>
+						<button class="button_type_7 bg_cs_hover pull-left ml_5 tr_delay_hover  bestuser_next"><i class="jy jy-right"></i></button>
+					</div>
+				</div>
+
+				<div class="bestuser_carousel mb_10">
+					{JY:member result="v" limit="10" order="songs" cache='86400'}
+					<figure class="photoframe shadow relative tr_all_hover animate_ftb t_align_c">
+						<div class="circle wrapper u_cover mb_15">
+							<a href="{$v['url']}" target="_blank" class="t_align_c"><img alt="{$v['nickname']}" src="{$v['avatar']}"></a>
+						</div>
+						<figcaption>
+							<h4 class="fw_medium color_dark"><a href="{$v['url']}" target="_blank">{$v['nickname']}</a></h4>
+							<p class="mt_5">音乐：{$v['songs']}</p>
+						</figcaption>
+					</figure>
+					{/JY:member}
+				</div>
+			</div>
+		</div>
+
+		<div class="row clearfix mb_20">
+			<div class="col-md-12">
+				<div class="clearfix new-title mb_15">
+					<h2 class=""><i class="jy jy-send-f mr_10"></i>友情链接</h2>
+				</div>
+				<ul>{:hook('pageFooter', ['widget'=>'links'])}</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}
+{block name="player"}{include file="player/default"/}{/block}

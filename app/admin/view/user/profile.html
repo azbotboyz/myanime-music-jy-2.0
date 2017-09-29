@@ -1,0 +1,62 @@
+{extend name="public/base" /}
+{block name="content"}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">修改管理员资料</h3>
+    </div>
+    <div class="panel-body">
+            <form class="form-horizontal form-fixed form-submit" action="{:url('user/profile')}">
+                <div class="form-group">
+                    <label class="col-md-2 col-xs-12 text-right control-label">用户名</label>
+                    <div class="col-md-8 col-xs-12">
+                        <input type="text" name="username" require="" class="form-control" value="{$info.username|default=''}">
+                        <span class="help-block">用户名不能为空</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">用户密码</label>
+                    <div class="col-md-8 col-xs-12">
+                        <input type="text" name="password" placeholder="6-30位字符" class="form-control" value="">
+                        <span class="help-block">
+                            {$info?  '留空将不会修改密码' : '密码不能为空'}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">验证密码</label>
+                    <div class="col-md-8 col-xs-12">
+                        <input type="text" name="oldpassword" placeholder="输入原密码验证" class="form-control" value="">
+                        <span class="help-block">
+                            输入当前密码用于验证
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-lg-6 text-left">
+                        <button onclick="" type="button"
+                                class="btn btn-default btn-return">
+                            <i class=" icon-arrow-left16 position-right"></i>返回上页
+                        </button>
+                        <button type="submit" class="btn btn-primary" type="submit">
+                            确认提交<i class="icon-arrow-right16 position-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+    </div>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__LIBS__/distpicker/distpicker.min.js"></script>
+<script type="text/javascript">
+$('#distpicker').distpicker({
+    province: '{$info.member.province|default=''}',
+    city: '{$info.member.city|default=''}',
+    district: '{$info.member.district|default=''}'
+});
+</script>
+{/block}

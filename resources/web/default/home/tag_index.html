@@ -1,0 +1,65 @@
+{extend name="public/common"/}
+{block name="content"}
+<div class="page_content_offset">
+	<div class="container">	
+		<div class="row clearfix">
+			<!--左侧列表-->
+			<section class="col-sm-8 pt_10">
+				<div class="row clearfix pt_10">					
+					<div class="col-lg-5 col-md-4 col-sm-4 col-xs-5 t_align_l ">
+						<h2 class=" "><i class="jy jy-tag mr_6"></i>热门标签</h2>
+					</div>
+				</div>
+				<hr class="mb_20 ">
+				<section class="list_type clearfix mb_20">
+					{JY:tags result="v" limit="20" order="hits"}
+					<a class="tr_delay_hover btn_1 pull-left mr_5 mt_5" target="_tag" href="{$v['url']}">{$v['name']}</a>
+					{/JY:tags}
+				</section>
+
+				{JY:tags result="tag" tree="true"}
+					{notempty name="tag['tags']"}
+					<div class="row clearfix pt_10">					
+						<div class="col-lg-5 col-md-4 col-sm-4 col-xs-5 ">
+							<h3 class="">{$tag.name}</h3>
+						</div>
+					</div>
+					<hr class="mb_20 ">
+					<section class="list_type clearfix mb_20">						
+						{JY:loop name="tag['tags']" res="t" model="tags"}
+						<a href="{$t['url']}" target="_tag" class="btn_1 pull-left mr_5 mt_5">{$t['name']}</a>
+						{/JY:loop}
+					</section>
+					{/notempty}
+				{/JY:tags}
+
+			</section>
+
+			<!--侧边栏-->
+			<aside class="col-sm-4">
+                <h2 class="pt_10">热门下载</h2>
+                <hr>
+                <div class="sidebar_content">
+                    {JY:songs result="v" limit="15" cache="86400" order="download"}
+                    <div class="mb_10 clearfix relative play_box">
+                        <div class="row clearfix song_list">
+                            <span class="col-sm-8">
+                                <span class="ls_num {lt name="i" value="4"} ls_num_top{/lt}">{$i}</span>
+                                <a class="text-ellipsis" target="_play" title="{$v['name']}" href="{$v['url']}">{$v['name']}</a>
+                            </span>
+                            <span class="col-sm-4 hidden-xs">
+                                <a class="text-ellipsis" href="{$v['artist_url']}" target=_singer" title="{$v['artist_name']}">{$v['artist_name']}</a>
+                            </span>
+                        </div>
+                        <hr class="l_hr">
+                    </div>
+                    {/JY:songs}
+                </div>
+                {include file="sidebar/adver"/}
+
+			</aside>
+		</div>	
+	</div>
+
+</div>
+{/block}

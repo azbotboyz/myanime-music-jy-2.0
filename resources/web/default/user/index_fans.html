@@ -1,0 +1,16 @@
+{extend name="index/common" /}
+
+{block name="content"}
+<div class="row">
+	{JY:fans result="v" limit="60" empty="<p class='text-center'>暂无数据</p>"}
+	<div class="col-sm-2">
+		<div class="image">
+			<a href="{$v['url']}">
+				<img alt="" src="{$v['avatar']}"></a>
+			</div>
+		<div class="name"><a href="{$v['url']}">{$v['nickname']}</a></div>		
+	</div>
+	{/JY:fans}
+</div>
+{/block}
+

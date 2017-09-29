@@ -1,0 +1,270 @@
+<!doctype html>
+<!--[if IE 9 ]><html class="ie9" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<head>	
+	{include file="public/head"/}
+	{block name="style"}{/block}
+</head>
+<body id="">
+<div class="relative w_xs_auto">
+		<!--头顶部-->
+	<section class="h_top hidden-xs">
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-3 col-sm-4 ">
+					<a href="{:url('/')}" class="pull-left logo mt_15">
+						<img src="__IMG__/logo.png" alt="JYmusic">
+					</a>
+				</div>
+				<div class="col-md-5 col-sm-8 t_align_c ">
+					<div class="search-box mt_15" >
+						<form role="search" class="relative type_2" id="search_form" method="get" action="{JY:url name='search'}">
+							<input type="text" class="d_none" name="type" value="1" >
+							<input type="text" class="full_width" name="keys" placeholder="搜索">
+							<button class="search_button tr_all_hover">
+								<i class="jy jy-search"></i>
+							</button>
+						</form>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 t_align_c d_xs_none">
+
+					<ul class=" clearfix users_nav">
+						<li class="user-show">
+							<span><i class="jy jy-login"></i></span>
+							<span >
+								<a href="{JY:url name='user_login'}" class=" user-show" id="login_btn">登录</a>
+								|
+								<a href="{JY:url name='user_signup'}" class="reg_btn" >注册</a>
+							</span>
+						</li>
+						<li class="user-hide">
+							<span><i class="jy jy-user"></i></span>
+							<span id="user-info"></span>
+						</li>
+
+						<li>
+							<a href="{JY:url name='music_share'}" class="reg_btn" >
+								<span><i class="jy jy-cloud-up"></i></span>
+								<span>上传</span>
+							</a>
+						</li>
+						<li>
+							<a href="{JY:url name='musician_auth'}" class="reg_btn" >
+								<span><i class="jy jy-round-music"></i></span>
+								<span>认证</span>
+							</a>
+						</li>
+
+						<li class="user-hide">
+							<a id="upage-url" href="" target="_user">
+								<span><i class="jy jy-Profile"></i></span>
+								<span>主页</span>
+							</a>
+						</li>
+
+						<li class="user-hide">
+							<a href="{JY:url name='user_account'}">
+								<span><i class="jy jy-edit"></i></span>
+								<span>中心</span>
+							</a>
+						</li>
+						<li id="login_out" class="user-hide">
+							<a href="javascript:;" url="{JY:url name='logout')}">
+								<span><i class="jy jy-logout"></i></span>
+								<span>退出</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /头部 -->	
+	<section class="content-wrap">
+		<div class="zoom-header">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="avatar">
+							<img class="a_cover" alt="{$user['nickname']}" src="{:get_user_avatar($user['uid'])}">
+						</div>
+						<div class="uinfo">
+							<h2 class="">
+								{$user['nickname']}
+								<img height="20" src="{$user['group']['icon_url']}">
+							</h2>
+							<div>{$user['signature']}</div>
+							<div class="ubtn">							
+								
+								<a class="btn btn-default on" id="btn-unfollow" style="display: none" data-action="follow" data-uid="{$user['uid']}">
+									<i class="jy jy-user-add on"></i>
+									已关注
+								</a>		
+								<a class="btn btn-default" id="btn-follow"  data-action="follow" data-uid="{$user['uid']}">
+									<i class="jy jy-user-add"></i>
+									关注
+								</a>
+								{if condition="UID neq $user['uid'] "}
+								<a class="btn btn-default" data-toggle="modal" data-target="#msgModal" data-whatever="@{$user['nickname']}">
+									<i class="jy jy-edit-f"></i>
+									私信
+								</a>
+								{/if}
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<ul class="clearfix list-ucount">
+							<li>
+								<strong>{$user['hits']}</strong>
+								<p>人气</p>
+							</li>
+							<li>
+								<strong>{$user['fans']}</strong>
+								<p>粉丝</p>
+							</li>
+							<li class="last">
+								<strong class="album-count">{$user['songs']}</strong>
+								<p>歌曲</p>
+							</li>
+							<li class="last">
+								<strong class="album-count">{$user['albums']}</strong>
+								<p>专辑</p>
+							</li>
+						</ul>
+
+						<div class="ufx">
+							{:hook('pageBody',array('widget'=>'Baidushare'))}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container zoom-inner">
+			<div class="tabbable-custom zoom-nav">
+				<ul class="nav nav-tabs">
+					<li {eq name="$Request.action" value="read"} class="active"{/eq}>
+						<a href="{JY:url name='user_home']}">首页</a>
+					</li>
+					<li {eq name="$Request.action" value="music"} class="active"{/eq}>
+						<a href="{JY:url name='user_home_music']}">分享</a>
+					</li>
+					<li {eq name="$Request.action" value="album"} class="active"{/eq}>
+						<a href="{JY:url name='user_home_album']}">专辑</a>
+					</li>
+					<!--li <eq name="ACTION_NAME" value="profile"> class="active"</eq>>
+						<a href="{:url('home/profile?uid='.$user['uid'])}">资料</a>
+					</li-->
+					<li {eq name="$Request.action" value="fans"} class="active"{/eq}>
+						<a href="{JY:url name='user_home_fans']}">粉丝</a>
+					</li>
+				</ul>
+			</div>
+			{block name="content"}
+
+			{/block}
+		</div>
+	</div>
+	<!-- /主体 -->
+	</section>
+	<!-- 底部 -->
+	{block name="footer"}{include file="public/footer"/}{/block}
+	<!-- /底部 -->
+	<div class="hidden"><!-- 用于加载统计代码等隐藏元素 -->
+		{:config('web_site_stat')}
+		{block name="hidden"}{/block}
+	</div>
+</div>
+
+{if condition="UID neq $user['uid'] "}
+<div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			    <h4 class="modal-title" id="exampleModalLabel">发送私信到@{$user['nickname']}</h4>
+			</div>
+			<div class="modal-body">
+			    <form action="{:url('msgcenter/send')}" method="post" id="msg-form">
+			        <div class="form-group">
+			            <label for="message-text" class="control-label">消息内容:</label>
+			            <textarea class="form-control" name="content" id="message-text"></textarea>
+			        </div>
+			        <input type="hidden" class="form-control" name="to_uid" value="{$user['uid']}">
+					<div class="form-group">
+			 			<button type="submit" tagform="#msg-form" class="btn btn-success">提交</button>
+			 		</div>
+			    </form>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$().ready(function() {
+	$("#msg-form").validate({
+		rules: {
+			content:{
+				required: true,
+				rangelength:[2,400]
+			},
+			to_id: {
+				required: true,
+				digits: true
+			}
+
+		},
+		messages: {
+			content: {
+				required: '信息不能为空',
+				rangelength:'信息长度2-400个字符'
+			},
+			to_uid: {
+				required: "无效操作",
+				digits: "无效操作"
+			}
+
+		}
+	});
+});
+</script>
+{/if}
+<script type="text/javascript" src="__LIBS__/jymusic/js/app.js"></script>
+<script type="text/javascript" src="__JS__/uplugs.js"></script>
+<script type="text/javascript" src="__JS__/user.js?v=1.0"></script>
+<script type="text/javascript">
+$.App.activeUser(function(res){
+    if (res.code == 0) {
+        var user = res.result;
+        $('#user-info').html('<a href="' + user.url + '">' + user.nickname + '</a>');
+        $('#upage-url').attr('href', user.url);
+        $('.user-show').hide();
+        $('.user-hide').show();
+        if ($('.login_btn').size() > 0) {
+            $('.login_btn').addClass('disabled').prop('disabled', true);
+        }
+    }
+    return false;
+});
+
+if ($.App.isLogin) {
+	var followId = $('#btn-follow').data('id');
+	$.post($.Url.build('/api/actions/isfollow'), {follow_uid : followId}, 
+		function(res){
+		    if (res.is_follow) {
+		    	$('#btn-follow').hide();
+		        $('#btn-unfollow').show();
+		    } else {
+		        $('#btn-unfollow').hide();
+		        $('#btn-follow').show();
+		    }
+		    return false;
+		}
+	); 
+}
+</script>
+{block name="player"}{/block}
+{block name="script"}{/block}
+</body>
+</html>

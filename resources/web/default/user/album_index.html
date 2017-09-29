@@ -1,0 +1,29 @@
+{extend name="public/common" /}
+
+{block name="warp"}
+<div class="tabbable tabbable-custom tabbable-reversed">
+	<ul class="nav nav-tabs">
+		<li class="active">
+			<a href="javascript:;">我的专辑</a>
+		</li>
+		<li>
+			<a href="{JY:url name='album_create'}">添加专辑</a>
+		</li>
+	</ul>
+	<div class="tab-content clearfix">
+		<div class="row clearfix album_list">
+			{JY:album  result="v" uid="$user['uid']" limit="20" page="1"  order="create_time"}
+			<div class="col-sm-3">
+				<a class="acover" href="{$v['url']}"> <img alt="{$v['name']}" src="{$v['cover_url']}"></a>
+				<span class="aname text-ellipsis">
+				<a href="{$v['url']}"> {$v['name']}</a>
+				</span>
+			</div>
+			{/JY:album}
+		</div>
+		<ul class="horizontal_list clearfix mt_10 page_list">{$v_page}</ul>
+
+	</div>
+</div>
+{/block}
+

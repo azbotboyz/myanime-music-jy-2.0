@@ -1,0 +1,103 @@
+{extend name="public/base"/}
+{block name="sidebar"}{include file="article/sidebar" /}{/block}
+{block name="style"}
+<link type="text/css" href="__CSS__/tree.css" rel="stylesheet">
+{/block}
+{block name="content"}
+<div class="panel">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="m-t-0 header-title"><b>资讯分类管理</b></h4>
+                <p class="text-warning font-13 m-b-10">
+                    目前仅支持到二级分类！
+                </p>
+            </div>
+            <div class="col-sm-6">
+                <div class="m-b-10">
+                    <button class="btn btn-default pull-right open-form-modal" data-url="{:url('create')}">
+                        添加顶级分类<i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 category">
+                <div class="header clearfix">
+                    <div class="fold">折叠</div>
+                    <div class="order">排序</div>
+                    <div class="name">分类标题</div>
+                    <div class="name">分类标示</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <!-- 表格列表 -->
+        <div class="tb-unit posr">
+            <div class="category">
+                {:action('Genre/tree', [$tree], 'controller', true)}
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}
+{block name="script"}
+    <script type="text/javascript">
+        //highlight_subnav("{:url('chanel/index')}","{:url('chanel/index')}");
+        (function($){
+            /* 分类展开收起 */
+            $(".category dd").prev().find(".fold i").addClass("fa-minus-square")
+                .click(function(){
+                    var self = $(this);
+                    if(self.hasClass("fa-minus-square")){
+                        self.closest("dt").next().slideUp("fast", function(){
+                            self.removeClass("fa-minus-square").addClass("fa-plus-square");
+                        });
+                    } else {
+                        self.closest("dt").next().slideDown("fast", function(){
+                            self.removeClass("fa-plus-square").addClass("fa-minus-square");
+                        });
+                    }
+                });
+
+            /* 三级分类删除新增按钮 */
+            $(".category dd dd .add-sub").remove();
+
+            /* 实时更新分类信息 */
+            $(".category")
+                .on("submit", "form", function(){
+                    var self = $(this);
+                    $.post(
+                        self.attr("action"),
+                        self.serialize(),
+                        function(data){
+                            /* 提示信息 */
+                            var name = data.code ? "text-success" : "text-error", msg;
+                            msg = self.find(".msg").addClass(name).text(data.msg)
+                                .css("display", "inline-block");
+                            setTimeout(function(){
+                                msg.fadeOut(function(){
+                                    msg.text("").removeClass(name);
+                                });
+                            }, 1000);
+                        },
+                        "json"
+                    );
+                    return false;
+                })
+                .on("focus","input",function(){
+                    $(this).data('param',$(this).closest("form").serialize());
+
+                })
+                .on("blur", "input", function(){
+                    if($(this).data('param')!=$(this).closest("form").serialize()){
+                        $(this).closest("form").submit();
+                    }
+                });
+        })(jQuery);
+    </script>
+{/block}

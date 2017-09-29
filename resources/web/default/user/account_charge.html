@@ -1,0 +1,24 @@
+{extend name="public/common" /}
+
+{block name="warp"}
+<div class="tabbable tabbable-custom tabbable-reversed">
+	<ul class="nav nav-tabs">
+		<li>
+			<a href="{JY:url name='user_account'}">账户总览</a>
+		</li>
+		<li class="active">
+			<a href="javascript:;">金币充值</a>
+		</li>
+		<li>
+			<a href="{JY:url name='user_upgrade'}"> 升级用户组</a>
+		</li>
+		<li>
+			<a href="{JY:url name='musician_auth'}"> 认证音乐人</a>
+		</li>
+	</ul>
+	<div class="tab-content clearfix">
+		{:hook('pay', ['user' => $user])}
+	</div>
+</div>
+{/block}
+

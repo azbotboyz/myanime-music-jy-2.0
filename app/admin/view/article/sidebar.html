@@ -1,0 +1,59 @@
+<div id="sidebar-menu">
+    <ul class="nav nav-main" id="slider-nav-main" data-ride="collapse">
+        {foreach name="menu_list['child']" item="sub_menu"}
+        {notempty name="sub_menu"}
+        <li class="sub-nav">
+            {notempty name="key"}
+            <a href="#"  class="waves-effect">
+                <i class="fa {empty name="sub_menu[0]['icon']"} fa-list-ul {else/}fa-{$sub_menu[0]['icon']}{/empty}"></i>
+                <span class="font-bold">{$key}</span>
+            </a>
+            {/notempty}
+            <ul class="list-unstyled" style="display: block">
+                {foreach name="sub_menu" item="menu"}
+                <li>
+                    <a href="{:url($menu['url'])}"  class="auto">
+                        <i class="fa fa-angle-right"></i>
+                        <span>{$menu['title']}</span>
+                    </a>
+                </li>
+                {/foreach}
+            </ul>
+        </li>
+        {/notempty}
+        {/foreach}
+        
+        <li class="sub-nav">
+            <a href="#"  class="waves-effect">
+                <i class="fa fa-list-ul"></i>
+                <span class="font-bold">分类列表</span>
+            </a>
+            <ul class="list-unstyled" style="display: block">
+                {foreach name=":get_article_cate_tree()" item="sl_cate"}
+                <li>
+                    <a id="sub-cate-{$sl_cate['id']}" href="{:url('article/index?cate='. $sl_cate['id'])}" class="auto">
+                        <i class="fa fa-angle-right"></i>
+                        <span>{$sl_cate['title']}</span>
+                    </a>
+                    {if condition="isset($sl_cate['_child'])"}
+                    <ul style="display: block;">
+                        {foreach name="$sl_cate['_child']" item="sl_sub_cate"}
+                        <li>
+                            <a id="sub-cate-{$sl_sub_cate['id']}" href="{:url('article/index?cate='. $sl_sub_cate['id'])}" class="">
+                                <i class="fa fa-angle-right"></i>
+                                <span>{$sl_sub_cate['title']}</span>
+                            </a>
+                        </li>
+                        {/foreach}
+                    </ul>
+                    {/if}
+                </li>
+                {/foreach}
+            </ul>
+        </li>
+    </ul>
+</div>
+
+    
+
+

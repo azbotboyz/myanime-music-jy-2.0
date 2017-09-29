@@ -1,0 +1,24 @@
+<!-- 清除缓存 -->
+<div class="modal fade" id="clear-cache-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">清除缓存</h4>
+            </div>
+            <div class="modal-body" data-url="{:url('index/clearCache')}">
+                <button type="button" data-clear-type="sys" style="margin-bottom: 5px" class="btn btn-white btn-option1 btn-clear-cache">清除系统缓存</button>
+                <button type="button" data-clear-type="cdn" style="margin-bottom: 5px" class="btn btn-white btn-option1 btn-clear-cache">清除CDN缓存</button>
+                <button type="button" data-clear-type="all" class="btn btn-white btn-option1 btn-clear-cache">清除全部缓存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 清除缓存 -->
+<!--顶部提示信息-->
+<div id="alerttop" class=""></div>
+<div id="custom-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="custom-modal-content"></div> 
+    </div>
+</div>

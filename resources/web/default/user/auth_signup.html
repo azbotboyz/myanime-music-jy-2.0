@@ -1,0 +1,195 @@
+<!doctype html>
+<!--[if IE 9 ]><html class="ie9" lang="en"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    {include file="public/head"/}
+</head>
+
+<body>
+    <!--头顶部-->
+    <header class="header">
+        <section class="h_top hidden-xs">
+            <div class="container">
+                <div class="row clearfix">
+                    <div class="col-md-3 col-sm-4 ">
+                        <a href="{:url('/')}" class="pull-left logo mt_15">
+                            <img src="__IMG__/logo.png" alt="JYmusic">
+                        </a>
+                    </div>
+                    <div class="col-md-5 col-sm-8 t_align_c">
+                        <div class="search-box mt_15">
+                            <form role="search" class="relative type_2" id="search_form" method="get" action="{JY:url name='search'}">
+                                <input type="text" class="d_none" name="type" value="songs">
+                                <input type="text" class="full_width" name="keys" placeholder="搜索">
+                                <button class="search_button tr_all_hover">
+									<i class="jy jy-search"></i>
+								</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 t_align_c d_xs_none">
+
+                    <ul class=" clearfix users_nav mt_15">
+                        <li>
+                            <a href="{JY:url name='user_login'}" class="btn_8" id="login_btn">登录</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </header>
+    <!-- /头部 -->
+    <!--布局-->
+    <div class="wide_layout relative w_xs_auto">
+        <div class="page_content_offset">
+            <div class="container">
+                <div class="row clearfix">
+                    <!--left content column-->
+                    <section class="col-sm-6 col-sm-offset-3 login-box">
+                        <h2 class="mb_25"><i class="jy jy-unlock mr_20"></i>用户注册</h2>
+                        <hr>
+                        <p class="mb_10">请完整填写以下信息进行注册。<span class="scheme_color">*</span></p>
+                        <form class="form-horizontal no-refresh" method="post" id="signup-form" action="{JY:url name='user_join'}" onsubmit="return false">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">用户名<span class="scheme_color">*</span></label>
+                                <div class="col-lg-8">
+                                    <input type="text" name="username" class="form-control" required placeholder="4-15个字母、数字等字符">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">邮箱<span class="scheme_color">*</span></label>
+                                <div class="col-lg-8">
+                                    <input type="email" name="email" class="form-control" required placeholder="请使用正确的E-mail">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">密码<span class="scheme_color">*</span></label>
+                                <div class="col-lg-8">
+                                    <input type="password" id="input-password" class="form-control" name="password" required placeholder="6~18个字符,区分大小写">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">确认密码<span class="scheme_color">*</span></label>
+                                <div class="col-lg-8">
+                                    <input type="password" name="repassword" class="form-control" required placeholder="确认密码必须与密码相同">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-2">验证码<span class="scheme_color">*</span></label>
+                                <div class="col-lg-8">
+                                    <div class="verify-wrp">
+                                        <input type="text" class="form-control" required placeholder="请输入验证码" name="verify">
+                                        <img class="verifyimg reloadverify" alt="点击切换" src="{JY:url name='user_captcha'}" style="cursor:pointer;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-2"></label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-2"></label>
+                                <input type="checkbox" id="ais_agree" name="ais_agree" value="on">
+                                <label for="checkbox_4">我接受 <a class="color-blue" href="{JY:url name='user_pact'}" target="_blank">《{:config('web_site_name')}服务协议》</a></label>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-1 col-sm-10">
+                                    <button class="btn_8 mr_20" type="submit">立即注册</button>或者使用第三方登录
+                                    <a class="sina-btn " href="{JY:url name='oauth_weibo'}" class="color_dark"><i class="jy jy-sina"></i></a>
+                                    <a class="qq-btn" href="{JY:url name='oauth_qq'}" class="color_dark"><i class="jy jy-qq"></i></a>
+                                </div>
+                            </div>
+
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    {include file="public/footer" /}
+    <!-- /底部 -->
+    <script type="text/javascript" src="__LIBS__/jymusic/js/app.js"></script>
+    <script type="text/javascript" src="__LIBS__/jquery-validation/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $.validator.setDefaults({
+            submitHandler: function(form) {
+                if (!$('#ais_agree').is(':checked')) {
+                    $.Notify.msg('请接受协议');
+                    return false;
+                }
+                $.Action.postForm(form, function(res){
+                    if (res.code !== 0) {
+                        //刷新页面 重新获取token
+                        /*setTimeout(function(){
+                            window.location.reload();
+                        }, 3000)  */
+                    }
+                });
+            }
+        });
+        $.App.testPwd($('#input-password'));
+
+        $("#signup-form").validate({
+            rules: {
+                username: {
+                    required: true,
+                    rangelength: [4, 15],
+                    remote: "{:url('user/Auth/validation', ['field' => 'username'])}",
+                },
+                email: {
+        			required: true,
+        			email: true,
+                    remote: "{:url('user/Auth/validation', ['field' => 'email'])}",
+        		},
+                password :{
+                    required: true,
+                    rangelength:[6,30],
+                },
+                repassword: {
+                    required: true,
+                    equalTo: "#input-password"
+                },
+                verify : "required"
+            },
+            messages: {
+                username: {
+                    required: '用户名不能为空',
+                    rangelength: '用户名长度4-15个字符',
+                    remote :  '用户名被占用'
+                },
+        		email: {
+        			required: "请填写常用邮箱地址",
+        			email: "邮箱地址格式不正确",
+                    remote: '邮箱已使用'
+        		},
+                password :{
+                    required: '密码不能为空',
+                    rangelength: '密码长度6-30个字符',
+                },
+                repassword: {
+                    required: '确认密码不能为空',
+                    rangelength: '确认密码长度6-30个字符',
+                    equalTo : '两次密码输入不一致'
+                },
+                verify : "验证码不能为空"
+            }
+        });
+
+        $(function(){
+        	var verifyimg = $(".verifyimg").attr("src");
+        	$(".reloadverify").click(function(){
+        		if( verifyimg.indexOf('?')>0){
+        			$(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
+        		}else{
+        			$(".verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+        		}
+        	});
+        });
+    </script>
+</body>
+</html>

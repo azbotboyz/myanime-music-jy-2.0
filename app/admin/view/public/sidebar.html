@@ -1,0 +1,46 @@
+
+<!--- Divider -->
+<div id="sidebar-menu">
+    <ul class="nav nav-main" id="slider-nav-main" data-ride="collapse">
+        {notempty name="_extra_menu"}
+        {// 动态扩展菜单 //}
+        {:extra_menu($_extra_menu, $menu_list)}
+        {/notempty}
+        {foreach name="menu_list['child']" item="sub_menu"}
+        {notempty name="sub_menu"}
+        <li class="sub-nav">
+            {notempty name="key"}
+            <a href="#"  class="waves-effect">
+                <i class="fa {empty name="sub_menu[0]['icon']"} fa-list-ul {else/}fa-{$sub_menu[0]['icon']}{/empty}"></i>
+                <span class="font-bold">{$key}</span>
+            </a>
+            {/notempty}
+            <ul class="list-unstyled" style="display: block">
+                {foreach name="sub_menu" item="menu"}
+                <li>
+                    <a href="{:url($menu['url'])}"  class="auto">
+                        <i class="fa fa-angle-right"></i>
+                        <span>{$menu['title']}</span>
+                    </a>
+                </li>
+                {/foreach}
+            </ul>
+        </li>
+        {/notempty}
+        {/foreach}
+    </ul>
+</div>
+
+<!--<div class="row">
+    <div class="sidebar-plan col-xs-10 col-xs-offset-1">
+        磁盘使用率
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+            </div>
+        </div>
+        <span class="space">42 GB / 100 GB</span>
+    </div>
+    </div> -->
+    
+
+

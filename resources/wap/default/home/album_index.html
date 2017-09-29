@@ -1,0 +1,20 @@
+{extend name="public/common"/}
+{block name="content"}
+<div class="tour_div clearfix">
+	<div class="tour_title tc0"><a  href="javascript:;">全部专辑</a></div>
+</div>
+{JY:album result="v" limit="10" order="create_time"}
+<div class="tm_div al_ls">
+	<div class="tm_pro">
+		<a href="{$v['url']}"><img class="tm_img"  src="{$v['cover_url']}"></a>
+		<div class="tm_title">
+			<div class="tm_title_bg"></div>
+			<div class="tm_title_con">
+				<div class="tm_title_con_1"><a href="{$v['url']}">{$v['name']}</a></div>
+			</div>
+		</div>
+	</div>
+</div>
+{/JY:album}
+<div id="load-more" class="more" data-type="album" data-url="{:url('api/v1.Albums/index', ['field'=>'id,name,cover_url'])}">点击查看更多</div>
+{/block}

@@ -1,0 +1,410 @@
+@charset "UTF-8";
+/*
+ * JYmusic jQuery File Upload Plugin CSS 
+ */
+
+/*拖动改变窗口大小的八个地方的样式*/
+.file-upload-modal{
+    position: fixed;
+    width: 100%;
+    z-index :99991;
+    left: 0;
+    top: 0;
+    height: 100%;
+    display: none;
+}
+.file-upload-modal .modal-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, .2);
+    opacity: 0.5;
+}
+
+.resizable-e {
+  position: absolute;
+  top: 0;
+  right: -2px;
+  height: 100%;
+  width: 5px;
+  cursor: e-resize;
+}
+.resizable-s {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    cursor: s-resize;
+}
+.resizable-w {
+    position: absolute;
+    top: 0;
+    left: -2px;
+    height: 100%;
+    width: 5px;
+    cursor: w-resize;
+}
+.resizable-n {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    cursor: n-resize;
+}
+.resizable-en {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    height: 5px;
+    width: 5px;
+    cursor: ne-resize;
+}
+.resizable-es {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    height: 5px;
+    width: 5px;
+    cursor: se-resize;
+}
+.resizable-ws {
+    position: absolute;
+    bottom: -2px;
+    left: -2px;
+    height: 5px;
+    width: 5px;
+    cursor: sw-resize;
+}
+.resizable-wn {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    height: 5px;
+    width: 5px;
+    cursor: nw-resize;
+}
+
+/*以下是关于弹窗的样式*/
+.file-upload-modal .modal-content {
+    position: fixed;
+    background-color: #fff;
+    border: 5px #eee solid;
+    border-radius: 0;
+    padding: 5px 10px;
+}
+
+.file-upload-modal .modal-title {
+    font-size: 14px;
+    height: 34px;
+    line-height: 34px;
+    text-align: left;
+    margin:0;
+    color: #333;
+    font-weight: 600;
+}
+
+.file-upload-modal .close-pos-r-t {
+	position: absolute;
+    width: 30px;
+    height: 30px;
+	line-height: 30px;
+	text-align: center;
+    top: 5px;
+    right: 0;
+    font-family: sans-serif;
+    color: #666;
+    font-size: 
+}
+.file-upload-modal .modal-close {
+  cursor: pointer;
+}
+.text-border {
+  border: #e5e5e5 solid 1px;
+  background: #fff;
+  font-size: 14px;
+  color: #333;
+  padding: 6px 12px;
+}
+.modal-promot-mess {
+  margin: 13px 0;
+  padding: 13px 25px;
+  font-size: 16px;
+  border-bottom: 1px solid #ccc;
+}
+.insure-btn-con {
+  text-align: right;
+}
+.insure-btn-con span {
+  display: inline-block;
+  margin-right: 20px;
+}
+.insure-btn-con .sure-btn {
+  padding: 6px 15px;
+  color: white;
+  cursor: pointer;
+  background-color: #4b8df8;
+  border: 1px solid #4b8df8;
+}
+.insure-btn-con .cancel-btn {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 6px 15px;
+  cursor: pointer;
+}
+
+/*上传*/
+
+/*bootstarp*/
+.file-upload-warp * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.file-upload-warp .row{
+    display: table;
+    content: " ";
+}
+
+.file-upload-warp .fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+}
+
+.file-upload-warp .fade.in {
+    opacity: 1;
+}
+
+.file-upload-warp .btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.file-upload-warp .btn-primary {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #357ebd;
+}
+
+.file-upload-warp .btn-warning {
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+
+.file-upload-warp .btn-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.file-upload-warp .label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.file-upload-warp .label-danger {
+    background-color: #d9534f;
+}
+
+.file-upload-warp .label-success {
+    background-color: #5cb85c;
+}
+
+.file-upload-warp .text-success {
+    color: #5cb85c;
+}
+
+.file-upload-warp .text-danger {
+    color: #a94442;
+}
+
+.file-upload-warp .error {
+    color: #f05050;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.file-upload-warp .progress {
+    height: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+}
+
+.file-upload-warp .progress-bar {
+    float: left;
+    width: 0;
+    height: 100%;
+    font-size: 12px;
+    line-height: 10px;
+    color: #fff;
+    text-align: center;
+    background-color: #428bca;
+    -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
+    -webkit-transition: width .6s ease;
+    -o-transition: width .6s ease;
+    transition: width .6s ease;
+}
+
+.file-upload-warp .progress-bar-success {
+    background-color: #5cb85c;
+}
+
+/* Fixes for IE < 8 */
+@media screen\9 {
+    .fileinput-button input {
+      filter: alpha(opacity=0);
+      font-size: 100%;
+      height: 100%;
+    }
+}
+
+.file-upload-warp .btn {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0;
+}
+
+.fileupload-buttonbar .btn,
+.fileupload-buttonbar .toggle {
+  margin-bottom: 5px;
+}
+.progress-animated .progress-bar,
+.progress-animated .bar {
+  background: url("images/progressbar.gif") !important;
+  filter: none;
+}
+.fileupload-process {
+  float: right;
+  display: none;
+}
+.fileupload-processing .fileupload-process,
+.files .processing .preview {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url("images/loading.gif") center no-repeat;
+    background-size: contain;
+}
+.files audio,
+.files video {
+    max-width: 160px;
+}
+
+@media (max-width: 767px) {
+  .fileupload-buttonbar .toggle,
+  .files .toggle,
+  .files .btn span {
+    display: none;
+  }
+  .files .name {
+    width: 80px;
+    word-wrap: break-word;
+  }
+  .files audio,
+  .files video {
+    max-width: 80px;
+  }
+  .files img,
+  .files canvas {
+    max-width: 100%;
+  }
+}
+
+.file-upload-warp {
+    margin:0;
+    min-width:100%;
+    max-width: 1170px;
+    max-height: 500px;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+.file-upload-warp .label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.file-upload-warp .table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.fileupload-form {
+    display: block;
+    margin-top: 0em;
+}
+
+.fileinput-button {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+.fileinput-button input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 200px !important;
+    direction: ltr;
+    cursor: pointer;
+}
+
+.fileupload-progress .progress-extended {
+    font-size: 14px;
+    height: 26px;
+    line-height: 26px;
+    background-color: #eee;
+    color: #777;
+    padding-left: 5px;
+}
+
+.template-upload .name {
+	max-width: 170px;
+	overflow:hidden;
+}

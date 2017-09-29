@@ -1,0 +1,34 @@
+{extend name="public/common" /}
+
+{block name="warp"}
+<div class="tabbable tabbable-custom tabbable-reversed">
+	<ul class="nav nav-tabs">
+		<li>
+			<a href="{JY:url name='user_msg'}">我的消息</a>
+		</li>
+
+		<li>
+			<a href="{JY:url name='user_notice'}">系统消息</a>
+		</li>
+
+		<li class="active">
+			<a href="javascript:;">消息详情</a>
+		</li>
+	</ul>
+	<div class="tab-content clearfix">
+		<ul class="media-list">
+			<li class="media">
+			  	<div class="media-body">
+			    	<h4 class="media-heading">{$data['title']}</h4>
+			    	{$data['content']}
+			    	<div class="media-footer">
+			    		<span class="m-time pull-left"><i class="jy jy-clock-o"></i>{$data['create_time']|beforeTime}</span>
+			  		</div>
+			  	</div>
+			  	
+			</li>
+		</ul>
+	</div>
+</div>
+{/block}
+

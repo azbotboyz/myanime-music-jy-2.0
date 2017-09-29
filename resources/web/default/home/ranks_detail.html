@@ -1,0 +1,81 @@
+{extend name="public/common"/}
+{block name="content"}
+
+<div class="page_content_offset">
+    <div class="container">
+        <div class="row clearfix">
+            <aside class="col-sm-2">
+                <h2 class="pt_10">音乐排行榜单</h2>
+                <hr>
+                <div class="sidebar_content">
+                    <ul class="main_menu c_rank">
+                        {JY:ranks result="vo" order="id asc"}
+                        <li class="{eq name="vo['id']" value="$data['id']"}current{/eq}">
+                            <a href="{$vo.url}" title="{$vo.name}">
+                                <i class="jy jy-radio mr_5"></i>{$vo.name}
+                            </a>
+                        </li>
+                        {/JY:ranks}
+                    </ul>
+                </div>
+            </aside>
+
+            <!--右侧歌曲列表-->
+            <section class="col-sm-10">
+                <h2 class="pt_10">{$data['name']}</h2>
+                <hr class="">
+                <div class="clearfix mt_10 ">
+                    {JY:songs result="lv" rank="$data['id']" page="1" limit="20" cache="86400" total="200" order="id"}
+                    <div class="mb_10 clearfix relative play_box">
+                        <div class="row clearfix song_list">
+							<span class="col-sm-5 col-xs-8">
+								{if condition="$Request.param.page OR ($Request.param.page lt 2)"}
+								<span class="ls_num ls_num_top">{$i}</span>
+								{else /}
+								<span class="ls_num">{$i+(($Request.param.page-1)*20)}</span>
+                                {/if}
+                                <a class="text-ellipsis" target="_play" href="{$lv['url']}">{$lv['name']}</a>
+                            </span>
+                            <span class="col-sm-3 col-xs-2 p_hr_0">
+								<a class="text-ellipsis singer" target="_sing" href="{$lv['artist_url']}">{$lv['artist_name']}</a>
+							</span>
+                            <span class="col-sm-2 ls_listen hidden-xs">{:number_format($lv['listens'])}</span>
+                            <span class="col-sm-2 col-xs-2 ls_btns">
+								<a class="hidden-xs " target="_down" href="{$lv['down_url']}"><i class="jy jy-cloud-down-f"></i></a>
+								<a class="music-action-btn hidden-xs" data-id="{$lv['id']}" data-action="fav" href="javascript:;"><i class="jy jy-like"></i></a>
+								<a class="jp-play-me" data-id="{$lv['id']}" href="javascript:;"><i class="jy jy-play"></i></a>
+							</span>
+                        </div>
+                        <hr class="l_hr">
+                    </div>
+                    {/JY:songs}
+                </div>
+
+                <div class="row clearfix mb_5">
+                    <div class="col-sm-4 clearfix ">
+                        <span class="page_total">共{$lv_total}首歌曲</span>
+                    </div>
+                    <div class="col-sm-8 t_align_r">
+                        <ul class="horizontal_list clearfix d_inline_middle ml_10 page_list">{$lv_page}</ul>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script type="text/javascript">
+$(document).ready(function () {
+    $.ajax({
+        url: U("/api/actions/hits"),
+        data: {id: "{$data['id']}", type : 'ranks'},
+        dataType: "jsonp"
+    });
+});
+</script>
+{/block}
+
+{block name="player"}{include file="player/default"/}{/block}

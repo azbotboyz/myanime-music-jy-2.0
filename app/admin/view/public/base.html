@@ -1,0 +1,220 @@
+{if condition="!request()->isAjax()"}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="JYmusic开源音乐程序" />
+    <meta name="author" content="JYmusic开源音乐程序" />
+    <title>{$meta_title} | JYmusic- 免费音乐程序</title>
+
+    <link rel="shortcut icon" href="/favicon.ico"> {block name="style"}{/block}
+    <link type="text/css" href="__LIBS__/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link type="text/css" href="__LIBS__/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="__CSS__/app.min.css" rel="stylesheet" />
+    <link type="text/css" href="__CSS__/pages.css" rel="stylesheet" />
+    <link type="text/css" href="__CSS__/responsive.css" rel="stylesheet" />
+
+    <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="__LIBS__/html5shiv.js"></script>
+    <script src="__LIBS__/respond.min.js"></script>
+    <script type="text/javascript" src="__LIBS__/jquery/jquery-1.10.2.min.js"></script>
+    <![endif]-->
+    <script src="__LIBS__/modernizr.min.js"></script>
+    <script type="text/javascript">
+        var JYconf = {
+            assetPath: '__ASSET__',
+            url: '{:url("index")}',
+            url_html_suffix: '{:config("url_html_suffix")}',
+            pathinfo_depr: '{:config("pathinfo_depr")}',
+            var_pathinfo: '{:config("var_pathinfo")}'
+        }
+    </script>
+    <!--[if gte IE 9]><!-->
+    <script type="text/javascript" src="__LIBS__/jquery/jquery-2.0.3.min.js"></script>
+    <!--<![endif]-->
+</head>
+
+<body class="fixed-left">
+    <!--页面开始-->
+    <div id="wrapper">
+        <!-- 页面顶部 -->
+        <div class="topbar">
+            <!-- Logo -->
+            <div class="topbar-left">
+                <div class="text-center">
+                    <a href="http://www.jyuu.cn" class="logo">
+                        <img src="__IMG__/jy-icon.png" alt="JYmusic">
+                        <span>JYmusic</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 手机端按钮 -->
+            <div class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <div class="">
+                        <div class="pull-left">
+                            <button class="button-menu-mobile open-left">
+                                <i class="fa fa-reorder"></i>
+                            </button>
+                            <span class="clearfix"></span>
+                        </div>
+
+                        <ul class="nav navbar-nav hidden-xs top-navbar-nav">
+                            {foreach name="menu_list['main']" item="vo"}
+                            <li {if condition="isset($vo['class'])" }class="{$vo['class']}" {/if}>
+                                <a href="{:url($vo['url'])}" title="{$vo['title']}">
+                                    <i class="icon-{$vo['icon']} position-left"></i> {$vo['title']}
+                                </a>
+                            </li>
+                            {/foreach}
+                            <li> </li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right pull-right">
+                            <li class="hidden-xs">
+                                <a href="#" class="right-bar-toggle waves-effect waves-light">
+                                    <i class="fa fa-gear"></i>
+                                </a>
+                            </li>
+                            <li class="hidden-xs">
+                                <a href="#" id="btn-fullscreen" class="waves-effect waves-light">
+                                    <i class="fa fa-arrows-alt"></i>
+                                </a>
+                            </li>
+                            <li class="hidden-xs">
+                                <a href="/" target="_blank" class="waves-effect waves-light">
+                                    <i class="fa fa-home"></i>
+                                </a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="__IMG__/jy-icon.png" alt="JYmusic" class="img-circle"> </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="open-form-modal" href="{:url('user/profile')}">
+                                            <i class="fa fa-asterisk m-r-5"></i> 修改资料
+                                        </a>
+                                    </li>
+                                    <li><a href="javascript:;" id="logout-action">
+                                        <i class="fa fa-power-off m-r-5"></i> 退出登录</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+        </div>
+        <!-- /页面顶部 -->
+
+        <!-- 左侧边栏-->
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
+                {block name="sidebar"} {include file="public/sidebar" /} {/block}
+            </div>
+        </div>
+        <!-- /左侧边栏-->
+
+        <!-- 内容-->
+        <div class="content-page">
+
+            <div class="content">
+                <div class="container">
+                    {block name="content"}{/block}
+                </div>
+            </div>
+
+            <footer class="clearfix page-footer">
+                <div class="row footer">
+                    <div class="col-md-6 text-left">
+                        Copyright © 2014 - {:date('Y')} <a href="http://jyuu.cn" target="_blank">JYmusic</a> All rights reserved.
+                    </div>
+                    <div class="col-md-6 text-right">
+                        Design and Developed by <a href="http://jyuu.cn" target="_blank">JYmusic</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- /内容-->
+        <!-- Right Sidebar -->
+        <div class="side-bar right-bar nicescroll">
+            <h4 class="text-center">常用操作</h4>
+            <div class="contact-list nicescroll">
+                <ul class="list-group contacts-list">
+                    <li class="list-group-item">
+                        <a class="ajax-get no-refresh"  href="{:url('index/clear?type=page')}">
+                            <span class="name">清除数据缓存<small>[前台数据]</small></span>
+                            <i class="fa fa-circle online"></i>
+                        </a>
+                        <span class="clearfix"></span>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a class="ajax-get no-refresh"  href="{:url('index/clear?type=run')}">
+                            <span class="name">清除编译缓存<small>[模板缓存]</small></span>
+                            <i class="fa fa-circle online"></i>
+                        </a>
+                        <span class="clearfix"></span>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a class="ajax-get no-refresh" href="{:url('index/clear?type=all')}">
+                            <span class="name">清除全部缓存<small class="text-warning">[慎用！！]</small></span>
+                            <i class="fa fa-circle away"></i>
+                        </a>
+                        <span class="clearfix"></span>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{:url('songs/create')}">
+                            <span class="name">添加歌曲</span>
+                            <i class="fa fa-circle online"></i>
+                        </a>
+                        <span class="clearfix"></span>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a href="{:url('addons/index')}">
+                            <span class="name">应用中心</span>
+                            <i class="fa fa-circle online"></i>
+                        </a>
+                        <span class="clearfix"></span>
+                    </li>
+
+                    <li class="list-group-item">
+                        <a target="_blank" href="http://bbs.jyuu.cn/">
+                            <span class="name">帮助中心</span>
+                            <i class="fa fa-circle online"></i>
+                        </a>
+                        <span class="clearfix"></span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <!-- /Right-bar -->
+
+    </div>
+    <!-- /主体内容 -->
+    <!-- 工具块 -->
+    {include file="public/tool" /}
+    <!-- /工具块 -->
+    <script type="text/javascript">
+        var resizefunc = [];
+    </script>
+    <script type="text/javascript" src="__LIBS__/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__LIBS__/layer/layer.js"></script>
+    <script type="text/javascript" src="__JS__/common.js"></script>
+    <script type="text/javascript" src="__JS__/app.js"></script>
+    <script type="text/javascript" src="__JS__/page.js"></script>
+    {block name="script"}{/block}
+</body>
+
+</html>
+{else /} {block name="content"}{/block} {/if}

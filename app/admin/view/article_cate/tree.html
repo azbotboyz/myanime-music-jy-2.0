@@ -1,0 +1,54 @@
+{volist name="tree" id="list"}
+	<dl class="cate-item">
+		<dt class="clearfix">
+			<form action="{:url('update')}" method="post">
+				<div class="fold cate-item-line">
+                    <i class="fa"></i>
+                </div>
+				<div class="order cate-item-line">
+                    <input type="text" name="sort" class="text input-mini" value="{$list.sort}">
+                </div>
+
+				<div class="name cate-item-line">
+					<input type="text" name="title" class="text" value="{$list.title}">			
+				</div>
+
+				<div class="name cate-item-line">
+					<input type="text" name="alias" class="text" value="{$list.alias}">			
+				</div>
+				{if condition="$list['pid'] eq 0"}
+				<div class="cate-item-line">
+					<a class="btn btn-success btn-xs open-form-modal" title="添加子分类" href="{:url('create?pid='.$list['id'])}">
+						<i class="fa fa-plus"></i>
+					</a>
+				</div>
+				{/if}
+				<span class="cate-item-line msg"></span>
+
+				<div class="btn-toolbar cate-item-btn">
+					<a class="table-action-btn open-form-modal" title="编辑" href="{:url('edit?id='.$list['id'].'&pid='.$list['pid'])}">
+						<i class="fa fa-pencil text-info"></i>
+					</a>
+                    {if condition="$list['status'] eq 1"}
+                    <a class="table-action-btn ajax-get" title="禁用[{$list.title}]" href="{:url('setStatus?id='.$list['id'].'&status=0')}">
+						<i class="fa fa-ban text-warning"></i>
+                    </a>
+                    {elseif condition="$list['status'] eq 0"/}
+					<a class="table-action-btn ajax-get" title="启用[{$list.title}]" href="{:url('setStatus?id='.$list['id'].'&status=1')}">
+                        <i class="fa fa-check-circle-o text-success"></i>
+                    </a>
+                    {/if}
+					<a class="confirm ajax-del table-action-btn" data-remove=".cate-item" title="{$list.title}" href="{:url('delete?id='.$list['id'])}">
+                        <i class="fa fa-times text-danger"></i>
+                    </a>
+				</div>
+				<input type="hidden" name="id" value="{$list.id}">
+			</form>
+		</dt>
+		{present name="list['_child']"}
+		<dd>
+			{:action('Genre/tree', [$list['_child']], 'controller', true)}
+		</dd>
+		{/present}
+	</dl>
+{/volist}

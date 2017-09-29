@@ -1,0 +1,9 @@
+{extend name="public:base" /}
+{block name="content"}
+
+
+{foreach name="crumb" item="vo"}
+	{$vo.url}:{$vo.title}
+{/foreach}
+
+{/block}

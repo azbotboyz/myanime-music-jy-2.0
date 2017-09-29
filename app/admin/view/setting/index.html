@@ -1,0 +1,128 @@
+{extend name="public:base" /}
+{block name="content"}
+<section class="row m-b-md">
+    <div class="col-sm-6">
+        <h3 class="m-b-xs text-black">网站设置</h3>
+    </div>
+    <div class="col-sm-6 text-right text-left-xs m-t-md"></div>
+</section>
+<div class="panel panel-flat">
+    <div class="panel-heading clearfix" style="font-size: 16px; margin-bottom: 10px">
+        <div role="tabpanel">
+            <ul class="nav nav-tabs tabs nav-line">
+                {volist name=":config('config_group_list')" id="group"}
+                <li {eq name="group_id" value="$key" }class="active"{/eq}>
+                <a href="{:url('?group='.$key)}">{$group}配置</a>
+                </li>
+                {/volist}
+                <li {eq name="group_id" value="oauth" }class="active"{/eq}>
+                <a href="{:url('?group=oauth')}">同步登陆</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <form class="form-horizontal form-submit" action="{:url('update')}">
+            {foreach name="list" item="config"}
+            <div class="form-group">
+                <label class="control-label text-right col-lg-2">{$config.title}</label>
+                {switch name="config.type"}
+                {case value="0"}
+                <div class="col-lg-3">
+                    <input type="text" class="form-control" name="config[{$config.name}]" value="{$config.value}">
+                    <span class="help-block">{$config.remark}</span>
+                </div>
+                {/case}
+                {case value="1"}
+                <div class="col-lg-6">
+                    <input type="text" class="form-control" name="config[{$config.name}]" value="{$config.value}">
+                    <span class="help-block">{$config.remark}</span>
+                </div>
+                {/case}
+                {case value="2"}
+                <div class="col-lg-6">
+                    <textarea class="form-control" name="config[{$config.name}]" cols="5"
+                              rows="5">{$config.value}</textarea>
+                    <span class="help-block">{$config.remark}</span>
+                </div>
+                {/case}
+                {case value="3"}
+                <div class="col-lg-6">
+                    <textarea class="form-control" name="config[{$config.name}]" cols="5"
+                              rows="5">{$config.value}</textarea>
+                    <span class="help-block">{$config.remark}</span>
+                </div>
+                {/case}
+                {case value="4"}
+                <div class="col-lg-3">
+                    <select name="config[{$config.name}]" class="form-control">
+                        {foreach name=":parse_config_attr($config['extra'])" item="vo"}
+                        <option value="{$key}" {eq name="config.value" value="$key" }selected="true" {/eq}>{$vo}</option>
+                        {/foreach}
+                    </select>
+                </div>
+                {/case}
+                {case value="5"}
+                <div class="col-lg-6">
+                    {foreach name=":parse_config_attr($config['extra'])" item="vo" key="rk"}
+                    <label class="radio-inline i-radios" data-value="{$config.value}">
+                        <input type="radio" name="config[{$config.name}]" {eq name="config.value" value="$rk"}checked="true"{/eq} value="{$rk}">{$vo}
+                    </label>
+                    {/foreach}
+                    <span class="help-block">{$config.remark}</span>
+                </div>
+                {/case}
+                {case value="6"}
+                <div class="col-lg-10">
+                    {php}
+                        $fontIcon = config($config['name'] . '_font_icon');
+                        $positions= parse_field_attr($config['value']);
+                        $maxKey = max(array_keys($positions));
+                    {/php}
+                    {foreach name="positions" item="vo" key="pk"}
+                    <div class="form-inline m-b-5">
+                        <div class="form-group">
+                            <input type="text" readonly class="form-control input-sm" value="{$vo}">
+                        </div>
+                        <div class="form-group m-l-10">
+                            <input type="text" readonly class="form-control input-xs" style="width: 50px"  value="{$pk}">
+                        </div>
+                        {if condition="isset($fontIcon[$pk])"}
+                        <div class="form-group m-l-10">
+                            <input type="text" readonly class="form-control input-sm"  value="{$fontIcon[$pk]}">
+                        </div>
+                        {/if}
+                        <a class="btn btn-primary btn-sm m-l-10 open-form-modal" href="{:url('editpos?name='. $config['name'] . '&id='.$pk)}">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        {eq name="maxKey" value="$pk"}
+                        <a class="btn btn-danger btn-sm m-l-10 ajax-del" href="{:url('delpos?name='. $config['name'])}">
+                            <i class="fa fa-times"></i>
+                        </a>
+                        <a class="btn btn-success btn-sm m-l-10 open-form-modal" href="{:url('createpos?name='. $config['name'])}">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                        {/eq}
+                    </div>
+                    {/foreach}
+                </div>
+                {/case}
+                {/switch}
+            </div>
+            {/foreach}
+            <div class="form-group">
+                <div class="col-md-offset-2 col-lg-6 text-left">
+                    <button onclick="javascript:history.back(-1);return false;" type="button"
+                            class="btn btn-default border-slate">返回上页
+                    </button>
+                    <button type="submit" class="btn btn-primary ajax-post-form" type="submit">
+                        确认提交
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{/block}

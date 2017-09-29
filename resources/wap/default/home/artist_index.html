@@ -1,0 +1,16 @@
+{extend name="public/common"/}
+{block name="content"}
+<div class="tour_div clearfix">
+	<div class="tour_title tc0"><a  href="javascript:;">全部歌手</a></div>
+	{JY:artist result="v" limit="21" order="create_time" cache="86400"}
+	<div class="ar_con">
+		<a class="cover" href="{$v['url']}">
+			<img  src="{$v['cover_url']}">
+		</a>
+		<a class="ar_info" href="{$v['url']}">{$v['name']}</a>		
+	</div>
+	{/JY:artist}
+	
+	<div id="load-more" class="more" data-limit="21" data-type="artist" data-url="{:url('api/v1.Artists/index', ['field'=>'id,name,cover_url'])}">点击查看更多</div>
+</div>
+{/block}

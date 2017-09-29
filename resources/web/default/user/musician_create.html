@@ -1,0 +1,238 @@
+{extend name="public/common" /}
+{block name="warp"}
+<div class="tabbable tabbable-custom tabbable-reversed">
+	<ul class="nav nav-tabs">
+		<li>
+			<a href="{JY:url name='user_account'}">账户总览</a>
+		</li>
+		<li>
+			<a href="{JY:url name='user_charge'}">金币充值</a>
+		</li>
+        <li>
+            <a href="{JY:url name='user_upgrade'}"> 升级用户组</a>
+        </li>
+		<li class="active">
+			<a href="javascript:;">认证音乐人</a>
+		</li>
+	</ul>
+	<div class="tab-content">
+		<div id="tab_in" class="tab-pane active">
+			{if condition="!empty($musician)"}
+				{if condition="$musician['status'] eq 2"/}
+				<div class="alert alert-warning">
+					<p>你的认证正在审核中，请耐心等待...</p>
+				</div>
+				{else /}
+				<div class="alert alert-success">
+					<p>你已经成功认证为音乐人</p>
+				</div>
+				{/if}
+			{else /}
+			<div class="alert alert-warning">
+				<p>感谢你申请认证音乐人，确保你填写的信息真实有效否者不予通过</p>
+				<p>认证通过后认证资料将无法修改</p>
+			</div>
+			<form class="form-horizontal" action="{JY:url name='musician_save'}" onsubmit="return false;" method="post" id="auth-form">
+				<div class="form-body">
+				    <div class="form-group">
+				    	<label class="col-lg-3 control-label">
+				    		音乐人名称<b class="text-danger">*</b>
+				    	</label>
+                    	<div class="col-lg-4">
+							<input type="text" name="artist_name" value="{$data['artist_name']|default=$user['nickname']}" class="form-control">									
+						</div>                           
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">认证类型</label>
+                        <div class="col-sm-4">
+                            <select name="type" class="form-control" >
+                                <option selected='selected' value=" ">选择艺人类型</option>
+                                {volist name=":get_artist_types()" id="at"}
+                                <option {if condition="isset($info['type'])"} {eq name="info['type']" value="$at['id']"} selected='selected'{/eq}{/if} value="{$at['id']}">{$at.name}</option>
+                                {/volist}
+                            </select>
+                        </div>
+                    </div>
+
+				    <div class="form-group">
+				    	<label class="col-lg-3 control-label">
+				    		真实姓名<b class="text-danger">*</b>
+				    	</label>
+                    	<div class="col-lg-4">
+							<input type="text" name="realname" value="{$data['realname']|default=''}" class="form-control">
+							<span class="help-block">请保证姓名真实有效</span>										
+						</div>                           
+                    </div>
+					
+					<div class="form-group">
+                   		<label class="col-lg-3 control-label">
+                   			身份证号码<b class="text-danger">*</b>
+                   		</label>
+                    	<div class="col-lg-4">
+							<input type="text" name="idcard" value="{$data['idcard']|default=''}" class="form-control">										
+						</div>                           
+                    </div>
+
+		            <div class="form-group">
+                        <label class="col-md-3 control-label">
+                        	身份证正面照片<b class="text-danger">*</b>
+                        </label>
+                        <div class="col-md-8">
+                        	<div id="cover-view">{present name="data['idcard_img1']"}<img height="80" src="{$data['cover_url']}">{/present}</div>
+                            <div class="bootstrap-filestyle input-group" id="cover-upload-warp">
+                                <input type="text" id="attach-file-path" name="idcard_img1" class="form-control" value="{$data.idcard_img1|default=''}" placeholder="">
+                                <span class="input-group-btn">
+                                    <label class="btn btn-default fileinput-button" style="padding: 7px 12px;">
+                                        <span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span>
+                                        {present name="data['idcard_img1']"}
+										<span class="buttonText">重新上传</span>
+                                        {else /}
+                                        <span class="buttonText">选择文件</span>
+                                        {/present}
+                                        <input id="upload-cover" type="file" name="files[]" multiple
+                                        data-file-type="image"
+                                        data-upload-type="attach"
+                                        data-call="imageCall"
+                                        data-target-path="#attach-file-path">
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+		            
+                   	<div class="form-group">
+                   		<label class="col-lg-3 control-label">
+                   			手机号码<b class="text-danger">*</b>
+                   		</label>
+                    	<div class="col-lg-4">
+							<input type="text" name="phone" value="{$data.phone|default=''}" class="form-control">	
+							<span class="help-block">请填写你的手机</span>							
+						</div>                           
+                    </div>
+
+                    <div class="form-group form-inline">
+						<label class="col-md-3 control-label">
+							所在地<b class="text-danger">*</b>
+						</label>
+						<div class="col-md-9">
+							<div id="distpicker">
+								<input type="hidden" name="member[location]" value="{$user['location']}">
+								<select name="member[province]" data-province="{if condition="is_string($user['province'])"}{$user['province']}{/if}" class="form-control"></select>
+								<select name="member[city]"  data-city="{if condition="is_string($user['city'])"}{$user['city']}{/if}" class="form-control"></select>
+								<select name="member[district]"  data-district="{if condition="is_string($user['district'])"}{$user['district']}{/if}" class="form-control"></select>
+							</div>
+						</div>
+					</div>
+					
+					<input type="hidden" name="__token__" value="{$Request.token}" />
+                    <div class="form-group">
+						<label class="col-md-3 control-label">
+							认证理由<b class="text-danger">*</b>
+						</label>
+	                    <div class="col-md-9">
+	                       <textarea class="form-control" name="reason" rows="6" placeholder="">{$data.reason|default=''}</textarea>
+	                       <span class="help-block">填写认证补充说明</span>
+	                    </div>
+	                </div>
+
+					<div class="form-group ">
+						<div class="col-md-4 col-md-offset-3">
+							<button class="btn btn-danger" tagform="#auth-form">确认提交</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			{/if}
+		</div>
+
+	</div>
+</div>
+{/block}
+
+{block name="script"}
+<script src="__LIBS__/distpicker/distpicker.min.js"></script>
+<script type="text/javascript">
+$.validator.setDefaults({
+	submitHandler: function(form) {
+		postForm(form);
+		return false;		
+	}
+});
+$().ready(function() {
+	$("#distpicker").distpicker({
+	  	province: "---- 所在省 ----",
+	  	city: "---- 所在市 ----",
+	  	district: "---- 所在区 ----"
+	});
+	$("#auth-form").validate({
+		rules: {
+			artist_name:{
+				required: true,
+				rangelength:[2,32]
+			},
+			type:{
+				required: true,
+				digits: true
+			},
+			realname:{
+				required: true,
+				rangelength:[2,32]
+			},
+			idcard: {
+				required: true,
+			},
+			phone:{
+				required: true,
+				digits: true
+			},
+			idcard_img1:{
+				required: true,
+				rangelength:[10,255]
+			},
+			reason:{
+				required: true,
+				rangelength:[10,255]
+			}
+		},
+		messages: {
+			artist_name: {
+				required: '真实姓名不能为空',
+				rangelength:'真实姓名长度2-32个字符'
+			},
+			type:{
+				required: '请选择认证的音乐人类型',
+				digits: '请选择认证的音乐人类型'
+			},
+			realname: {
+				required: '真实姓名不能为空',
+				rangelength:'真实姓名长度2-32个字符'
+			},
+			idcard: {
+				required: "身份证号码不能为空",
+			},
+			phone:{
+				required: '请填写手机号码',
+				digits: '手机号码不正确'
+			},
+			idcard_img1:{
+				required: '请上传身份证照片',
+				rangelength:'请上传身份证照片'
+			},
+			reason:{
+				required: '认证理由不能为空',
+				rangelength:'认证理由长度10-255个字符'
+			}
+		}
+	});
+});
+var imageCall = function(res) {
+	var file = res.files[0];
+	if (file.code == 0) {
+		$('#cover-view').html('<img height="80" src="'+file.result.filepath+'">');
+		$('#cover-upload-warp').hide();
+	}
+}
+</script>
+{:hook('file', ['wiget'=>'Uplaod', 'element' => ['#upload-listen','#upload-cover']])}
+{/block}

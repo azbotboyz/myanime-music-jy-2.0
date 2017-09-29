@@ -1,0 +1,64 @@
+{extend name="public/base"/}
+{block name="content"}
+    <div class="panel panel-default">
+        <div class="panel-heading">[ {$data.title} ]配置</div>
+        <div class="panel-body">
+            <form action="{:url('saveConfig')}" class="form-horizontal" method="post">
+                {empty name="custom_config"}
+                {foreach name="data['config']" item="form" key="o_key"}
+                {if condition="$form['type'] neq 'group'"/}
+                    {include file="addons/form" /}
+                {else /}
+                <div>
+                    <label class="col-sm-2"></label>
+                    <ul class="nav nav-tabs tabs">
+                        {php}$ti = 0;{/php}
+                        {foreach name="form.options" item="li"  key="lk"}
+                        {php}++$ti;{/php}
+                        <li data-tab="tab{$ti}" {eq name="ti" value="1"} class="active" {/eq}>
+                            <a href="#tab{$ti}" id="tab-btn-{$lk}" data-toggle="tab">{$li.title}</a>
+                        </li>
+                        {/foreach}
+                    </ul>
+
+                    <div class="tab-content">
+                        {php}$bi = 0;{/php}
+                        {foreach name="form.options" item="tab"}
+                        {php}++$bi;{/php}
+                        <div id="tab{$bi}" class="tab-pane fade {eq name="bi" value="1"}in active{/eq}">  
+                            {foreach name="tab['options']" item="form" key="o_key"}
+                                {include file="addons/form" /}
+                            {/foreach}
+                        </div>
+                        {/foreach}
+                    </div>
+                {/if}
+                {/foreach}
+
+                {else/}
+                {present name="custom_config"}
+                    {$custom_config}
+                {/present}
+                {/empty}
+
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-2">
+                        <input type="hidden" name="id" value="{:input('id')}" readonly>
+                        <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+                        <button type="submit" class="btn btn-success ajax-post-form" target-form="form-horizontal">确 定</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{/block}
+
+{block name="script"}
+<script type="text/javascript" charset="utf-8">
+    //导航高亮
+    if ($('ul.tab-nav').length) {
+        //当有tab时，返回按钮不显示
+        $('.btn-return').hide();
+    }
+</script>
+{/block}

@@ -1,0 +1,108 @@
+{extend name="public:base" /}
+{block name="content"}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">
+            <b>审核音乐人</b>
+        </h2>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <form  class="form-horizontal clearfix" id="audit-form" onsubmit="return false;"  action="{:url('audit')}">
+                <div class="form-group">
+                    <label class="col-md-2 control-label">真实姓名</label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" readonly value="{$info.realname}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">联系手机</label>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <input type="text" value="{$info.phone}" readonly class="form-control">
+                        </div>
+                    </div>
+                    <label class="col-sm-2 control-label">身份证号码</label>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <input type="text" value="{$info.idcard}" readonly class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">证件照片</label>
+                    <div class="col-sm-4">
+                        <img src="{$info.idcard_img1}" style="max-height: 220px">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">认证理由</label>
+                    <div class="col-md-10">
+                        <textarea rows="2" class="form-control" readonly>{$info.reason}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label">驳回描述</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="back_info" value="证件号码与证件照片不相符">
+                    </div>
+                </div>
+                <input type="hidden" id="audit-status" name="status" value="1">
+                <input type="hidden" name="id" value="{$info.id|default=''}">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-lg-6 text-left">
+                        <button onclick="" type="button" class="btn btn-default btn-return">返回上页
+                        </button>
+                        <button id="submit-pass" class="btn btn-primary">
+                            确认审核通过
+                        </button>
+                        <button id="submit-back" class="btn btn-danger">
+                            确认驳回
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        var $form = $('#audit-form');
+        $("#submit-pass,#submit-back").click(function (e) {
+            e.preventDefault();
+            if ($(this).hasClass('btn-danger')) {
+                $('#audit-status').val(0);
+            }
+            var query = $form.serialize();
+            $.Notify.loading('正在提交数据，请稍后...', 'warning', 200);
+            $.ajax({
+                type     : 'POST',
+                url      : $form.attr('action'),
+                data     : query,
+                success  : function (res) {
+                    if (res.code) {
+                        $.Notify.msg(res.msg + '页面即将刷新', 'success');
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1500)
+                    } else {
+                        $.Notify.topMsg(res.msg, 'error');
+                    }
+                },
+                error    : function () {
+                    $.Notify.msg('请求失败,服务端响应失败！');
+                }
+            });
+        });
+
+    });
+</script>
+{/block}

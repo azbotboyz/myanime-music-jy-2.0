@@ -1,0 +1,20 @@
+<title>{$meta_title}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta content="telephone=no" name="format-detection">
+<meta name="keywords" content="{$meta_keywords}">
+<meta name="description" content="{$meta_description}">
+<link type="image/x-ico; charset=binary" rel="JYmusic icon" href="/favicon.ico">
+<meta name="author" content="JYmusic音乐管理系统">
+<!--Css-->
+<link rel="stylesheet" type="text/css" href="__LIBS__/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="__LIBS__/jymusic/css/jy.css?1.0.0">
+<link rel="stylesheet" type="text/css" href="__CSS__/plugs.min.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/style.css" media="all">
+<link rel="stylesheet" type="text/css" href="__CSS__/user.css" media="all">
+<!--js-->
+<script src="__LIBS__/jquery/jquery-2.0.3.min.js"></script>
+<script src="__LIBS__/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    (function() {window.JY = {"root": "{$Request.root}", "public": "__PUBLIC__", "domains" : {"home":"{:url('home/Index/index')}", "api" : "{:url('api/v1.Index/index')}","user" : "{:url('user/Index/index')}","article" : "{:url('article/Index/index')}","mobile" : "{:config('domain_list.mobile')}"},"deep": "{:config('pathinfo_depr')}","model": [{:config('url_model')}, "{:config('url_html_suffix')}"],"user_active_url" : "{:url('user/Auth/active')}"}})();
+</script>

@@ -1,0 +1,133 @@
+{extend name="public/common" /}
+
+{block name="warp"}
+<div class="tabbable tabbable-custom tabbable-reversed">
+	<ul class="nav nav-tabs">
+		<li>
+			<a href="{JY:url name='user_album'}">我的专辑</a>
+		</li>
+		<li  class="active">
+			<a href="javascript:;">添加专辑</a>
+		</li>
+	</ul>
+	<div class="tab-content">
+		<div id="tab_in" class="tab-pane active">
+			<div class="alert alert-warning">
+				<b>随意创建专辑，我将会立即删除，多次随意创建封号处理 </b>
+			</div>
+			<form class="form-horizontal" action="{JY:url name='album_save'}" method="post" id="album-form">
+				<div class="form-body">
+				    <div class="form-group">
+                   		<label class="col-lg-3 control-label">专辑名称*</label>
+                    	<div class="col-lg-4">
+							<input type="text" name="name" value="{$data.name|default=''}" class="form-control">																
+						</div>                           
+                    </div>
+					<div class="form-group">
+                        <label class="col-lg-3 control-label">所属分类*</label>                                
+                        <div class="col-lg-4">
+                            <select class="form-control" name="type_id">
+                            	<option>---选择分类---</option>
+								{JY:altype result="vo" limit="10"}
+                          	    <option {if condition="isset($data['type_id'])"} {eq name="data['type_id']" value="$vo['id']"}selected='selected'{/eq}{/if} value="{$vo.id}">{$vo.name}</option>
+                            	{/JY:altype}
+                            </select>
+                        </div>
+                    </div>
+                    
+                     <div class="form-group">
+                        <label class="col-md-3 control-label">上传封面</label>
+                        <div class="col-md-8">
+                        	<div id="cover-view"></div>
+                            <div class="bootstrap-filestyle input-group" id="cover-upload-warp">
+                                <input type="hidden" id="cover-file-id" name="cover_id" value="{$info.cover_id|default=''}">
+                                <input type="text" id="cover-file-path" class="form-control" value="{$info.cover_url|default=''}" name="cover_url" placeholder="">
+                                <span class="input-group-btn">
+                                    <label class="btn btn-default fileinput-button" style="padding: 7px 12px;">
+                                        <span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span>
+                                        <span class="buttonText">选择文件</span>
+                                        <input id="upload-cover" type="file" name="files[]" multiple
+                                        data-file-type="image"
+                                        data-upload-type="cover"
+                                        data-call="imageCall"
+                                        data-target-id="#cover-file-id"
+                                        data-target-path="#cover-file-path">
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+		          
+                   	<div class="form-group">
+                   		<label class="col-lg-3 control-label">唱片公司</label>
+                    	<div class="col-lg-4">
+							<input type="text" value="{$data.company|default=''}" name="company" class="form-control">							
+						</div>                           
+                    </div>
+
+					<div class="form-group">
+						<label class="col-md-3 control-label">专辑介绍*</label>
+	                    <div class="col-md-8">
+	                        <textarea class="form-control" name="introduce" rows="4" placeholder="请填专辑介绍">{$data.introduce|default=''}</textarea>
+
+	                    </div>                  	
+	                </div>
+					<input type="hidden" name="__token__" value="{$Request.token}" />
+					<div class="form-group ">
+						<div class="col-md-4 col-md-offset-3">
+							<button class="btn btn-danger" tagform="#album-form">确认提交</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+</div>
+{/block}
+
+{block name="script"}
+{:hook('file', ['wiget'=>'Uplaod', 'element' => ['#upload-cover']])}
+<script script type="text/javascript">
+var imageCall = function(res) {
+	var file = res.files[0];
+	if (file.code == 0) {
+		$('#cover-view').html('<img height="80" src="'+file.result.filepath+'">');
+		$('#cover-upload-warp').hide();
+	}
+}
+
+$.validator.setDefaults({
+	submitHandler: function(form) {
+		postForm(form);
+		return false;		
+	}
+});
+$().ready(function() {
+	$("#album-form").validate({
+		rules: {
+			alb:{
+				required: true,
+				rangelength:[2,40]
+			},
+			type: {
+				required: true,
+				digits: true
+			}
+		},
+		messages: {
+			alb: {
+				required: '名称不能为空',
+				rangelength:'名称长度2-32个字符'
+			},
+			type: {
+				required: "请选择所属分类",
+				digits: "请选择所属分类"
+			}
+		}
+	});
+	
+})
+
+</script>
+{/block}

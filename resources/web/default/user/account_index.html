@@ -1,0 +1,41 @@
+{extend name="public/common" /}
+
+{block name="warp"}
+<div class="tabbable tabbable-custom tabbable-reversed">
+	<ul class="nav nav-tabs">
+		<li class="active">
+			<a href="javascript:;">账户总览</a>
+		</li>
+		<li>
+			<a href="{JY:url name='user_charge'}">金币充值</a>
+		</li>
+		<li>
+			<a href="{JY:url name='user_upgrade'}"> 升级用户组</a>
+		</li>
+		<li>
+			<a href="{JY:url name='musician_auth'}"> 认证音乐人</a>
+		</li>
+	</ul>
+	<div class="tab-content clearfix">
+		<p class="mb_10">你的账号：{$user['username']}(ID:{$user['uid']})</p>
+		<p class="mb_10">你的昵称：{$user['nickname']}</p>
+		<p class="mb_10">
+			所在用户组：{$user['group']['name']}
+			<img height="20" src="{$user['group']['icon_url']}">
+            <a href="{JY:url name='user_upgrade'}">升级/续费</a>
+		</p>
+        {gt name="user['group']['id']" value="1"}
+        <p class="mb_10">
+        到期时间：{$user['group']['end_time']|time_format}
+        </p>
+        {/gt}
+
+		<p class="mb_10">你的邮箱：{$user['email']}</p>
+		<p class="mb_10">注册时间：{$user['reg_time']}</p>
+
+		<p>你的金币余额：{$user['coin']}
+			<a class="ml_10 text-info" href="{:url('charge')}">[充值]</a>
+		<p/>
+	</div>
+</div>
+{/block}
