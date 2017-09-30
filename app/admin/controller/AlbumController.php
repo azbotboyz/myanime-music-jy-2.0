@@ -88,9 +88,9 @@ class AlbumController extends AdminController
         $res = Album::create($post);
         if ($res) {
             cache('album_lists', null);
-            $this->success('专辑[' . $res->name . ']创建成功');
+            $this->success('Album[' . $res->name . ']Create success');
         } else {
-            $this->error('专辑添加失败，请稍后重试');
+            $this->error('Album added failed, please try again later');
         }
     }
 
@@ -125,7 +125,7 @@ class AlbumController extends AdminController
     public function edit($id)
     {
         if (!intval($id) || !$info = Album::get($id)) {
-            $this->error('专辑不存在');
+            $this->error('The album does not exist');
         }
         
         return $this->fetch('create', ['info' => $info->getData()]);
@@ -150,11 +150,11 @@ class AlbumController extends AdminController
         if ($res) {
             cache('album_lists', null);
             $this->success(
-                '专辑[' . $res->name . ']修改成功',
+                'Album[' . $res->name . ']Successfully modified',
                 cookie('forward_url')
             );
         } else {
-            $this->error('专辑修改失败，请稍后重试');
+            $this->error('The album changes failed. Please try again later');
         }
     }
 
@@ -168,7 +168,7 @@ class AlbumController extends AdminController
         
         $Album = Album::get($id);
         if (false == $Album) {
-            $this->error('删除的专辑不存在！');
+            $this->error('Deleted album does not exist!');
         }
 
         //判断该分类下有没有内容
@@ -177,14 +177,14 @@ class AlbumController extends AdminController
             ->field('id')
             ->select();
         if (!empty($songsList)) {
-            $this->error('请先删除/转移专辑下的歌曲（包含回收站）');
+            $this->error('Please remove it first/Transfer the song under the album (including the Recycle Bin)');
         }
 
         if ($Album->delete()) {
             cache('album_lists', null);
-            $this->success('专辑成功删除！');
+            $this->success('Album successfully deleted!');
         } else {
-            $this->error('专辑删除失败，请稍后重试！');
+            $this->error('Album deleted failed, please try again later!');
         }
     }
 

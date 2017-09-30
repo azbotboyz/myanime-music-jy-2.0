@@ -89,7 +89,7 @@ class ArtistController extends AdminController
             cache('Artist_lists', null);
             $this->success('艺人[' . $res->name . ']添加成功');
         } else {
-            $this->error('艺人添加失败，请稍后重试');
+            $this->error('Artist added failed, please try again later');
         }
     }
 
@@ -124,7 +124,7 @@ class ArtistController extends AdminController
     public function edit($id)
     {
         if (!intval($id) || !$info = Artist::get($id)) {
-            $this->error('艺人不存在');
+            $this->error('Artist does not exist');
         }
         return $this->fetch('create', ['info' => $info->getData()]);
     }
@@ -150,7 +150,7 @@ class ArtistController extends AdminController
             cache('Artist_lists', null);
             $this->success('艺人[' . $res->name . ']修改成功', cookie('forward_url'));
         } else {
-            $this->error('艺人修改失败，请稍后重试');
+            $this->error('Artist modification failed, please try again later');
         }
     }
 
@@ -163,14 +163,14 @@ class ArtistController extends AdminController
     {
         $Artist = Artist::get($id);
         if (false == $Artist) {
-            $this->error('删除的艺人不存在！');
+            $this->error('Deleted artist does not exist!');
         }
 
         if ($Artist->delete()) {
             cache('Artist_lists', null);
-            $this->success('艺人成功删除！');
+            $this->success('Artist successfully deleted!');
         } else {
-            $this->error('艺人删除失败，请稍后重试！');
+            $this->error('Artist deleted failed, please try again later!');
         }
     }
 

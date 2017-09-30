@@ -28,7 +28,7 @@ class AddonsController extends AdminController
         $addonsModel = new Addons;
 
         $this->assign('_extra_menu', array(
-            '应用后台管理' => $addonsModel->getAdminList(),
+            'Application background management' => $addonsModel->getAdminList(),
         ));
         parent::_initialize();
     }
@@ -38,7 +38,7 @@ class AddonsController extends AdminController
      */
     public function index(Request $request)
     {
-        $this->assign('meta_title', '插件列表');
+        $this->assign('meta_title', 'Plugin list');
         $addonsModel = new Addons;
 
         $list   = $addonsModel->getList();
@@ -72,14 +72,14 @@ class AddonsController extends AdminController
         $this->assign('addon_name', $addon_name);
         $class = get_addon_class($addon_name);
         if (!class_exists($class)) {
-            $this->error('插件不存在');
+            $this->error('The plugin does not exist');
         }
 
         $addon = new $class();
         $this->assign('addon', $addon);
         $param = $addon->admin_list;
         if (!$param && !isset($addon->custom_adminlist)) {
-            $this->error('插件列表信息不正确');
+            $this->error('The plugin list information is incorrect');
         }
 
         $this->assign('meta_title', $addon->info['title']);
@@ -181,9 +181,9 @@ class AddonsController extends AdminController
         $res = Addons::where('id', $id)->update(['status' => 1]);
         if ($res) {
             cache('hooks', null);
-            $this->success('启用成功');
+            $this->success('Enabled successfully');
         } else {
-            $this->error('启用失败');
+            $this->error('Failed to enable');
         }
     }
 
@@ -196,9 +196,9 @@ class AddonsController extends AdminController
         $res = Addons::where('id', $id)->update(['status' => 1]);
         if ($res) {
             cache('hooks', null);
-            $this->success('禁用成功');
+            $this->success('Disable success');
         } else {
-            $this->error('禁用失败');
+            $this->error('Disable failed');
         }
     }
 
@@ -212,21 +212,21 @@ class AddonsController extends AdminController
         $addon = Addons::get($id);
 
         if (!$addon) {
-            $this->error('插件未安装');
+            $this->error('The plugin is not installed');
         }
         $addon = $addon->getData();
 
         $addonClass = get_addon_class($addon['name']);
 
         if (!class_exists($addonClass)) {
-            trace("插件{$addon->name}无法实例化,", 'ADDONS', 'ERR');
+            trace("Plugin{$addon->name}Can not be instantiated,", 'ADDONS', 'ERR');
         }
 
         $data                   = new $addonClass();
         $addon['addon_path']    = $data->addon_path;
         $addon['custom_config'] = $data->custom_config;
 
-        $this->assign('meta_title', '设置插件-' . $data->info['title']);
+        $this->assign('meta_title', 'Set up plugins-' . $data->info['title']);
         $dbConfig = $addon['config'];
 
         $addon['config'] = include $data->config_file;
@@ -266,7 +266,7 @@ class AddonsController extends AdminController
         $addon  = Addons::get($id);
 
         if (!$addon) {
-            $this->error('插件不存在');
+            $this->error('The plugin does not exist');
         }
 
         $flag = $addon->where("id={$id}")
@@ -274,9 +274,9 @@ class AddonsController extends AdminController
 
         if ($flag !== false) {
             cache('addons_' . ucfirst($addon->name) . '_config', null);
-            $this->success('保存成功', Cookie('__forward__'));
+            $this->success('Saved successfully', Cookie('__forward__'));
         } else {
-            $this->error('保存失败');
+            $this->error('Save failed');
         }
     }
 
@@ -325,20 +325,20 @@ class AddonsController extends AdminController
         $addon_name = trim(input('addon_name'));
         $class      = get_addon_class($addon_name);
         if (!class_exists($class)) {
-            $this->error('插件不存在');
+            $this->error('The plugin does not exist');
         }
         $addons = new $class();
         $info   = $addons->info;
 
         // 检测信息的正确性
         if (!$info) {
-            $this->error('插件信息缺失');
+            $this->error('Plugin information is missing');
         }
         session('addons_install_error', null);
         $install_flag = $addons->install();
 
         if (!$install_flag) {
-            $this->error('执行插件预安装操作失败' . session('addons_install_error'));
+            $this->error('The pre-installation operation failed' . session('addons_install_error'));
         }
 
         $addonsModel = new Addons;
@@ -356,10 +356,10 @@ class AddonsController extends AdminController
             $hooks_update = model('Hooks')->updateHooks($addon_name);
             if ($hooks_update) {
                 cache('hooks', null);
-                $this->success('安装成功');
+                $this->success('Successful installation');
             } else {
                 $addonsModel->where("name='{$addon_name}'")->delete();
-                $this->error('更新钩子处插件失败,请卸载后尝试重新安装');
+                $this->error('Failed to update the hook at the plug,Please try to reinstall after uninstalling');
             }
         } else {
             $this->error('写入插件数据失败');
@@ -372,7 +372,7 @@ class AddonsController extends AdminController
     public function uninstall($id = 0)
     {
         if (!intval($id)) {
-            $this->error('插件不存在');
+            $this->error('The plugin does not exist');
         }
 
         $addon = Addons::where('id', $id)->field('id,name')->find();
@@ -380,13 +380,13 @@ class AddonsController extends AdminController
         $this->assign('jumpUrl', url('index'));
 
         if (!$addon || !class_exists($class)) {
-            $this->error('插件不存在');
+            $this->error('The plugin does not exist');
         }
 
         session('addons_uninstall_error', null);
         $addons = new $class();
         if (!$addons->uninstall()) {
-            $this->error('执行插件预卸载操作失败' . session('addons_uninstall_error'));
+            $this->error('The preload operation failed' . session('addons_uninstall_error'));
         }
         //清除插件配置缓存
         cache('addons_' . ucfirst($addon->name) . '_config', null);
@@ -394,14 +394,14 @@ class AddonsController extends AdminController
         $update = (new Hooks())->removeHooks($addon->name);
 
         if (!$update) {
-            $this->error('卸载插件所挂载的钩子数据失败');
+            $this->error('The hook data mounted on the uninstall plugin failed');
         }
 
         cache('hooks', null);
         if ($addon->delete()) {
-            $this->success('卸载成功');
+            $this->success('Uninstalled successfully');
         } else {
-            $this->error('卸载插件失败');
+            $this->error('Uninstall plugin failed');
         }
     }
 
@@ -417,13 +417,13 @@ class AddonsController extends AdminController
         $this->assign('name', $name);
         $class = get_addon_class($name);
         if (!class_exists($class)) {
-            $this->error('插件不存在');
+            $this->error('The plugin does not exist');
         }
         $addon = new $class();
         $this->assign('addon', $addon);
         $param = $addon->admin_list;
         if (!$param) {
-            $this->error('插件列表信息不正确');
+            $this->error('The plugin list information is incorrect');
         }
         extract($param);
         $this->assign('title', $addon->info['title']);
@@ -432,7 +432,7 @@ class AddonsController extends AdminController
         $class = get_addon_model($name, $model);
 
         if (!class_exists($class)) {
-            $this->error('模型无法实列化');
+            $this->error('Model can not be implemented');
         }
 
         $model = new $class();
@@ -441,7 +441,7 @@ class AddonsController extends AdminController
             if (is_object($data)) {
                 $data = $data->getData();
             }
-            $data || $this->error('数据不存在！');
+            $data || $this->error('Data does not exist!');
             $this->assign('info', $data);
         }
 
@@ -450,21 +450,21 @@ class AddonsController extends AdminController
             $data = $requset->post();
             if ($data['id']) {
                 if ($model->update($data)) {
-                    $this->success("{$addon->info['title']}更新成功！", Cookie('__forward__'));
+                    $this->success("{$addon->info['title']}update completed!", Cookie('__forward__'));
                 } else {
-                    $this->error("{$addon->info['title']}更新失败！");
+                    $this->error("{$addon->info['title']}Update failed!");
                 }
             } else {
                 if ($model->create($data)) {
-                    $this->success("{$addon->info['title']}创建成功！", Cookie('__forward__'));
+                    $this->success("{$addon->info['title']}Create success!", Cookie('__forward__'));
                 } else {
-                    $this->error("{$addon->info['title']}创建失败！");
+                    $this->error("{$addon->info['title']}Failed to create!");
                 }
             }
         } else {
             $fields = $model->fields;
             $this->assign('fields', $fields);
-            $this->assign('meta_title', $id ? '编辑' . $addon->info['title'] : '新增' . $addon->info['title']);
+            $this->assign('meta_title', $id ? 'edit' . $addon->info['title'] : 'Added' . $addon->info['title']);
             return $this->fetch();
         }
     }
@@ -489,33 +489,33 @@ class AddonsController extends AdminController
         $ids = array_unique((array) input('id/a', 0));
 
         if (empty($ids)) {
-            $this->error('请选择要操作的数据!');
+            $this->error('Please select the data to be operated!');
         }
 
         $class = get_addon_class($name);
         if (!class_exists($class)) {
-            $this->error('插件不存在');
+            $this->error('The plugin does not exist');
         }
 
         $param = (new $class())->admin_list;
         if (!$param) {
-            $this->error('插件列表信息不正确');
+            $this->error('The plugin list information is incorrect');
         }
         extract($param);
         $model = isset($model) ? $model : '';
         $class = get_addon_model($name, $model);
 
         if (!class_exists($class)) {
-            $this->error('模型无法实列化');
+            $this->error('Model can not be implemented');
         }
 
         $addonModel = new $class();
         $map        = ['id' => ['in', $ids]];
 
         if ($addonModel->where($map)->delete()) {
-            $this->success('删除成功');
+            $this->success('successfully deleted');
         } else {
-            $this->error('删除失败！');
+            $this->error('failed to delete!');
         }
     }
 }

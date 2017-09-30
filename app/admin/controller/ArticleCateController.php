@@ -69,9 +69,9 @@ class ArticleCateController extends AdminController
         $res = ArticleCategory::create($post);
         if ($res) {
             ArticleCategory::clear('article_cate');
-            $this->success('资讯分类[' . $res->title . ']添加成功', cookie('forward_url'));
+            $this->success('Information classification[' . $res->title . ']Added successfully', cookie('forward_url'));
         } else {
-            $this->error('资讯分类添加失败，请稍后重试');
+            $this->error('Message classification added failed, please try again later');
         }
     }
 
@@ -84,9 +84,8 @@ class ArticleCateController extends AdminController
     {
         $info = ArticleCategory::get($id);
         if (!intval($id) || !$info) {
-            $this->error('资讯分类不存在');
+            $this->error('Information classification does not exist');
         }
-
         if (intval($pid)) {
             $parent = ArticleCategory::get($pid);
             $this->assign('parent', $parent);
@@ -111,9 +110,9 @@ class ArticleCateController extends AdminController
         $res = ArticleCategory::update($post);
         if ($res) {
             Cache::clear('article_cate');
-            $this->success('资讯分类[' . $res->title . ']修改成功', Cookie('forward_url'));
+            $this->success('Information classification[' . $res->title . ']修改成功', Cookie('forward_url'));
         } else {
-            $this->error('资讯分类修改失败，请稍后重试');
+            $this->error('Message classification failed, please try again later');
         }
     }
 
@@ -126,28 +125,28 @@ class ArticleCateController extends AdminController
     {
         $cate = ArticleCategory::get($id);
         if (false == $cate) {
-            $this->error('删除的资讯分类不存在！');
+            $this->error('Deleted information class does not exist!');
         }
 
         //判断该分类下有没有子分类，有则不允许删除
         $child = ArticleCategory::where('pid', $id)->field('id')->select();
 
         if (!empty($child)) {
-            $this->error('请先删除该分类下的子分类');
+            $this->error('Please delete the subcategories under this category first');
         }
 
         //判断该分类下有没有内容
         $articleList = db('article')->where('category_id', $id)->field('id')->select();
 
         if (!empty($articleList)) {
-            $this->error('请先删除该分类下的文章（包含回收站）');
+            $this->error('Please delete the posts in that category (contains the Recycle Bin)');
         }
 
         if ($cate->delete()) {
             Cache::clear('article_cate');
-            $this->success('资讯分类成功删除！');
+            $this->success('Successfully deleted information class!');
         } else {
-            $this->error('音乐分类删除失败，请稍后重试！');
+            $this->error('Music classification deleted failed, please try again later!');
         }
     }
 
@@ -172,14 +171,14 @@ class ArticleCateController extends AdminController
     {
         //检查操作参数
         if (strcmp($type, 'move') == 0) {
-            $operate = '移动';
+            $operate = 'mobile';
         } elseif (strcmp($type, 'merge') == 0) {
-            $operate = '合并';
+            $operate = 'merge';
         } else {
-            $this->error('参数错误！');
+            $this->error('Parameter error!');
         }
         $from = intval(I('get.from'));
-        empty($from) && $this->error('参数错误！');
+        empty($from) && $this->error('Parameter error!');
 
         //获取分类
         $map  = array('status' => 1, 'id' => array('neq', $from));
@@ -191,14 +190,14 @@ class ArticleCateController extends AdminController
             $list = tree_to_list(list_to_tree($list));
 
             $pid = M('Category')->getFieldById($from, 'pid');
-            $pid && array_unshift($list, array('id' => 0, 'title' => '根分类'));
+            $pid && array_unshift($list, array('id' => 0, 'title' => 'Root classification'));
         }
 
         $this->assign('type', $type);
         $this->assign('operate', $operate);
         $this->assign('from', $from);
         $this->assign('list', $list);
-        $this->meta_title = $operate . '分类';
+        $this->meta_title = $operate . 'classification';
         $this->display();
     }
 
@@ -212,9 +211,9 @@ class ArticleCateController extends AdminController
         $from = I('post.from');
         $res  = M('Category')->where(array('id' => $from))->setField('pid', $to);
         if ($res !== false) {
-            $this->success('分类移动成功！', U('index'));
+            $this->success('Category moves successfully!', U('index'));
         } else {
-            $this->error('分类移动失败！');
+            $this->error('Category move failed!');
         }
     }
 
@@ -232,7 +231,7 @@ class ArticleCateController extends AdminController
         $to_models   = explode(',', $Model->getFieldById($to, 'model'));
         foreach ($from_models as $value) {
             if (!in_array($value, $to_models)) {
-                $this->error('请给目标分类绑定' . get_document_model($value, 'title') . '模型');
+                $this->error('Please bind to target classification' . get_document_model($value, 'title') . '模型');
             }
         }
 
@@ -242,7 +241,7 @@ class ArticleCateController extends AdminController
         foreach ($from_types as $value) {
             if (!in_array($value, $to_types)) {
                 $types = C('DOCUMENT_MODEL_TYPE');
-                $this->error('请给目标分类绑定文档类型：' . $types[$value]);
+                $this->error('Please bind the target to the document type:' . $types[$value]);
             }
         }
 
@@ -252,9 +251,9 @@ class ArticleCateController extends AdminController
         if ($res !== false) {
             //删除被合并的分类
             $Model->delete($from);
-            $this->success('合并分类成功！', U('index'));
+            $this->success('Merge success!', U('index'));
         } else {
-            $this->error('合并分类失败！');
+            $this->error('Merge classification failed!');
         }
 
     }

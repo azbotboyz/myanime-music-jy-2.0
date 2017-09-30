@@ -73,11 +73,11 @@ class ArticleController extends AdminController
         $info = Article::create($post);
         if ($info) {
             if ($info->content()->save($content)) {
-                $this->success('[' . $info->title . ']创建成功', cookie('forward_url'));
+                $this->success('[' . $info->title . ']Create success', cookie('forward_url'));
             }
             $info->delete();
         }
-        $this->error('文章创建失败，请稍后重试');
+        $this->error('Article creation failed, please try again later');
     }
 
     /**
@@ -86,15 +86,15 @@ class ArticleController extends AdminController
     public function edit(Request $request, $id = 0)
     {
         if (empty($id)) {
-            $this->error('参数不能为空！');
+            $this->error('Parameter can not be empty!');
         }
         // 获取详细数据
         $data = Article::get($id, 'content');
         if (!$data) {
-            $this->error('编辑的文章不存在');
+            $this->error('The edited article does not exist');
         }
 
-        $this->meta_title = '编辑文档';
+        $this->meta_title = 'Edit the document';
         return $this->fetch('create', ['info' => $data]);
     }
 
@@ -109,9 +109,9 @@ class ArticleController extends AdminController
         unset($post['content']);
         $info = Article::update($post);
         if ($info || $info->content()->update($content)) {
-            $this->success('[' . $info->title . ']更新成功', cookie('forward_url'));
+            $this->success('[' . $info->title . ']update completed', cookie('forward_url'));
         }
-        $this->error('文章更新失败，请稍后重试');
+        $this->error('Article update failed, please try again later');
     }
 
     /**
@@ -145,7 +145,7 @@ class ArticleController extends AdminController
                 break;
             }
         }
-        $this->validInfo($post, '保存草稿失败：');
+        $this->validInfo($post, 'Save draft failed:');
         
         $content = $post['content'];
         unset($post['content']);
@@ -155,7 +155,7 @@ class ArticleController extends AdminController
             $info = Article::update($post);
             if ($info || $info->content()->update($content)) {
                 $this->success(
-                    '保存草稿成功',
+                    'Save the draft successfully',
                     '',
                     ['id' => $info->id]
                 );
@@ -164,7 +164,7 @@ class ArticleController extends AdminController
             if ($info = Article::create($post)) {
                 if ($info->content()->save($content)) {
                     $this->success(
-                        '保存草稿成功',
+                        'Save the draft successfully',
                         '',
                         ['id' => $info->id]
                     );
@@ -172,7 +172,7 @@ class ArticleController extends AdminController
                 $info->delete();
             }
         }
-        $this->error('保存草稿失败');
+        $this->error('Save draft failed');
     }
 
     /**
@@ -215,7 +215,7 @@ class ArticleController extends AdminController
         /*参数过滤*/
         $ids = $this->request->param('id/a');
         if (empty($ids)) {
-            $this->error('请选择要操作的数据');
+            $this->error('Please select the data to be operated');
         }
         /*拼接参数并修改状态*/
         $map = [];
@@ -226,9 +226,9 @@ class ArticleController extends AdminController
         }
 
         if (Article::where($map)->update(['status' => 1])) {
-            $this->success('恢复成功');
+            $this->success('Successful recovery');
         } else {
-            $this->success('恢复失败，请稍后重试');
+            $this->success('Recovery failed, please try again later');
         }
     }
 
@@ -239,7 +239,7 @@ class ArticleController extends AdminController
     {
         $ids = $this->request->param('id/a');
         if (empty($ids)) {
-            $this->error('请选择要操作的数据');
+            $this->error('Please select the data to be operated');
         }
         $map = [];
         if (is_array($ids)) {
@@ -248,9 +248,9 @@ class ArticleController extends AdminController
             $map['id'] = $ids;
         }
         if (Article::where($map)->delete()) {
-            $this->success('清空回收站成功！');
+            $this->success('Empty Recycle Bin Success!');
         } else {
-            $this->error('清空回收站失败！');
+            $this->error('Empty Recycle Bin failed!');
         }
     }
     

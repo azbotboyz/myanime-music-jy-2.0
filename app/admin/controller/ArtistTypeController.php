@@ -52,9 +52,9 @@ class ArtistTypeController extends AdminController
         $res = ArtistType::create($post);
         if ($res) {
             cache('artist_type_lists', null);
-            $this->success('[' . $res->name . ']创建成功');
+            $this->success('[' . $res->name . ']Create success');
         } else {
-            $this->error('艺人类型添加失败，请稍后重试');
+            $this->error('Artist type added failed, please try again later');
         }
     }
 
@@ -66,7 +66,7 @@ class ArtistTypeController extends AdminController
     public function edit($id)
     {
         if (!intval($id) || !$info = ArtistType::get($id)) {
-            $this->error('艺人类型不存在');
+            $this->error('Artist type does not exist');
         }
         return $this->fetch('create', ['info' => $info]);
     }
@@ -89,9 +89,9 @@ class ArtistTypeController extends AdminController
         $res = ArtistType::update($post);
         if ($res) {
             cache('artist_type_lists', null);
-            $this->success('艺人类型[' . $res->name . ']修改成功', cookie('forward_url'));
+            $this->success('Artist type[' . $res->name . ']Successfully modified', cookie('forward_url'));
         } else {
-            $this->error('艺人类型修改失败，请稍后重试');
+            $this->error('Artist type modification failed, please try again later');
         }
     }
 
@@ -104,14 +104,14 @@ class ArtistTypeController extends AdminController
     {
         $info = ArtistType::get($id);
         if (false == $info) {
-            $this->error('删除的艺人类型不存在！');
+            $this->error('Deleted artist type does not exist!');
         }
 
         if ($info->delete()) {
             cache('artist_type_lists', null);
-            $this->success('艺人类型成功删除！');
+            $this->success('Artist type was deleted!');
         } else {
-            $this->error('艺人类型删除失败，请稍后重试！');
+            $this->error('Artist type delete failed, please try again later!');
         }
     }
 

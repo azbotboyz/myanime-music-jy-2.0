@@ -52,9 +52,9 @@ class AlbumTypeController extends AdminController
         $res = AlbumType::create($post);
         if ($res) {
             cache('album_type_lists', null);
-            $this->success('[' . $res->name . ']创建成功');
+            $this->success('[' . $res->name . ']Create success');
         } else {
-            $this->error('专辑类型添加失败，请稍后重试');
+            $this->error('The album type has failed. Please try again later');
         }
     }
 
@@ -66,7 +66,7 @@ class AlbumTypeController extends AdminController
     public function edit($id)
     {
         if (!intval($id) || !$info = AlbumType::get($id)) {
-            $this->error('专辑类型不存在');
+            $this->error('The album type does not exist');
         }
         return $this->fetch('create', ['info' => $info]);
     }
@@ -89,9 +89,9 @@ class AlbumTypeController extends AdminController
         $res = AlbumType::update($post);
         if (AlbumType::update($post)) {
             cache('album_type_lists', null);
-            $this->success('专辑类型[' . $res->name . ']修改成功', cookie('forward_url'));
+            $this->success('Album type[' . $res->name . ']Successfully modified', cookie('forward_url'));
         } else {
-            $this->error('专辑类型修改失败，请稍后重试');
+            $this->error('The album type has failed. Please try again later');
         }
     }
 
@@ -104,14 +104,14 @@ class AlbumTypeController extends AdminController
     {
         $info = AlbumType::get($id);
         if (false == $info) {
-            $this->error('删除的专辑类型不存在！');
+            $this->error('Deleted album type does not exist!');
         }
 
         if ($info->delete()) {
             cache('album_type_lists', null);
-            $this->success('专辑类型成功删除！');
+            $this->success('The album type was successfully deleted!');
         } else {
-            $this->error('专辑类型删除失败，请稍后重试！');
+            $this->error('Album type deletion failed, please try again later!');
         }
     }
 
