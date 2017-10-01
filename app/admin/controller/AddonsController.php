@@ -362,7 +362,7 @@ class AddonsController extends AdminController
                 $this->error('Failed to update the hook at the plug,Please try to reinstall after uninstalling');
             }
         } else {
-            $this->error('写入插件数据失败');
+            $this->error('Failed to write plugin data');
         }
     }
 

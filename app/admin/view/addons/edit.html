@@ -28,7 +28,7 @@
                                 </label>
                             </case>
                             <case value="datetime">
-                                <input type="text" name="{$field.name}" class="text input-large time" value="{$data[$field['name']]|date='Y-m-d H:i',###}" placeholder="请选择时间" />
+                                <input type="text" name="{$field.name}" class="text input-large time" value="{$data[$field['name']]|date='Y-m-d H:i',###}" placeholder="Please select the time" />
                             </case>
                             <case value="bool">
                                 <select name="{$field.name}">
@@ -100,8 +100,8 @@
             <input type="hidden" name="id" value="{$data.id|default=0}">
         </div>
         <div class="form-item cf">
-            <button class="btn submit-btn ajax-post hidden" id="submit" type="submit" target-form="form-horizontal">确 定</button>
-            <a class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</a>
+            <button class="btn submit-btn ajax-post hidden" id="submit" type="submit" target-form="form-horizontal">Ok</button>
+            <a class="btn btn-return" onclick="javascript:history.back(-1);return false;">Return</a>
         </div>
     </form>
     </div>

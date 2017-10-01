@@ -2,7 +2,7 @@
 {block name="content"}
 <section class="row m-b-md">
     <div class="col-sm-6">
-        <h3 class="m-b-xs text-black">网站设置</h3>
+        <h3 class="m-b-xs text-black">Website settings</h3>
     </div>
     <div class="col-sm-4 pull-right text-right text-left-xs m-t-md">
         <form class="searchform" action="{:url()}">
@@ -20,8 +20,8 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-success btn-sm">新增</button>
-                    <button type="button" data-url=" " class="btn btn-danger btn-sm">删除</button>
+                    <button type="button" class="btn btn-success btn-sm">Added</button>
+                    <button type="button" data-url=" " class="btn btn-danger btn-sm">delete</button>
                 </div>
             </div>
         </div>
@@ -40,13 +40,13 @@
                         </label>
                     </th>
                     <th>ID</th>
-                    <th>名称</th>
-                    <th>上级菜单</th>
-                    <th>分组</th>
+                    <th>name</th>
+                    <th>Superior menu</th>
+                    <th>Grouping</th>
                     <th>URL</th>
-                    <th>排序</th>
-                    <th>隐藏</th>
-                    <th class="text-center">操作</th>
+                    <th>Sorting</th>
+                    <th>hide</th>
+                    <th class="text-center">operating</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,8 +63,8 @@
                     <td>
                         <a href="{:url('index?pid='.$vo['id'])}">{$vo['title']}</a>
                     </td>
-                    <td>{$vo['parent_title']|default='无'}</td>
-                    <td>{$vo['group']|default='无'}</td>
+                    <td>{$vo['parent_title']|default='no'}</td>
+                    <td>{$vo['group']|default='no'}</td>
                     <td>{$vo.url}</td>
                     <td>{$vo.sort}</td>
                     <td>
@@ -73,13 +73,13 @@
                         </span>
                     </td>
                     <td class="text-center">
-                        <a href="{:url('edit?id='.$vo['id'])}" class="btn btn-default btn-xs">编辑</a>
+                        <a href="{:url('edit?id='.$vo['id'])}" class="btn btn-default btn-xs">edit</a>
                         {if condition="$vo['status'] neq '1'"}
-                        <a href="{:url('setStatus?id='.$vo['id'])}" class="btn btn-waring btn-xs ajax-get">禁用</a>
+                        <a href="{:url('setStatus?id='.$vo['id'])}" class="btn btn-waring btn-xs ajax-get">Disabled</a>
                         {else /}
-                        <a href="{:url('setStatus?id='.$vo['id'])}" class="btn btn-success btn-xs ajax-get">启用</a>
+                        <a href="{:url('setStatus?id='.$vo['id'])}" class="btn btn-success btn-xs ajax-get">Enabled</a>
                         {/if}
-                        <a href="{:url('delete?id='.$vo['id'])}" class="btn btn-danger btn-xs ajax-del">删除</a>
+                        <a href="{:url('delete?id='.$vo['id'])}" class="btn btn-danger btn-xs ajax-del">delete</a>
                     </td>
                 </tr>
                 {/foreach}

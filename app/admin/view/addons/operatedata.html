@@ -82,7 +82,7 @@
                 {case value="server"}
                 <div class="col-sm-3">
                     <select name="config[{$o_key}]" class="form-control">
-                        <option value="0">选择绑定服务器</option>
+                        <option value="0">Select Bind Server</option>
                         {php} 
                             if (isset($info[$field['name']])) {
                                 $field['value'] = $info[$field['name']];
@@ -107,7 +107,7 @@
                         <span class="input-group-btn">
                             <label class="btn btn-default fileinput-button">
                                 <span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span>
-                                <span class="buttonText">选择文件</span>
+                                <span class="buttonText">Select a document</span>
                                 <input id="upload-cover" type="file" name="files[]" multiple
                                 data-file-type="image"
                                 data-upload-type="cover"
@@ -134,10 +134,10 @@
                 <div class="col-md-offset-2 col-lg-6 text-left">
                     <button onclick="" type="button"
                             class="btn btn-default btn-return">
-                        <i class=" icon-arrow-left16 position-right"></i>返回上页
+                        <i class=" icon-arrow-left16 position-right"></i>Return to the previous page
                     </button>
                     <button type="submit" class="btn btn-primary" type="submit">
-                        确认提交<i class="icon-arrow-right16 position-right"></i>
+                        confirm submission<i class="icon-arrow-right16 position-right"></i>
                     </button>
                 </div>
             </div>

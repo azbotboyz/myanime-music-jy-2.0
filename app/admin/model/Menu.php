@@ -108,7 +108,7 @@ class Menu extends Model
     {
         $treeModel  = new Tree;
         $menus  = $treeModel->toFormatTree($this->getLine());
-        $menus  = array_merge([0=>['id'=>0,'title_show'=>'顶级菜单']], $menus);
+        $menus  = array_merge([0=>['id'=>0,'title_show'=>'Top menu']], $menus);
         return $menus;
     }
 }

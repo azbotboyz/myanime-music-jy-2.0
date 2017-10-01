@@ -1,13 +1,13 @@
 {extend name="public:base" /}
 {block name="content"}
-<h3>数据管理</h3>
+<h3>Data management</h3>
 <div class="panel panel-default">
-	<div class="panel-heading">执行sql语句</div>
+	<div class="panel-heading">Execute sql statement</div>
  	<div class="panel-body">
     	<form class="form-horizontal" enctype="multipart/form-data" action="{:url()}" name="songs"  method="post">														
 
     	    <div class="form-group">		
-    			<label class="col-sm-2 control-label">sql语句</label>
+    			<label class="col-sm-2 control-label">sql statement</label>
     			<div class="col-sm-6">	
     				<textarea name="sql" class="form-control" rows="6" >{$data.description|default=''}</textarea>
     	    	</div>
@@ -15,8 +15,8 @@
     										
     		<div class="form-group">   		
             	<div class="col-sm-4 col-sm-offset-2">
-                	<button class="btn btn-default" type="button" onclick="javascript:history.back(-1);return false;">取消</button>
-                	<button class="btn btn-primary ajax-post" target-form="form-horizontal" type="submit">确认执行</button>
+                	<button class="btn btn-default" type="button" onclick="javascript:history.back(-1);return false;">cancel</button>
+                	<button class="btn btn-primary ajax-post" target-form="form-horizontal" type="submit">Confirm execution</button>
             	</div>
         	</div>
         </form>

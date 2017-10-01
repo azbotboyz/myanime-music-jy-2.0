@@ -110,7 +110,7 @@ class ArticleCateController extends AdminController
         $res = ArticleCategory::update($post);
         if ($res) {
             Cache::clear('article_cate');
-            $this->success('Information classification[' . $res->title . ']修改成功', Cookie('forward_url'));
+            $this->success('Information classification[' . $res->title . ']Successfully modified', Cookie('forward_url'));
         } else {
             $this->error('Message classification failed, please try again later');
         }

@@ -58,9 +58,9 @@ class ServerController extends AdminController
         $res = Server::create($post);
         if ($res) {
             cache('server_lists', null);
-            $this->success('服务器[' . $res->name . ']添加成功', cookie('forward_url'));
+            $this->success('server[' . $res->name . ']Added successfully', cookie('forward_url'));
         } else {
-            $this->error('服务器添加失败，请稍后重试');
+            $this->error('Server added failed, please try again later');
         }
     }
 
@@ -72,7 +72,7 @@ class ServerController extends AdminController
     public function edit($id = 0, $pid = 0)
     {
         if (!intval($id) || !$info = Server::get($id)) {
-            $this->error('服务器不存在');
+            $this->error('The server does not exist');
         }
         return $this->fetch('create', ['info' => $info]);
     }
@@ -95,9 +95,9 @@ class ServerController extends AdminController
         $res = Server::update($post);
         if ($res) {
             cache('server_lists', null);
-            $this->success('服务器[' . $res->name . ']修改成功', Cookie('forward_url'));
+            $this->success('server[' . $res->name . ']Successfully modified', Cookie('forward_url'));
         } else {
-            $this->error('服务器修改失败，请稍后重试');
+            $this->error('Server modification failed. Please try again later');
         }
     }
 
@@ -110,14 +110,14 @@ class ServerController extends AdminController
     {
         $channel = Server::get($id);
         if (false == $channel) {
-            $this->error('删除的服务器不存在！');
+            $this->error('Deleted server does not exist!');
         }
 
         if ($channel->delete()) {
             cache('server_lists', null);
-            $this->success('服务器成功删除！');
+            $this->success('The server was successfully deleted!');
         } else {
-            $this->error('服务器删除失败，请稍后重试！');
+            $this->error('Server deleted failed, please try again later!');
         }
     }
 

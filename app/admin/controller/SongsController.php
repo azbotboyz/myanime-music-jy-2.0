@@ -101,11 +101,11 @@ class SongsController extends AdminController
                     Member::updateAttrNum('songs', $songs->up_uid);
                 }
                 
-                $this->success('音乐[' . $songs->name . ']更新成功', cookie('forward_url'));
+                $this->success('music[' . $songs->name . ']update completed', cookie('forward_url'));
             }
             $songs->delete();
         }
-        $this->error('更新成功失败，请稍后重试');
+        $this->error('Update failed successfully, please try again later');
     }
 
     /**
@@ -116,11 +116,11 @@ class SongsController extends AdminController
     public function edit($id)
     {
         if (!intval($id)) {
-            $this->error('ID参数错误');
+            $this->error('ID parameter is incorrect');
         }
         $song = Songs::get($id, 'extend');
         if (!$song) {
-            $this->error('音乐不存在');
+            $this->error('Music does not exist');
         }
         $info = $song->getData();
         $info['extend'] = $song->extend->getData();
@@ -159,9 +159,9 @@ class SongsController extends AdminController
         
         if ($res || $res2) {
             cache('songs_info_list', null);
-            $this->success('音乐[' . $song->name . ']修改成功', cookie('forward_url'));
+            $this->success('music[' . $song->name . ']Successfully modified', cookie('forward_url'));
         }
-        $this->error('音乐修改失败，请稍后重试');
+        $this->error('Music modification failed, please try again later');
     }
 
     /**
@@ -181,7 +181,7 @@ class SongsController extends AdminController
     {
         $ids = $this->request->param('id/a');
         if (empty($ids)) {
-            $this->error('请选择要操作的数据');
+            $this->error('Please select the data to be operated');
         }
         $map['id'] = ['in', $ids];
         
@@ -191,9 +191,9 @@ class SongsController extends AdminController
             foreach($list as $song){
                 Member::updateAttrNum('songs', $song['up_uid'], false);
             }
-            $this->success('歌曲删除成功');
+            $this->success('Song deleted successfully');
         } else {
-            $this->error('歌曲删除失败');
+            $this->error('Song deleted failed');
         }
     }
 
@@ -219,7 +219,7 @@ class SongsController extends AdminController
     {
         $post = $this->request->post();
         if (empty($post['ids'])) {
-            $this->error('请选择要修改的音乐');
+            $this->error('Please select the music you want to modify');
         }
         
         $ids = $post['ids'];
@@ -233,7 +233,7 @@ class SongsController extends AdminController
         }
         
         if (empty($post)) {
-            $this->error('没有字段需要更新');
+            $this->error('No fields need to be updated');
         }
         $res = false;
         if (isset($post['server_id'])) {
@@ -246,9 +246,9 @@ class SongsController extends AdminController
             $res = $model->bulkUpdate($post, $ids);
         }
         if ($res) {
-            $this->success('更新成功');
+            $this->success('update completed');
         } else {
-            $this->error('更新失败');
+            $this->error('Update failed');
         }
     }
     
@@ -259,11 +259,11 @@ class SongsController extends AdminController
     {
         $post = $this->request->post();
         if (empty($post['ids'])) {
-            $this->error('请选择要修改的音乐');
+            $this->error('Please select the music you want to modify');
         }
         $ids = $post['ids']; unset($post['ids']);
         $update = [];
-        $action = '推荐';
+        $action = 'recommend';
         if (intval($post['is_add'])) {
             if (isset($post['position']) && is_array($post['position'])) {
                 $pos = 0;
@@ -283,19 +283,19 @@ class SongsController extends AdminController
             if (!empty($post['is_remove_pos'])) {
                 $update['position'] = 0;
             }
-            $action = '移除';
+            $action = 'Removed';
         }
     
         if (empty($update)) {
-            $this->error('没有字段需要更新');
+            $this->error('No fields need to be updated');
         }
         
         $map['id'] = ['in', $ids];
         $res = Songs::where($map)->update($update);
         if ($res) {
-            $this->success($action.'成功', cookie('forward_url'));
+            $this->success($action.'success', cookie('forward_url'));
         } else {
-            $this->error($action . '失败');
+            $this->error($action . 'failure');
         }
     }
 
@@ -307,19 +307,19 @@ class SongsController extends AdminController
     {
         $post = $this->request->post();
         if (empty($post['rep_field'])) {
-            $this->error('请选择要替换的字段');
+            $this->error('Please select the field to replace');
         }
         if (empty($post['rep_before'])) {
-            $this->error('请填写需要替换的字段');
+            $this->error('Please fill in fields that need to be replaced');
         }
         $table = $post['rep_field'] != 'name' ? 'songs_extend' : 'songs';
         $table = config('database.prefix') . $table;
         $res   = \think\Db::execute("update {$table} set {$post['rep_field']} = replace({$post['rep_field']},'{$post['rep_before']}','{$post['rep_after']}')");
 
         if ($res) {
-            $this->success('批量替换失败', cookie('forward_url'));
+            $this->success('Batch replacement failed', cookie('forward_url'));
         } else {
-            $this->error('批量替换失败');
+            $this->error('Batch replacement failed');
         }
     }
     
@@ -331,14 +331,14 @@ class SongsController extends AdminController
     {
         $ids    = !empty($ids)? $ids : $this->request->param('id/a');
         if (empty($ids)) {
-            $this->error('请选择要操作的数据');
+            $this->error('Please select the data to be operated');
         }
         
         $model = new Songs();
         if ($model->clear($ids)) {
-            $this->success('成功清空回收站', cookie('forward_url'));
+            $this->success('Successfully empty the Recycle Bin', cookie('forward_url'));
         } else {
-            $this->error('回收站清空失败');
+            $this->error('Recycle Bin failed to clear');
         }
     }
     
@@ -358,30 +358,30 @@ class SongsController extends AdminController
             if ($res) {
                 if ($post['status'] == 1) {
                     Member::updateAttrNum('songs', $post['up_uid']);
-                    $content = '你上传的音乐[' . $model->name . ']成功通过审核';
+                    $content = 'You upload the music[' . $model->name . ']Successfully passed the audit';
                 } else {
-                    $content = '你上传的音乐[' . $model->name . ']未通过审核';
+                    $content = 'You upload the music[' . $model->name . ']Not approved';
                     $content .= !empty($post['back_info']) ? ',' . $post['back_info'] : '';
                 }
     
                 if ($post['up_uid'] > 1) {
-                    $notice = (new Notice())->to($post['up_uid'])->title('音乐审核通知');
+                    $notice = (new Notice())->to($post['up_uid'])->title('Music audit notification');
                     $result = $notice->content($content)->send();
                     if (true !== $result) {
-                        $this->success('音乐[' . $model->name . ']审核成功,但是通知发送失败：' . $result, cookie('forward_url'));
+                        $this->success('music[' . $model->name . ']check success,But the notification failed to send:' . $result, cookie('forward_url'));
                     }
                 }
                 cache('songs_info_list', null);
-                $this->success('音乐[' . $model->name . ']审核成功', cookie('forward_url'));
+                $this->success('music[' . $model->name . ']check success', cookie('forward_url'));
             }
             
-            $this->error('审核修改失败，请稍后重试');
+            $this->error('Audit changes failed. Please try again later');
         } else {
             $song = $model->get($id, 'extend');
-            !$song && $this->error('审核音乐不存在');
+            !$song && $this->error('Auditing music does not exist');
     
             if ($song->status !== 2) {
-                $this->error('当前音乐无需审核');
+                $this->error('The current music does not need to be reviewed');
             }
             $info = $song->getData();
             $info['extend'] = $song->extend->getData();

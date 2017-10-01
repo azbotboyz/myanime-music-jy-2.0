@@ -40,11 +40,11 @@ class MusicianController extends AdminController
     public function audit(Request $request, $id = 0)
     {
         if (empty($id) || !$musician = AuthMusician::get($id)) {
-            $this->error('审核的音乐人不存在');
+            $this->error('The auditionist does not exist');
         }
     
         if ($musician->status != 2) {
-            $this->error('音乐人不处于待审状态');
+            $this->error('The musician is not in a pending state');
         }
         
         if ($request->isPost()) {
@@ -57,7 +57,7 @@ class MusicianController extends AdminController
                 //设置会员音乐人状态
                 $user = Member::field('is_musician,avatar,location,uid')
                     ->where('uid', $musician->uid)->find();
-                $notice = (new Notice())->to($musician->uid)->title('音乐人审核通知');
+                $notice = (new Notice())->to($musician->uid)->title('Audience review notification');
                 if ($status == 1) {
                     $data =  [
                         'uid' => $musician->uid,
@@ -72,9 +72,9 @@ class MusicianController extends AdminController
                     //清空用户缓存
                     clear_user_info($musician->uid);
                     
-                    $content = '你申请的音乐人成功通过审核';
+                    $content = 'The artist you applied has successfully passed the audit';
                 } else {
-                    $content = '你申请的音乐人未通过审核';
+                    $content = 'The artist you applied did not pass the audit';
                     if (!empty($post['back_info'])) {
                         $content .= ',' . $post['back_info'];
                     }
@@ -82,11 +82,11 @@ class MusicianController extends AdminController
                 
                 $result = $notice->content($content)->send();
                 if (true !== $result) {
-                    $this->success('音乐[' . $musician->artist_name . ']审核成功,但是通知发送失败：' . $result, cookie('forward_url'));
+                    $this->success('music[' . $musician->artist_name . ']check success,But the notification failed to send:' . $result, cookie('forward_url'));
                 }
-                $this->success('音乐[' . $musician->artist_name . ']审核成功', cookie('forward_url'));
+                $this->success('music[' . $musician->artist_name . ']check success', cookie('forward_url'));
             }
-            $this->error('审核修改失败，请稍后重试');
+            $this->error('Audit changes failed. Please try again later');
         } else {
             return $this->fetch('', ['info' => $musician]);
         }
@@ -116,9 +116,9 @@ class MusicianController extends AdminController
         }
         $res = AuthMusician::create($post);
         if ($res) {
-            $this->success('认证音乐人[' . $res->realname . ']创建成功');
+            $this->success('Certified musicians[' . $res->realname . ']Create success');
         } else {
-            $this->error('认证音乐人添加失败，请稍后重试');
+            $this->error('Certified musician added failed, please try again later');
         }
     }
 
@@ -130,7 +130,7 @@ class MusicianController extends AdminController
     public function edit($id)
     {
         if (!intval($id) || !$info = AuthMusician::get($id)) {
-            $this->error('认证音乐人不存在');
+            $this->error('Certified musicians do not exist');
         }
         return $this->fetch('create', ['info' => $info]);
     }
@@ -151,9 +151,9 @@ class MusicianController extends AdminController
         }
         $res = AuthMusician::update($post);
         if ($res) {
-            $this->success('认证音乐人[' . $res->realname . ']修改成功', cookie('forward_url'));
+            $this->success('Certified musicians[' . $res->realname . ']Successfully modified', cookie('forward_url'));
         } else {
-            $this->error('认证音乐人修改失败，请稍后重试');
+            $this->error('Certified musician changes failed, please try again later');
         }
     }
 
@@ -167,7 +167,7 @@ class MusicianController extends AdminController
         $model = AuthMusician::get($id);
         
         if (false == $model) {
-            $this->error('删除的认证音乐人不存在！');
+            $this->error('Deleted certified musicians do not exist!');
         }
         
         if ($model->delete()) {
@@ -177,9 +177,9 @@ class MusicianController extends AdminController
             $member = new Member();
             $member->where('uid', $model->uid)->setField('is_musician', 0);
             clear_user_info($model->uid);
-            $this->success('认证音乐人成功删除！');
+            $this->success('Certified musician successfully deleted!');
         } else {
-            $this->error('认证音乐人删除失败，请稍后重试！');
+            $this->error('Certified musician deleted failed, please try again later!');
         }
     }
 
@@ -203,9 +203,9 @@ class MusicianController extends AdminController
             
             $artist = new Artist();
             $artist->where($where)->setField('status', $status);
-            $this->error('操作的音乐人不存在！');
+            $this->error('The operating musician does not exist!');
         } else {
-            $this->error('操作失败,请稍后重试！');
+            $this->error('operation failed,Please try again later!');
         }
         
         

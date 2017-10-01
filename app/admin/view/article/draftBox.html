@@ -3,7 +3,7 @@
 {block name="content"}
 <div class="row">
     <div class="col-sm-4">
-        <h4 class="page-title">草稿箱({:count($list)})</h4>
+        <h4 class="page-title">Draft box({:count($list)})</h4>
     </div>
 </div>
 
@@ -12,13 +12,13 @@
         <div class="btn-toolbar m-t-20" role="toolbar">
             <div class="btn-group">
                 <button class="btn btn-primary check-btn" data-target=".check-ids" type="button">
-                    全选/反选
+                    Select All / Invert
                 </button>
             </div>
 
             <div class="btn-group pull-right">
                 <button class="btn btn-danger delete-batch" data-tip="" data-target=".check-ids"  data-url="{:url('article/delete')}" type="button">
-                    删除
+                    delete
                 </button>
             </div>
 
@@ -33,13 +33,13 @@
                 <table class="table table-hover mails m-0 table table-actions-bar"> 
                     <thead>
                         <tr>
-                            <th>选择</th> 
-                            <th class="">编号</th>
-                            <th class="">标题</th>
-                            <th class="">创建者</th>
-                            <th class="">分类</th>
-                            <th class="">创建时间</th>
-                            <th class="">操作</th>
+                            <th>select</th> 
+                            <th class="">Numbering</th>
+                            <th class="">title</th>
+                            <th class="">creator</th>
+                            <th class="">classification</th>
+                            <th class="">Create time</th>
+                            <th class="">operating</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,7 +77,7 @@
 
 <div class="row">
     <div class="col-sm-3">
-        <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">     共计{$_total}条数据
+        <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">     total{$_total}Article data
         </div>
     </div>
     <div class="col-sm-9">

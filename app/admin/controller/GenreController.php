@@ -71,9 +71,9 @@ class GenreController extends AdminController
         $res = Genre::create($post);
         if ($res) {
             Cache::clear('genre');
-            $this->success('音乐分类[' . $res->name . ']添加成功', cookie('forward_url'));
+            $this->success('Music classification[' . $res->name . ']Added successfully', cookie('forward_url'));
         } else {
-            $this->error('音乐分类添加失败，请稍后重试');
+            $this->error('Music class added failed, please try again later');
         }
     }
 
@@ -85,7 +85,7 @@ class GenreController extends AdminController
     public function edit($id = 0, $pid = 0)
     {
         if (!intval($id) || !$info = Genre::get($id)) {
-            $this->error('音乐分类不存在');
+            $this->error('Music classification does not exist');
         }
 
         if (intval($pid)) {
@@ -113,9 +113,9 @@ class GenreController extends AdminController
         if ($res) {
             //更新后检测名称是否更新
             Cache::clear('genre');
-            $this->success('音乐分类[' . $res->name . ']修改成功', Cookie('forward_url'));
+            $this->success('Music classification[' . $res->name . ']Successfully modified', Cookie('forward_url'));
         } else {
-            $this->error('音乐分类修改失败，请稍后重试');
+            $this->error('Music classification changes failed, please try again later');
         }
     }
 
@@ -128,28 +128,28 @@ class GenreController extends AdminController
     {
         $genre = Genre::get($id);
         if (false == $genre) {
-            $this->error('删除的音乐分类不存在！');
+            $this->error('Deleted music class does not exist!');
         }
 
         //判断该分类下有没有子分类，有则不允许删除
         $child = Genre::where('pid', $id)->field('id')->find();
 
         if (!empty($child)) {
-            $this->error('请先删除该分类下的子分类');
+            $this->error('Please delete the subcategories under this category first');
         }
 
         //判断该分类下有没有内容
         $articleList = db('songs')->where('genre_id', $id)->field('id')->find();
 
         if (!empty($articleList)) {
-            $this->error('请先删除/转移该分类下的歌曲（包含回收站）');
+            $this->error('Please remove it first/Transfer the songs under that category (including the Recycle Bin)');
         }
 
         if ($genre->delete()) {
             Cache::clear('genre');
-            $this->success('音乐分类成功删除！');
+            $this->success('Music classification successfully deleted!');
         } else {
-            $this->error('音乐分类删除失败，请稍后重试！');
+            $this->error('Music classification deleted failed, please try again later!');
         }
     }
 

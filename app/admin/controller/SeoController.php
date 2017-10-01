@@ -72,7 +72,7 @@ class SeoController extends AdminController
     public function edit($id = 0)
     {
         if (!intval($id) || !$info = SeoRule::get($id)) {
-            $this->error('规则不存在不存在');
+            $this->error('Rule does not exist does not exist');
         }
         return $this->fetch('create', ['info' => $info]);
     }
@@ -94,9 +94,9 @@ class SeoController extends AdminController
         $res = SeoRule::update($post);
         if ($res) {
             cache('seo_rules', null);
-            $this->success('SEO规则[' . $res->title . ']修改成功', Cookie('forward_url'));
+            $this->success('SEO规则[' . $res->title . ']Successfully modified', Cookie('forward_url'));
         } else {
-            $this->error('SEO规则修改失败，请稍后重试');
+            $this->error('SEO rule changes failed, please try again later');
         }
     }
     

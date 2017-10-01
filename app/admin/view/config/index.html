@@ -6,7 +6,7 @@
             <ul class="nav nav-tabs nav-line">
                 {volist name=":config('config_group_list')" id="group"}
                 <li {eq name="group_id" value="$key" }class="active" {/eq}>
-                <a href="{:url('?group='.$key)}">{$group}配置</a>
+                <a href="{:url('?group='.$key)}">{$group}Configuration</a>
                 </li>
                 {/volist}
             </ul>
@@ -77,10 +77,10 @@
                 <div class="col-md-offset-2 col-lg-6 text-left">
                     <button onclick="javascript:history.back(-1);return false;" type="button"
                             class="btn btn-default border-slate btn-lg">
-                        <i class=" icon-arrow-left16 position-right"></i>返回上页
+                        <i class=" icon-arrow-left16 position-right"></i>Return to the previous page
                     </button>
                     <button type="submit" class="btn btn-primary btn-lg ajax-post-form" type="submit">
-                        确认提交<i class="icon-arrow-right16 position-right"></i>
+                        confirm submission<i class="icon-arrow-right16 position-right"></i>
                     </button>
                 </div>
             </div>

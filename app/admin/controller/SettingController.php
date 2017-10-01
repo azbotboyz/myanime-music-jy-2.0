@@ -49,7 +49,7 @@ class SettingController extends AdminController
         }
         //清空配置缓存
         cache('db_config_list', null);
-        $this->success('配置保存成功');
+        $this->success('Configuration saved successfully');
     }
     
     /**
@@ -71,9 +71,9 @@ class SettingController extends AdminController
                 ->setField('value', $config);
             if ($res || $res2) {
                 cache('db_config_list', null);
-                $this->success('保存成功');
+                $this->success('Saved successfully');
             } else {
-                $this->error('保存失败');
+                $this->error('Save failed');
             }
         } else {
             $meta = $model->where('name', 'oauth_meta')->value('value');
@@ -128,7 +128,7 @@ class SettingController extends AdminController
         $id   = $this->request->param('id');
 
         if (empty($name) || !is_numeric($id)) {
-            $this->error('参数错误');
+            $this->error('Parameter error');
         }
 
         $model = new Config;
@@ -162,7 +162,7 @@ class SettingController extends AdminController
     {
         $name = $this->request->param('name');
         if (empty($name)) {
-            $this->error('参数错误');
+            $this->error('Parameter error');
         }
         $model = new Config;
         $config = $model->where('name', $name)->field('name,title,value')->find();
@@ -179,6 +179,6 @@ class SettingController extends AdminController
         $model->save(['value'=> arr_to_newline($position)], ['name' => $name]);
         $model->save(['value'=> arr_to_newline($fontIcons)], ['name' => $name. '_font_icon']);
         cache('db_config_list', null);
-        $this->success('推荐位配置更新成功');
+        $this->success('Recommended bit configuration update is successful');
     }
 }

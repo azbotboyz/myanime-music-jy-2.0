@@ -59,7 +59,7 @@
     {case value="server"}
     <div class="col-sm-3">
         <select name="config[{$o_key}]" class="form-control">
-            <option value="0">选择绑定服务器</option>
+            <option value="0">Select Bind Server</option>
             {volist name=":get_server()" id="vo"}
             <option value="{$vo['id']}" {eq name="form.value" value="$vo['id']"} selected{/eq} >{$vo['name']}</option>
             {/volist}

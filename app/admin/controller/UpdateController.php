@@ -26,7 +26,7 @@ class UpdateController extends AdminController
 	 */
 	public function index()
     {
-        $this->assign('meta_title', '在线更新');
+        $this->assign('meta_title', 'Online update');
 		$data = check_update();
 		if($this->request->isPost()){
 			echo $this->fetch();
@@ -49,8 +49,8 @@ class UpdateController extends AdminController
 		$backupDatabase = $this->request->post('backupdatabase');
 		sleep(1);
 
-		$this->showMsg('JYmusic更新日志：');
-		$this->showMsg('更新开始时间:'.date('Y-m-d H:i:s'));
+		$this->showMsg('JYmusic update log:');
+		$this->showMsg('Update start time:'.date('Y-m-d H:i:s'));
 		sleep(1);
     
         $adapter = new Local(ROOT_PATH . 'storage');
@@ -59,61 +59,61 @@ class UpdateController extends AdminController
         /* 建立更新文件夹 */
         $folder = 'update/' . $date;
         if (!$filesystem->createDir($folder)) {
-            $this->showMsg('升级目录创建失败, 请确认storage或者旗下update目录是否有可写权限', 'text-danger');
+            $this->showMsg('Upgrade directory creation failed, Please confirm whether storage or its update directory is writable', 'text-danger');
             exit;
         }
         
 		//备份重要文件
 		if($backupFile){
-			$this->showMsg('开始备份重要程序文件...');
+			$this->showMsg('Start backing up important program files...');
             debug('begin');
             $folder = 'backup/' . $date;
             if (!$filesystem->createDir($folder)) {
-                $this->showMsg('备份目录创建失败, 请确认storage或者旗下backup目录是否有可写权限', 'text-danger');
+                $this->showMsg('Backup directory creation failed,Please confirm whether storage or its backup directory is writable', 'text-danger');
                 exit;
             }
 			$backupZip = $folder.'/backupAll.zip';
 			$zip = new PclZip($backupZip);
 			$zip->create('app,core,config');
-			$this->showMsg('成功完成重要程序备份,备份文件路径:'.$backupZip.', 耗时:'.debug('begin','end').'s','text-success');
+			$this->showMsg('Successful completion of important program backup,Backup file path:'.$backupZip.', 耗时:'.debug('begin','end').'s','text-success');
 		}
 
 		//下载并保存
-		$this->showMsg('开始获取远程更新包...');
+		$this->showMsg('Start getting the remote update package...');
 		sleep(1);
 		//$this->showMsg($updatedUrl);
 		$zipPath = $folder.'/update.zip';
 		$downZip = $this->getRemoteUrl($updateUrl);
 		
 		if(empty($downZip)){
-			$this->showMsg('下载更新包出错，请重试！', 'text-danger');
+			$this->showMsg('Download update package error, please try again!', 'text-danger');
 			exit;
 		}
 
         $filesystem->write($zipPath, $downZip);
 		
-		$this->showMsg('获取远程更新包成功,更新包路径：' .$zipPath, 'text-success');
+		$this->showMsg('Get the remote update package successfully,Update package path:' .$zipPath, 'text-success');
 		sleep(1);
 
 		/* 解压缩更新包 */ //TODO: 检查权限
-		$this->showMsg('更新包解压缩...');
+		$this->showMsg('Update package decompression...');
 		sleep(1);
 		
 		$zip = new PclZip($zipPath);
 		$res = $zip->extract(PCLZIP_OPT_PATH, ROOT_PATH);
 		
 		if($res === 0){
-			$this->showMsg('解压缩失败：'.$zip->errorInfo(true).'------更新终止', 'text-danger');
+			$this->showMsg('Unzip failed:'.$zip->errorInfo(true).'------Update is terminated', 'text-danger');
 			exit;
 		}
-		$this->showMsg('更新包解压缩成功', 'text-success');
+		$this->showMsg('The update package decompresses successfully', 'text-success');
 		sleep(1);
 
 		/* 更新数据库 */
 		$updateSql = ROOT_PATH . 'update.sql';
 		
 		if(is_file($updateSql)){
-			$this->showMsg('更新数据库开始...');
+			$this->showMsg('Update the database to start...');
 			if(file_exists($updateSql)){
 			
 				$sql = $filesystem->read($updateSql);
@@ -126,7 +126,7 @@ class UpdateController extends AdminController
 				}
 			}
 			unlink($updateSql);
-			$this->showMsg('更新数据库完毕', 'text-success');
+			$this->showMsg('Update the database is complete', 'text-success');
 		}
 
 		/* 系统版本号更新 */
@@ -138,23 +138,23 @@ class UpdateController extends AdminController
             ->setField('value',$version);
 
 		if($upTime){
-			$this->showMsg('系统版本号更新成功', 'text-success');
+			$this->showMsg('The system version number was updated successfully', 'text-success');
 		}else{
-			$this->showMsg('系统版本更新失败', 'text-danger');
+			$this->showMsg('System version update failed', 'text-danger');
 		}
 		sleep(1);
 		
 		//自动清理缓存
         if ($filesystem->deleteDir('runtime')) {
             //清文件缓存
-            $this->showMsg('缓存清理完毕！', 'text-success');
+            $this->showMsg('Cache clean up!', 'text-success');
         } else {
-            $this->showMsg('缓存自动清理失败，请手动删除storage目录下的runtime文件夹！', 'text-danger');
+            $this->showMsg('Cache automatic cleanup failed, please manually delete the storage directory under the runtime folder!', 'text-danger');
         }
         
 		sleep(1);
 		$this->showMsg('----------------------------------------------------------------------------');
-		$this->showMsg('在线更新全部完成，如有备份，请及时将备份文件移动至非web目录下！', 'success');
+		$this->showMsg('Online update all completed, if backup, please keep the backup file to non-web directory!', 'success');
 		
 	}
 	/**
@@ -202,7 +202,7 @@ class UpdateController extends AdminController
 			$data = check_update();
 			return json($data);
 		}else{
-			$this->error('程序无法自动升级,请配置支持curl');
+			$this->error('The program can not be upgraded automatically,Please support curl');
 		}
 	}
 

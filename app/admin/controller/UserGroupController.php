@@ -53,9 +53,9 @@ class UserGroupController extends AdminController
         $res = MemberGroup::create($post);
         if ($res) {
             cache('user_group_lists', null);
-            $this->success('用户组[' . $res->name . ']创建成功');
+            $this->success('user group[' . $res->name . ']Create success');
         } else {
-            $this->error('用户组添加失败，请稍后重试');
+            $this->error('User group added failed, please try again later');
         }
     }
 
@@ -67,7 +67,7 @@ class UserGroupController extends AdminController
     public function edit($id)
     {
         if (!intval($id) || !$info = MemberGroup::get($id)) {
-            $this->error('用户组不存在');
+            $this->error('The user group does not exist');
         }
         return $this->fetch('create', ['info' => $info]);
     }
@@ -90,9 +90,9 @@ class UserGroupController extends AdminController
         $res = MemberGroup::update($post);
         if ($res) {
             cache('user_group_lists', null);
-            $this->success('用户组[' . $res->name . ']修改成功', cookie('forward_url'));
+            $this->success('user group[' . $res->name . ']Successfully modified', cookie('forward_url'));
         } else {
-            $this->error('用户组修改失败，请稍后重试');
+            $this->error('User group failed to change, please try again later');
         }
     }
 
@@ -104,19 +104,19 @@ class UserGroupController extends AdminController
     public function delete($id)
     {
         if (1 == $id) {
-            $this->error('当前用户组不允许删除！');
+            $this->error('The current user group is not allowed to delete!');
         }
 
         $model = MemberGroup::get($id);
         if (false == $model) {
-            $this->error('删除的用户组不存在！');
+            $this->error('Deleted user group does not exist!');
         }
 
         if ($model->delete()) {
             cache('member_group_lists', null);
-            $this->success('用户组成功删除！');
+            $this->success('User group deleted successfully!');
         } else {
-            $this->error('用户组删除失败，请稍后重试！');
+            $this->error('User group deleted failed, please try again later!');
         }
     }
 

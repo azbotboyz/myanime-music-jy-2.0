@@ -23,7 +23,7 @@
 						$songsCount = db('songs')->where('status',1)->count();
 					{/php}
 					<h3 class="text-dark"><b class="counter">{$songsCount}</b></h3>
-					<p class="text-muted">歌曲总数</p>
+					<p class="text-muted">Total number of songs</p>
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -39,7 +39,7 @@
 						$albumCount = db('album')->where('status',1)->count();
 					{/php}
 					<h3 class="text-dark"><b class="counter">{$albumCount}</b></h3>
-					<p class="text-muted">专辑总数</p>
+					<p class="text-muted">Total number of albums</p>
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -55,7 +55,7 @@
 						$userCount = db('member')->where('status',1)->count();
 					{/php}
 					<h3 class="text-dark"><b class="counter">{$userCount}</b></h3>
-					<p class="text-muted">用户总数</p>
+					<p class="text-muted">The total number of users</p>
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -72,7 +72,7 @@
 						$artistCount = db('artist')->where('status',1)->count();
 					{/php}
 					<h3 class="text-dark"><b class="counter">{$artistCount}</b></h3>
-					<p class="text-muted">歌手总数</p>
+					<p class="text-muted">Total number of singers</p>
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -84,13 +84,13 @@
         <!-- Transactions -->
         <div class="col-lg-4">
         	<div class="card-box">
-				<h4 class="m-t-0 m-b-20 header-title"><b>系统信息</b></h4>
+				<h4 class="m-t-0 m-b-20 header-title"><b>system message</b></h4>
 
 				<div class="nicescroll" tabindex="5001" style="height: 280px; overflow: hidden; outline: none;">
                     <ul class="list-unstyled transaction-list m-r-5">
                         <li>
                             <i class="ti-download text-success"></i>
-                            <span class="tran-text">系统版本</span>
+                            <span class="tran-text">system version</span>
                             <span class="pull-right text-danger">
                             	{:config('jymusic_update_time')}
                             </span>
@@ -113,7 +113,7 @@
 
                         <li>
                             <i class="ti-download text-success"></i>
-                            <span class="tran-text">运行环境</span>
+                            <span class="tran-text">Operating environment</span>
                             <span class="pull-right text-muted">
                             	{$_SERVER['SERVER_SOFTWARE']}
                             </span>
@@ -122,7 +122,7 @@
 
                         <li>
                             <i class="ti-download text-success"></i>
-                            <span class="tran-text">MYSQL版本</span>
+                            <span class="tran-text">MYSQL version</span>
                             {php}
         						$system_info_mysql = db()->query("select version() as v;");
         					{/php}
@@ -134,7 +134,7 @@
 
                         <li>
                             <i class="ti-upload text-danger"></i>
-                            <span class="tran-text">php上传限制</span>
+                            <span class="tran-text">php upload limit</span>
                             <span class="pull-right text-info tran-price">
                             	{:ini_get('upload_max_filesize')}B
                             </span>
@@ -143,7 +143,7 @@
 
                         <li>
                             <i class="ti-upload text-danger"></i>
-                            <span class="tran-text" style="width: 125px;">POST上传限制</span>
+                            <span class="tran-text" style="width: 125px;">POST upload limit</span>
                             <span class="pull-right text-info tran-price">
                             	{:ini_get('post_max_size')}B
                             </span>
@@ -152,9 +152,9 @@
 
                         <li>
                             <i class="ti-upload text-danger"></i>
-                            <span class="tran-text">脚本执行时间</span>
+                            <span class="tran-text">Script execution time</span>
                             <span class="pull-right text-info tran-price">
-                            	{:ini_get('max_execution_time')}秒
+                            	{:ini_get('max_execution_time')}second
                             </span>
                             <span class="clearfix"></span>
                         </li>
@@ -168,15 +168,15 @@
         <!-- CHAT -->
         <div class="col-lg-4">
         	<div class="card-box">
-				<h4 class="m-t-0 m-b-20 header-title"><b>产品团队</b></h4>
+				<h4 class="m-t-0 m-b-20 header-title"><b>Product team</b></h4>
 
 				<div class="nicescroll" tabindex="5001" style="height: 280px;overflow: hidden; outline: none;">
                     <ul class="list-unstyled transaction-list m-r-5">
                         <li>
                             <i class="ti-download text-success"></i>
-                            <span class="tran-text">总策划</span>
+                            <span class="tran-text">Master plan</span>
                             <span class="pull-right">
-                            	战神~~巴蒂[QQ:378020023]
+                            	Mars~~Battie[QQ:378020023]
                             </span>
                             <span class="clearfix"></span>
                         </li>
@@ -184,35 +184,35 @@
                         <li>
                             <i class="ti-upload text-danger"></i>
                             <span class="tran-text">
-                            	系统名称
+                            	system name
                             </span>
                             <span class="pull-right tran-price">
-                            	JYmusic音乐(DJ)管理系统
+                            	JYmusic music(DJ)Management system
                             </span>
                             <span class="clearfix"></span>
                         </li>
 
                         <li>
                             <i class="ti-download text-success"></i>
-                            <span class="tran-text" style="width: 155px;">官方界面体验团队</span>
+                            <span class="tran-text" style="width: 155px;">Official interface experience team</span>
                             <span class="pull-right text-muted">
-                            	JYniuniu、猎天
+                            	JYniuniu, hunting day
                             </span>
                             <span class="clearfix"></span>
                         </li>
 
                         <li>
                             <i class="ti-download text-success"></i>
-                            <span class="tran-text">责任声明</span>
+                            <span class="tran-text">Statement of responsibility</span>
                             <span class="pull-right text-success tran-price">
-								本系统完全免费开源，本程序仅供个人交流使用，不得用于商业用途，因此带来的后果与程序作者无关！
+								The system is completely free of open source, the program is only for personal use, not for commercial purposes, so the consequences and the program has nothing to do with the author!
                             </span>
                             <span class="clearfix"></span>
                         </li>
 
                         <li>
                             <i class="ti-upload text-danger"></i>
-                            <span class="tran-text">官方网址</span>
+                            <span class="tran-text">official website</span>
                             <span class="pull-right text-info tran-price">
                             	<a href="http://www.jyuu.cn" target="_blank">www.jyuu.cn</a>
                             </span>
@@ -221,7 +221,7 @@
 
                         <li>
                             <i class="ti-upload text-danger"></i>
-                            <span class="tran-text">BUG反馈</span>
+                            <span class="tran-text">BUG feedback</span>
                             <span class="pull-right text-info tran-price">
                             	<a href="http://topic.jyuu.cn/tag/%E7%A8%8B%E5%BA%8F%E5%8F%8D%E9%A6%88" target="_blank">topic.jyuu.cn</a>
                             </span>
@@ -237,18 +237,18 @@
         <!-- Todos app -->
         <div class="col-lg-4">
         	<div class="card-box">
-				<h4 class="m-t-0 m-b-20 header-title"><b>歌曲审核</b></h4>
+				<h4 class="m-t-0 m-b-20 header-title"><b>Song review</b></h4>
 				<div class="todoapp">
                     <div class="row">
                         {notempty name="songsAuditList"}
                         <div class="col-sm-6">
                             <h4 id="todo-message">
-                                <span id="todo-total">{:count($songsAuditList)}</span> 首歌曲需要审核
+                                <span id="todo-total">{:count($songsAuditList)}</span> The song needs to be reviewed
                             </h4>
                         </div>
                         <div class="col-sm-6">
                            
-                            <a href="{:url('songs/index?status=audit')}" class="pull-right btn btn-primary btn-sm waves-effect waves-light" id="btn-archive">点击审核</a>
+                            <a href="{:url('songs/index?status=audit')}" class="pull-right btn btn-primary btn-sm waves-effect waves-light" id="btn-archive">Click to review</a>
                             
                         </div>
                         {/notempty}
@@ -262,7 +262,7 @@
                             </li>
                             {/foreach}
                         {else /}
-                            暂时没有要审核的歌曲
+                            There are no songs to be reviewed yet
                         {/notempty}
                     </ul>
 
@@ -280,7 +280,7 @@
 
         $.post("{:url('Update/check')}",function(data){
             if (data && data.status === 1){
-                var html = '<div style="padding: 10px">发现新更新可用,升级内容:<br>'+data.info+'<br><a  href="{:url('/update/index')}">点此更新</a></div>';
+                var html = '<div style="padding: 10px">Discover new updates available,Upgrade content:<br>'+data.info+'<br><a  href="{:url('/update/index')}">Click this update</a></div>';
                 $.Notify.open(html);
             }
         });

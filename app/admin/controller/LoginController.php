@@ -30,7 +30,7 @@ class LoginController extends Controller
             $this->redirect('index/index');
         }
 
-        $this->assign('meta_title', '管理员登录');
+        $this->assign('meta_title', 'The administrator logs in');
         return $this->fetch();
     }
 
@@ -52,7 +52,7 @@ class LoginController extends Controller
         /* 调用API登录接口登录 */
         $api = new User();
         if ($api->login($post['username'], $post['password'])) { //登录成功
-            $this->success('登录成功！', url('index/index'));
+            $this->success('login successful!', url('index/index'));
         }
         $this->error($api->getError());
     }

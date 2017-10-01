@@ -2,46 +2,46 @@
 {block name="content"}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">{:isset($info['id'])?'编辑':'新增'}艺人</h3>
+        <h3 class="panel-title">{:isset($info['id'])?'edit':'Added'}艺人</h3>
     </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-8">          
                 <form class="form-horizontal form-fixed form-submit" action="{:isset($info['id'])? url('update') : url('save')}">
                     <div class="form-group">
-                        <label class="col-md-2 col-xs-12 text-right control-label">艺人名称</label>
+                        <label class="col-md-2 col-xs-12 text-right control-label">Artist name</label>
                         <div class="col-md-6 col-xs-12">
                             <input type="text" name="name" class="form-control" value="{$info.name|default=''}">
-                            <span class="help-block">名称不能为空</span>
+                            <span class="help-block">Name is required</span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">所属类型</label>
+                        <label class="col-sm-2 control-label">Belong to type</label>
                         <div class="col-sm-4">
                             <select name="type_id" class="form-control" >
-                                <option selected='selected' value="0">选择艺人类型</option>
+                                <option selected='selected' value="0">Choose artist type</option>
                                 {volist name=":get_artist_types()" id="at"}
                                 <option {if condition="isset($info['type_id'])"} {eq name="info['type_id']" value="$at['id']"} selected='selected'{/eq}{/if} value="{$at['id']}">{$at.name}</option>
                                 {/volist}
                             </select>
                         </div>
-                        <label class="col-sm-2 control-label">关联用户</label>
+                        <label class="col-sm-2 control-label">Associated users</label>
                         <div class="col-sm-3">
                             <input type="text" name="hits" class="form-control" value="{$info.uid|default=''}">
-                            <span class="help-block">填写用户ID</span>
+                            <span class="help-block">Fill in the user ID</span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-2 control-label">封面地址</label>
+                        <label class="col-md-2 control-label">Cover address</label>
                         <div class="col-md-10">
                             <div class="bootstrap-filestyle input-group">
                                 <input type="hidden" id="cover-file-id" name="cover_id" value="{$info.cover_id|default=''}">
-                                <input type="text" id="cover-file-path" name="cover_url" class="form-control" value="{$info.cover_url|default=''}" placeholder="可以填写外链地址"> 
+                                <input type="text" id="cover-file-path" name="cover_url" class="form-control" value="{$info.cover_url|default=''}" placeholder="You can fill out the chain address"> 
                                 <span class="input-group-btn">
                                     <label class="btn btn-default fileinput-button">
                                         <span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span> 
-                                        <span class="buttonText">选择文件</span>
+                                        <span class="buttonText">Select a document</span>
                                         <input id="upload-cover" type="file" name="files[]" multiple
                                         data-file-type="image"
                                         data-upload-type="cover"
@@ -54,24 +54,24 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">字母索引</label>
+                        <label class="col-sm-2 control-label">Alphabetical index</label>
                         <div class="col-sm-2">
                             <input type="text" name="index" class="form-control"  value="{$info.index|default=''}">
-                            <span class="help-block">留空自动获取</span>
+                            <span class="help-block">Leave blank automatically</span>
                         </div>
-                        <label class="col-sm-2 control-label">点击数量</label>
+                        <label class="col-sm-2 control-label">Click the quantity</label>
                         <div class="col-sm-2">
                             <input type="text" name="hits" class="form-control"  value="{$info.hits|default=''}">
                         </div>
 
-                        <label class="col-sm-2 control-label">收藏数量</label>
+                        <label class="col-sm-2 control-label">Number of collections</label>
                         <div class="col-sm-2">
                             <input type="text" name="favtimes" class="form-control"  value="{$info.favtimes|default=''}">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">所在地区</label>
+                        <label class="col-sm-2 control-label">Where the area is</label>
                         <div class="col-sm-10">
                             <input type="text" name="region" class="form-control" value="{$info.region|default=''}">
                             <span class="help-block"></span>
@@ -79,7 +79,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label text-right col-lg-2">艺人推荐位</label>
+                        <label class="control-label text-right col-lg-2">Artist recommended bit</label>
                         <div class="col-lg-10">
                             {if condition="isset($info)"}
                             {foreach name=":config('artist_position')" item="vo" key="k"}
@@ -94,7 +94,7 @@
                             </label>
                             {/foreach}
                             {/if} 
-                            <span class="help-block">可选择多个推荐位</span>
+                            <span class="help-block">Multiple recommended bits can be selected</span>
                         </div>
                     </div>
 
@@ -111,10 +111,10 @@
                         <div class="col-md-offset-2 col-lg-6 text-left">
                             <button onclick="" type="button"
                                     class="btn btn-default btn-return">
-                                <i class=" icon-arrow-left16 position-right"></i>返回上页
+                                <i class=" icon-arrow-left16 position-right"></i>Return to the previous page
                             </button>
                             <button type="submit" class="btn btn-primary" type="submit">
-                                确认提交<i class="icon-arrow-right16 position-right"></i>
+                                confirm submission<i class="icon-arrow-right16 position-right"></i>
                             </button>
                         </div>
                     </div>

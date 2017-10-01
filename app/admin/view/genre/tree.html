@@ -22,7 +22,7 @@
 				</div>
 				{if condition="$list['pid'] eq 0"}
 				<div class="cate-item-line">
-					<a class="btn btn-success btn-xs" title="添加子分类" href="{:url('create?pid='.$list['id'])}">
+					<a class="btn btn-success btn-xs" title="Add subcategories" href="{:url('create?pid='.$list['id'])}">
 						<i class="fa fa-plus"></i>
 					</a>
 				</div>
@@ -30,15 +30,15 @@
 				<span class="cate-item-line msg"></span>
 
 				<div class="btn-toolbar cate-item-btn">
-					<a class="table-action-btn" title="编辑" href="{:url('edit?id='.$list['id'].'&pid='.$list['pid'])}">
+					<a class="table-action-btn" title="edit" href="{:url('edit?id='.$list['id'].'&pid='.$list['pid'])}">
 						<i class="fa fa-pencil text-info"></i>
 					</a>
                     {if condition="$list['status'] eq 1"}
-                    <a class="table-action-btn ajax-get" title="禁用[{$list.name}]" href="{:url('setStatus?id='.$list['id'].'&status=0')}">
+                    <a class="table-action-btn ajax-get" title="Disabled[{$list.name}]" href="{:url('setStatus?id='.$list['id'].'&status=0')}">
 						<i class="fa fa-ban text-warning"></i>
                     </a>
                     {elseif condition="$list['status'] eq 0"/}
-					<a class="table-action-btn ajax-get" title="启用[{$list.name}]" href="{:url('setStatus?id='.$list['id'].'&status=1')}">
+					<a class="table-action-btn ajax-get" title="Enabled[{$list.name}]" href="{:url('setStatus?id='.$list['id'].'&status=1')}">
                         <i class="fa fa-check-circle-o text-success"></i>
                     </a>
                     {/if}

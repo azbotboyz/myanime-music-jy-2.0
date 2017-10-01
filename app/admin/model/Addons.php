@@ -48,7 +48,7 @@ class Addons extends Model
         $dirs = array_map('basename', glob($dir . '*', GLOB_ONLYDIR));
         
         if ($dirs === FALSE || !file_exists($dir)) {
-            $this->error = '插件目录不可读或者不存在';
+            $this->error = 'The plugin directory is unreadable or does not exist';
             return false;
         }
         
@@ -66,7 +66,7 @@ class Addons extends Model
             if (!isset($addons[$val])) {
                 $class = get_addon_class($val);
                 if (!class_exists($class)) { // 实例化插件失败忽略执行
-                    \think\Log::record('插件' . $val . '的入口文件不存在！');
+                    \think\Log::record('Plugin' . $val . 'The entry file does not exist!');
                     continue;
                 }
                 

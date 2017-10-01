@@ -85,9 +85,9 @@ class MenuController extends AdminController
         $menu = new Menu($post);
         if ($menu->allowField(true)->save()) {
             cache('admin_menu', null);
-            $this->success('菜单添加成功', cookie('forward_url'));
+            $this->success('The menu was added successfully', cookie('forward_url'));
         } else {
-            $this->error('菜单添加失败，请稍后重试');
+            $this->error('Menu added failed, please try again later');
         }
     }
 
@@ -124,9 +124,9 @@ class MenuController extends AdminController
         $menu = new Menu();
         if ($menu->save($post, ['id' => $id])) {
             cache('admin_menu', null);
-            $this->success('菜单更新成功！', cookie('forward_url'));
+            $this->success('Menu update success!', cookie('forward_url'));
         } else {
-            $this->error('菜单更新失败！');
+            $this->error('Menu update failed!');
         }
 
     }
@@ -142,9 +142,9 @@ class MenuController extends AdminController
     {
         if (Menu::destroy($id)) {
             cache('admin_menu', null);
-            $this->success('菜单删除成功');
+            $this->success('The menu is deleted successfully');
         }
 
-        $this->error('菜单删除失败！');
+        $this->error('Menu delete failed!');
     }
 }

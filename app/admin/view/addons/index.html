@@ -28,20 +28,20 @@
                         }
                     ?>
                     {if condition="$hasConfig"}
-                    <a class="btn btn-xs btn-info mr-xs" href="{:url('config',array('id'=>$vo['id']))}">设置</a>
+                    <a class="btn btn-xs btn-info mr-xs" href="{:url('config',array('id'=>$vo['id']))}">Set up</a>
                     {/if}
 
                     {eq name="vo.status" value="0"}
-                    <a class="ajax-get btn btn-xs btn-success mr-xs" href="{:url('enable',array('id'=>$vo['id']))}">启用</a>
+                    <a class="ajax-get btn btn-xs btn-success mr-xs" href="{:url('enable',array('id'=>$vo['id']))}">Enabled</a>
                     {else /}
-                    <a class="ajax-get btn btn-xs btn-warning mr-xs" href="{:url('disable',array('id'=>$vo['id']))}">禁用</a>
+                    <a class="ajax-get btn btn-xs btn-warning mr-xs" href="{:url('disable',array('id'=>$vo['id']))}">Disabled</a>
                     {/eq}
 
-                    <a class="ajax-get btn btn-xs btn-danger mr-xs" data-confirm="true" href="{:url('uninstall?id='.$vo['id'])}">卸载</a>
+                    <a class="ajax-get btn btn-xs btn-danger mr-xs" data-confirm="true" href="{:url('uninstall?id='.$vo['id'])}">Uninstall</a>
                 </div>   
                 {else /}
                 <div class="product-action" style="display: block;">
-                    <a class="ajax-get btn btn-xs btn-info" href="{:url('install?addon_name='.$vo['name'])}">安装</a>
+                    <a class="ajax-get btn btn-xs btn-info" href="{:url('install?addon_name='.$vo['name'])}">installation</a>
                     
                 </div>
                 {/empty}

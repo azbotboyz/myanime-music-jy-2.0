@@ -3,8 +3,8 @@
 <div class="row">
     <div class="col-sm-12">
         <h4 class="page-title">
-            数据备份
-            <small>[如果提示有备份任务在执行，删除{:config('data_backup_path')}文件夹下载的backup.lock文件]</small>
+            data backup
+            <small>[If prompted to have a backup task in the implementation, delete{:config('data_backup_path')}Folder download backup.lock file]</small>
         </h4>
     </div>
 </div>
@@ -13,14 +13,14 @@
         <div class="btn-toolbar m-t-20" role="toolbar">
             <div class="btn-group">
                 <button class="btn btn-primary check-btn" data-target=".check-ids" type="button">
-                    全选/反选
+                    Select All / Invert
                 </button>
             </div>
             
             <div class="btn-group pull-right">
-                <a id="export" class="btn btn-success" href="javascript:;" autocomplete="off">立即备份</a>
-                <a id="optimize" class="btn btn-primary" href="{:url('optimize')}">优化表</a>
-                <a id="repair" class="btn btn-success" href="{:url('repair')}">修复表</a>
+                <a id="export" class="btn btn-success" href="javascript:;" autocomplete="off">Back up now</a>
+                <a id="optimize" class="btn btn-primary" href="{:url('optimize')}">Optimization table</a>
+                <a id="repair" class="btn btn-success" href="{:url('repair')}">Repair table</a>
             </div>
 
         </div>
@@ -37,15 +37,15 @@
 		                    <tr>
 		                    	<th width="60">
                                    <div class="checkbox-primary checkbox-single">
-                                       选择
+                                       select
                                     </div>
                        			</th> 
-		                        <th>表名</th>
-		                        <th>数据量</th>
-		                        <th>数据大小</th>
-		                        <th>创建时间</th>
-		                        <th>备份状态</th>
-		                        <th width="130">操作</th>
+		                        <th>Table Name</th>
+		                        <th>The amount of data</th>
+		                        <th>Data size</th>
+		                        <th>Create time</th>
+		                        <th>Backup status</th>
+		                        <th width="130">operating</th>
 		                    </tr>
 		                </thead>
 		                <tbody>
@@ -61,10 +61,10 @@
 		                            <td>{$table.rows}</td>
 		                            <td>{$table.data_length|format_bytes}</td>
 		                            <td>{$table.create_time}</td>
-		                            <td class="info">未备份</td>
+		                            <td class="info">Not backed up</td>
 		                            <td class="action">
-		                                <a class="btn btn-primary btn-sm ajax-get no-refresh" href="{:url('optimize?tables='.$table['name'])}">优化</a>&nbsp;
-		                                <a class="btn btn-success btn-sm ajax-get no-refresh" href="{:url('repair?tables='.$table['name'])}">修复</a>
+		                                <a class="btn btn-primary btn-sm ajax-get no-refresh" href="{:url('optimize?tables='.$table['name'])}">optimization</a>&nbsp;
+		                                <a class="btn btn-success btn-sm ajax-get no-refresh" href="{:url('repair?tables='.$table['name'])}">repair</a>
 		                            </td>
 		                        </tr>
 		                    {/volist}
@@ -98,25 +98,25 @@
         $export.click(function(){
             var inputs  = $('.check-ids:checked');
             if (inputs.size() < 1) {
-                $.Notify.msg('请选择你要备份的数据表');
+                $.Notify.msg('Please select the data table you want to back up');
                 return false;
             }
 
             $export.parent().children().addClass("disabled");
-            $export.html("正在发送备份请求...");
+            $export.html("Sending a backup request...");
             $.post(
                 $form.attr("action"),
                 $form.serialize(),
                 function(res){
                     if(res.code){
                         tables = res.data.tables;
-                        $export.html(res.msg + "开始备份，请不要关闭本页面！");
+                        $export.html(res.msg + "Start the backup, please do not close this page!");
                         backup(res.data.tab);
-                        window.onbeforeunload = function(){ return "正在备份数据库，请不要关闭！" }
+                        window.onbeforeunload = function(){ return "Is backing up the database, please do not close!" }
                     } else {
                         $.Notify.topMsg(res.msg,'alert-error');
                         $export.parent().children().removeClass("disabled");
-                        $export.html("立即备份");
+                        $export.html("Back up now");
                     }
                 },
                 "json"
@@ -125,13 +125,13 @@
         });
 
         function backup(tab, status){
-            status && showmsg(tab.id, "开始备份...");
+            status && showmsg(tab.id, "Start the backup...");
             $.get($form.attr("action"), tab, function(res){
                 if(res.code){
                     showmsg(tab.id, res.msg);
                     if(!$.isPlainObject(res.data.tab)){
                         $export.parent().children().removeClass("disabled");
-                        $export.html("备份完成，点击重新备份");
+                        $export.html("Backup is complete, click on the backup");
                         window.onbeforeunload = function(){ return null }
                         return;
                     }
@@ -139,7 +139,7 @@
                 } else {
                     $.Notify.topMsg(data.msg,'alert-error');
                     $export.parent().children().removeClass("disabled");
-                    $export.html("立即备份");
+                    $export.html("Back up now");
                 }
             }, "json");
         }

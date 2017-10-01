@@ -31,7 +31,7 @@ class  SiteController extends AdminController {
         
 		$this->assign('type', $type);
         $this->assign('_list', $list);
-        $this->assign('meta_title', '关于网站');
+        $this->assign('meta_title', 'About the site');
         return $this->fetch();
 	}
     
@@ -43,7 +43,7 @@ class  SiteController extends AdminController {
     public function create($type = "")
     {
         $this->assign('type' , $type);
-        $this->assign('meta_title' , '新增网站文档');
+        $this->assign('meta_title' , 'Add a website document');
         return $this->fetch();
     }
     
@@ -63,12 +63,12 @@ class  SiteController extends AdminController {
         ];
     
         $msg = [
-            'title.require'     => '标题已存在',
-            'title.length'      => '标题长度2-40个字符',
-            'name.length'      => '别名长度2-16个字符',
-            'name.unique'      => '别名已存在',
-            'content.require' => '请输入内容',
-            'appname.require'    => '文档类型不能为空',
+            'title.require'     => 'The title already exists',
+            'title.length'      => 'Title Length 2-40 characters',
+            'name.length'      => 'Alias ​​length 2-16 characters',
+            'name.unique'      => 'Alias ​​already exists',
+            'content.require' => 'Please enter the content',
+            'appname.require'    => 'The document type can not be empty',
         ];
     
         $result = $this->validate($post, $rule, $msg);
@@ -79,9 +79,9 @@ class  SiteController extends AdminController {
         }
         $res = Site::create($post);
         if ($res) {
-            $this->success('标签[' . $res->title . ']创建成功');
+            $this->success('label[' . $res->title . ']Create success');
         } else {
-            $this->error('标签添加失败，请稍后重试');
+            $this->error('Tag added failed, please try again later');
         }
     }
     
@@ -94,7 +94,7 @@ class  SiteController extends AdminController {
     public function edit($id)
     {
         if (!intval($id) || !$info = Site::get($id)) {
-            $this->error('文档不存在');
+            $this->error('The document does not exist');
         }
         return $this->fetch('create',[
             'info' => $info,
@@ -119,12 +119,12 @@ class  SiteController extends AdminController {
         ];
     
         $msg = [
-            'title.require'     => '标题已存在',
-            'title.length'      => '标题长度2-40个字符',
-            'name.length'      => '别名长度2-16个字符',
-            'name.unique'      => '别名已存在',
-            'content.require' => '请输入内容',
-            'appname.require'    => '文档类型不能为空',
+            'title.require'     => 'The title already exists',
+            'title.length'      => 'Title Length 2-40 characters',
+            'name.length'      => 'Alias ​​length 2-16 characters',
+            'name.unique'      => 'Alias ​​already exists',
+            'content.require' => 'Please enter the content',
+            'appname.require'    => 'The document type can not be empty',
         ];
     
         $result = $this->validate($post, $rule, $msg);
@@ -134,9 +134,9 @@ class  SiteController extends AdminController {
         }
         $res = Site::update($post);
         if ($res) {
-            $this->success('[' . $res->title . ']修改成功', cookie('forward_url'));
+            $this->success('[' . $res->title . ']Successfully modified', cookie('forward_url'));
         } else {
-            $this->error('修改失败，请稍后重试');
+            $this->error('The change failed. Please try again later');
         }
     }
     
@@ -149,12 +149,12 @@ class  SiteController extends AdminController {
     {
         $info = Site::get($id);
         if (!$info) {
-            $this->error('删除的文档不存在！');
+            $this->error('Deleted document does not exist!');
         }
         if ($info->delete()) {
-            $this->success('文档成功删除！');
+            $this->success('Document deleted successfully!');
         } else {
-            $this->error('文档删除失败，请稍后重试！');
+            $this->error('Document deleted failed, please try again later!');
         }
     }
     

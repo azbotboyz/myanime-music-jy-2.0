@@ -38,12 +38,12 @@ class EmailController extends AdminController
     {
         $post = $request->post();
         $api =  new EmailApi($post);
-        $res = $api->title('这是一封测试邮件')->sendTest($post['test_email']);
+        $res = $api->title('This is a test mail')->sendTest($post['test_email']);
         
         if (!$res) {
             $this->error($api->getError());
         } else {
-            $this->success('邮件发送成功');
+            $this->success('Mail sent successfully');
         }
     }
 
@@ -60,9 +60,9 @@ class EmailController extends AdminController
         
         if(Config::where('name', 'mail_conf')->setField('value', $config)){
             cache('mail_config', $post);
-            $this->success('邮件配置修改成功');
+            $this->success('Mail configuration changes successfully');
         } else {
-            $this->error('邮件配置修改失败');
+            $this->error('Mail configuration changes failed');
         }
         
     }

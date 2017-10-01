@@ -26,7 +26,7 @@ class Member extends Model {
         $user = $this->get($uid)->data;
 
         if(!$user || 1 != $user['status']) {
-            $this->error = '用户不存在或已被禁用！'; //应用级别禁用
+            $this->error = 'The user does not exist or has been disabled!'; //应用级别禁用
             return false;
         }
 
@@ -103,7 +103,7 @@ class Member extends Model {
     }
 
     public function getStatusAttr($status){
-        $statusText = [-1=>'删除',0=>'禁用',1=>'正常',2=>'未激活'];
+        $statusText = [-1=>'delete',0=>'Disabled',1=>'normal',2=>'inactivated'];
         return $statusText[$status];
     }
 

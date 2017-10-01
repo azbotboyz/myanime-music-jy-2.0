@@ -104,9 +104,9 @@ class ConfigController extends AdminController
     public function delete($id)
     {
         if (Config::destroy($id)) {
-            $this->success('配置项删除成功');
+            $this->success('The configuration item was deleted successfully');
         }
 
-        $this->error('配置项删除失败！');
+        $this->error('Configuration item failed to delete!');
     }
 }

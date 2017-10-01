@@ -75,9 +75,9 @@ class ChannelController extends AdminController
         //halt(new Channel($post));
         $res = Channel::create($post);
         if ($res) {
-            $this->success('导航[' . $res->title . ']添加成功', Cookie('forward_url'));
+            $this->success('navigation[' . $res->title . ']Added successfully', Cookie('forward_url'));
         } else {
-            $this->error('导航添加失败，请稍后重试');
+            $this->error('Navigation added failed, please try again later');
         }
     }
 
@@ -90,7 +90,7 @@ class ChannelController extends AdminController
     {
         $info = Channel::get($id);
         if (!intval($id) || !$info) {
-            $this->error('导航不存在');
+            $this->error('Navigation does not exist');
         }
 
         if (intval($pid)) {
@@ -118,9 +118,9 @@ class ChannelController extends AdminController
         }
         $res = Channel::update($post);
         if ($res) {
-            $this->success('导航[' . $res->title . ']修改成功', Cookie('forward_url'));
+            $this->success('navigation[' . $res->title . ']Successfully modified', Cookie('forward_url'));
         } else {
-            $this->error('导航修改失败，请稍后重试');
+            $this->error('Navigation modification failed, please try again later');
         }
     }
 
@@ -135,13 +135,13 @@ class ChannelController extends AdminController
     {
         $channel  =   Channel::get($id);
         if (false == $channel) {
-            $this->error('删除的导航不存在！');
+            $this->error('Deleted navigation does not exist!');
         }
 
         if ($channel->delete()) {
-            $this->success('导航成功删除！');
+            $this->success('Navigation is successfully deleted!');
         } else {
-            $this->error('导航删除失败，请稍后重试！');
+            $this->error('Navigation delete failed, please try again later!');
         }
     }
 

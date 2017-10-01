@@ -2,7 +2,7 @@
 {block name="content"}
 <div class="panel panel-flat">
     <div class="panel-heading">
-        <h3 class="panel-title">{:isset($data['id'])?'编辑':'新增'}音乐分类</h3>
+        <h3 class="panel-title">{:isset($data['id'])?'edit':'Added'}Music classification</h3>
     </div>
 
     <div class="panel-body">
@@ -10,42 +10,42 @@
 
             <div class="form-group">
                 <label class="control-label text-right col-md-2 col-xs-12 ">
-                    上级分类
+                    Sub-headings
                 </label>
                 <div class="col-md-4 col-xs-12">
                     <input type="text" class="form-control" disabled="disabled" value="{$parent['name']|default='无'}"/>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-2 col-xs-12 text-right control-label">分类名称</label>
+                <label class="col-md-2 col-xs-12 text-right control-label">Category Name</label>
                 <div class="col-md-4 col-xs-12">
                     <input type="text" name="name" class="form-control" value="{$info.name|default=''}">
-                    <span class="help-block">名称不能为空</span>
+                    <span class="help-block">Name is required</span>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 col-xs-12 text-right control-label">分类别名</label>
+                <label class="col-md-2 col-xs-12 text-right control-label">Classification alias</label>
                 <div class="col-md-2 col-xs-12">
                     <input type="text" name="alias" class="form-control" value="{$info.alias|default=''}">
-                    <span class="help-block">优化SEO，只能是英文留空自动获取</span>
+                    <span class="help-block">Optimize SEO, can only be left in English automatically</span>
                 </div>
-                <label class="col-md-1 col-xs-12 text-right  control-label">排序</label>
+                <label class="col-md-1 col-xs-12 text-right  control-label">Sorting</label>
                 <div class="col-md-2 col-xs-12">
                     <input type="text" name="sort" class="form-control" value="{$info.sort|default=0}">
-                    <span class="help-block">仅对当前层级有效</span>
+                    <span class="help-block">Valid only for the current level</span>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label">封面地址</label>
+                <label class="col-md-2 control-label">Cover address</label>
                 <div class="col-md-6">
                     <div class="bootstrap-filestyle input-group">
-                        <input type="text" id="cover-file-path" name="cover_url" class="form-control" value="{$info.cover_url|default=''}" placeholder="可以填写外链地址"> 
+                        <input type="text" id="cover-file-path" name="cover_url" class="form-control" value="{$info.cover_url|default=''}" placeholder="You can fill out the chain address"> 
                         <span class="input-group-btn">
                             <label class="btn btn-default fileinput-button">
                                 <span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span> 
-                                <span class="buttonText">选择文件</span>
+                                <span class="buttonText">Select a document</span>
                                 <input id="upload-cover" type="file" name="files[]" multiple
                                 data-file-type="image"
                                 data-upload-type="cover"
@@ -54,32 +54,32 @@
                             </label>
                         </span>
                     </div>
-                    <span class="help-block">可以填写带http://的绝对地址</span>
+                    <span class="help-block">Can fill in with http://The absolute address</span>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 col-xs-12 text-right control-label">SEO标题</label>
+                <label class="col-md-2 col-xs-12 text-right control-label">SEO title</label>
                 <div class="col-md-6 col-xs-12">
                     <input type="text" name="meta_title" class="form-control" value="{$info.meta_title|default=''}">
                 </div>
             </div>   
             <div class="form-group">
-                <label class="col-md-2 col-xs-12 text-right control-label">SEO关键字</label>
+                <label class="col-md-2 col-xs-12 text-right control-label">SEO keywords</label>
                 <div class="col-md-6 col-xs-12">
                     <input type="text" name="keywords" class="form-control" value="{$info.keywords|default=''}">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label">SEO描述</label>
+                <label class="col-md-2 control-label">SEO description</label>
                 <div class="col-md-6">
                     <textarea rows="4" class="form-control" name="description">{$info.description|default=''}</textarea>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label">分类简介</label>
+                <label class="col-sm-2 control-label">Introduction to classification</label>
                 <div class="col-sm-6">
                     <textarea name="introduce" class="form-control">{$info.introduce|default=""}</textarea>
                 </div>
@@ -95,7 +95,7 @@
                 <div class="col-md-offset-2 col-lg-6 text-left">
                     <button onclick="" type="button"
                             class="btn btn-default btn-return">
-                        <i class=" icon-arrow-left16 position-right"></i>返回上页
+                        <i class=" icon-arrow-left16 position-right"></i>Return to the previous page
                     </button>
                     <button type="submit" class="btn btn-primary" type="submit">
                         确认提交<i class="icon-arrow-right16 position-right"></i>

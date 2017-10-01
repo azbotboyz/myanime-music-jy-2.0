@@ -46,7 +46,7 @@ class ThemController extends AdminController {
                 $them['status'] = true;
             } else {
                 $them['status'] = false;
-                $them['error'] =  '模板主题配置文件不存在';
+                $them['error'] =  'The template theme profile does not exist';
             }
             $them['type'] = $type;
             $them['active'] = $curConf['them_name'] == $them['basename'] ? true : false;
@@ -97,7 +97,7 @@ class ThemController extends AdminController {
         $configFile = ROOT_PATH . 'resources' . DS . $type . DS . $filename . DS . 'conf.php';
         
         if (!is_file($configFile)) {
-            $this->error('启用失败,主题配置文件读取失败');
+            $this->error('Failed to enable,Topic profile failed to read');
         }
         $themConf = require $configFile;
         $curKey = $type . '_them';
@@ -110,7 +110,7 @@ class ThemController extends AdminController {
         $content = <<<str
 <?php
 /**
- * JYmusic音乐管理系统
+ * JYmusic music management system
  *
  * @version     2.0
  * @author      战神~~巴蒂 <jyuucn@163.com>
@@ -140,7 +140,7 @@ str;
         
         //try{
             $filesystem->put($viewFile, $content);
-            $this->success('主题启用成功');
+            $this->success('Topic enabled successfully');
         /*} catch (\Exception $e) {
             $error = $e->getMessage();
             $error = $error? $error : '主题启用失败';

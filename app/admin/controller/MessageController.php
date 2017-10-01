@@ -98,7 +98,7 @@ class MessageController extends AdminController
     {
         $ids = $this->request->param('id/a');
         if (empty($ids)) {
-            $this->error('请选择要操作的数据');
+            $this->error('Please select the data to be operated');
         }
         $map = [];
         if (is_array($ids)) {
@@ -107,9 +107,9 @@ class MessageController extends AdminController
             $map['id'] = $ids;
         }
         if (Message::where($map)->delete()) {
-            $this->success('消息删除成功！');
+            $this->success('Message deleted successfully!');
         } else {
-            $this->error('消息删除失败！');
+            $this->error('Message deleted failed!');
         }
     }
 

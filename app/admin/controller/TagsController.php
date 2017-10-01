@@ -68,9 +68,9 @@ class TagsController extends AdminController
         $res = Tags::create($post);
         if ($res) {
             cache('tags_tree_list', null);
-            $this->success('标签[' . $res->name . ']创建成功');
+            $this->success('label[' . $res->name . ']Create success');
         } else {
-            $this->error('标签添加失败，请稍后重试');
+            $this->error('Tag added failed, please try again later');
         }
     }
 
@@ -105,7 +105,7 @@ class TagsController extends AdminController
     public function edit($id)
     {
         if (!intval($id) || !$info = Tags::get($id)) {
-            $this->error('标签不存在');
+            $this->error('The label does not exist');
         }
         return $this->fetch('create', ['info' => $info]);
     }
@@ -127,9 +127,9 @@ class TagsController extends AdminController
         $res = Tags::update($post);
         if ($res) {
             cache('tags_tree_list', null);
-            $this->success('标签[' . $res->name . ']修改成功', cookie('forward_url'));
+            $this->success('label[' . $res->name . ']Successfully modified', cookie('forward_url'));
         } else {
-            $this->error('标签修改失败，请稍后重试');
+            $this->error('Tag revision failed, please try again later');
         }
     }
 
@@ -142,13 +142,13 @@ class TagsController extends AdminController
     {
         $info = Tags::get($id);
         if (!$info) {
-            $this->error('删除的标签不存在！');
+            $this->error('Deleted label does not exist!');
         }
         if ($info->delete()) {
             cache('tags_lists', null);
-            $this->success('标签成功删除！');
+            $this->success('Tag successfully deleted!');
         } else {
-            $this->error('标签删除失败，请稍后重试！');
+            $this->error('Label deletion failed, please try again later!');
         }
     }
 

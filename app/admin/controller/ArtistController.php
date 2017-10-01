@@ -87,7 +87,7 @@ class ArtistController extends AdminController
         $res = Artist::create($post);
         if ($res) {
             cache('Artist_lists', null);
-            $this->success('艺人[' . $res->name . ']添加成功');
+            $this->success('艺人[' . $res->name . ']Added successfully');
         } else {
             $this->error('Artist added failed, please try again later');
         }

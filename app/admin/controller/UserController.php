@@ -95,11 +95,11 @@ class UserController extends AdminController
         $user = UcenterMember::create($post);
         if ($user) {
             if ($user->member()->save($member)) {
-                $this->success('用户[' . $user->member->nickname . ']创建成功', cookie('forward_url'));
+                $this->success('user[' . $user->member->nickname . ']Create success', cookie('forward_url'));
             }
             $user->delete();
         }
-        $this->error('用户创建失败，请稍后重试');
+        $this->error('User created failed, please try again later');
     }
 
     /**
@@ -110,12 +110,12 @@ class UserController extends AdminController
     public function edit($id)
     {
         if (!intval($id)) {
-            $this->error('ID参数错误');
+            $this->error('ID parameter is incorrect');
         }
         $info = UcenterMember::get($id, 'member');
 
         if (!$info) {
-            $this->error('用户不存在');
+            $this->error('User does not exist');
         }
         return $this->fetch('create', [
             'info' => $info->toArray(),
@@ -151,9 +151,9 @@ class UserController extends AdminController
         }
         $user = UcenterMember::update($post);
         if ($user && $user->member()->update($member)) {
-            $this->success('用户[' . $user->member->nickname . ']修改成功', cookie('forward_url'));
+            $this->success('用户[' . $user->member->nickname . ']Successfully modified', cookie('forward_url'));
         }
-        $this->error('用户修改失败，请稍后重试');
+        $this->error('User modification failed, please try again later');
     }
 
     /**
@@ -164,7 +164,7 @@ class UserController extends AdminController
     {
         $ids = !empty($ids) ? $ids : $this->request->param('id/a');
         if (empty($ids)) {
-            $this->error('请选择要操作的数据');
+            $this->error('Please select the data to be operated');
         }
 
         $map['id'] = ['in', $ids];
@@ -172,9 +172,9 @@ class UserController extends AdminController
             $res = Member::where(['uid' => ['in', $ids]])->delete();
         }
         if ($res) {
-            $this->success('用户删除成功');
+            $this->success('User deleted successfully');
         } else {
-            $this->error('用户删除失败');
+            $this->error('User deletion failed');
         }
     }
 
@@ -188,7 +188,7 @@ class UserController extends AdminController
         $status = !empty($status) ? $status : $this->request->param('status');
 
         if (empty($ids)) {
-            $this->error('请选择要操作的数据');
+            $this->error('Please select the data to be operated');
         }
         $map['id'] = ['in', $ids];
 
@@ -197,12 +197,12 @@ class UserController extends AdminController
                 $res = Member::where('uid', 'in', $ids)->setField('status', $status);
             }
             if ($res) {
-                $this->success('用户状态更改成功');
+                $this->success('User status changed successfully');
             } else {
-                $this->error('用户状态更改删除');
+                $this->error('User status changes are deleted');
             }
         }
-        $this->error('状态更改失败');
+        $this->error('Status change failed');
     }
 
     /**
@@ -217,17 +217,17 @@ class UserController extends AdminController
             $res = $model->addUserTo($post['uid'], $post['group_id'], $lenTime*34*3600 );
             if ($res) {
                 clear_user_info($post['uid']);
-                $this->success('设置成功');
+                $this->success('Set up successfully');
             } else {
-                $this->error('设置失败');
+                $this->error('Setup failed');
             }
         } else {
             if (!intval($uid)) {
-                $this->error('ID参数错误');
+                $this->error('ID parameter is incorrect');
             }
             $info = UcenterMember::get($uid, 'member');
 
-            if (!$info) {$this->error('用户不存在');}
+            if (!$info) {$this->error('User does not exist');}
             return $this->fetch('', [
                 'info' => $info,
                 'userGroup' => (new MemberGroup)->getUserIn($info['id'])
@@ -247,10 +247,10 @@ class UserController extends AdminController
             $data = $request->post();
             
             if ($api->updateInfo($data, UID, $data['oldpassword'], true)){
-                $this->success('修改成功');
+                $this->success('Successfully modified');
             } else {
                 $error = $api->getError();
-                $error = !empty($error)? $error : '资料修改失败！';
+                $error = !empty($error)? $error : 'Data failed!';
                 $this->error($error);
             }
         
@@ -268,7 +268,7 @@ class UserController extends AdminController
         //$this->success('退出成功！', url('login'));
         if (is_login()) {
             (new UserApi)->logout();
-            $this->success('退出成功！', url('login'));
+            $this->success('Exit succeed!', url('login'));
         } else {
             $this->redirect('login');
         }

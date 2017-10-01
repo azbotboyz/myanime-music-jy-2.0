@@ -46,6 +46,6 @@ class IndexController extends AdminController
                 $this->error($e->getMessage());
             }
         }
-        $this->success("缓存清理完毕!");
+        $this->success("Cache clean up!");
     }
 }

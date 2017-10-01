@@ -1,7 +1,7 @@
 {extend name="public/base"/}
 {block name="content"}
     <div class="panel panel-default">
-        <div class="panel-heading">[ {$data.title} ]配置</div>
+        <div class="panel-heading">[ {$data.title} ]Configuration</div>
         <div class="panel-body">
             <form action="{:url('saveConfig')}" class="form-horizontal" method="post">
                 {empty name="custom_config"}
@@ -44,8 +44,8 @@
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-2">
                         <input type="hidden" name="id" value="{:input('id')}" readonly>
-                        <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
-                        <button type="submit" class="btn btn-success ajax-post-form" target-form="form-horizontal">确 定</button>
+                        <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">Return</button>
+                        <button type="submit" class="btn btn-success ajax-post-form" target-form="form-horizontal">Ok</button>
                     </div>
                 </div>
             </form>

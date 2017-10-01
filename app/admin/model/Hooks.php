@@ -35,7 +35,7 @@ class Hooks extends Model
         $addonsClass = get_addon_class($addonsName);//获取插件名
 
         if(!class_exists($addonsClass)){
-            $this->error = "未实现{$addonsClass}插件的入口文件";
+            $this->error = "Not realized{$addonsClass}Plugin entry file";
             return false;
         }
         $methods = get_class_methods($addonsClass);

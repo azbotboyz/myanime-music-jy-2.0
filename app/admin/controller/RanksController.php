@@ -62,9 +62,9 @@ class RanksController extends AdminController
             //写入榜单规则
             $res->rule    = '{"rank_id" : "'.$res->id.'"}';
             $res->save();
-            $this->success('榜单[' . $res->name . ']创建成功');
+            $this->success('List[' . $res->name . ']Create success');
         } else {
-            $this->error('榜单添加失败，请稍后重试');
+            $this->error('The list has failed. Please try again later');
         }
     }
 
@@ -76,7 +76,7 @@ class RanksController extends AdminController
     public function edit($id)
     {
         if (!intval($id) || !$info = Ranks::get($id)) {
-            $this->error('榜单不存在');
+            $this->error('The list does not exist');
         }
         return $this->fetch('create', ['info' => $info]);
     }
@@ -98,9 +98,9 @@ class RanksController extends AdminController
         $res = Ranks::update($post);
         if ($res) {
             cache('ranks_lists', null);
-            $this->success('榜单[' . $res->name . ']修改成功', cookie('forward_url'));
+            $this->success('List[' . $res->name . ']Successfully modified', cookie('forward_url'));
         } else {
-            $this->error('榜单修改失败，请稍后重试');
+            $this->error('The list changes failed. Please try again later');
         }
     }
 
@@ -113,18 +113,18 @@ class RanksController extends AdminController
     {
         $model = Ranks::get($id);
         if (false == $model) {
-            $this->error('删除的榜单不存在！');
+            $this->error('Deleted list does not exist!');
         }
 
         if ($model->is_sys) {
-            $this->error('默认榜单只能修改或禁用无法删除！');
+            $this->error('Default list can only be modified or disabled can not be deleted!');
         }
 
         if ($model->delete()) {
             cache('Ranks_lists', null);
-            $this->success('榜单成功删除！');
+            $this->success('The list was successfully deleted!');
         } else {
-            $this->error('榜单删除失败，请稍后重试！');
+            $this->error('List deleted failed, please try again later!');
         }
     }
     
