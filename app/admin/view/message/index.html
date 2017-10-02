@@ -3,7 +3,7 @@
 <!-- Page-Title -->
 <div class="row">
     <div class="col-sm-4">
-        <h4 class="page-title">消息管理</h4>
+        <h4 class="page-title">Message management</h4>
     </div>
 </div>
 <div class="row">
@@ -11,19 +11,19 @@
         <div class="btn-toolbar m-t-20" role="toolbar">
             <div class="btn-group">
                 <button class="btn btn-primary check-btn" data-target=".check-ids" type="button">
-                    全选/反选
+                    Select All / Invert
                 </button>
             </div>
             
             <div class="btn-group pull-right">
                 <button class="btn btn-warning disable-batch" data-target=".check-ids"  data-url="{:url('setStatus?status=0')}" type="button">
-                    禁用
+                    Disabled
                 </button>
                 <button class="btn btn-success success-batch" data-tip="" data-target=".check-ids"  data-url="{:url('setStatus?status=1')}" type="button">
-                    启用
+                    Enabled
                 </button>
                 <button class="btn btn-danger delete-batch" data-tip="" data-target=".check-ids"  data-url="{:url('delete')}" type="button">
-                    删除
+                    delete
                 </button>
             </div>
 
@@ -40,23 +40,23 @@
                         <th width="80">
                             <div class="checkbox checkbox-primary checkbox-single m-r-5"></div>
                             <div class="btn-group dropdown">
-                                排序
+                                Sorting
                                 <button type="button" class="btn btn-white btn-xs dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false"><i class="caret"></i></button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{:url('?field=id&order=desc')}">ID倒序</a></li>
-                                    <li><a href="{:url('?field=id&order=asc')}">ID正序</a></li>
-                                    <li><a href="{:url('?field=create_time&order=desc')}">创建日期倒序</a></li>
-                                    <li><a href="{:url('?field=create_time&order=asc')}">创建日期正序</a></li>
+                                    <li><a href="{:url('?field=id&order=desc')}">ID reverse order</a></li>
+                                    <li><a href="{:url('?field=id&order=asc')}">ID positive sequence</a></li>
+                                    <li><a href="{:url('?field=create_time&order=desc')}">Create date reverse order</a></li>
+                                    <li><a href="{:url('?field=create_time&order=asc')}">Create date sequence</a></li>
                                 </ul>
                             </div>
                         </th>
-                        <th>发送者</th>
-                        <th>接受者</th>
-                        <th>消息内容</th>
-                        <th>是否提示</th>
-                        <th>是否已读</th>
-                        <th>创建日期</th>
-                        <th width="120">操作</th>
+                        <th>sender</th>
+                        <th>recipient</th>
+                        <th>Message content</th>
+                        <th>Whether it is prompted</th>
+                        <th>Whether it has been read</th>
+                        <th>Create date</th>
+                        <th width="120">operating</th>
                     </tr>
                 </thead>
 
@@ -75,16 +75,16 @@
                         <td>{$vo['content']|msubstr=0,20} </td>
                         <td>
                             {eq name="vo['is_tip']" value="1"}
-                            <span class="label label-success">是</span>
+                            <span class="label label-success">Yes</span>
                             {else /}
-                            <span class="label label-warning">否</span>
+                            <span class="label label-warning">no</span>
                             {/eq}
                         </td>                   
                         <td>
                             {eq name="vo['is_read']" value="1"}
-                            <span class="label label-success">是</span>
+                            <span class="label label-success">Yes</span>
                             {else /}
-                            <span class="label label-warning">否</span>
+                            <span class="label label-warning">no</span>
                             {/eq}
                         </td>
                         <td>{$vo['create_time']|time_format}</td>
@@ -93,11 +93,11 @@
                                 <i class="fa fa-pencil text-info"></i>
                             </a>
                             {if condition="$vo['status'] eq 1"}
-                            <a class="table-action-btn ajax-get" title="禁用" href="{:url('setStatus?id='.$vo['id'].'&status=0')}">
+                            <a class="table-action-btn ajax-get" title="Disabled" href="{:url('setStatus?id='.$vo['id'].'&status=0')}">
                                 <i class="fa fa-ban text-warning"></i>
                             </a>
                             {elseif condition="$vo['status'] eq 0"/}
-                            <a class="table-action-btn ajax-get" title="启用" href="{:url('setStatus?id='.$vo['id'].'&status=1')}">
+                            <a class="table-action-btn ajax-get" title="Enabled" href="{:url('setStatus?id='.$vo['id'].'&status=1')}">
                                 <i class="fa fa-check-circle-o text-success"></i>
                             </a>
                             {/if}
@@ -117,7 +117,7 @@
 <!-- panel -->
 <div class="row">
     <div class="col-sm-3">
-        <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">     共计{$_total}条数据
+        <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">     total{$_total}Article data
         </div>
     </div>
     <div class="col-sm-9">

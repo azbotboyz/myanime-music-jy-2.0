@@ -2,38 +2,38 @@
 {block name="content"}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">{:isset($info['id'])?'编辑':'新增'}榜单</h3>
+        <h3 class="panel-title">{:isset($info['id'])?'edit':'Added'}List</h3>
     </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-8">          
                 <form class="form-horizontal form-fixed form-submit" action="{:isset($info['id'])? url('update') : url('save')}">
                     <div class="form-group">
-                        <label class="col-md-2 col-xs-12 text-right control-label">榜单名称</label>
+                        <label class="col-md-2 col-xs-12 text-right control-label">List name</label>
                         <div class="col-md-6 col-xs-12">
                             <input type="text" name="name" class="form-control" value="{$info.name|default=''}">
-                            <span class="help-block">名称不能为空</span>
+                            <span class="help-block">Name is required</span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-2 col-xs-12 text-right control-label">榜单别名</label>
+                        <label class="col-md-2 col-xs-12 text-right control-label">List alias</label>
                         <div class="col-md-4 col-xs-12">
                             <input type="text" name="alias" class="form-control" value="{$info.alias|default=''}">
-                            <span class="help-block">留空将自动获取拼音</span>
+                            <span class="help-block">Leave blank to automatically get pinyin</span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-2 col-xs-12 text-right control-label">榜单排序</label>
+                        <label class="col-md-2 col-xs-12 text-right control-label">List sort</label>
                         <div class="col-md-2 col-xs-12">
                             <input type="text" name="sort" class="form-control" value="{$info.sort|default=''}">
-                            <span class="help-block">留空将自动排序</span>
+                            <span class="help-block">Leave blank to sort automatically</span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-2 control-label">榜单简介</label>
+                        <label class="col-md-2 control-label">List of profiles</label>
                         <div class="col-md-10">
                             <textarea id="ranks-introduce" rows="16" class="form-control" name="introduce">{$info.introduce|default=''}</textarea>
                         </div>
@@ -44,10 +44,10 @@
                         <div class="col-md-offset-2 col-lg-6 text-left">
                             <button onclick="" type="button"
                                     class="btn btn-default btn-return">
-                                <i class="icon-arrow-left16 position-right"></i>返回上页
+                                <i class="icon-arrow-left16 position-right"></i>Return to the previous page
                             </button>
                             <button type="submit" class="btn btn-primary" type="submit">
-                                确认提交<i class="icon-arrow-right16 position-right"></i>
+                                confirm submission<i class="icon-arrow-right16 position-right"></i>
                             </button>
                         </div>
                     </div>
