@@ -35,7 +35,7 @@ class AlbumController extends HomeController
             $info      = Album::get($map);
         }
         if (empty($info)) {
-            abort(404,'你查看的专辑不存在');
+            abort(404,'The album you are viewing does not exist');
         }
 
         $info = $info->parseData();
@@ -61,7 +61,7 @@ class AlbumController extends HomeController
         }
 
         if (empty($info)) {
-            abort(404,'你查看的分类不存在！');
+            abort(404,'The category you are viewing does not exist!');
         }
         $info = $info->parseData();
         $this->seoMeta($info);

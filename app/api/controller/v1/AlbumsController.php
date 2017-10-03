@@ -24,7 +24,7 @@ class AlbumsController extends ApiController
     {
         $param = $request->get();
         if (empty($param)) {
-            return json([ 'code' => 40404, 'error' => '参数错误', ], 404);
+            return json([ 'code' => 40404, 'error' => 'Parameter error', ], 404);
         }
 
         $model = new Album;
@@ -55,7 +55,7 @@ class AlbumsController extends ApiController
     public function read($id = 0)
     {
         if (!intval($id)) {
-            return json([ 'code' => 40404, 'error' => '参数错误', ], 404);
+            return json([ 'code' => 40404, 'error' => 'Parameter error', ], 404);
         }
         //缓存数据
         $model = new Album;

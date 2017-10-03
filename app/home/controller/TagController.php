@@ -45,7 +45,7 @@ class TagController extends HomeController
             $info = $model->where('name', $name)->find();
         }
         if (empty($info)) {
-            abort(404, '你查看的风格标签不存在！');
+            abort(404, 'The style tag you are viewing does not exist!');
         }
 
         $info = $info->parseData();

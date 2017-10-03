@@ -41,7 +41,7 @@ class Notice
     {
         if ($this->checkData()){
             $this->model->data($this->data);
-            return $this->model->save()? true : '消息发送失败，请稍后重试';
+            return $this->model->save()? true : 'Message failed, please try again later';
         } else {
             return $this->error;
         }
@@ -84,7 +84,7 @@ class Notice
      * @param string $title
      * @return $this
      */
-    public function title($title = '系统通知')
+    public function title($title = 'system notification')
     {
         $this->data['title'] = $title;
         return $this;
@@ -124,7 +124,7 @@ class Notice
             }
             return $result;
         }
-        $this->error = '消息获取失败';
+        $this->error = 'Message fetch failed';
         return false;
     }
     
@@ -139,7 +139,7 @@ class Notice
         if ($result) {
             return true;
         }
-        $this->error = '消息设置已读失败，请稍后重试！';
+        $this->error = 'Message set has failed to read, please try again later!';
         return $this->error;
     }
     
@@ -150,14 +150,14 @@ class Notice
     public function delete($ids)
     {
         if (empty($ids)) {
-            $this->error = '删除的消息id未指定';
+            $this->error = 'The deleted message id is not specified';
         }
     
         if ($this->model->destroy($ids)) {
             return true;
         }
     
-        $this->error = '消息删除失败，请稍后重试！';
+        $this->error = 'Message deletion failed, please try again later!';
         return $this->error;
     }
     
@@ -168,12 +168,12 @@ class Notice
     protected function checkData()
     {
         if (empty($this->data)) {
-            $this->error = '发送失败，数据不存在';
+            $this->error = 'The transmission failed and the data does not exist';
             return false;
         }
         
         if (!isset($this->data['uid'])) {
-            $this->error = '发送失败,发送的用户ID不能为空';
+            $this->error = 'Failed to send,The user ID sent can not be empty';
             return false;
         }
         
@@ -183,9 +183,9 @@ class Notice
         ];
         
         $msg = [
-            'title.length' => '标题长度4-200个字符',
-            'content.require' => '消息内容不能为空',
-			'content.max' => '消息内容最多500字'
+            'title.length' => 'Title Length 4-200 characters',
+            'content.require' => 'The message content can not be empty',
+			'content.max' => 'Message content up to 500 words'
         ];
         
         $validate = new Validate($rule, $msg);

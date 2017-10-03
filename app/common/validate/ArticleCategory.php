@@ -30,15 +30,15 @@ class ArticleCategory extends Validate
 
     //提示信息
     protected $message  = [
-        'title.require'  => '分类标题不能为空',
-        'title.max'      => '分类标题最大长度80个字符',
-        'title.unique'      => '分类称已存在',
-        'alias.max'   => '分类别名最大长度100个字符',
-        'alias.alphaNum'   => '分类别名只能为字母或数字',
-        'pid.number'      => '上级分类称不存在',
-        'meta_title.max'   => 'SEO标题最大长度50个字符',
-        'keywords.max:200'   => 'SEO关键字最大长度200个字符',
-        'description.max'   => 'SEO描述最大长度200个字符',
+        'title.require'  => 'Category title can not be empty',
+        'title.max'      => 'The maximum length of the classification header is 80 characters',
+        'title.unique'      => 'The classification says it already exists',
+        'alias.max'   => 'Classification The maximum length of the alias is 100 characters',
+        'alias.alphaNum'   => 'Category aliases can only be letters or numbers',
+        'pid.number'      => 'Superior classification does not exist',
+        'meta_title.max'   => 'SEO title maximum length of 50 characters',
+        'keywords.max:200'   => 'SEO keyword maximum length of 200 characters',
+        'description.max'   => 'SEO describes the maximum length of 200 characters',
     ];
 
     protected $scene = [

@@ -48,7 +48,7 @@ class Email
      */
     public function title($title = '')
     {
-        $title = !empty($title) ? $title : 'JYmusic音乐程序';
+        $title = !empty($title) ? $title : 'JYmusic music program';
         $this->mail->Subject = $title;
         return $this;
     }
@@ -115,10 +115,10 @@ class Email
     public function sendVcode($address = '')
     {
         $code = $this->createVcode();
-        $msg  = '<p>你当前的验证码为：'.$code.',此验证码将在15分后过期</p>';
-        $msg  .= '<p>如果不是本人操作请忽略此email!</p>';
-        $msg  .= '<p>这是一封自动产生的email，请勿回复。</p>';
-        return $this->address($address)->title('邮箱验证')->html($msg)->send();
+        $msg  = '<p>Your current verification code is:'.$code.',This code will expire after 15 minutes</p>';
+        $msg  .= '<p>Please do not ignore this email if it is not my own operation!</p>';
+        $msg  .= '<p>This is an automatic email, do not reply.</p>';
+        return $this->address($address)->title('E-mail verification')->html($msg)->send();
     }
     
     /**
@@ -131,7 +131,7 @@ class Email
         $key    = 'email_vcode_' . $this->uid;
         $cache  = Cache::get($key);
         if (!$cache) {
-            $this->error='验证码已过期，请重新获取验证码';
+            $this->error='The verification code has expired. Please retrieve the verification code again';
             return false;
         }
         
@@ -142,7 +142,7 @@ class Email
         if ($cacheCode && $vcode && $cacheCode === $vcode) {
             return true;
         }
-        $this->error='验证码输入不正确';
+        $this->error='Verification code entered incorrectly';
         return false;
     }
     
@@ -153,7 +153,7 @@ class Email
      */
     public function sendTest($address)
     {
-        $body = '这是一封JYmusic程序的一封测试邮件 <a href="http://jyuu.cn">点击前往官网</a>';
+        $body = 'This is a test message for a JYmusic program <a href="http://jyuu.cn">Click to the official website</a>';
         return $this->address($address)->html($body)->send();
     }
     
@@ -184,7 +184,7 @@ class Email
         }
         
         if (empty($config)) {
-            $this->error = '配置信息不完整';
+            $this->error = 'The configuration information is incomplete';
         }
 
         if ($config['send_type'] == 'smtp') {

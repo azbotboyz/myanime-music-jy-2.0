@@ -156,7 +156,7 @@ function($) {
         }
         var icons = {'warning': 0, 'success': 1, 'error' : 2};
         if (typeof title === 'undefined') {
-            title = "系统提示";
+            title = "system hint";
         }
         if (isNaN(timer)) {
             timer = 3;
@@ -169,7 +169,7 @@ function($) {
             id: 'jy-laymsg', //设定一个id，防止重复弹出
             icon: icons[type],
             btnAlign: 'c',
-            btn: ['关闭']
+            btn: ['shut down']
         });
     };
 

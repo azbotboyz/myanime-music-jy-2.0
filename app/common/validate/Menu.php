@@ -26,9 +26,9 @@ class Menu extends Validate
 
     //提示信息
     protected $message  =[
-        'title.require' => '标题不能为空',
-        'title.between' => '标题长度2-30个字符之间',
-        'url.require'   => 'URL不能为空',
-        'url.between'   => 'URl长度6-255个字符之间',
+        'title.require' => 'The title can not be blank',
+        'title.between' => 'Title Length 2-30 characters between',
+        'url.require'   => 'URL can not be empty',
+        'url.between'   => 'URl length 6-255 characters between',
     ];
 }

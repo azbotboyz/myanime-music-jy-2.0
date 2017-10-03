@@ -91,7 +91,7 @@ class Album extends Model
     /** 自动写入 */
     protected function setPubTimeAttr($value)
     {
-        return $value ? text_filter($value) : '未知';
+        return $value ? text_filter($value) : 'unknown';
     }
 
     /** 自动过滤 */

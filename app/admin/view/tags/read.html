@@ -7,10 +7,10 @@
             <input type="text" id="find-search-input" class="form-control" placeholder="Search...">
             <span class="input-group-btn">
                 <button type="button" class="btn btn-default" data-url="{:url('Tags/read')}" id="find-search-btn">
-                    <i class="fa fa-search m-r-5"></i>搜索
+                    <i class="fa fa-search m-r-5"></i>search for
                 </button>
                 <button type="button" class="btn btn-danger" style="display: none" id="find-search-back">
-                返回
+                return
                 </button>
             </span>
         </div>
@@ -60,7 +60,7 @@ $(function ($) {
                 $res.html(html).show();
                 $('#find-search-back').show();
             } else {
-                $res.html('<span class="text-center">暂时没有搜索到与'+val+'相关的结果</span>');
+                $res.html('<span class="text-center">There is no search yet'+val+'Related results</span>');
                 setTimeout(function(){
                     $res.hide();
                     $def.show();               

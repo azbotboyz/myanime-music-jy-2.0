@@ -32,14 +32,14 @@ class Album extends Validate
 
     //提示信息
     protected $message  = [
-        'name.require'     => '专辑名称不能为空',
-        'name.length'      => '专辑名称大长度80个字符',
-        'artist_id.number'=> '所属艺术家不存在',
-        'add_uid.number' => '所属用户不存在',
-        'hits.number' => '点击量只能位数字',
-        'favtimes.number' => '收藏数只能位数字',
-        'likes.number' => '喜欢数只能位数字',
-        'pub_time.length' => '发布日期不正确',
+        'name.require'     => 'Album name can not be empty',
+        'name.length'      => 'The album name is 80 characters long',
+        'artist_id.number'=> 'The artist does not exist',
+        'add_uid.number' => 'The user does not exist',
+        'hits.number' => 'Traffic can only be digitally',
+        'favtimes.number' => 'Collections can only be digitized',
+        'likes.number' => 'Like the number of only digital',
+        'pub_time.length' => 'The release date is incorrect',
     ];
     
     /*定义验证场景*/

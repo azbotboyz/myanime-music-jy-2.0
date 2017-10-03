@@ -2,17 +2,17 @@
 {block name="content"}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">{:isset($info['id'])?'编辑':'新增'}用户</h3>
+        <h3 class="panel-title">{:isset($info['id'])?'edit':'Added'}user</h3>
     </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-8 col-sm-12">
                 <form class="form-horizontal form-fixed form-submit" action="{:isset($info['id'])? url('update') : url('save')}">
                     <div class="form-group">
-                        <label class="col-md-2 col-xs-12 text-right control-label">用户名</label>
+                        <label class="col-md-2 col-xs-12 text-right control-label">username</label>
                         <div class="col-md-4 col-xs-12">
                             <input type="text" name="username" require="" class="form-control" value="{$info.username|default=''}">
-                            <span class="help-block">用户名不能为空</span>
+                            <span class="help-block">Username can not be empty</span>
                         </div>
                         {if condition="isset($userGroup)"}
                         <div class="col-md-2 col-xs-12">
@@ -21,87 +21,87 @@
                         {/if}
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">用户昵称</label>
+                        <label class="col-sm-2 control-label">User's Nickname</label>
                         <div class="col-md-4 col-xs-12">
                             <input type="text" name="member[nickname]" require="" class="form-control" value="{$info.member.nickname|default=''}">
-                            <span class="help-block">用户昵称不能为空</span>
+                            <span class="help-block">User nickname can not be empty</span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">邮箱</label>
+                        <label class="col-sm-2 control-label">mailbox</label>
                         <div class="col-md-4 col-xs-12">
                             <input type="email" name="email" class="form-control" value="{$info.email|default=''}">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">手机</label>
+                        <label class="col-sm-2 control-label">Mobile phone</label>
                         <div class="col-md-4 col-xs-12">
                             <input type="text" name="mobile" class="form-control" value="{$info.mobile|default=''}">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">用户密码</label>
+                        <label class="col-sm-2 control-label">user password</label>
                         <div class="col-md-4 col-xs-12">
                             <input type="text" name="password" placeholder="6-30位字符" class="form-control" value="">
                             <span class="help-block">
-                                {$info?  '留空将不会修改密码' : '密码不能为空'}
+                                {$info?  'Leaving blank will not change the password' : 'password can not be blank'}
                             </span>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label text-right col-lg-2">用户性别</label>
+                        <label class="control-label text-right col-lg-2">User gender</label>
                         <div class="col-lg-10">
                             {if condition="isset($info)"}
                             <label class="radio-inline i-radios">
-                                <input type="radio" name="member[sex]" {if condition="$info.member.sex == 2" }checked="checked"{/if} value="2">女
+                                <input type="radio" name="member[sex]" {if condition="$info.member.sex == 2" }checked="checked"{/if} value="2">Female
                             </label>
                             <label class="radio-inline i-radios">
-                                <input type="radio" name="member[sex]" {if condition="$info.member.sex == 1" }checked="checked"{/if} value="1">男
+                                <input type="radio" name="member[sex]" {if condition="$info.member.sex == 1" }checked="checked"{/if} value="1">male
                             </label>
                             <label class="radio-inline i-radios">
-                                <input type="radio" name="member[sex]" {if condition="$info.member.sex == 0" }checked="checked"{/if} value="0">未知
+                                <input type="radio" name="member[sex]" {if condition="$info.member.sex == 0" }checked="checked"{/if} value="0">unknown
                             </label>
                             {else /}
                             <label class="radio-inline i-radios">
-                                <input type="radio" name="member[sex]" value="2">女
+                                <input type="radio" name="member[sex]" value="2">Female
                             </label>
                             <label class="checkbox-inline i-checkboxs">
-                                <input type="radio" name="member[sex]" value="1">男
+                                <input type="radio" name="member[sex]" value="1">male
                             </label>
                             <label class="checkbox-inline i-checkboxs">
-                                <input type="radio" name="member[sex]" checked="" value="0">未知
+                                <input type="radio" name="member[sex]" checked="" value="0">unknown
                             </label>
                             {/if}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label text-right col-lg-2">认证音乐人</label>
+                        <label class="control-label text-right col-lg-2">Certified musicians</label>
                         <div class="col-lg-10">
                             {if condition="isset($info)"}
                             <label class="radio-inline i-radios">
-                                <input type="radio" name="member[is_musician]" {if condition="$info.member.is_musician == 1" }checked="checked"{/if} value="1">是
+                                <input type="radio" name="member[is_musician]" {if condition="$info.member.is_musician == 1" }checked="checked"{/if} value="1">Yes
                             </label>
                             <label class="radio-inline i-radios">
-                                <input type="radio" name="member[is_musician]" {if condition="$info.member.is_musician == 0" }checked="checked"{/if} value="0">否
+                                <input type="radio" name="member[is_musician]" {if condition="$info.member.is_musician == 0" }checked="checked"{/if} value="0">no
                             </label>
                             {else /}
                             <label class="radio-inline i-radios">
-                                <input type="radio" name="member[is_musician]" value="1">是
+                                <input type="radio" name="member[is_musician]" value="1">Yes
                             </label>
                             <label class="checkbox-inline i-checkboxs">
-                                <input type="radio" name="member[is_musician]" value="0">否
+                                <input type="radio" name="member[is_musician]" value="0">no
                             </label>
                             {/if}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">所在地区</label>
+                        <label class="col-sm-2 control-label">Where the area is</label>
                         <div class="col-sm-10">
                             <div class="form-inline" id="distpicker">
                                 <select class="form-control" name="member[province]"></select>
@@ -112,35 +112,35 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">金币数</label>
+                        <label class="col-sm-2 control-label">Gold coins</label>
                         <div class="col-sm-2">
                             <input type="text" name="member[coin]" class="form-control"  value="{$info.member.coin|default=''}">
                         </div>
-                        <label class="col-sm-2 control-label">积分数</label>
+                        <label class="col-sm-2 control-label">The number of points</label>
                         <div class="col-sm-2">
                             <input type="text" name="member[score]" class="form-control"  value="{$info.member.score|default=''}">
                         </div>
 
-                        <label class="col-sm-2 control-label">点击量</label>
+                        <label class="col-sm-2 control-label">Traffic</label>
                         <div class="col-sm-2">
                             <input type="text" name="member[hits]" class="form-control"  value="{$info.member.hits|default=''}">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">关注</label>
+                        <label class="col-sm-2 control-label">attention</label>
                         <div class="col-sm-2">
                             <input type="text" name="member[follows]" class="form-control"  value="{$info.member.follows|default=''}">
                         </div>
 
-                        <label class="col-sm-2 control-label">粉丝</label>
+                        <label class="col-sm-2 control-label">Fans</label>
                         <div class="col-sm-2">
                             <input type="text" name="member[fans]" class="form-control"  value="{$info.member.fans|default=''}">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-2 control-label">用户签名</label>
+                        <label class="col-md-2 control-label">User signature</label>
                         <div class="col-md-10">
                             <textarea id="album-introduce" rows="4" class="form-control" name="member[signature]">
                                 {$info.member.signature|default=''}
@@ -155,10 +155,10 @@
                         <div class="col-md-offset-2 col-lg-6 text-left">
                             <button onclick="" type="button"
                                     class="btn btn-default btn-return">
-                                <i class=" icon-arrow-left16 position-right"></i>返回上页
+                                <i class=" icon-arrow-left16 position-right"></i>Return to the previous page
                             </button>
                             <button type="submit" class="btn btn-primary" type="submit">
-                                确认提交<i class="icon-arrow-right16 position-right"></i>
+                                confirm submission<i class="icon-arrow-right16 position-right"></i>
                             </button>
                         </div>
                     </div>

@@ -40,7 +40,7 @@ function action_log($action = null, $model = null, $recordId = null, $userId = n
 {
     //参数检查
     if (empty($action) || empty($model) || empty($recordId)) {
-        return '参数不能为空';
+        return 'Parameter can not be empty';
     }
     if (empty($userId)) {
         $userId = is_login();
@@ -48,7 +48,7 @@ function action_log($action = null, $model = null, $recordId = null, $userId = n
     //查询行为,判断是否执行
     $actionInfo = db('Action')->column($action);
     if ($actionInfo['status'] != 1) {
-        return '该行为被禁用或删除';
+        return 'The behavior is disabled or deleted';
     }
 
     //插入行为日志
@@ -83,7 +83,7 @@ function action_log($action = null, $model = null, $recordId = null, $userId = n
         }
     } else {
         //未定义日志规则，记录操作url
-        $data['remark'] = '操作url：' . $_SERVER['REQUEST_URI'];
+        $data['remark'] = 'Operation url:' . $_SERVER['REQUEST_URI'];
     }
     $res = false;
     db::name('ActionLog')->inster($data);

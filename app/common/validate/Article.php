@@ -31,15 +31,15 @@ class Article extends Validate
 
     //提示信息
     protected $message  = [
-        'title.require'  => '标题不能为空',
-        'title.max'      => '标题最大长度80个字符',
-        'name.max'   => '标示最大长度100个字符',
-        'name.alphaNum'   => '标示只能为字母或数字',
-        'category_id.require'      => '请选择所属分类',
-        'category_id.number'      => '分类不存在',
-        'view.number'   => '浏览量只能为数字',
-        'description.max'   => '描述最大长度140个字符',
-        'deadline.regex'   => '截止日期格式不合法,请使用"年-月-日 时:分"格式,全部为数字',
+        'title.require'  => 'The title can not be blank',
+        'title.max'      => 'The maximum length of the title is 80 characters',
+        'name.max'   => 'Mark the maximum length of 100 characters',
+        'name.alphaNum'   => 'Markings can only be letters or numbers',
+        'category_id.require'      => 'Please choose your category',
+        'category_id.number'      => 'Classification does not exist',
+        'view.number'   => 'Pageviews can only be numbers',
+        'description.max'   => 'Description Maximum length 140 characters',
+        'deadline.regex'   => 'The deadline is not legal, please use the "Year - Month - Day: Minute" format, all numbers',
     ];
 
     protected $scene = [

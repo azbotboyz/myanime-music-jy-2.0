@@ -19,7 +19,7 @@ class CategoryController extends ArticleController
 {
     public function index()
     {
-        abort(404, '页面不存在');
+        abort(404, 'The page does not exist');
         //return $this->fetch();
     }
     
@@ -40,7 +40,7 @@ class CategoryController extends ArticleController
         }
         
         if (empty($info)) {
-            abort(404,'你查看的分类不存在！');
+            abort(404,'The category you are viewing does not exist!');
         }
         
         $info = $info->parseData();

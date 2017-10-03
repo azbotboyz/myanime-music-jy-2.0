@@ -27,10 +27,10 @@ class Channel extends Validate
 
     //提示信息
     protected $message  = [
-        'title.require'     => '标题不能为空',
-        'title.length'      => '标题最大长度30个字符',
-        'url.require'       => 'URL不能为空',
-        'url.length'        => 'URl最大长度255个字符',
-        'sort.number'       => '排序只能是数字',
+        'title.require'     => 'The title can not be blank',
+        'title.length'      => 'The maximum length of the title is 30 characters',
+        'url.require'       => 'URL can not be empty',
+        'url.length'        => 'URl has a maximum length of 255 characters',
+        'sort.number'       => 'Sorting can only be a number',
     ];
 }

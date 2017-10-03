@@ -49,12 +49,12 @@ class UsersController extends ApiController
             $model = new Member();
             return json([
                 'code' => 0,
-                'msg'  => '已登录',
+                'msg'  => 'Has logged',
                 'uid'  => $uid,
                 'result' => $model->parseData(get_user_info($uid))
             ], 200);
         }
-        return json(['code' => 40004,'error'  => '未登录'], 200);
+        return json(['code' => 40004,'error'  => 'Not logged in'], 200);
     }
 
     public function login(Request $request)
@@ -68,15 +68,15 @@ class UsersController extends ApiController
                 }
                 return json([
                     'code' => 0,
-                    'msg'  => '登录成功',
+                    'msg'  => 'login successful',
                     'url' => url('/user/account')
                 ]);
             }
             $error = $api->getError();
-            $error = !empty($error) ? $error : '登录失败请稍后重试！';
+            $error = !empty($error) ? $error : 'Login failed Please try again later!';
             return json(['code' => 40004, 'error'  => $error]);
         }
-        return json(['code' => 40005, 'error'  => '已经登录，请不要重复登录']);
+        return json(['code' => 40005, 'error'  => 'Signed in, please do not log in again']);
     }
 
     public function logout()
@@ -85,13 +85,13 @@ class UsersController extends ApiController
         if ($api->logout()) {
             return json([
                 'code' => 0,
-                'msg'  => '成功退出登录',
+                'msg'  => 'Successfully log out',
                 'url' => url('/')
             ]);
         }
         return json([
             'code' => 40004,
-            'error'  => '退出登录失败'
+            'error'  => 'Exit login failed'
         ]);
     }
 
@@ -109,15 +109,15 @@ class UsersController extends ApiController
             if ( $uid && $api->autoLogin($uid)) {
                 return json([
                     'code' => 0,
-                    'msg'  => '注册成功',
+                    'msg'  => 'registration success',
                     'url' => url('/user/account')
                 ]);
             }
             $error = $api->getError();
-            $error = !empty($error) ? $error : '注册失败请稍后重试！';
+            $error = !empty($error) ? $error : 'Registration failed Please try again later!';
             return json(['code' => 40004, 'error'  => $error]);
         }
-        return json(['code' => 40005, 'error'  => '已经登录，无法注册新用户']);
+        return json(['code' => 40005, 'error'  => 'Has been logged in and can not sign up for new users']);
     }
     
     /**

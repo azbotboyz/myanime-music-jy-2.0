@@ -22,7 +22,7 @@ class SearchController extends HomeController
     public function index()
     {
         if (isOffSpite('search')) {
-            abort(404, '搜索过于频繁！！');
+            abort(404, 'Search is too frequent! The');
         }
 
         $keys = text_filter($this->request->get('keys'));
@@ -42,7 +42,7 @@ class SearchController extends HomeController
                 }
                 $field = 'id,name,genre_id,cover_url,artist_id,artist_name,album_id,album_name,up_uid,up_uname,download,favtimes,listens';
                 $name  = 'songs';
-                $title = "音乐";
+                $title = "music";
                 break;
             case 2:
                 if (is_numeric($keys)) {
@@ -52,7 +52,7 @@ class SearchController extends HomeController
                 }
                 $field = 'id,name,alias,type_id,type_name,cover_url,hits,favtimes';
                 $name  = 'artist';
-                $title = "艺人";
+                $title = "artist";
                 break;
             case 3:
                 if (is_numeric($keys)) {
@@ -62,7 +62,7 @@ class SearchController extends HomeController
                 }
                 $field = 'id,name,type_id,type_name,artist_id,artist_name,add_uid,add_uname,cover_url,hits,favtimes';
                 $name  = 'album';
-                $title = "专辑";
+                $title = "Album";
                 break;
             case 4:
                 if (is_numeric($keys)) {
@@ -72,10 +72,10 @@ class SearchController extends HomeController
                 }
                 $field = 'uid,nickname,avatar,follows,fans,artist_id,sex,login,hits,location';
                 $name  = 'member';
-                $title = "用户";
+                $title = "user";
                 break;
             default:
-                $this->error('请输入搜索关键字');
+                $this->error('Please enter your search keywords');
                 break;
         }
         $map['status'] = 1;

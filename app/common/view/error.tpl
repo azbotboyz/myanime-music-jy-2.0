@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>JYmusic - 跳转提示</title>
+    <title>JYmusic - Jump tips</title>
     <link type="text/css" href="/public/static/libs/sweet-alert/css/sweet-alert.css" rel="stylesheet">
     <style type="text/css">
         *{ padding: 0; margin: 0; }
@@ -146,7 +146,7 @@
     <div class="copyright" style="text-align: center">
         <a title="官方网站" href="http://www.jyuu.cn">JYmusic</a>
         <span>V<?php echo JYMUSIC_VERSION; ?></span>
-        <span>[ 沉淀三年，待我霸气回眸 ]</span>
+        <span>[ Precipitation for three years, until my domineering look back ]</span>
     </div>
 
     <script type="text/javascript" src="/public/static/libs/sweet-alert/js/sweet-alert.min.js"></script>
@@ -155,13 +155,13 @@
             var interval;
             swal({
                 title: "系统提示",
-                text: msg + '<span class="system-message wait-msg">系统将在 <i id="wait" class="text-info">'+wait+'</i>秒后自动跳转, 如没有跳转请<a id="href" href="<?php echo($url);?>">立即跳转</a></span>',
+                text: msg + '<span class="system-message wait-msg">The system will be in <i id="wait" class="text-info">'+wait+'</i>Seconds after the automatic jump, If there is no jump please<a id="href" href="<?php echo($url);?>">Jump now</a></span>',
                 type: type,
                 html: true,
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "立即跳转",
-                cancelButtonText: "停止跳转",
+                confirmButtonText: "Jump now",
+                cancelButtonText: "Stop jumping",
                 closeOnConfirm: false,
                 closeOnCancel: false
             },

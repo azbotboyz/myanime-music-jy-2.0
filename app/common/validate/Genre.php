@@ -27,11 +27,11 @@ class Genre extends Validate
 
     //提示信息
     protected $message  = [
-        'name.require'     => '音乐分类名称不能为空',
-        'name.length'      => '音乐分类最大长度40个字符',
-        'name.unique'      => '音乐分类名称已存在',
-        'sort.number'       => '排序只能是数字',
-        'cover_url.length'  => '封面URl最大长度255个字符',
+        'name.require'     => 'The music classification name can not be empty',
+        'name.length'      => 'The maximum length of the music classification is 40 characters',
+        'name.unique'      => 'The music classification name already exists',
+        'sort.number'       => 'Sorting can only be a number',
+        'cover_url.length'  => 'Cover URl maximum length of 255 characters',
     ];
 
     protected $scene = [

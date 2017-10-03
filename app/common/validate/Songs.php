@@ -42,39 +42,39 @@ class Songs extends Validate
 
     //提示信息
     protected $message = [
-        'name.require' => '请输入音乐名称',
-        'name.max' => '音乐名称最多120个字符',
-        'name.checkName' => '音乐名称已存在',
-        'name.token' => '非法请求',
-        'genre_id.require' => '请输选择歌曲分类',
-        'genre_id.number' => '选择的分类不正确',
-        'artist_id.require' => '请选择所属艺人',
-        'artist_id.number' => '选择的艺人不正确',
-        'album_id.require' => '请选择所属专辑',
-        'album_id.number' => '选择的专辑不正确',
-        'up_uid.require' => '选择上传的用户',
-        'up_uid.number' => '选择的用户不正确',
-        'digg.number' => '顶次数只能为数字',
-        'bury.number' => '踩次数只能为数字',
-        'server_id.number' => '选择的服务器不正确',
-        'rank_id.number' => '选择榜单不正确',
-        'download.number' => '下载次数只能为数字',
-        'rater.number' => '评分只能为数字',
-        'listens.number' => '试听次数只能为数字',
-        'favtimes.number' => '收藏次数只能为数字',
-        'likes.number' => '收藏次数只能为数字',
-        'coin.number' => '所需金币只能为数字',
-        'score.number' => '所需积分只能为数字',
-        'sing.require' => '请填写原唱',
-        'sing.length' => '音乐原唱字符长度为2-100个之间',
-        'lyrics.require' => '请填写词作者',
-        'lyrics.length' => '词作者字符长度为2-100个之间',
-        'composer.require' => '请填写作曲',
-        'composer.length' => '作曲字符长度为2-100个之间',
-        'midi.require' => '请填写编曲',
-        'midi.length' => '编曲字符长度为2-100个之间',
-        'mix.require' => '请填写混编',
-        'mix.length' => '混编字符长度为2-100个之间',
+        'name.require' => 'Please enter the music name',
+        'Name.max' => 'music name up to 120 characters',
+        'Name.checkName' => 'Music name already exists'
+        'Name.token' => 'illegal request',
+        'Genre_id.require' => 'Please enter the song classification'
+        'Genre_id.number' => 'selected category is not correct',
+        'Artist_id.require' => 'Please choose the artist'
+        'Artist_id.number' => 'selected artist is not correct'
+        'Album_id.require' => 'Please select your album',
+        'Album_id.number' => 'selected album is not correct',
+        'Up_uid.require' => 'Select Uploaded User'
+        'Up_uid.number' => 'selected user is incorrect',
+        'Digg.number' => 'top number can only be number',
+        'Bury.number' => 'step number can only be number',
+        'Server_id.number' => 'selected server is incorrect',
+        'Rank_id.number' => 'select list is incorrect',
+        'Download.number' => 'downloads can only be numbers'
+        'Rater.number' => 'Score only for numbers',
+        'Listens.number' => 'audits can only be numbers',
+        'Favtimes.number' => 'collections can only be numbers',
+        'Likes.number' => 'Collections can only be numbers',
+        'Coin.number' => 'required gold coins can only be numbers'
+        'Score.number' => 'The required points can only be numbers'
+        'Sing.require' => 'Please fill in the original song',
+        'Sing.length' => 'music original character length between 2-100',
+        'Lyrics.require' => 'Please fill in the word author',
+        'Lyrics.length' => 'word author character length between 2-100',
+        'Composer.require' => 'Please fill in the composition',
+        'Composer.length' => 'Compose character length between 2-100',
+        'Midi.require' => 'Please fill in arranger'
+        'Midi.length' => 'Arranged character length between 2-100'
+        'Mix.require' => 'Please fill in the mix'
+        'Mix.length' => 'mixed character length between 2-100',
     ];
 
     /*定义验证场景*/
@@ -116,6 +116,6 @@ class Songs extends Validate
             return true;
         }
         
-        return '歌曲名称已存在';
+        return 'The song name already exists';
     }
 }

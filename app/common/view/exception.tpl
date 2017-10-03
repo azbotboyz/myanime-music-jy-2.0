@@ -190,7 +190,7 @@
             font-size:16px;
             border-top-left-radius: 4px;
             border-top-right-radius: 4px;
-            font-family: Consolas,"Liberation Mono",Courier,Verdana,"微软雅黑";
+            font-family: Consolas,"Liberation Mono",Courier,Verdana,"Microsoft ya black";
         }
 
         .exception .code{
@@ -234,7 +234,7 @@
             display: inline-block;
             border-left: 1px solid #fff;
         font-size:14px;
-            font-family: Consolas,"Liberation Mono",Courier,Verdana,"微软雅黑";
+            font-family: Consolas,"Liberation Mono",Courier,Verdana,"Microsoft ya black";
         }
         .exception .trace{
             padding: 6px;
@@ -242,7 +242,7 @@
             border-top: 0 none;
             line-height: 16px;
         font-size:14px;
-            font-family: Consolas,"Liberation Mono",Courier,Verdana,"微软雅黑";
+            font-family: Consolas,"Liberation Mono",Courier,Verdana,"Microsoft ya black";
         }
         .exception .trace ol{
             margin: 12px;
@@ -427,9 +427,9 @@
             </div>
             <div class="info"><h2>'ಠ_ಠ'<?php echo htmlentities($message); ?></h2></div>
             <br>
-            <p class="text-muted">你可以尝试刷新你的页面呢?或者你可以联系支持 <a href="http://jyuu.cn">JYmusic</a></p>
+            <p class="text-muted">Can you try to refresh your page??Or you can contact support <a href="http://jyuu.cn">JYmusic</a></p>
             <br>
-            <a class="btn btn-default" href="/"> 返回首页</a>
+            <a class="btn btn-default" href="/"> Return to the home page</a>
         </div>
     </div>
     <?php } ?>

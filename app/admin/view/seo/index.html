@@ -3,7 +3,7 @@
 <!-- Page-Title -->
 <div class="row">
     <div class="col-sm-4">
-        <h4 class="page-title">SEO管理</h4>
+        <h4 class="page-title">SEO management</h4>
     </div>
 </div>
 <div class="row">
@@ -11,7 +11,7 @@
         <div class="btn-toolbar m-t-20" role="toolbar">
             <div class="btn-group">
                 <button class="btn btn-primary check-btn" data-target=".check-ids" type="button">
-                    全选/反选
+                    Select All / Invert
                 </button>
             </div>
 
@@ -44,21 +44,21 @@
                         <th width="80">
                             <div class="checkbox checkbox-primary checkbox-single m-r-5"></div>
                             <div class="btn-group dropdown">
-                                排序
+                                Sorting
                                 <button type="button" class="btn btn-white btn-xs dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false"><i class="caret"></i></button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{:url('?field=id&order=desc')}">ID倒序</a></li>
-                                    <li><a href="{:url('?field=id&order=asc')}">ID正序</a></li>
-                                    <li><a href="{:url('?field=create_time&order=desc')}">创建日期倒序</a></li>
-                                    <li><a href="{:url('?field=create_time&order=asc')}">创建日期正序</a></li>
+                                    <li><a href="{:url('?field=id&order=desc')}">ID reverse order</a></li>
+                                    <li><a href="{:url('?field=id&order=asc')}">ID positive sequence</a></li>
+                                    <li><a href="{:url('?field=create_time&order=desc')}">Create date reverse order</a></li>
+                                    <li><a href="{:url('?field=create_time&order=asc')}">Create date sequence</a></li>
                                 </ul>
                             </div>
                         </th>
-                        <th>规则标题</th>
-                        <th>标题规则</th>
-                        <th>关键字规则</th>
-                        <th>描述规则</th>
-                        <th width="20">操作</th>
+                        <th>Rule title</th>
+                        <th>Title rules</th>
+                        <th>Keyword rules</th>
+                        <th>Describe the rules</th>
+                        <th width="20">operating</th>
                     </tr>
                 </thead>
 
@@ -93,7 +93,7 @@
 <!-- panel -->
 <div class="row">
     <div class="col-sm-3">
-        <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">     共计{$_total}条数据
+        <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">     total{$_total}Article data
         </div>
     </div>
     <div class="col-sm-9">

@@ -31,22 +31,22 @@ class Member extends Validate{
 	
 	//提示信息
     protected $message  		=   [
-        'nickname.require' 	=> '用户昵称不能为空',
-        'nickname.length'  => '用户昵称长度2-16个字符之间',
-        'nickname.unique'   => '用户昵称已被占用',
-        'nickname.checkDenyNick' => '昵称被禁止使用',
-        'sex.number'  => '性别选择不正确',
-        'sex.max'  => '性别选择不正确',
-        'qq.number'  => '填写的qq号码不正确',
-        'qq.unique'  => 'qq号码已存在',
-        'birthday.date'  => '生日格式不正确',
-        'coin.number'  => '金币设置不正确',
-        'coin.length'  => '金币数量1-11位之间',
-        'score.number'  => '积分数量设置不正确',
-        'score.length'  => '金币数量1-11位之间',
-        'fans.number'  => '粉丝数量设置不正确', 
-        'fans.length'  => '粉丝数量1-11位之间',
-        'follows.number'  => '关注数量设置不正确',
+        'nickname.require' 	=> 'User nickname can not be empty',
+        'nickname.length'  => 'User nickname length 2-16 characters between',
+        'nickname.unique'   => 'User nickname is already occupied',
+        'nickname.checkDenyNick' => 'Nickname is forbidden',
+        'sex.number'  => 'Gender selection is incorrect',
+        'sex.max'  => 'Gender selection is incorrect',
+        'qq.number'  => 'Fill in the qq number is not correct',
+        'qq.unique'  => 'qq number already exists',
+        'birthday.date'  => 'Birthday format is not correct',
+        'coin.number'  => 'Gold is not set correctly',
+        'coin.length'  => 'Number of coins 1-11 between',
+        'score.number'  => 'The number of points is not set correctly',
+        'score.length'  => 'Number of coins 1-11 between',
+        'fans.number'  => 'The number of fans is not set correctly', 
+        'fans.length'  => 'Number of fans 1-11 between',
+        'follows.number'  => 'The number of concerns is not set correctly',
     ];
 
     /*定义验证场景*/

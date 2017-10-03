@@ -25,7 +25,7 @@ class Member extends Model
     /** 自动过滤 */
     protected function setNicknameAttr($value)
     {
-        return $value ? text_filter($value) : '未知';
+        return $value ? text_filter($value) : 'unknown';
     }
 
     /** 自动过滤 */
@@ -140,7 +140,7 @@ class Member extends Model
                 'status'   => 1,
             ];
             if (!$this->save($user)) {
-                $this->error = '前台用户信息注册失败，请重试！';
+                $this->error = 'Front user information registration failed, please try again!';
                 return false;
             }
         } else {
@@ -148,7 +148,7 @@ class Member extends Model
         }
 
         if (1 != $user['status']) {
-            $this->error = '用户未激活或已禁用！'; //应用级别禁用
+            $this->error = 'The user is not active or disabled!'; //应用级别禁用
             return false;
         }
 

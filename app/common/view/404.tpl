@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>页面不存在</title>
+    <title>The page does not exist</title>
     <meta name="robots" content="noindex,nofollow" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <style type="text/css">
@@ -95,15 +95,15 @@
                 <i class="text-pink">0</i>
                 <i class="text-info">4</i>
             </div>
-            <div class="info"><h2>'ಠ_ಠ' 抱歉无法打开页面！</h2></div>
+            <div class="info"><h2>'ಠ_ಠ' Sorry can not open the page!</h2></div>
             <br>
             <p class="text-muted">
-                可能网络信号差找不到请求的页面   或输入的网址不正确
+                Possible network signal difference can not find the requested page   Or the URL entered is incorrect
             </p>
             <br>
             <p>
-                <a class="btn btn-default" href="/"> 返回首页</a>
-                <b id="wait">3</b>秒后跳转到首页
+                <a class="btn btn-default" href="/"> Return to the home page</a>
+                <b id="wait">3</b>Seconds to jump to the home page
             </p>
 
         </div>
@@ -111,7 +111,7 @@
     <div class="copyright" style="text-align: center">
         <a title="官方网站" href="http://www.jyuu.cn">JYmusic</a>
         <span>V<?php echo JYMUSIC_VERSION; ?></span>
-        <span>[ 沉淀三年，待我霸气回眸 ]</span>
+        <span>[ Precipitation for three years, until my domineering look back ]</span>
     </div>
     <script type="text/javascript">
         (function(){

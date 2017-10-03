@@ -15,11 +15,11 @@
 function check_env()
 {
     $items = [
-        'os'     => ['操作系统', '不限制', '类Unix', PHP_OS, 'check'],
-        'php'    => ['PHP版本', '5.4', '5.4+', PHP_VERSION, 'check'],
-        'upload' => ['附件上传', '不限制', '2M+', '未知', 'check'],
-        'gd'     => ['GD库', '2.0', '2.0+', '未知', 'check'],
-        'disk'   => ['磁盘空间', '20M', '不限制', '未知', 'check'],
+        'os'     => ['operating system', 'not limited', 'Unix-like', PHP_OS, 'check'],
+        'php'    => ['PHP version', '5.4', '5.4+', PHP_VERSION, 'check'],
+        'upload' => ['Attachment upload', 'not limited', '2M+', 'unknown', 'check'],
+        'gd'     => ['GD library', '2.0', '2.0+', 'unknown', 'check'],
+        'disk'   => ['disk space', '20M', 'not limited', 'unknown', 'check'],
     ];
 
     //PHP环境检测
@@ -36,7 +36,7 @@ function check_env()
     //GD库检测
     $tmp = function_exists('gd_info') ? gd_info() : array();
     if (empty($tmp['GD Version'])) {
-        $items['gd'][3] = '未安装';
+        $items['gd'][3] = 'Not Installed';
         $items['gd'][4] = 'del';
         session('error', true);
     } else {
@@ -59,11 +59,11 @@ function check_env()
 function check_dirfile()
 {
     $items = [
-        ['dir', '可写', 'check', './uploads'],
-        ['dir', '可写', 'check', './addons'],
-        ['dir', '可写', 'check', './app'],
-        ['dir', '可写', 'check', './storage'],
-        ['dir', '可写', 'check', './config'],
+        ['dir', 'Can be written', 'check', './uploads'],
+        ['dir', 'Can be written', 'check', './addons'],
+        ['dir', 'Can be written', 'check', './app'],
+        ['dir', 'Can be written', 'check', './storage'],
+        ['dir', 'Can be written', 'check', './config'],
     ];
 
     foreach ($items as &$val) {
@@ -71,11 +71,11 @@ function check_dirfile()
         if ('dir' == $val[0]) {
             if (!is_writable($item)) {
                 if (is_dir($items)) {
-                    $val[1] = '可读';
+                    $val[1] = 'Readable';
                     $val[2] = 'del';
                     session('error', true);
                 } else {
-                    $val[1] = '不存在/不可写';
+                    $val[1] = 'does not exist/Can not be written';
                     $val[2] = 'del';
                     session('error', true);
                 }
@@ -83,13 +83,13 @@ function check_dirfile()
         } else {
             if (file_exists($item)) {
                 if (!is_writable($item)) {
-                    $val[1] = '不可写';
+                    $val[1] = 'Can not be written';
                     $val[2] = 'del';
                     session('error', true);
                 }
             } else {
                 if (!is_writable(dirname($item))) {
-                    $val[1] = '不存在';
+                    $val[1] = 'does not exist';
                     $val[2] = 'del';
                     session('error', true);
                 }
@@ -107,20 +107,20 @@ function check_dirfile()
 function check_func()
 {
     $items = [
-        ['pdo', '支持', 'check', '类'],
-        ['pdo_mysql', '支持', 'check', '模块'],
+        ['pdo', 'stand by', 'check', 'class'],
+        ['pdo_mysql', 'stand by', 'check', 'Module'],
         //['fileinfo', '支持', 'check', '模块'],
-        ['file_get_contents', '支持', 'check', '函数'],
-        ['curl_init', '支持', 'check', '函数'],
-        ['mb_strlen', '支持', 'check', '函数'],
+        ['file_get_contents', 'stand by', 'check', 'function'],
+        ['curl_init', 'stand by', 'check', 'function'],
+        ['mb_strlen', 'stand by', 'check', 'function'],
     ];
 
     foreach ($items as &$val) {
-        if (('类' == $val[3] && !class_exists($val[0]))
-            || ('模块' == $val[3] && !extension_loaded($val[0]))
-            || ('函数' == $val[3] && !function_exists($val[0]))
+        if (('class' == $val[3] && !class_exists($val[0]))
+            || ('Module' == $val[3] && !extension_loaded($val[0]))
+            || ('function' == $val[3] && !function_exists($val[0]))
         ) {
-            $val[1] = '不支持';
+            $val[1] = 'not support';
             $val[2] = 'del';
             session('error', true);
         }
@@ -150,12 +150,12 @@ function write_config($config, $auth)
 
     $configRoot = ROOT_PATH . 'config';
     if (!is_writable($configRoot)) {
-        die("config 文件加不可写，请检查！");
+        die("config File can not be written, please check!");
     }
 
     $uploadsRoot = ROOT_PATH . 'uploads';
     if (!is_writable($uploadsRoot)) {
-        die("uploads 文件加不可写，请检查！");
+        die("uploads File can not be written, please check!");
     }
     //写入空文件
     file_put_contents($uploadsRoot . DS . 'index.html', '');
@@ -202,9 +202,9 @@ function write_config($config, $auth)
 
     if (file_put_contents($configRoot . DS . 'database.php', $dbConfig) &&
         file_put_contents($configRoot . DS . 'view.php', $viewConfig)) {
-        show_msg('配置文件写入成功');
+        show_msg('The configuration file was written successfully');
     } else {
-        show_msg('配置文件写入失败！', 'error');
+        show_msg('Configuration file failed!', 'error');
         session('error', true);
     }
 }
@@ -225,7 +225,7 @@ function create_tables($db, $prefix = '')
     $sql = str_replace(" `jy_", " `{$prefix}", $sql);
 
     //开始安装
-    show_msg('开始安装数据库...');
+    show_msg('Start installing the database...');
     foreach ($sql as $value) {
         $value = trim($value);
         if (empty($value)) {
@@ -234,11 +234,11 @@ function create_tables($db, $prefix = '')
 
         if (substr($value, 0, 12) == 'CREATE TABLE') {
             $name = preg_replace("/^CREATE TABLE IF NOT EXISTS `(\w+)` .*/s", "\\1", $value);
-            $msg  = "创建数据表{$name}";
+            $msg  = "Create a data table{$name}";
             if (false !== $db->execute($value)) {
-                show_msg($msg . '...成功', 'success');
+                show_msg($msg . '...success', 'success');
             } else {
-                show_msg($msg . '...失败！', 'error');
+                show_msg($msg . '...failure!', 'error');
                 session('error', true);
             }
         } else {
@@ -262,7 +262,7 @@ function update_tables($db, $prefix = '')
     $sql = str_replace(" `jy_", " `{$prefix}", $sql);
 
     //开始安装
-    show_msg('开始升级数据库...');
+    show_msg('Start upgrading the database...');
     foreach ($sql as $value) {
         $value = trim($value);
         if (empty($value)) {
@@ -271,28 +271,28 @@ function update_tables($db, $prefix = '')
 
         if (substr($value, 0, 12) == 'CREATE TABLE') {
             $name = preg_replace("/^CREATE TABLE `(\w+)` .*/s", "\\1", $value);
-            $msg  = "创建数据表{$name}";
+            $msg  = "Create a data table{$name}";
             if (false !== $db->execute($value)) {
-                show_msg($msg . '...成功', 'success');
+                show_msg($msg . '...success', 'success');
             } else {
-                show_msg($msg . '...失败！', 'error');
+                show_msg($msg . '...failure!', 'error');
                 session('error', true);
             }
         } else {
             if (substr($value, 0, 8) == 'UPDATE `') {
                 $name = preg_replace("/^UPDATE `(\w+)` .*/s", "\\1", $value);
-                $msg  = "更新数据表{$name}";
+                $msg  = "Update the data table{$name}";
             } elseif (substr($value, 0, 11) == 'ALTER TABLE') {
                 $name = preg_replace("/^ALTER TABLE `(\w+)` .*/s", "\\1", $value);
-                $msg  = "修改数据表{$name}";
+                $msg  = "Modify the data table{$name}";
             } elseif (substr($value, 0, 11) == 'INSERT INTO') {
                 $name = preg_replace("/^INSERT INTO `(\w+)` .*/s", "\\1", $value);
-                $msg  = "写入数据表{$name}";
+                $msg  = "Write the data table{$name}";
             }
             if (($db->execute($value)) !== false) {
-                show_msg($msg . '...成功');
+                show_msg($msg . '...success');
             } else {
-                show_msg($msg . '...失败！', 'error');
+                show_msg($msg . '...failure!', 'error');
                 session('error', true);
             }
         }

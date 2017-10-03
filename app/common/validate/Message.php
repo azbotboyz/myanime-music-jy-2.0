@@ -28,15 +28,15 @@ class Message extends Validate
 
     //提示信息
     protected $message  = [
-        'post_uid.require'  => '发送者不能为空',
-        'post_uid.number'   => '发送者不正确',
-        'post_uid.token'   => '非法提交',
-        'to_uid.require'    => '接收者不能为空',
-        'to_uid.number'     => '接收者不正确',
-        'to_uid.checkTo'     => '接收用户不存在或被禁用',
-        'reply_id.number'     => '回复的内容不存在',
-        'content.require'   => '请填写发送内容',
-        'content.max'       => '内容长度最多255个字符',
+        'post_uid.require'  => 'The sender can not be empty',
+        'post_uid.number'   => 'The sender is not correct',
+        'post_uid.token'   => 'Illegal submission',
+        'to_uid.require'    => 'The receiver can not be empty',
+        'to_uid.number'     => 'The recipient is not correct',
+        'to_uid.checkTo'     => 'The receiving user does not exist or is disabled',
+        'reply_id.number'     => 'The reply does not exist',
+        'content.require'   => 'Please fill in the contents',
+        'content.max'       => 'Content length up to 255 characters',
     ];
     
     protected function checkTo($val)

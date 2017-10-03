@@ -89,19 +89,19 @@ class User
         $status = $this->model->where('id', $uid )->value('status');
         
         if (!is_numeric($status)) {
-            $this->error = '用户不存在！';
+            $this->error = 'User does not exist!';
             return false;
         }
         
         if ($status == 1) {
-            $this->error = '账号已激活！';
+            $this->error = 'Account activated!';
             return false;
         }
         
         if ($this->model->where('id', $uid )->setField('status', 1)) {
             return true;
         }
-        $this->error = '账号已激活失败！';
+        $this->error = 'Account activated failed!';
         return false;
     }
     
@@ -240,11 +240,11 @@ class User
         if ($isPwd) {
             $scene = 'edit_need_pwd';
             if (empty($password)) {
-                $this->error = '请输入验证密码';
+                $this->error = 'Please enter a verification password';
                 return false;
             }
             if (!$this->model->verifyPassword($uid, $password)) {
-                $this->error = '验证密码输入不正确';
+                $this->error = 'Verify that the password is entered incorrectly';
                 return false;
             }
         }
@@ -265,7 +265,7 @@ class User
             return true;
         }
 
-        $this->error = '信息修改失败';
+        $this->error = 'Information modification failed';
         return false;
     }
     
@@ -280,7 +280,7 @@ class User
         if ($this->model->updateUserPassword($uid, $password)) {
             return true;
         }
-        $this->error = '密码重置失败';
+        $this->error = 'Password reset failed';
         return false;
     }
     
@@ -310,16 +310,16 @@ class User
     {
         switch ($uid) {
             case -1:
-                $error = '用户不存在或被禁用！';
+                $error = 'The user does not exist or is disabled!';
                 break; //系统级别禁用
             case -2:
-                $error = '密码错误！';
+                $error = 'wrong password!';
                 break;
             case -3:
-                $error = '账号未激活！';
+                $error = 'Account not activated!';
                 break;
             default:
-                $error = '未知错误！';
+                $error = 'unknown mistake!';
                 break; // 0-接口参数错误（调试阶段使用）
         }
         $this->error = $error;

@@ -26,11 +26,11 @@ class MemberGroup extends Validate
 
     //提示信息
     protected $message  = [
-        'name.require'  => '标签名称不能为空',
-        'name.max'      => '标签名称最大长度60个字符',
-        'name.unique'      => '标签名称已存在',
-        'alias.max'   => '标签别名最大长度100个字符',
-        'alias.alphaNum'   => '标签别名只能为字母或数字'
+        'name.require'  => 'The label name can not be empty',
+        'name.max'      => 'The label name has a maximum length of 60 characters',
+        'name.unique'      => 'The tag name already exists',
+        'alias.max'   => 'The label alias has a maximum length of 100 characters',
+        'alias.alphaNum'   => 'Tag aliases can only be letters or numbers'
     ];
 
     protected $scene = [

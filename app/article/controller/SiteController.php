@@ -19,7 +19,7 @@ class SiteController extends ArticleController
 {
     public function index()
     {
-        abort('404', '页面不存在');
+        abort('404', 'The page does not exist');
         //return $this->fetch();
     }
     
@@ -41,7 +41,7 @@ class SiteController extends ArticleController
         }
         
         if (empty($info)) {
-            abort(404,'你查看的页面不存在！');
+            abort(404,'The page you are viewing does not exist!');
         }
         
         $info = $info->parseData();

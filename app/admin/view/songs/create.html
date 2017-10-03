@@ -5,7 +5,7 @@
 {block name="content"}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h2 class="panel-title"><b>{:isset($info['id'])?'编辑':'新增'}歌曲</b></h2>
+        <h2 class="panel-title"><b>{:isset($info['id'])?'edit':'Added'}song</b></h2>
     </div>
     <div class="panel-body">
         <div class="row">
@@ -13,32 +13,32 @@
         		<div class="col-md-8">
         			<div class="row">
                         <div class="form-group">
-                            <label class="col-md-2 control-label">歌曲名称</label>
+                            <label class="col-md-2 control-label">Song name</label>
                             <div class="col-md-6">
                                 <input type="text" name="name" class="form-control" value="{$info.name|default=''}">
-                                <span class="help-block">名称不能为空</span>
+                                <span class="help-block">Name is required</span>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">所属艺人</label>
+                            <label class="col-sm-2 control-label">Belongs to artist</label>
                             <div class="col-sm-4">
                                 <div class="input-group">
                                     <input type="hidden" name="artist_id" value="{$info.artist_id|default=0}" class="form-control">
-                                    <input type="text" value="{$info.artist_name|default=''}" name="artist_name" class="form-control" placeholder="选择艺人">
+                                    <input type="text" value="{$info.artist_name|default=''}" name="artist_name" class="form-control" placeholder="Choose artist">
                                     <span class="input-group-btn">
-                                    <button type="button" title="选择所属艺人" class="btn btn-primary open-find-modal" data-url="{:url('artist/read')}">
+                                    <button type="button" title="Choose the artist" class="btn btn-primary open-find-modal" data-url="{:url('artist/read')}">
                                         <i class="fa fa-search"></i></button>
                                     </span>
                                 </div>
                             </div>
-                            <label class="col-sm-2 control-label">所属专辑</label>
+                            <label class="col-sm-2 control-label">Belongs to the album</label>
                             <div class="col-sm-4">
                                 <div class="input-group">
                                     <input type="hidden" name="album_id" value="{$info.album_id|default=0}" class="form-control">
-                                    <input type="text" value="{$info.album_name|default=''}" name="album_name" class="form-control" placeholder="选择所属专辑">
+                                    <input type="text" value="{$info.album_name|default=''}" name="album_name" class="form-control" placeholder="Select your album">
                                     <span class="input-group-btn">
-                                    <button type="button" title="选择所属专辑" class="btn btn-primary open-find-modal" data-url="{:url('album/read')}">
+                                    <button type="button" title="Select your album" class="btn btn-primary open-find-modal" data-url="{:url('album/read')}">
                                         <i class="fa fa-search"></i></button>
                                     </span>
                                 </div>
@@ -46,37 +46,37 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">所属分类</label>
+                            <label class="col-sm-2 control-label">category</label>
                             <div class="col-sm-4">
                                 <select class="form-control" name="genre_id">
-                                    <option value="0">--选择分类--</option>
+                                    <option value="0">--Choose category--</option>
                                     {volist name=":get_genre_tree('', '', true)" id="genre"}
                                     <option {if condition="isset($info['genre_id'])"} {eq name="info['genre_id']" value="$genre['id']"} selected='selected'{/eq}{/if} value="{$genre['id']}">{$genre.title_show}</option>
                                     {/volist}
                                 </select>
                             </div>
 
-                            <label class="col-sm-2 control-label">所属用户</label>
+                            <label class="col-sm-2 control-label">Affiliated users</label>
                             <div class="col-sm-4">
                                 <input type="hidden" name="up_uname" class="form-control"  value="{$info.up_uname|default=''}">
-                                <input type="text" name="up_uid" class="form-control"  value="{$info.up_uid|default='1'}"  placeholder="填写用户id">
+                                <input type="text" name="up_uid" class="form-control"  value="{$info.up_uid|default='1'}"  placeholder="Fill in the user id">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">歌曲标签</label>
+                            <label class="col-md-2 control-label">Song label</label>
                             <div class="col-md-8">
                                 <div class="input-group">
 
-                                    <input type="text" name="tags" value="{$info.tags|default=''}"  placeholder="添加标签"/>
+                                    <input type="text" name="tags" value="{$info.tags|default=''}"  placeholder="add tag"/>
 
-                                    <button type="button" title="选择所属标签" class="btn btn-primary open-find-modal ml-10" data-url="{:url('tags/read')}">
+                                    <button type="button" title="Select the label" class="btn btn-primary open-find-modal ml-10" data-url="{:url('tags/read')}">
                                         <i class="fa fa-search"></i>
-                                        搜索标签
+                                        Search the label
                                     </button>
 
                                 </div>
-                                <span class="help-block">可以填写，不存在将会自动新增,最多6个</span>
+                                <span class="help-block">You can fill in, and the non-existence will be automatically added,Up to 6</span>
                             </div>
                             <div class="col-md-2">
 
@@ -84,10 +84,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">所属服务器</label>
+                            <label class="col-sm-2 control-label">Belongs to the server</label>
                             <div class="col-sm-4">
                                 <select class="form-control" id="select-server" name="extend[server_id]">
-                                    <option value="0">选择服务器</option>
+                                    <option value="0">Select the server</option>
                                     {volist name=":get_server()" id="ss"}
                                     <option {if condition="isset($info['extend']['server_id'])"} {eq name="info['extend']['server_id']" value="$ss['id']"} selected='selected'{/eq}{/if} value="{$ss['id']}">{$ss.name}</option>
                                     {/volist}
@@ -96,15 +96,15 @@
                         </div>
 
         				<div class="form-group">
-        					<label class="col-md-2 control-label">试听地址</label>
+        					<label class="col-md-2 control-label">Listen to address</label>
         					<div class="col-md-10">
         						<div class="bootstrap-filestyle input-group">
                                     <input type="hidden" id="listen-file-id" name="extend[listen_file_id]" value="{$info.extend.listen_file_id|default=''}">
-        							<input type="text" id="listen-file-path" name="extend[listen_url]" class="form-control" value="{$info.extend.listen_url|default=''}" placeholder="可以填写外链地址">
+        							<input type="text" id="listen-file-path" name="extend[listen_url]" class="form-control" value="{$info.extend.listen_url|default=''}" placeholder="You can fill out the chain address">
         							<span class="input-group-btn">
         								<label class="btn btn-default fileinput-button">
         									<span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span>
-        									<span class="buttonText">选择文件</span>
+        									<span class="buttonText">Select a document</span>
                                             <input id="upload-listen" type="file" name="files[]" multiple
                                                 data-file-type="audio"
                                                 data-upload-type="listen"
@@ -117,7 +117,7 @@
         				</div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">下载地址</label>
+                            <label class="col-md-2 control-label">download link</label>
                             <div class="col-md-10">
                                 <div class="bootstrap-filestyle input-group">
                                     <input type="hidden" id="down-file-id" name="extend[down_file_id]" value="{$info.extend.down_file_id|default=''}">
@@ -125,7 +125,7 @@
                                     <span class="input-group-btn">
                                         <label class="btn btn-default fileinput-button">
                                             <span class="glyphicon glyphicon-folder-open"></span>
-                                            <span class="buttonText">选择文件</span>
+                                            <span class="buttonText">Select a document</span>
                                             <input id="upload-down" type="file" name="files[]" multiple
                                             data-file-type="audio"
                                             data-upload-type="down"
@@ -138,15 +138,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">封面地址</label>
+                            <label class="col-md-2 control-label">Cover address</label>
                             <div class="col-md-10">
                                 <div class="bootstrap-filestyle input-group">
                                     <input type="hidden" id="cover-file-id" name="cover_id" value="{$info.cover_id|default=''}">
-                                    <input type="text" id="cover-file-path" class="form-control" name="cover_url" value="{$info.cover_url|default=''}" placeholder="可以填写外链地址">
+                                    <input type="text" id="cover-file-path" class="form-control" name="cover_url" value="{$info.cover_url|default=''}" placeholder="You can fill out the chain address">
                                     <span class="input-group-btn">
                                         <label class="btn btn-default fileinput-button">
                                             <span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span>
-                                            <span class="buttonText">选择文件</span>
+                                            <span class="buttonText">Select a document</span>
                                             <input id="upload-cover" type="file" name="files[]" multiple
                                             data-file-type="image"
                                             data-upload-type="cover"
@@ -159,22 +159,22 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">下载所需金币</label>
+                            <label class="col-sm-2 control-label">Download the required gold coins</label>
                             <div class="col-sm-3">
                                 <input type="text" name="extend[down_rule][coin]" class="form-control"  value="{$info.extend.down_rule.coin|default='0'}"  placeholder="">
                             </div>
-                            <label class="col-sm-2 control-label">下载所需积分</label>
+                            <label class="col-sm-2 control-label">Download the required points</label>
                             <div class="col-sm-3">
                                 <input type="text" name="extend[down_rule][score]" class="form-control"  value="{$info.extend.down_rule.score|default='0'}"  placeholder="">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label text-right col-lg-2">下载所需用户组</label>
+                            <label class="control-label text-right col-lg-2">Download the required user groups</label>
                             <div class="col-lg-10">
                                 {if condition="isset($info['extend']['down_rule']['group'])"}
                                 <label class="checkbox-inline i-checkboxs">
-                                    <input type="checkbox" {if condition="isset($info['extend']['down_rule']['group']) && in_array(0, $info['extend']['down_rule']['group'])"}checked=""{/if} name="extend[down_rule][group][]" value="0">允许游客
+                                    <input type="checkbox" {if condition="isset($info['extend']['down_rule']['group']) && in_array(0, $info['extend']['down_rule']['group'])"}checked=""{/if} name="extend[down_rule][group][]" value="0">Allow visitors
                                 </label>
                                 {foreach name=":get_user_groups()" item="vo" key="k"}
                                 <label class="checkbox-inline i-checkboxs">
@@ -183,7 +183,7 @@
                                 {/foreach}
                                 {else /}
                                 <label class="checkbox-inline i-checkboxs">
-                                    <input type="checkbox" name="extend[down_rule][group][]" value="0">允许游客
+                                    <input type="checkbox" name="extend[down_rule][group][]" value="0">Allow visitors
                                 </label>
                                 {foreach name=":get_user_groups()" item="vo" key="k"}
                                 <label class="checkbox-inline i-checkboxs">
@@ -191,12 +191,12 @@
                                 </label>
                                 {/foreach}
                                 {/if}
-                                <P class="help-block">只要设置金币或者积分游客下载勾选无效</P>
+                                <P class="help-block">As long as the set of gold coins or points visitors to download check invalid</P>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label text-right col-lg-2">歌曲推荐位</label>
+                            <label class="control-label text-right col-lg-2">Song recommended bit</label>
                             <div class="col-lg-10">
                                 {if condition="isset($info)"}
                                 {foreach name=":config('music_position')" item="vo" key="k"}
@@ -211,15 +211,15 @@
                                 </label>
                                 {/foreach}
                                 {/if}
-                                <span class="help-block">可选择多个推荐位</span>
+                                <span class="help-block">Multiple recommended bits can be selected</span>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-2 control-label">歌词</label>
+                            <label class="col-md-2 control-label">lyrics</label>
                             <div class="col-md-10">
                                 <textarea class="form-control" name="extend[lrc]" rows="5">{$info.extend.lrc|default=''}</textarea>
-                                <span class="help-block">可填写歌词URL地址</span>
+                                <span class="help-block">Can fill in the lyrics URL address</span>
                             </div>
                         </div>
 
@@ -238,10 +238,10 @@
                         <div class="col-md-offset-2 col-lg-6 text-left">
                             <button onclick="" type="button"
                                     class="btn btn-default btn-return">
-                                <i class=" icon-arrow-left16 position-right"></i>返回上页
+                                <i class=" icon-arrow-left16 position-right"></i>Return to the previous page
                             </button>
                             <button type="submit" class="btn btn-primary" type="submit">
-                                确认提交<i class="icon-arrow-right16 position-right"></i>
+                                confirm submission<i class="icon-arrow-right16 position-right"></i>
                             </button>
                         </div>
                     </div>
@@ -250,73 +250,73 @@
         		<div class="col-md-4">
         			<div class="row">
                         <div class="form-group">
-                            <label class="col-md-3 control-label">试听次数</label>
+                            <label class="col-md-3 control-label">Listings</label>
                             <div class="col-md-3">
                                 <input type="text" class="form-control" name="listens" value="{$info.listens|default=''}">
                             </div>
 
-                            <label class="col-md-3 control-label">下载次数</label>
+                            <label class="col-md-3 control-label">download times</label>
                             <div class="col-md-3">
                                 <input type="text" class="form-control" name="download" value="{$info.download|default=''}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-3 control-label">收藏次数</label>
+                            <label class="col-md-3 control-label">Number of collections</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="favtimes" value="{$info.favtimes|default=''}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-3 control-label">顶次数</label>
+                            <label class="col-md-3 control-label">The number of times</label>
                             <div class="col-md-3">
                                 <input type="text" class="form-control" name="digg" value="{$info.favtimes|default=''}">
                             </div>
 
-                            <label class="col-md-3 control-label">踩次数</label>
+                            <label class="col-md-3 control-label">The number of times</label>
                             <div class="col-md-3">
                                 <input type="text" class="form-control" name="bury" value="{$info.favtimes|default=''}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-3 control-label">原唱</label>
+                            <label class="col-md-3 control-label">Original sing</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="sing" value="{$info.sing|default=''}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-3 control-label">作词</label>
+                            <label class="col-md-3 control-label">Lyrics</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="lyrics" value="{$info.lyrics|default=''}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-3 control-label">作曲</label>
+                            <label class="col-md-3 control-label">Composer</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="composer" value="{$info.composer|default=''}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-3 control-label">编曲</label>
+                            <label class="col-md-3 control-label">Arranger</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="midi" value="{$info.midi|default=''}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-3 control-label">网盘下载地址</label>
+                            <label class="col-md-3 control-label">Network disk download address</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="extend[disk_url]" value="{$info.extend.disk_url|default=''}">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-3 control-label">网盘密码</label>
+                            <label class="col-md-3 control-label">Network disk password</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="extend[disk_pass]" value="{$info.extend.disk_pass|default=''}">
                             </div>

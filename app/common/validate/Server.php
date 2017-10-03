@@ -28,15 +28,15 @@ class Server extends Validate
 
     //提示信息
     protected $message  = [
-        'name.require'     => '服务器名称不能为空',
-        'name.length'      => '服务器名称大长度50个字符',
-        'name.unique'      => '服务器已存在',
-        'listen_url.require'=> '试听URL不能为空',
-        'listen_url.length' => '试听URl最大长度255个字符',
-        'down_url.require'=> '下载URL不能为空',
-        'down_url.length' => '下载URl最大长度255个字符',
-        'image_url.require'=> '图片URL不能为空',
-        'image_url.length' => '图片URl最大长度255个字符',
+        'name.require'     => 'The server name can not be empty',
+        'name.length'      => 'The server name is 50 characters long',
+        'name.unique'      => 'The server already exists',
+        'listen_url.require'=> 'Audition URL can not be empty',
+        'listen_url.length' => 'Audition URl maximum length of 255 characters',
+        'down_url.require'=> 'The download URL can not be empty',
+        'down_url.length' => 'Download URl maximum length of 255 characters',
+        'image_url.require'=> 'Image URL can not be empty',
+        'image_url.length' => 'Image URl maximum length of 255 characters',
     ];
 
     protected $scene = [

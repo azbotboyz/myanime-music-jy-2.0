@@ -32,24 +32,24 @@ class AuthMusician extends Validate
 
     //提示信息
     protected $message  = [
-        'artist_name.require'  => '请填写音乐人名称',
-        'artist_name.max'      => '音乐人名称长度超出限制',
-        'artist_name.checkArtistName'  => '音乐人名称已存在',
-        'artist_name.token'   => '非法请求',
-        'type.require'  => '请选择认证的音乐人类型',
-        'type.number'  => '选择音乐人类型不正确',
+        'artist_name.require'  => 'Please fill in the name of the artist',
+        'artist_name.max'      => 'The name of the artist name exceeds the limit',
+        'artist_name.checkArtistName'  => 'The artist name already exists',
+        'artist_name.token'   => 'Illegal request',
+        'type.require'  => 'Please select a certified artist type',
+        'type.number'  => 'Choose the type of music is not correct',
         
-        'realname.require'  => '请填写真实姓名',
-        'realname.max'      => '真实姓名长度超出限制',
-        'realname.checkUpdateName'   => '抱歉该音乐人已经认证过了',
-        'phone.require'   => '请填写联系手机',
-        'phone.isMobile'   => '请填写正确联系手机号码',
-        'idcard.require'  => '请填写身份证号码',
-        'idcard.length'  => '请输入15或18位身份证号码',
-        'idcard_img1.require'  => '请上传身份证正面照片',
-        'idcard_img1.max'  => '请上传身份证正面照片',
-        'reason.require'  => '请填写认证理由',
-        'reason.max'  => '认真理由长度10-200个字符'
+        'realname.require'  => 'Please fill in your real name',
+        'realname.max'      => 'Real name length exceeds limit',
+        'realname.checkUpdateName'   => 'Sorry that the musician has been certified',
+        'phone.require'   => 'Please fill in the contact phone',
+        'phone.isMobile'   => 'Please fill in the correct contact number',
+        'idcard.require'  => 'please enter your ID number',
+        'idcard.length'  => 'Please enter a 15 or 18 ID number',
+        'idcard_img1.require'  => 'Please upload your ID card positive photos',
+        'idcard_img1.max'  => 'Please upload your ID card positive photos',
+        'reason.require'  => 'Please fill in the certification reasons',
+        'reason.max'  => 'Reason for length 10-200 characters'
     ];
 
     protected $scene = [
@@ -72,7 +72,7 @@ class AuthMusician extends Validate
     {
         $id = db('artist')->where('name', $val)->value('id');
         if ($id) {
-            return '音乐人名称已存在';
+            return 'The artist name already exists';
         }
         return true;
     }
@@ -94,6 +94,6 @@ class AuthMusician extends Validate
     protected function isIdcard($val){
         $card = new Idcard();
         $card ->setId($val);
-        return $card->isValidate()? true : '身份证号码不正确！';
+        return $card->isValidate()? true : 'ID number is incorrect!';
     }
 }

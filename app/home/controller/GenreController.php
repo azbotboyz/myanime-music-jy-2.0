@@ -41,7 +41,7 @@ class GenreController extends HomeController
         }
         
         if (empty($info)) {
-            abort(404,'你查看的分类不存在！');
+            abort(404,'The category you are viewing does not exist!');
         }
         
         $info = $info->parseData();

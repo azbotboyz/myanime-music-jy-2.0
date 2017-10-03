@@ -219,7 +219,7 @@ abstract class Addons
     	if (false !== $res) {
     		return true;
     	}
-    	session('addons_install_error', 'sql 执行失败');
+    	session('addons_install_error', 'sql Execution failed');
     	return false;
     }
     

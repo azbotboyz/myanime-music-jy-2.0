@@ -44,7 +44,7 @@ class ActionsController extends ApiController
         }
         
         if (!$id = intval($id)) {
-            return $this->retErr(40004, 'ID参数错误');
+            return $this->retErr(40004, 'ID parameter is incorrect');
         }
         //TODO 一系列试听
         //记录天是试听数量
@@ -72,14 +72,14 @@ class ActionsController extends ApiController
     
         $id = $request->param('id');
         if (!$id = intval($id)) {
-            return $this->retErr(40004, 'ID参数错误');
+            return $this->retErr(40004, 'ID parameter is incorrect');
         }
     
         $type = $request->param('type');
         $actions = ['album', 'artist', 'tags', 'genre', 'ranks', 'member', 'user', 'article', 'news'];
     
         if (!in_array($type, $actions)) {
-            return $this->retErr(40004, '类型参数错误');
+            return $this->retErr(40004, 'Type parameter is incorrect');
         }
         
         if ('user' == $type) {
@@ -100,18 +100,18 @@ class ActionsController extends ApiController
     public function digg(Request $request)
     {
         if (!Actions::isDayAllow('digg', session_id())) {
-            return $this->retErr(40406, '今天已经点过赞了');
+            return $this->retErr(40406, 'Today has been praised');
         }
         
         $id = $request->param('id');
         if (!$id = intval($id)) {
-            return $this->retErr(40004, 'ID参数错误');
+            return $this->retErr(40004, 'ID parameter is incorrect');
         }
         
         $type    = $request->param('type', 'songs');
         $actions = ['songs', 'album', 'artist'];
         if (!in_array($type, $actions)) {
-            return $this->retErr(40004, '类型参数错误');
+            return $this->retErr(40004, 'Type parameter is incorrect');
         }
         
         $name  = strtolower($type);
@@ -126,7 +126,7 @@ class ActionsController extends ApiController
         if (false === $res) {
             return $this->retErr(40500);
         }
-        $res['msg'] = '成功点赞！';
+        $res['msg'] = 'Success praise!';
         return $this->retSucc($res);
     }
     
@@ -148,13 +148,13 @@ class ActionsController extends ApiController
         
         $id = $request->param('id');
         if (!$id = intval($id)) {
-            return $this->retErr(40004, 'ID参数错误');
+            return $this->retErr(40004, 'ID parameter is incorrect');
         }
         
         $type    = $request->param('type', 'songs');
         $actions = ['songs', 'album', 'artist'];
         if (!in_array($type, $actions)) {
-            return $this->retErr(40004, '类型参数错误');
+            return $this->retErr(40004, 'Type parameter is incorrect');
         }
         
         $name  = strtolower($type);
@@ -185,17 +185,17 @@ class ActionsController extends ApiController
             //添加收藏
             $data['create_time'] = time();
             if (!$table->insert($data)) {
-                return $this->retErr(40500, $title . '收藏失败！');
+                return $this->retErr(40500, $title . 'Collection failed!');
             }
             $res = $this->updateData($name, 'favtimes', $id);
-            $msg = $title . '收藏成功';
+            $msg = $title . 'Collection success';
         } else {
             //移除收藏
             if (!$table->where($data)->delete()) {
-                return $this->retErr(40500, $title . '移除收藏失败！');
+                return $this->retErr(40500, $title . 'Remove collection failed!');
             }
             $res = $this->updateData($name, 'favtimes', $id, false);
-            $msg = $title . '收藏成功移除';
+            $msg = $title . 'Collection was successfully removed';
             $isRemove = true;
         }
         
@@ -219,13 +219,13 @@ class ActionsController extends ApiController
 
         $id = $request->param('id');
         if (!$id = intval($id)) {
-            return $this->retErr(40004, 'ID参数错误');
+            return $this->retErr(40004, 'ID parameter is incorrect');
         }
 
         $type    = $request->param('type', 'songs');
         $actions = ['songs', 'album', 'artist'];
         if (!in_array($type, $actions)) {
-            return $this->retErr(40004, '类型参数错误');
+            return $this->retErr(40004, 'Type parameter is incorrect');
         }
 
         $name  = strtolower($type);
@@ -260,7 +260,7 @@ class ActionsController extends ApiController
 
         $followUid = $request->param('follow_uid');
         if (!$uid = intval($followUid)) {
-            return $this->retErr(40004, 'UID参数错误');
+            return $this->retErr(40004, 'UID parameter error');
         }
 
         if ($this->uid == $followUid) {
@@ -296,19 +296,19 @@ class ActionsController extends ApiController
             //添加收藏
             $data['create_time'] = time();
             if (!$table->insert($data)) {
-                return $this->retErr(40500, $title . '关注失败！');
+                return $this->retErr(40500, $title . 'Concerned about failure!');
             }
             $this->updateData('member', 'fans',  $followUid);
             $res = $this->updateData('member', 'follows', $this->uid, true, 'uid');
-            $msg = $title . '关注成功';
+            $msg = $title . 'Concerned about success';
         } else {
             //移除收藏
             if (!$table->where($data)->delete()) {
-                return $this->retErr(40500, $title . '取消关注失败！');
+                return $this->retErr(40500, $title . 'Cancel attention failed!');
             }
             $this->updateData('member', 'fans', $followUid, false, 'uid');
             $res = $this->updateData('member', 'follows', $this->uid, false, 'uid');
-            $msg = $title . '成功取消关注';
+            $msg = $title . 'Successfully canceled attention';
             $isRemove = true;
         }
     
@@ -332,7 +332,7 @@ class ActionsController extends ApiController
 
         $followUid = $request->param('follow_uid');
         if (!$uid = intval($followUid)) {
-            return $this->retErr(40004, 'UID参数错误');
+            return $this->retErr(40004, 'UID parameter error');
         }
 
         if ($this->uid == $followUid) {

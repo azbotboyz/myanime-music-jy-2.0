@@ -27,12 +27,12 @@ class Ranks extends Validate
 
     //提示信息
     protected $message  = [
-        'name.require'  => '榜单名称不能为空',
-        'name.max'      => '榜单名称最大长度20个字符',
-        'name.name'      => '榜单名称已存在',
-        'alias.max'   => '榜单别名最大长度30个字符',
-        'alias.alphaNum' => '榜单别名只能为字母或数字',
-        'is_sys.number'  => '参数错误',
+        'name.require'  => 'The list name can not be empty',
+        'name.max'      => 'The maximum length of the list name is 20 characters',
+        'name.name'      => 'The name of the list already exists',
+        'alias.max'   => 'The maximum length of the list alias is 30 characters',
+        'alias.alphaNum' => 'List aliases can only be letters or numbers',
+        'is_sys.number'  => 'Parameter error',
     ];
 
     protected $scene = [

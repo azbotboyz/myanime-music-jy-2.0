@@ -2,7 +2,7 @@
 {block name="content"}
 <section class="row m-b-md">
     <div class="col-sm-6">
-        <h3 class="m-b-xs text-black">网站设置</h3>
+        <h3 class="m-b-xs text-black">Website settings</h3>
     </div>
     <div class="col-sm-6 text-right text-left-xs m-t-md"></div>
 </section>
@@ -12,11 +12,10 @@
             <ul class="nav nav-tabs tabs nav-line">
                 {volist name=":config('config_group_list')" id="group"}
                 <li {eq name="group_id" value="$key" }class="active"{/eq}>
-                <a href="{:url('?group='.$key)}">{$group}配置</a>
-                </li>
-                {/volist}
+                <a href="{:url('?group='.$key)}">{$group}Configuration</a>
+                </li>                {/volist}
                 <li {eq name="group_id" value="oauth" }class="active"{/eq}>
-                <a href="{:url('?group=oauth')}">同步登陆</a>
+                <a href="{:url('?group=oauth')}">Synchronous landing</a>
                 </li>
             </ul>
         </div>
@@ -114,10 +113,10 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-lg-6 text-left">
                     <button onclick="javascript:history.back(-1);return false;" type="button"
-                            class="btn btn-default border-slate">返回上页
+                            class="btn btn-default border-slate">Return to the previous page
                     </button>
                     <button type="submit" class="btn btn-primary ajax-post-form" type="submit">
-                        确认提交
+                        confirm submission
                     </button>
                 </div>
             </div>

@@ -50,10 +50,10 @@ return [
     'develop_mode' => true,
     //通用状态吗
     'status_text' => [
-        -1 => '删除',
-        0 => '禁用',
-        1 => '正常',
-        2 => '待审核'
+        -1 => 'delete',
+        0 => 'Disabled',
+        1 => 'normal',
+        2 => 'Pending review'
     ],
     //通用状态style类名定义 用于样式表
     'status_style' => [
@@ -64,13 +64,13 @@ return [
     ],
     //通用开关状态字段
     'switch_text' => [
-        0 => '关闭',
-        1 => '开启'
+        0 => 'shut down',
+        1 => 'Open'
     ],
     //通用状态whether状态字段
     'whether_text' => [
-        0 => '否',
-        1 => '是'
+        0 => 'no',
+        1 => 'Yes'
     ],
     //通用状态是否style类名定义 用于样式表
     'whether_style' => [

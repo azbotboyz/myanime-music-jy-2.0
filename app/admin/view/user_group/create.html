@@ -2,41 +2,41 @@
 {block name="content"}
 <div class="panel panel-default">
     <div class="panel-heading clearfix">
-        <h3 class="panel-title">{:isset($info['id'])?'编辑':'新增'}用户组</h3>
+        <h3 class="panel-title">{:isset($info['id'])?'edit':'Added'}user group</h3>
     </div>
     <div class="panel-body">     
         <form class="form-horizontal form-fixed form-submit" action="{:isset($info['id'])? url('update') : url('save')}">
             <div class="form-group">
-                <label class="col-md-2 col-xs-12 text-right control-label">用户组名称</label>
+                <label class="col-md-2 col-xs-12 text-right control-label">User group name</label>
                 <div class="col-md-6 col-xs-12">
                     <input type="text" name="name" class="form-control" value="{$info.name|default=''}">
-                    <span class="help-block">名称不能为空</span>
+                    <span class="help-block">Name is required</span>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 col-xs-12 text-right control-label">用户组别名</label>
+                <label class="col-md-2 col-xs-12 text-right control-label">User group name</label>
                 <div class="col-md-4 col-xs-12">
                     <input type="text" name="alias" class="form-control" value="{$info.alias|default=''}">
-                    <span class="help-block">留空将自动获取拼音</span>
+                    <span class="help-block">Leave blank to automatically get pinyin</span>
                 </div>
 
-                <label class="col-sm-2 control-label">字体图标</label>
+                <label class="col-sm-2 control-label">Font icon</label>
                 <div class="col-sm-3">
                     <input type="text" name="icon_font" class="form-control"  value="{$info.hits|default=''}">
-                    <span class="help-block">用于显示图标字体</span>
+                    <span class="help-block">Used to display icon fonts</span>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label">图标图片地址</label>
+                <label class="col-md-2 control-label">Icon image address</label>
                 <div class="col-md-10">
                     <div class="bootstrap-filestyle input-group">
                         <input type="text" id="cover-file-path" name="icon_url" class="form-control" value="{$info.icon_url|default=''}" placeholder="可以填写外链地址"> 
                         <span class="input-group-btn">
                             <label class="btn btn-default fileinput-button">
                                 <span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span> 
-                                <span class="buttonText">选择文件</span>
+                                <span class="buttonText">Select a document</span>
                                 <input id="upload-cover" type="file" name="files[]" multiple
                                 data-file-type="image"
                                 data-upload-type="icon"
@@ -47,62 +47,62 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-md-2 control-label">年付金币</label>                   
+                <label class="col-md-2 control-label">Annual payment of gold coins</label>                   
                 <div class="col-sm-2">
                     <input type="text" name="rule[year_coin]" class="form-control"  value="{$info.rule.year_coin|default='0'}">
                 </div>
 
-                <label class="col-md-2 control-label">半年付金币</label>
+                <label class="col-md-2 control-label">Half a year to pay gold coins</label>
                 <div class="col-sm-2">
                     <input type="text" name="rule[half_year_coin]" class="form-control"  value="{$info.rule.half_year_coin|default='0'}">
                 </div>
 
-                <label class="col-md-2 control-label">月付金币</label>
+                <label class="col-md-2 control-label">Monthly payment of gold coins</label>
                 <div class="col-sm-2">
                     <input type="text" name="rule[month_coin]" class="form-control"  value="{$info.rule.month_coin|default='0'}">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label">上传音乐</label>
+                <label class="col-md-2 control-label">Upload music</label>
                 <div class="col-sm-4"> 
                     <label class="radio-inline i-radios">
-                        <input type="radio" name="rule[is_upload_song]" value="1">开启
+                        <input type="radio" name="rule[is_upload_song]" value="1">Open
                     </label>
                     <label class="radio-inline i-radios">
-                        <input type="radio" name="rule[is_upload_song]" value="0">关闭
+                        <input type="radio" name="rule[is_upload_song]" value="0">shut down
                     </label>
                 </div>
 
-                <label class="col-md-2 control-label">创建专辑</label>
+                <label class="col-md-2 control-label">Create an album</label>
                 <div class="col-sm-4"> 
                     <label class="radio-inline i-radios">
-                        <input type="radio" name="rule[is_create_album]" value="1">开启
+                        <input type="radio" name="rule[is_create_album]" value="1">Open
                     </label>
                     <label class="radio-inline i-radios">
-                        <input type="radio" name="rule[is_create_album]" value="0">关闭
+                        <input type="radio" name="rule[is_create_album]" value="0">shut down
                     </label>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-md-2 control-label">上传头像</label>
+                <label class="col-md-2 control-label">Upload avatar</label>
                 <div class="col-sm-4"> 
                     <label class="radio-inline i-radios">
-                        <input type="radio" name="rule[is_upload_avatar]" value="1">开启
+                        <input type="radio" name="rule[is_upload_avatar]" value="1">Open
                     </label>
                     <label class="radio-inline i-radios">
-                        <input type="radio" name="rule[is_upload_avatar]" value="0">关闭
+                        <input type="radio" name="rule[is_upload_avatar]" value="0">shut down
                     </label>
                 </div>
 
-                <label class="col-md-2 control-label">发送私信</label>
+                <label class="col-md-2 control-label">Send a private message</label>
                 <div class="col-sm-4"> 
                     <label class="radio-inline i-radios">
-                        <input type="radio" name="rule[is_send_letter]" value="1">开启
+                        <input type="radio" name="rule[is_send_letter]" value="1">Open
                     </label>
                     <label class="radio-inline i-radios">
-                        <input type="radio" name="rule[is_send_letter]" value="0">关闭
+                        <input type="radio" name="rule[is_send_letter]" value="0">shut down
                     </label>
                 </div>
             </div>
@@ -112,10 +112,10 @@
                 <div class="col-md-offset-2 col-lg-6 text-left">
                     <button onclick="" type="button"
                             class="btn btn-default btn-return">
-                        <i class=" icon-arrow-left16 position-right"></i>返回上页
+                        <i class=" icon-arrow-left16 position-right"></i>Return to the previous page
                     </button>
                     <button type="submit" class="btn btn-primary" type="submit">
-                        确认提交<i class="icon-arrow-right16 position-right"></i>
+                        confirm submission<i class="icon-arrow-right16 position-right"></i>
                     </button>
                 </div>
             </div>

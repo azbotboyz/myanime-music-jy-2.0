@@ -32,15 +32,15 @@ class Artist extends Validate
 
     //提示信息
     protected $message  = [
-        'name.require'     => '艺人名称不能为空',
-        'name.length'      => '艺人名称大长度40个字符',
-        'type_id.number'=> '所属类型不正确',
-        'alias.alphaNum'=> '索引只能为字母或数字',
-        'alias.max'=> '索引只能为单个字符',
-        'uid.number' => '所属用户不存在',
-        'hits.number' => '点击量只能位数字',
-        'favtimes.number' => '收藏数只能位数字',
-        'likes.number' => '喜欢数只能位数字',
-        'pub_time.length' => '发布日期不正确',
+        'name.require'     => 'The artist name can not be empty',
+        'name.length'      => 'Artist name long length 40 characters',
+        'type_id.number'=> 'The type is not correct',
+        'alias.alphaNum'=> 'Indexes can only be letters or numbers',
+        'alias.max'=> 'Indexes can only be single characters',
+        'uid.number' => 'The user does not exist',
+        'hits.number' => 'Traffic can only be digitally',
+        'favtimes.number' => 'Collections can only be digitized',
+        'likes.number' => 'Like the number of only digital',
+        'pub_time.length' => 'The release date is incorrect',
     ];
 }

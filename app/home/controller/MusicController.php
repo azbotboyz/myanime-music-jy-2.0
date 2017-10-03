@@ -21,7 +21,7 @@ class MusicController extends HomeController
      */
     public function index()
     {
-        abort(404, '页面不存在！');
+        abort(404, 'Page does not exist!');
     }
 
     /**
@@ -53,13 +53,13 @@ class MusicController extends HomeController
     protected function setSong($id)
     {
         if (!intval($id)) {
-            abort(404, '页面不存在');
+            abort(404, 'The page does not exist');
         }
 
         $model = new Songs;
         $song  = $model->where('status', 1)->with('extend')->find($id);
         if (!$song) {
-            abort(404, '歌曲不存在或正在审核');
+            abort(404, 'The song does not exist or is being reviewed');
         }
 
         $song = $this->setNum($song->parseData());

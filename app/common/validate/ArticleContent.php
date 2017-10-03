@@ -26,7 +26,7 @@ class ArticleContent extends Validate
 
     //提示信息
     protected $message  = [
-        'content.require'  => '资讯内容不能为空',
-        'template.require'      => '模板不能为空',
+        'content.require'  => 'Content can not be empty',
+        'template.require'      => 'The template can not be empty',
     ];
 }

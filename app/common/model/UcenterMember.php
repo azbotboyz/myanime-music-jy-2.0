@@ -172,7 +172,7 @@ class UcenterMember extends Model
         $user = self::with('profile')->where($map)->find();
 
         if (!$user || $user->status !== 1) {
-            $this->error = '用户不存在或被禁用';
+            $this->error = 'The user does not exist or is disabled';
             return false;
         }
         $info = $user->toArray();
@@ -247,7 +247,7 @@ class UcenterMember extends Model
     public function updateUserPassword($uid, $password)
     {
         if (empty($uid) || empty($password)) {
-            $this->error = '参数错误！';
+            $this->error = 'Parameter error!';
             return false;
         }
         //更新用户信息

@@ -26,11 +26,11 @@ class AlbumType extends Validate
 
     //提示信息
     protected $message  = [
-        'name.require'  => '专辑类型名称不能为空',
-        'name.max'      => '专辑类型最大长度20个字符',
-        'name.unique'      => '专辑类型已存在',
-        'alias.max'   => '专辑类型最大长度30个字符',
-        'alias.alpha'   => '专辑类型只能为字母或数字',
+        'name.require'  => 'The album type name can not be empty',
+        'name.max'      => 'The maximum length of the album type is 20 characters',
+        'name.unique'      => 'The album type already exists',
+        'alias.max'   => 'The maximum length of the album type is 30 characters',
+        'alias.alpha'   => 'The album type can only be a letter or a number',
     ];
 
     protected $scene = [

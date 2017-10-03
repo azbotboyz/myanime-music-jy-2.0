@@ -23,7 +23,7 @@ class IndexController extends Controller
     
     protected function _initialize(){
         if(is_file(ROOT_PATH . 'storage' . DS . 'install.lock')){
-            abort(404,'已经成功安装了JYmusic，请不要重复安装!');
+            abort(404,'JYmusic has been successfully installed, please do not install it repeatedly!');
         }
     }
     
@@ -36,9 +36,9 @@ class IndexController extends Controller
         if(is_file(ROOT_PATH .'config' . DS . 'database.php')){
             // 已经安装过了 执行更新程序
             session('update',true);
-            $msg = '请删除install.lock文件后再运行升级!';
+            $msg = 'Please remove install.lock the file before running the upgrade!';
         } else {
-            $msg = '已经成功安装了JYmusic，请不要重复安装!';
+            $msg = 'JYmusic has been successfully installed, please do not install it repeatedly!';
         }
         
         if(is_file(ROOT_PATH . 'storage' . DS . 'install.lock')){
@@ -82,7 +82,7 @@ class IndexController extends Controller
             session('update',null);
             $this->display('update');
         }else{*/
-            session('error') && $this->error('环境检测没有通过，请调整环境后重试！');
+            session('error') && $this->error('Environmental testing did not pass, please adjust the environment and try again!');
             $step = session('step');
             if($step != 1 && $step != 2 && $step != 3){
                 $this->redirect('step1');
@@ -163,12 +163,12 @@ class IndexController extends Controller
         ];
     
         $msg = [
-            'hostname.require' => '数据库地址不能为空',
-            'database.require' => '数据库名不能为空',
-            'username.require' => '数据库用户名不能为空',
-            'hostport.require' => '数据库端口不能为空',
-            'hostport.number'  => '数据库端口只能为数字',
-            'prefix.require' => '数据表前缀不能为空',
+            'hostname.require' => 'The database address can not be empty',
+            'database.require' => 'The database name can not be empty',
+            'username.require' => 'The database user name can not be empty',
+            'hostport.require' => 'The database port can not be empty',
+            'hostport.number'  => 'The database port can only be a number',
+            'prefix.require' => 'The data table prefix can not be empty',
 
         ];
         $result = $this->validate($post['db'], $rule, $msg);
@@ -209,14 +209,14 @@ class IndexController extends Controller
         ];
     
         $msg = [
-            'username.require' => '管理员用户名不能为空',
-            'username.length' => '管理员用户名长度4-16个字符',
-            'password.require' => '管理员密码不能为空',
-            'password.length' => '管理员密码长度5-32个字符',
-            'repassword.require' => '确认密码不能为空',
-            'repassword.confirm'  => '确认密码与密码不一致',
-            'email.require' => '管理员邮箱不能为空',
-            'email.email' => '管理员邮箱格式不正确',
+            'username.require' => 'The administrator user name can not be empty',
+            'username.length' => 'Administrator User Name Length 4-16 characters',
+            'password.require' => 'The administrator password can not be empty',
+            'password.length' => 'Administrator password length 5-32 characters',
+            'repassword.require' => 'confirm password can not be blank',
+            'repassword.confirm'  => 'Make sure the password is not the same as the password',
+            'email.require' => 'The administrator mailbox can not be empty',
+            'email.email' => 'The administrator mailbox is not formatted correctly',
         ];
         $result = $this->validate($post['admin'], $rule, $msg);
         if (true !== $result) {
@@ -245,7 +245,7 @@ class IndexController extends Controller
             //跳转到数据库安装页面
             $this->success("", 'step3');
         } else {
-            $this->error('数据库创建失败，请查看是否有创建权限或数据库名称是否正确');
+            $this->error('The database creation failed, check to see if the creation permission or the database name is correct');
         }
     }
     
@@ -255,7 +255,7 @@ class IndexController extends Controller
      */
     protected function regAdmin($auth)
     {
-        show_msg('开始注册创始人帐号...');
+        show_msg('Start registering the founder account number...');
         $admin = session('admin_info');
         $admin['password'] = user_md5($admin['password'], $auth);
         $admin['reg_ip'] = $admin['last_login_ip']  = get_client_ip(1);
@@ -275,13 +275,13 @@ class IndexController extends Controller
             $user['status'] = 1;
     
             if ($member->insert($user)) {
-                show_msg('创始人帐号注册完成！');
+                show_msg('Founder account registration is complete!');
             } else {
-                show_msg('创始人帐号创建失败...');
+                show_msg('Founder account creation failed...');
             }
         
         } else {
-            show_msg('创始人帐号创建失败...');
+            show_msg('Founder account creation failed...');
         }
     }
 }

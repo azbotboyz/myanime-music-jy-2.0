@@ -3,29 +3,29 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h2 class="panel-title">
-            <b>审核歌曲</b>
-            <small>[可修改参数]</small>
+            <b>Review the song</b>
+            <small>[Can modify parameters]</small>
         </h2>
     </div>
     <div class="panel-body">
         <div class="row">
             <form  class="form-horizontal clearfix" id="audit-form" onsubmit="return false;"  action="{:url('audit')}">
                 <div class="form-group">
-                    <label class="col-md-2 control-label">歌曲名称</label>
+                    <label class="col-md-2 control-label">Song name</label>
                     <div class="col-md-6">
                         <input type="text" name="name" class="form-control" value="{$info.name|default=''}">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">所属艺人</label>
+                    <label class="col-sm-2 control-label">Belongs to artist</label>
                     <div class="col-sm-4">
                         <div class="input-group">
                             <input type="hidden" name="artist_id" value="{$info.artist_id|default=0}" class="form-control">
                             <input type="text" value="{$info.artist_name|default=''}" name="artist_name" class="form-control" placeholder="选择艺人">
                         </div>
                     </div>
-                    <label class="col-sm-2 control-label">所属专辑</label>
+                    <label class="col-sm-2 control-label">Belongs to the album</label>
                     <div class="col-sm-4">
                         <div class="input-group">
                             <input type="hidden" name="album_id" value="{$info.album_id|default=0}" class="form-control">
@@ -35,17 +35,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">所属分类</label>
+                    <label class="col-sm-2 control-label">category</label>
                     <div class="col-sm-4">
                         <select class="form-control" name="genre_id">
-                            <option value="0">--选择分类--</option>
+                            <option value="0">--Choose category--</option>
                             {volist name=":get_genre_tree('', '', true)" id="genre"}
                             <option {if condition="isset($info['genre_id'])"} {eq name="info['genre_id']" value="$genre['id']"} selected='selected'{/eq}{/if} value="{$genre['id']}">{$genre.title_show}</option>
                             {/volist}
                         </select>
                     </div>
 
-                    <label class="col-sm-2 control-label">所属用户</label>
+                    <label class="col-sm-2 control-label">Affiliated users</label>
                     <div class="col-sm-4">
                         <input type="text" name="up_uname" class="form-control"  value="{$info.up_uname|default=''}">
                         <input type="hidden" name="up_uid" class="form-control" value="{$info.up_uid|default='1'}"  placeholder="填写用户id">
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-2 control-label">文件地址</label>
+                    <label class="col-md-2 control-label">File address</label>
                     <div class="col-md-10">
                         <input type="hidden" id="listen-file-id" name="extend[listen_file_id]" value="{$info.extend.listen_file_id|default=''}">
                         <input type="text" id="listen-file-path" name="extend[listen_url]" class="form-control" value="{$info.extend.listen_url|default=''}">
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-2 control-label">封面地址</label>
+                    <label class="col-md-2 control-label">Cover address</label>
                     <div class="col-md-10">
                         <input type="hidden" id="cover-file-id" name="cover_id" value="{$info.cover_id|default=''}">
                         <input type="text" id="cover-file-path" class="form-control" value="{$info.cover_url|default=''}">
@@ -69,21 +69,21 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">下载所需金币</label>
+                    <label class="col-sm-2 control-label">Download the required gold coins</label>
                     <div class="col-sm-4">
                         <input type="text" name="extend[down_rule][coin]" class="form-control"  value="0">
                     </div>
-                    <label class="col-sm-2 control-label">下载所需积分</label>
+                    <label class="col-sm-2 control-label">Download the required points</label>
                     <div class="col-sm-4">
                         <input type="text" name="extend[down_rule][score]" class="form-control"  value="0">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label text-right col-lg-2">下载所需用户组</label>
+                    <label class="control-label text-right col-lg-2">Download the required user groups</label>
                     <div class="col-lg-10">
                         <label class="checkbox-inline i-checkboxs">
-                            <input type="checkbox" name="extend[down_rule][group][]" value="0">允许游客
+                            <input type="checkbox" name="extend[down_rule][group][]" value="0">Allow visitors
                         </label>
                         {foreach name=":get_user_groups()" item="vo" key="k"}
                         <label class="checkbox-inline i-checkboxs">
@@ -94,7 +94,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label text-right col-lg-2">歌曲推荐位</label>
+                    <label class="control-label text-right col-lg-2">Song recommended bit</label>
                     <div class="col-lg-10">
                         {foreach name=":config('music_position')" item="vo" key="k"}
                         <label class="checkbox-inline i-checkboxs">
@@ -105,7 +105,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-2 control-label">驳回描述</label>
+                    <label class="col-md-2 control-label">Dismiss the description</label>
                     <div class="col-md-10">
                         <input type="text" class="form-control" name="back_info" value="">
                     </div>
@@ -115,13 +115,13 @@
                 <input type="hidden" name="extend[mid]" value="{$info.id|default=''}">
                 <div class="form-group">
                     <div class="col-md-offset-2 col-lg-6 text-left">
-                        <button onclick="" type="button" class="btn btn-default btn-return">返回上页
+                        <button onclick="" type="button" class="btn btn-default btn-return">Return to the previous page
                         </button>
                         <button id="submit-pass" class="btn btn-primary">
-                            确认审核通过
+                            Confirmation of approval
                         </button>
                         <button id="submit-back" class="btn btn-danger">
-                            确认驳回
+                            Confirmation of rejection
                         </button>
                     </div>
                 </div>
@@ -142,14 +142,14 @@ $(document).ready(function() {
             $('#audit-status').val(0);
         }
         var query = $form.serialize();
-        $.Notify.loading('正在提交数据，请稍后...', 'warning', 200);
+        $.Notify.loading('Please submit the data later please...', 'warning', 200);
         $.ajax({
             type     : 'POST',
             url      : $form.attr('action'),
             data     : query,
             success  : function (res) {
                 if (res.code) {
-                    $.Notify.msg(res.msg + '页面即将刷新', 'success');
+                    $.Notify.msg(res.msg + 'The page is about to refresh', 'success');
                     setTimeout(function () {
                         window.location.reload();
                     }, 1500)
@@ -158,7 +158,7 @@ $(document).ready(function() {
                 }
             },
             error    : function () {
-                $.Notify.msg('请求失败,服务端响应失败！');
+                $.Notify.msg('Request failed,The server response failed!');
             }
         });
     });

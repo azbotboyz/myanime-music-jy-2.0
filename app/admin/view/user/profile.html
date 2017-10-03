@@ -2,34 +2,34 @@
 {block name="content"}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">修改管理员资料</h3>
+        <h3 class="panel-title">Modify the administrator profile</h3>
     </div>
     <div class="panel-body">
             <form class="form-horizontal form-fixed form-submit" action="{:url('user/profile')}">
                 <div class="form-group">
-                    <label class="col-md-2 col-xs-12 text-right control-label">用户名</label>
+                    <label class="col-md-2 col-xs-12 text-right control-label">username</label>
                     <div class="col-md-8 col-xs-12">
                         <input type="text" name="username" require="" class="form-control" value="{$info.username|default=''}">
-                        <span class="help-block">用户名不能为空</span>
+                        <span class="help-block">Username can not be empty</span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">用户密码</label>
+                    <label class="col-sm-2 control-label">user password</label>
                     <div class="col-md-8 col-xs-12">
-                        <input type="text" name="password" placeholder="6-30位字符" class="form-control" value="">
+                        <input type="text" name="password" placeholder="6-30 characters" class="form-control" value="">
                         <span class="help-block">
-                            {$info?  '留空将不会修改密码' : '密码不能为空'}
+                            {$info?  'Leaving blank will not change the password' : 'password can not be blank'}
                         </span>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">验证密码</label>
+                    <label class="col-sm-2 control-label">verify password</label>
                     <div class="col-md-8 col-xs-12">
-                        <input type="text" name="oldpassword" placeholder="输入原密码验证" class="form-control" value="">
+                        <input type="text" name="oldpassword" placeholder="Enter the original password verification" class="form-control" value="">
                         <span class="help-block">
-                            输入当前密码用于验证
+                            Enter the current password for verification
                         </span>
                     </div>
                 </div>
@@ -38,10 +38,10 @@
                     <div class="col-md-offset-2 col-lg-6 text-left">
                         <button onclick="" type="button"
                                 class="btn btn-default btn-return">
-                            <i class=" icon-arrow-left16 position-right"></i>返回上页
+                            <i class=" icon-arrow-left16 position-right"></i>Return to the previous page
                         </button>
                         <button type="submit" class="btn btn-primary" type="submit">
-                            确认提交<i class="icon-arrow-right16 position-right"></i>
+                            confirm submission<i class="icon-arrow-right16 position-right"></i>
                         </button>
                     </div>
                 </div>

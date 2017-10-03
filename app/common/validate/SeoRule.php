@@ -28,15 +28,15 @@ class SeoRule extends Validate
 
     //提示信息
     protected $message  = [
-        'title.require'  => '规则标题不能为空',
-        'title.max'      => '规则标题最大长度200个字符',
-        'title.unique'      => '规则标题已存在',
-        'title_rule.require'   => '标题规则不能为空',
-        'title_rule.max'   => '标题规则最大长度200个字符',
-        'keywords_rule.require'   => '关键字规则不能为空',
-        'keywords_rule.max'   => '关键字规则最大长度200个字符',
-        'description_rule.require'   => '描述规则不能为空',
-        'description_rule.max'   => '描述规则最大长度200个字符',
+        'title.require'  => 'The rule title can not be empty',
+        'title.max'      => 'Rule Title Maximum length of 200 characters',
+        'title.unique'      => 'The rule title already exists',
+        'title_rule.require'   => 'The title rule can not be empty',
+        'title_rule.max'   => 'The title rule has a maximum length of 200 characters',
+        'keywords_rule.require'   => 'Keyword rules can not be empty',
+        'keywords_rule.max'   => 'The maximum length of the keyword rule is 200 characters',
+        'description_rule.require'   => 'The description rule can not be empty',
+        'description_rule.max'   => 'Description Rule Maximum length of 200 characters',
     ];
 
     protected $scene = [

@@ -40,7 +40,7 @@ class RanksController extends HomeController
         }
 
         if (empty($info)) {
-            abort(404,'你查看的榜单不存在！');
+            abort(404,'The list you are viewing does not exist!');
         }
         return $this->fetch('detail', ['data' => $info->parseData()]);
     }

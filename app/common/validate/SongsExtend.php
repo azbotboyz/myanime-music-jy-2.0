@@ -32,20 +32,20 @@ class SongsExtend extends Validate
 
     //提示信息
     protected $message = [
-        'listen_url.require' => '请输入试听地址',
-        'listen_url.max' => '试听地址最多255个字符',
-        'listen_file_id.number' => '试听文件不正确',
-        'listen_file_size.max' => '试听文件大小最多16个字符',
-        'listen_bitrate.max' => '试听音质最多10个字符',
-        'down_url.require' => '请输入下载地址',
-        'down_url.url' => '下载地址最多255个字符',
-        'down_url.max' => '下载地址最多255个字符',
-        'down_file_id.number' => '下载文件不正确',
-        'down_bitrate.max' => '下载音质最多10个字符',
-        'disk_url.max' => '网盘地址最多255个字符',
-        'disk_url.url' => '网盘地址格式错误',
-        'disk_pass.max:10' => '网盘密码最多10个字符',
-        'down_file_size.max' => '下载文件大小最多16个字符',
-        'play_time.max' => '播放时长最多10个字符'
+        'listen_url.require' => 'Please enter the audition address',
+        'Listen_url.max' => 'listen to address up to 255 characters',
+        'Listen_file_id.number' => 'audition file is incorrect',
+        'Listen_file_size.max' => 'audition file size up to 16 characters',
+        'Listen_bitrate.max' => 'audition sound up to 10 characters',
+        'Down_url.require' => 'Please enter the download address',
+        'Down_url.url' => 'download address up to 255 characters',
+        'Down_url.max' => 'download address up to 255 characters',
+        'Down_file_id.number' => 'Download file is incorrect',
+        'Down_bitrate.max' => 'download sound quality up to 10 characters',
+        'Disk_url.max' => 'network address up to 255 characters',
+        'Disk_url.url' => 'network disk address format error',
+        'Disk_pass.max: 10' => 'network password up to 10 characters',
+        'Down_file_size.max' => 'download file size up to 16 characters',
+        'Play_time.max' => 'play time up to 10 characters'
     ];
 }

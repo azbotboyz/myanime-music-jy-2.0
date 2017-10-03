@@ -37,7 +37,7 @@ class IndexController extends ArticleController
             $info = Article::get($map);
         }
         if (empty($info)) {
-            abort(404,'你查看的资讯不存在！');
+            abort(404,'The information you are viewing does not exist!');
         }
         $content =  $info->content->getData();
         
@@ -45,7 +45,7 @@ class IndexController extends ArticleController
         
         $cate = ArticleCategory::get($info['category_id']);
         if (empty($cate)) {
-            $this->error('你查看的资讯所属分类不存在或被禁用！');
+            $this->error('The category of the information you are viewing does not exist or is disabled!');
         }
         
         $info['cate'] =$cate->parseData();

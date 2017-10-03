@@ -1,43 +1,43 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">批量替换字符</h3>
+        <h3 class="panel-title">Batch replace character</h3>
     </div>
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">          
                 <form class="form-horizontal form-submit" action="{:url('bulk?type=replace')}" role="form">
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">替换的字段</label>
+                        <label class="col-sm-4 control-label">Replace the fields</label>
                         <div class="col-sm-4">
                             <select class="form-control" name="rep_field">
-                                <option>选择替换的字段</option>
-                                <option value="name">替换歌曲名称</option>
-                                <option value="listen_url">替换试听地址</option>
-                                <option value="down_url">替换下载地址</option>
-                                <option value="lrc">替换歌曲歌词</option>
+                                <option>Select the replacement field</option>
+                                <option value="name">Replace song name</option>
+                                <option value="listen_url">Replace the audition address</option>
+                                <option value="down_url">Replace the download address</option>
+                                <option value="lrc">Replace song lyrics</option>
                             </select>
                         </div>      
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">替换前的字符</label>
+                        <label class="col-sm-4 control-label">Replace the character before</label>
                         <div class="col-sm-6">
-                            <input type="text" name="rep_before" required="" placeholder="输入要替换的字符" required="" class="form-control">
+                            <input type="text" name="rep_before" required="" placeholder="Enter the characters to be replaced" required="" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-4 control-label">替换后的字符</label>
+                        <label class="col-sm-4 control-label">Replace the characters after</label>
                         <div class="col-sm-6">
-                            <input type="text" name="rep_after" placeholder="输入替换后的字符" class="form-control">
-                            <span class="help-block">留空将会替换空字符</span>
+                            <input type="text" name="rep_after" placeholder="Enter the replaced character" class="form-control">
+                            <span class="help-block">Leave blank to replace empty characters</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-8">
                             <button type="submit" class="btn btn-default">
-                                确认替换
+                                Confirm replacement
                             </button>
                             <button type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-primary m-l-5">
-                                取消
+                                cancel
                             </button>
                         </div>
                     </div>

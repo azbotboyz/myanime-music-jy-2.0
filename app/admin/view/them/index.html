@@ -7,10 +7,10 @@
             <div role="tabpanel">
                 <ul class="nav nav-tabs tabs nav-line">
                     <li class="{eq name='type' value='web'}active{/eq}">
-                        <a href="{:url('?type=web')}">WEB主题</a>
+                        <a href="{:url('?type=web')}">WEB theme</a>
                     </li>
                     <li class="{eq name='type' value='wap'}active{/eq}">
-                        <a href="{:url('?type=wap')}">WAP主题</a>
+                        <a href="{:url('?type=wap')}">WAP theme</a>
                     </li>
                 </ul>
             </div>
@@ -37,7 +37,7 @@
                 </div>
                 {else /}
                 <div class="product-action">
-                    <a class="ajax-get btn btn-xs btn-success mr-xs" href="{:url('enable',['type'=>$vo['type'], 'filename' => $vo['basename']])}">启用</a>
+                    <a class="ajax-get btn btn-xs btn-success mr-xs" href="{:url('enable',['type'=>$vo['type'], 'filename' => $vo['basename']])}">Enabled</a>
                 </div>
                 {/if}
                 <div class="detail">
@@ -47,13 +47,13 @@
                     <h5 class="m-0">
                         <div class="dropdown">
                             <a class="btn btn-success btn-sm" href="javascript:;" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                作者信息
+                                author information
                                 <span class="caret"></span>
                             </a>
                             <ul  class="dropdown-menu" aria-labelledby="dLabel">
-                                <li><a href="javascript:;" >主页：{$vo['info']['author']['url'] ?? '未知'}</a></li>
-                                <li><a href="javascript:;" >QQ：{$vo['info']['author']['qq'] ?? '未知'}</a></li>
-                                <li><a href="javascript:;" >邮箱：{$vo['info']['author']['email'] ?? '未知'}</a></li>
+                                <li><a href="javascript:;" >Home:{$vo['info']['author']['url'] ?? 'unknown'}</a></li>
+                                <li><a href="javascript:;" >QQ：{$vo['info']['author']['qq'] ?? 'unknown'}</a></li>
+                                <li><a href="javascript:;" >mailbox:{$vo['info']['author']['email'] ?? 'unknown'}</a></li>
                             </ul>
                         </div>
                     </h5>

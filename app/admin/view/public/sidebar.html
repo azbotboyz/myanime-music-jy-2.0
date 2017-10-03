@@ -3,7 +3,7 @@
 <div id="sidebar-menu">
     <ul class="nav nav-main" id="slider-nav-main" data-ride="collapse">
         {notempty name="_extra_menu"}
-        {// 动态扩展菜单 //}
+        {// Dynamic expansion menu //}
         {:extra_menu($_extra_menu, $menu_list)}
         {/notempty}
         {foreach name="menu_list['child']" item="sub_menu"}
