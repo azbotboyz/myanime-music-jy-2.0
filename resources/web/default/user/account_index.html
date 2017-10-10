@@ -4,37 +4,37 @@
 <div class="tabbable tabbable-custom tabbable-reversed">
 	<ul class="nav nav-tabs">
 		<li class="active">
-			<a href="javascript:;">账户总览</a>
+			<a href="javascript:;">Account overview</a>
 		</li>
 		<li>
-			<a href="{JY:url name='user_charge'}">金币充值</a>
+			<a href="{JY:url name='user_charge'}">Gold coins recharge</a>
 		</li>
 		<li>
-			<a href="{JY:url name='user_upgrade'}"> 升级用户组</a>
+			<a href="{JY:url name='user_upgrade'}"> Upgrade user groups</a>
 		</li>
 		<li>
-			<a href="{JY:url name='musician_auth'}"> 认证音乐人</a>
+			<a href="{JY:url name='musician_auth'}"> Certified musicians</a>
 		</li>
 	</ul>
 	<div class="tab-content clearfix">
-		<p class="mb_10">你的账号：{$user['username']}(ID:{$user['uid']})</p>
-		<p class="mb_10">你的昵称：{$user['nickname']}</p>
+		<p class="mb_10">Your account number:{$user['username']}(ID:{$user['uid']})</p>
+		<p class="mb_10">your nickname:{$user['nickname']}</p>
 		<p class="mb_10">
-			所在用户组：{$user['group']['name']}
+			Where the user group:{$user['group']['name']}
 			<img height="20" src="{$user['group']['icon_url']}">
-            <a href="{JY:url name='user_upgrade'}">升级/续费</a>
+            <a href="{JY:url name='user_upgrade'}">upgrade/续费</a>
 		</p>
         {gt name="user['group']['id']" value="1"}
         <p class="mb_10">
-        到期时间：{$user['group']['end_time']|time_format}
+        Expire date:{$user['group']['end_time']|time_format}
         </p>
         {/gt}
 
-		<p class="mb_10">你的邮箱：{$user['email']}</p>
-		<p class="mb_10">注册时间：{$user['reg_time']}</p>
+		<p class="mb_10">your mailbox:{$user['email']}</p>
+		<p class="mb_10">Registration time:{$user['reg_time']}</p>
 
 		<p>你的金币余额：{$user['coin']}
-			<a class="ml_10 text-info" href="{:url('charge')}">[充值]</a>
+			<a class="ml_10 text-info" href="{:url('charge')}">[Recharge]</a>
 		<p/>
 	</div>
 </div>

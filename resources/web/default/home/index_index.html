@@ -6,11 +6,11 @@
 		<div class="row clearfix ">
 			<div class="col-sm-8">
 				<div class="new-title clearfix mb_15">
-					<h2 class="pull-left hidden-xs"><i class="jy jy-hot-s mr_10"></i>歌曲TOP12</h2>
+					<h2 class="pull-left hidden-xs"><i class="jy jy-hot-s mr_10"></i>Song TOP12</h2>
 					<ul class="pull-right tabs_nav mb_10" role="tablist">
-						<li class="active"><a class="tr_delay_hover" data-toggle="tab" role="tab" href="#new">最新添加</a></li>
-						<li><a class="tr_delay_hover" data-toggle="tab" role="tab" href="#hot">热门试听</a></li>
-						<li><a class="tr_delay_hover" data-toggle="tab" role="tab" href="#listens">推荐单曲</a></li>
+						<li class="active"><a class="tr_delay_hover" data-toggle="tab" role="tab" href="#new">Newly added</a></li>
+						<li><a class="tr_delay_hover" data-toggle="tab" role="tab" href="#hot">Hot Listening</a></li>
+						<li><a class="tr_delay_hover" data-toggle="tab" role="tab" href="#listens">Recommended singles</a></li>
 					</ul>
 				</div>
 
@@ -90,7 +90,7 @@
 
 			<div class="col-sm-4">
 				<div class="clearfix new-title mb_15">
-					<h2 class="pull-left">推荐专辑</h2>
+					<h2 class="pull-left">Recommended album</h2>
 					<div class="more mb_10">
 						<a href="{JY:url name='album')}">更多>></a>
 					</div>
@@ -104,8 +104,8 @@
 					</div>
 					<div class="col-sm-8 col-xs-7 pl_0">
 						<h4 class="mb_5 mt_5 text-ellipsis"><a href="{$v['url']}" target="_album" >{$v['name']}</a></h4>
-						<p class="small">{$v['create_time']|time_format='Y-m-d'} ，{$v['hits']}次浏览</p>
-						<p>{$v['description']|msubstr=0,30} <a class="ml_10" href="{$v['url']}" target="_album" >详细</a></p>
+						<p class="small">{$v['create_time']|time_format='Y-m-d'} ，{$v['hits']}Times to browse</p>
+						<p>{$v['description']|msubstr=0,30} <a class="ml_10" href="{$v['url']}" target="_album" >detailed</a></p>
 					</div>
 				</div>
 				<hr>
@@ -117,8 +117,8 @@
 
 		<div class="clearfix new-title">
 			<h2 class="pull-left mb_15">
-				<i class="jy jy-new-s mr_10"></i>新碟上架
-				<a href="{JY:url name='album')}" class="">/更多</a>
+				<i class="jy jy-new-s mr_10"></i>New dish shelves
+				<a href="{JY:url name='album')}" class="">/More</a>
 			</h2>
 			<div class="pull-right clearfix">
 				<button class="button_type_7 pull-left bestalbum_prev">
@@ -135,10 +135,10 @@
 				<a href="{$v['url']}" target="_album" title="{$v['name']}" class="d_block relative wrapper a_cover">
 					<img class="tr_all_hover"  src="{$v['cover_url']}" alt="{$v['name']}">
 					<span class="clearfix p_buttons d_block tr_all_hover">
-						<button class="add_fav btn_5 tr_delay_hover pull-left" title="收藏专辑" data-action="fav"  data-id="{$v['id']}" data-type="album">
+						<button class="add_fav btn_5 tr_delay_hover pull-left" title="Collection album" data-action="fav"  data-id="{$v['id']}" data-type="album">
 							<i class="jy jy-like"></i>
 						</button>
-						<span class=" btn_5 tr_delay_hover pull-left album_play" title="播放专辑" data-id="{$v['id']}">
+						<span class=" btn_5 tr_delay_hover pull-left album_play" title="Play the album" data-id="{$v['id']}">
 							<i class="jy jy-play"></i>
 						</span>
 					</span>
@@ -159,9 +159,9 @@
 			<!--音乐人-->
 			<div class="col-md-7 col-sm-12 ">
 				<div class="clearfix new-title mb_10">
-					<h2 class="pull-left"><i class="jy jy-hot-s mr_10"></i>音乐人</h2>
+					<h2 class="pull-left"><i class="jy jy-hot-s mr_10"></i>Musician</h2>
 					<div class="more mb_10">
-						<a target="_blank" href="{JY:url name='artist')}">更多>></a>
+						<a target="_blank" href="{JY:url name='artist')}">More>></a>
 					</div>
 				</div>
 
@@ -178,9 +178,9 @@
 
 			<div class="col-md-5 col-sm-12">
 				<div class="clearfix new-title mb_15">
-					<h2 class="pull-left"><i class="jy jy-hot-s mr_10"></i>分类精选</h2>
+					<h2 class="pull-left"><i class="jy jy-hot-s mr_10"></i>Classification selection</h2>
 					<div class="more mb_10">
-						<a target="_genre" title="音乐分类" href="{JY:url name='cate')}">更多>></a>
+						<a target="_genre" title="Music classification" href="{JY:url name='cate')}">More>></a>
 					</div>
 				</div>
 				<div class="clearfix s_cats">
@@ -194,8 +194,8 @@
 			<div class="col-md-12">
 				<div class="clearfix new-title mb_15">
 					<h2 class=" pull-left mb_10">
-						<i class="jy jy-hot-s mr_10"></i>分享达人
-						<a href="#" class="animate_ftr">/更多</a>
+						<i class="jy jy-hot-s mr_10"></i>Share up to people
+						<a href="#" class="animate_ftr">/More</a>
 					</h2>
 					<div class="pull-right clearfix nav_buttons_wrap animate_fade">
 						<button class="button_type_7 bg_cs_hover pull-left tr_delay_hover  bestuser_prev"><i class="jy jy-left"></i></button>
@@ -211,7 +211,7 @@
 						</div>
 						<figcaption>
 							<h4 class="fw_medium color_dark"><a href="{$v['url']}" target="_blank">{$v['nickname']}</a></h4>
-							<p class="mt_5">音乐：{$v['songs']}</p>
+							<p class="mt_5">music:{$v['songs']}</p>
 						</figcaption>
 					</figure>
 					{/JY:member}
@@ -222,7 +222,7 @@
 		<div class="row clearfix mb_20">
 			<div class="col-md-12">
 				<div class="clearfix new-title mb_15">
-					<h2 class=""><i class="jy jy-send-f mr_10"></i>友情链接</h2>
+					<h2 class=""><i class="jy jy-send-f mr_10"></i>Links</h2>
 				</div>
 				<ul>{:hook('pageFooter', ['widget'=>'links'])}</ul>
 			</div>

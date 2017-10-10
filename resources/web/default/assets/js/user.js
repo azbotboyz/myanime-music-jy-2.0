@@ -10,12 +10,12 @@ $(function($){
                     self.isLogin = false;
                     $.localStorage.remove('active_user');
                     $.cookie('dotcom_user', null);
-                    $.Notify.msg('成功退出登录，页面即将自动跳转~', 'success');
+                    $.Notify.msg('Successfully log out, the page will automatically jump~', 'success');
                     setTimeout(function(){
                         location.href=res.url;
                     },1500);
                 } else {
-                    $.Notify.msg('退出登录失败');
+                    $.Notify.msg('Exit login failed');
                 }
             }
         });
@@ -35,7 +35,7 @@ $(function($){
 				return false;
 			}else if ( form.get(0).nodeName=='FORM' ){            	
 				if ( $(this).hasClass('confirm') ) {
-					if(!confirm('确认要执行该操作吗?')){
+					if(!confirm('Are you sure you want to do this??')){
 						return false;
 					}
 				}
@@ -53,14 +53,14 @@ $(function($){
 					}
 				})
 				if ( nead_confirm && $(this).hasClass('confirm') ) {
-					if(!confirm('确认要执行该操作吗?')){
+					if(!confirm('Are you sure you want to do this??')){
 						return false;
 					}
 				}
 				query = form.serialize();
 			}else{
 				if ( $(this).hasClass('confirm') ) {
-					if(!confirm('确认要执行该操作吗?')){
+					if(!confirm('Are you sure you want to do this??')){
 						return false;
 					}
 				}
@@ -70,7 +70,7 @@ $(function($){
 			$.post(target,query).success(function(data){
 				if (data.code == 0) {
 					if (data.url) {
-						infoAlert(data.msg + ' 页面即将自动跳转~',true);
+						infoAlert(data.msg + ' The page is about to jump automatically~',true);
 					}else{
 						infoAlert(data.msg,true);
 					}
@@ -97,7 +97,7 @@ $(function($){
         }
 
         if (!parseInt(id)) {
-            $.Notify.msg('无效的参数！！');
+            $.Notify.msg('Invalid parameter! ');
         }
 
         $.Action.ajaxPost($.Url.build('/api/actions/fav'), {id : id,type : type}, function(res){
@@ -116,7 +116,7 @@ $(function($){
         var type = $this.data('type');
 
         if (!parseInt(uid)) {
-            $.Notify.msg('无效的参数！！');
+            $.Notify.msg('Invalid parameter! ');
         }
 
         $.Action.ajaxPost($.Url.build('/api/actions/follow'), {follow_uid : uid}, function(res){

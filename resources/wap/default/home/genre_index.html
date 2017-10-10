@@ -1,7 +1,7 @@
 {extend name="public/common"/}
 {block name="content"}
 <div class="tm_div  clearfix">
-	<div class="tour_title tc0" >全部分类分类</div>
+	<div class="tour_title tc0" >All classification</div>
 </div>
 <div class="tour_div clearfix">
 	<div class="clearfix">
@@ -11,7 +11,7 @@
 	</div>
 </div>
 <div class="tm_div  clearfix">
-	<div class="tour_title tc0" >所有歌曲</div>
+	<div class="tour_title tc0" >All songs</div>
 </div>
 <div class="tour_div ">
 	<ul class="song_con">
@@ -23,7 +23,7 @@
 			<a class="play" title="播放{$v['name']}" href="{$v['url']}"></a>		
 		</li>
 		{/JY:songs}	
-		<div id="load-more" class="more clearfix" style="margin-top:20px;" data-url="{:url('ajax/get_song')}" data-limit="15" data-order="{$order}">点击查看更多</div>			
+		<div id="load-more" class="more clearfix" style="margin-top:20px;" data-url="{:url('ajax/get_song')}" data-limit="15" data-order="{$order}">click to see more</div>			
 	</ul>				
 </div>
 {/block}

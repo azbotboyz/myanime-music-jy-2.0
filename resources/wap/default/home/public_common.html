@@ -35,10 +35,10 @@
 	<div class="disNav" id="disNav" style="display: none;">
 		<div class="arrow"><i></i></div>
 		<ul class="navList">
-			<li><a href="/" title="JYmusic">首页</a></li>
-			<li><a href="{JY:url name='ranks'}" title="排行榜">排行榜</a></li>
-			<li><a href="{JY:url name='album'}" title="专辑">专辑</a></li>
-			<li><a href="{JY:url name='artist'}" title="歌手大全">歌手大全</a></li>
+			<li><a href="/" title="JYmusic">Home</a></li>
+			<li><a href="{JY:url name='ranks'}" title="排行榜">Ranking</a></li>
+			<li><a href="{JY:url name='album'}" title="专辑">Album</a></li>
+			<li><a href="{JY:url name='artist'}" title="歌手大全">Singer</a></li>
 			{JY:genre result="v" limit="8" order="create_time" cache="86400"}
 			<li><a href="{$v['url']}" title="{$v['name']}">{$v['name']}</a></li>
 			{/JY:genre}
@@ -50,10 +50,10 @@
 		<div class="tm_div">
 			<div class="renqi_1">
 				<ul id="top10">
-					<li class="{if condition="$Request.controller eq 'Index'"}yesselected{else /}noselected{/if}"><a href="{:url('/')}">首页</a></li>
-					<li class="{if condition="$Request.controller eq 'Album'"}yesselected{else /}noselected{/if}" ><a href="{:url('/album')}">专辑</a></li>
-					<li class="{if condition="$Request.controller eq 'Artist'"}yesselected{else /}noselected{/if}"><a href="{:url('/artist')}">艺术家</a></li>
-					<li class="{if condition="$Request.controller eq 'Ranks'"]yesselected{else /}noselected{/if}"><a href="{:url('/ranks')}">排行榜</a></li>
+					<li class="{if condition="$Request.controller eq 'Index'"}yesselected{else /}noselected{/if}"><a href="{:url('/')}">Home</a></li>
+					<li class="{if condition="$Request.controller eq 'Album'"}yesselected{else /}noselected{/if}" ><a href="{:url('/album')}">Album</a></li>
+					<li class="{if condition="$Request.controller eq 'Artist'"}yesselected{else /}noselected{/if}"><a href="{:url('/artist')}">artist</a></li>
+					<li class="{if condition="$Request.controller eq 'Ranks'"]yesselected{else /}noselected{/if}"><a href="{:url('/ranks')}">Ranking</a></li>
 				</ul>
 			</div>
 		</div>

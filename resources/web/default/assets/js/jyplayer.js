@@ -37,7 +37,7 @@ $(document).ready(function() {
         error : function() {
             if (JY.curPlayId && JY.maxError < 3) {
                 ++JY.maxError;
-                infoAlert('抱歉歌曲加载失败，加载下一首歌曲...');
+                infoAlert('Sorry song failed to load and load the next song...');
                 setTimeout(palayNext, 500);
             }
         }
@@ -57,7 +57,7 @@ $(document).ready(function() {
         }
         JY.setCookie('player', {status : 'play', index  : JY.curPlayerIndex}); 
         $cur.addClass('playing').siblings().removeClass('playing');
-        infoAlert('已开始播放');
+        infoAlert('Has started playing');
     });
 
     //暂停事件
@@ -253,13 +253,13 @@ $(document).ready(function() {
         var lrc = song.lrc;
         $('#l-title').html(song.name);
         if ($.type(lrc) != 'null') {
-            $('#lrc_list').html('歌词加载中....');
+            $('#lrc_list').html('Lyrics loaded....');
             $('.lrc-content').text(lrc);
             $.lrc.start(lrc, function() {
                 return time;
             });
         } else {
-            $('#lrc_list').html('<li>没有找到相关歌词....</li>');
+            $('#lrc_list').html('<li>Did not find the relevant lyrics....</li>');
             $.lrc.stop();
         }
 

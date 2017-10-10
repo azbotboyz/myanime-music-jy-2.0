@@ -1,7 +1,7 @@
 {extend name="public/common"/}
 {block name="content"}
 <div class="tour_div clearfix">
-	<div class="tour_title tc0"><a  href="javascript:;">全部专辑</a></div>
+	<div class="tour_title tc0"><a  href="javascript:;">All albums</a></div>
 </div>
 {JY:album result="v" limit="10" order="create_time"}
 <div class="tm_div al_ls">
@@ -16,5 +16,5 @@
 	</div>
 </div>
 {/JY:album}
-<div id="load-more" class="more" data-type="album" data-url="{:url('api/v1.Albums/index', ['field'=>'id,name,cover_url'])}">点击查看更多</div>
+<div id="load-more" class="more" data-type="album" data-url="{:url('api/v1.Albums/index', ['field'=>'id,name,cover_url'])}">click to see more</div>
 {/block}

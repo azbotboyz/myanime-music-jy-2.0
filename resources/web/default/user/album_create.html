@@ -4,30 +4,30 @@
 <div class="tabbable tabbable-custom tabbable-reversed">
 	<ul class="nav nav-tabs">
 		<li>
-			<a href="{JY:url name='user_album'}">我的专辑</a>
+			<a href="{JY:url name='user_album'}">My album</a>
 		</li>
 		<li  class="active">
-			<a href="javascript:;">添加专辑</a>
+			<a href="javascript:;">Add album</a>
 		</li>
 	</ul>
 	<div class="tab-content">
 		<div id="tab_in" class="tab-pane active">
 			<div class="alert alert-warning">
-				<b>随意创建专辑，我将会立即删除，多次随意创建封号处理 </b>
+				<b>Free to create the album, I will immediately delete, many times to create title processing </b>
 			</div>
 			<form class="form-horizontal" action="{JY:url name='album_save'}" method="post" id="album-form">
 				<div class="form-body">
 				    <div class="form-group">
-                   		<label class="col-lg-3 control-label">专辑名称*</label>
+                   		<label class="col-lg-3 control-label">The album name*</label>
                     	<div class="col-lg-4">
 							<input type="text" name="name" value="{$data.name|default=''}" class="form-control">																
 						</div>                           
                     </div>
 					<div class="form-group">
-                        <label class="col-lg-3 control-label">所属分类*</label>                                
+                        <label class="col-lg-3 control-label">category*</label>                                
                         <div class="col-lg-4">
                             <select class="form-control" name="type_id">
-                            	<option>---选择分类---</option>
+                            	<option>---Choose category---</option>
 								{JY:altype result="vo" limit="10"}
                           	    <option {if condition="isset($data['type_id'])"} {eq name="data['type_id']" value="$vo['id']"}selected='selected'{/eq}{/if} value="{$vo.id}">{$vo.name}</option>
                             	{/JY:altype}
@@ -36,7 +36,7 @@
                     </div>
                     
                      <div class="form-group">
-                        <label class="col-md-3 control-label">上传封面</label>
+                        <label class="col-md-3 control-label">Upload cover</label>
                         <div class="col-md-8">
                         	<div id="cover-view"></div>
                             <div class="bootstrap-filestyle input-group" id="cover-upload-warp">
@@ -45,7 +45,7 @@
                                 <span class="input-group-btn">
                                     <label class="btn btn-default fileinput-button" style="padding: 7px 12px;">
                                         <span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span>
-                                        <span class="buttonText">选择文件</span>
+                                        <span class="buttonText">Select a document</span>
                                         <input id="upload-cover" type="file" name="files[]" multiple
                                         data-file-type="image"
                                         data-upload-type="cover"
@@ -59,23 +59,23 @@
                     </div>
 		          
                    	<div class="form-group">
-                   		<label class="col-lg-3 control-label">唱片公司</label>
+                   		<label class="col-lg-3 control-label">Record company</label>
                     	<div class="col-lg-4">
 							<input type="text" value="{$data.company|default=''}" name="company" class="form-control">							
 						</div>                           
                     </div>
 
 					<div class="form-group">
-						<label class="col-md-3 control-label">专辑介绍*</label>
+						<label class="col-md-3 control-label">Album introduction*</label>
 	                    <div class="col-md-8">
-	                        <textarea class="form-control" name="introduce" rows="4" placeholder="请填专辑介绍">{$data.introduce|default=''}</textarea>
+	                        <textarea class="form-control" name="introduce" rows="4" placeholder="Please fill in the album">{$data.introduce|default=''}</textarea>
 
 	                    </div>                  	
 	                </div>
 					<input type="hidden" name="__token__" value="{$Request.token}" />
 					<div class="form-group ">
 						<div class="col-md-4 col-md-offset-3">
-							<button class="btn btn-danger" tagform="#album-form">确认提交</button>
+							<button class="btn btn-danger" tagform="#album-form">confirm submission</button>
 						</div>
 					</div>
 				</div>
@@ -117,12 +117,12 @@ $().ready(function() {
 		},
 		messages: {
 			alb: {
-				required: '名称不能为空',
-				rangelength:'名称长度2-32个字符'
+				required: 'Name is required',
+				rangelength:'Name Length 2-32 characters'
 			},
 			type: {
-				required: "请选择所属分类",
-				digits: "请选择所属分类"
+				required: "Please choose your category",
+				digits: "Please choose your category"
 			}
 		}
 	});

@@ -12,7 +12,7 @@
 					<div class="search-box mt_15" >
 						<form role="search" class="relative type_2" id="search_form" method="get" action="{JY:url name='search'}">
 							<input type="text" class="d_none" name="type" value="1" >
-							<input type="text" class="full_width" name="keys" placeholder="搜索">
+							<input type="text" class="full_width" name="keys" placeholder="search for">
 							<button class="search_button tr_all_hover">
 								<i class="jy jy-search"></i>
 							</button>
@@ -24,9 +24,9 @@
 						<li class="user-show">
 							<span><i class="jy jy-login"></i></span>
 							<span >
-								<a href="#" class=" user-show" id="login_btn">登录</a>
+								<a href="#" class=" user-show" id="login_btn">log in</a>
 								|
-								<a href="{JY:url name='user_signup'}" class="reg_btn" >注册</a>
+								<a href="{JY:url name='user_signup'}" class="reg_btn" >registered</a>
 							</span>
 						</li>
 						<li class="user-hide">
@@ -37,33 +37,33 @@
 						<li>
 							<a target="_user" href="{JY:url name='music_share'}" class="reg_btn" >
 								<span><i class="jy jy-cloud-up"></i></span>
-								<span>上传</span>
+								<span>Upload</span>
 							</a>
 						</li>
 						<li>
 							<a target="_user" href="{JY:url name='musician_auth'}" class="reg_btn" >
 								<span><i class="jy jy-round-music"></i></span>
-								<span>认证</span>
+								<span>Certification</span>
 							</a>
 						</li>
 
 						<li class="user-hide">
 							<a id="upage-url" href="" target="_user">
 								<span><i class="jy jy-Profile"></i></span>
-								<span>主页</span>
+								<span>Home page</span>
 							</a>
 						</li>
 
 						<li class="user-hide">
 							<a target="_user" href="{JY:url name='user_account'}">
 								<span><i class="jy jy-edit"></i></span>
-								<span>设置</span>
+								<span>Set up</span>
 							</a>
 						</li>
 						<li id="login_out" class="user-hide">
 							<a target="_user"  href="javascript:;" url="{JY:url name='logout')}">
 								<span><i class="jy jy-logout"></i></span>
-								<span>退出</span>
+								<span>drop out</span>
 							</a>
 						</li>
 					</ul>
@@ -87,7 +87,7 @@
 						<nav role="navigation" >
 							<div class="navbar-header">
 								<button type="button" class="navbar-toggle collapsed bg_scheme_color mt_0" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-									<span class="sr-only">切换导航</span>
+									<span class="sr-only">Switch navigation</span>
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
@@ -111,10 +111,10 @@
 												<i class="jy jy-like jy-2x"></i>
 												<span class="count tr_delay_hover type_2 circle t_align_c">10</span>
 											</span>
-											<b>每日推荐</b>
+											<b>Daily recommendation</b>
 										</a>
 										<div class="songs-day-hot top_arrow tr_all_hover ">
-											<div class=" sc_header">每日推荐</div>
+											<div class=" sc_header">Daily recommendation</div>
 											<ul class="products_list">
 												{JY:songs result="v" limit="6" pos="1" cache="86400" order="update_time"}
 												<li>

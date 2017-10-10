@@ -10,19 +10,19 @@
 					</div>
 					<figcaption>
 						<h2 class="mb_10 mt_10">{$data.name}</h2>
-						<button class="btn_1  tr_all_hover mb_5 music-action-btn" data-id="{$data['id']}" data-action="fav"  data-type="artist" ><i class="jy jy-fav"></i>收藏 ({$data.favtimes})</button>
+						<button class="btn_1  tr_all_hover mb_5 music-action-btn" data-id="{$data['id']}" data-action="fav"  data-type="artist" ><i class="jy jy-fav"></i>Collection ({$data.favtimes})</button>
 						<ul class="horizontal_list l_width_divider row clearfix pt_10">
 							<li class="f_md_none  t_align_c col-lg-4">
 								<strong><JY:count artist_id="$data['id']" /></strong>
-								<span>首歌曲</span>
+								<span>Song</span>
 							</li>
 							<li class="f_md_none t_align_c col-lg-4">
 								<strong><JY:count name="album" artist_id="$data['id']" /></strong>
-								<span>张专辑</span>
+								<span>Album</span>
 							</li>
 							<li class="f_md_none col-lg-4 t_align_c">
 								<strong>{$data['hits']}</strong>
-								<span>次浏览</span>
+								<span>Times to browse</span>
 							</li>
 						</ul>
 						<hr class="mb_10 ">
@@ -30,8 +30,8 @@
 				</figure>
 				<div class="sidebar_content">
 					<div class="mb_15 pt_10">
-						<p class="d_inline_b mr_20">所属类别: {$data.type_name}</p>
-						<p class="d_inline_b">所属地区: {$data.region}</p>
+						<p class="d_inline_b mr_20">category: {$data.type_name}</p>
+						<p class="d_inline_b">district belong to: {$data.region}</p>
 					</div>
 
 				</div>
@@ -41,11 +41,11 @@
 			<section class="col-sm-8 mb_10">
 				<div class="clearfix pt_10 mb_10">
 					<ul class="tabs_nav pull-left">
-						<li><a href="{$data['url']}" target="_self">详细介绍</a></li>
-						<li class="active"><a href="javascript:;">歌曲列表</a></li>
-						<li><a href="{$data['album_url']}" target="_self">专辑列表</a></li>
+						<li><a href="{$data['url']}" target="_self">Detailed description</a></li>
+						<li class="active"><a href="javascript:;">Song list</a></li>
+						<li><a href="{$data['album_url']}" target="_self">Album list</a></li>
 					</ul>
-					<h3 class="pull-right"> {$data['name']} - 全部歌曲</h3>
+					<h3 class="pull-right"> {$data['name']} - All songs</h3>
 				</div>
 				<hr>
 
@@ -74,7 +74,7 @@
 
 						<div class="row clearfix mb_5">
 							<div class="col-sm-4 clearfix ">
-								<span class="page_total">共{$lv_total}首歌曲</span>
+								<span class="page_total">Altogether{$lv_total}Song</span>
 							</div>
 							<div class="col-sm-8 t_align_r">
 								<ul class="horizontal_list clearfix d_inline_middle ml_10 page_list">{$lv_page}</ul>

@@ -22,7 +22,7 @@
                         <div class="search-box mt_15">
                             <form role="search" class="relative type_2" id="search_form" method="get" action="{JY:url name='search'}">
                                 <input type="text" class="d_none" name="type" value="songs">
-                                <input type="text" class="full_width" name="keys" placeholder="搜索">
+                                <input type="text" class="full_width" name="keys" placeholder="search for">
                                 <button class="search_button tr_all_hover">
                                     <i class="jy jy-search"></i>
                                 </button>
@@ -32,7 +32,7 @@
                     
                     <ul class=" clearfix users_nav mt_15">
                         <li class="user-show">
-                            <a href="{JY:url name='user_signup'}" class="reg_btn btn_8" >注册</a>
+                            <a href="{JY:url name='user_signup'}" class="reg_btn btn_8" >registered</a>
                         </li>
                     </ul>
 
@@ -47,13 +47,13 @@
             <div class="container">
                 <div class="row clearfix">
                     <section class="col-sm-6 col-sm-offset-3 login-box" >
-                        <h2 class="mb_20"><i class="jy jy-login mr_20"></i>用户登录</h2>
+                        <h2 class="mb_20"><i class="jy jy-login mr_20"></i>User login</h2>
                         <hr>
                         <!--login form-->
                         <form method="post" name="validator-form" id="login_form" action="{JY:url name='user_sign'}" class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">
-                                    用户名<span class="scheme_color">*</span>
+                                    username<span class="scheme_color">*</span>
                                 </label>    
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" required name="username" id="username">
@@ -62,7 +62,7 @@
 
                             <div class="form-group">
                                 <label class="col-lg-3 control-label">
-                                    密码<span class="scheme_color">*</span>
+                                    password<span class="scheme_color">*</span>
                                 </label>
                                 <div class="col-sm-9">     
                                     <input type="password" class="form-control" required name="password" id="pass">										
@@ -71,11 +71,11 @@
 
                             {if condition="config('verify_off') eq '1' "}
                             <div class="form-group">
-                                <label class="control-label col-sm-3">验证码<span class="scheme_color">*</span></label>
+                                <label class="control-label col-sm-3">Verification code<span class="scheme_color">*</span></label>
                                 <div class="col-sm-9">
                                     <div class="verify-wrp">
                                         <input type="text" id="inputPassword" class="form-control" required placeholder="请输入验证码" name="verify">
-                                        <img class="verifyimg reloadverify" alt="点击切换" src="{JY:url name='user_captcha'}" style="cursor:pointer;">
+                                        <img class="verifyimg reloadverify" alt="Click toggle" src="{JY:url name='user_captcha'}" style="cursor:pointer;">
                                     </div>
                                 </div>
                             </div>
@@ -95,17 +95,17 @@
                             <div class="form-group">
                                  <div class="col-sm-9 col-sm-offset-3">
                                     <input type="checkbox" id="checkbox_4" checked name="autologin" class="pull-left">
-                                    <label for="checkbox_4">记住我</label>
+                                    <label for="checkbox_4">remember me</label>
 
                                     <span>
-                                        <a class="pull-right ml_10" href="{JY:url name='user_findpwd'}">忘记密码?</a>
+                                        <a class="pull-right ml_10" href="{JY:url name='user_findpwd'}">forget password?</a>
                                     </span>
                                 </div>
                             </div>
                             <input type="hidden" name="__token__" value="{$Request.token}" />
                             <div class="form-group">
                                 <div class="col-sm-9 col-sm-offset-3">
-                                    <button class="btn_8">登录</button>
+                                    <button class="btn_8">log in</button>
                                     <a class="sina-btn" href="{JY:url name='oauth_weibo'}" class="color_dark"><i class="jy jy-sina"></i></a>
                                     <a class="qq-btn" href="{JY:url name='oauth_qq'}" class="color_dark"><i class="jy jy-qq"></i></a>
                                 </div>
@@ -146,12 +146,12 @@
             },
             messages: {
                 username: {
-                    required: '用户名不能为空',
-                    rangelength: '用户名长度4-15个字符',
+                    required: 'Username can not be empty',
+                    rangelength: 'User name length 4-15个字符',
                 },
                 password :{
-                    required: '密码不能为空',
-                    rangelength: '密码长度5-30个字符',
+                    required: 'password can not be blank',
+                    rangelength: 'Password length 5-30 characters',
                 }
             }
         });

@@ -575,7 +575,7 @@ $(function($) {
                 }
             },
             error: function(){
-                console.log('用户登录获取失败');
+                console.log('User login failed');
             }
         });
         return false;
@@ -605,7 +605,7 @@ $(function($) {
         }
 
         if (!parseInt(id)) {
-            $.Notify.msg('无效的参数！！');
+            $.Notify.msg('Invalid parameter! ');
             return false;
         }
 
@@ -629,7 +629,7 @@ $(function($) {
         }
 
         if (!parseInt(id)) {
-            $.Notify.msg('无效的参数！！');
+            $.Notify.msg('Invalid parameter! ');
             return false;
         }
 
@@ -658,10 +658,10 @@ $(function($) {
             $btn.show().click(function(argument) {
                 if ($btn.hasClass('active')) {
                     $introduce.css('height', '120px');
-                    $btn.html('展开<i class="jy jy-sort-down"></i>').removeClass('active');
+                    $btn.html('Unfolded<i class="jy jy-sort-down"></i>').removeClass('active');
                 } else {
                     $introduce.css('height', 'auto');
-                    $btn.html('收起<i class="jy jy-sort-up"></i>').addClass('active');
+                    $btn.html('Put away<i class="jy jy-sort-up"></i>').addClass('active');
                 } 
             })
         }
@@ -680,7 +680,7 @@ $(function($) {
         var url = form.attr('action');
         var keys = form.find("input[name='keys']").val();
         if (!$.trim(keys)) {
-            JY.tipMsg('请输入搜索关键字');
+            JY.tipMsg('Please enter your search keywords');
             return false;
         }
         var query = form.find('input').serialize();
@@ -737,7 +737,7 @@ function downMusic(sid) {
 
 function getDownUrl(sid) {
 
-    $.Notify.load('正在获取文件...');
+    $.Notify.load('Getting file...');
     $.ajax({
         type: "post",
         url: U('user/down/get'),
@@ -749,19 +749,19 @@ function getDownUrl(sid) {
                 var html = '';
                 if (file.is_local === 1) {
                     html ='<p class="text-center mt_20">'+
-                        '<a class="btn btn-success" target="_blank" href="' + file['down_url'] + '">【点击自动下载】</a>'+
+                        '<a class="btn btn-success" target="_blank" href="' + file['down_url'] + '">【Click to download automatically】</a>'+
                     '</p>'+
                     '<p class="text-center mt_20">'+
-                        '<a class="btn btn-success"  href="' + file['down_url'] + '" >【使用右键另存】</a>'+
+                        '<a class="btn btn-success"  href="' + file['down_url'] + '" >【Use right click to save】</a>'+
                     '</p>';
 
                 } else if (file.is_disk === 1) {
-                    html = '<p class="text-center mt_20">网盘验证码：<b class="text-danger">' + file['disk_pass'] + '</b></p>' +
-                        '<p class="text-center mt_20">网盘链接地址<a class="text-info" href="' + file['disk_url'] + '" target="_blank">【点击前往】</a></p>';
+                    html = '<p class="text-center mt_20">Network Verification Code:<b class="text-danger">' + file['disk_pass'] + '</b></p>' +
+                        '<p class="text-center mt_20">Network link address<a class="text-info" href="' + file['disk_url'] + '" target="_blank">【Click to】</a></p>';
 
                 } else {
-                    html ='<p class="text-center mt_20"><a class="btn btn-success" href="' + file['down_url'] + '">【使用右键另存1】</a></p>' +
-                        '<p class="text-center mt_20"><a class="btn btn-success"  href="' + file['down_url'] + '" >【使用右键另存2】</a></p>';
+                    html ='<p class="text-center mt_20"><a class="btn btn-success" href="' + file['down_url'] + '">【Use Right Save 1】</a></p>' +
+                        '<p class="text-center mt_20"><a class="btn btn-success"  href="' + file['down_url'] + '" >【Use Right Save 2】</a></p>';
                 }
                 $.Notify.closeLoad();
                 $.Notify.open(html, '下载[' + file['name'] + ']', 300, 200);

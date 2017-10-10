@@ -5,12 +5,12 @@
 		<div class="row clearfix">
 			<div class="col-sm-8 col-xs-12">
 				<div class="clearfix mb_15">
-                    <h2 class="pull-left pt_10">全部艺人</h2>
+                    <h2 class="pull-left pt_10">All artists</h2>
                     <div class="custom_select relative portfolio_filter clearfix pull-right">
-                        <div class="select_title type_2  relative mw_0">本页分类类型</div>
+                        <div class="select_title type_2  relative mw_0">This page classification type</div>
                         <ul id="filter_portfolio" class="select_list d_none"></ul>
                         <select>
-                            <option data-filter="*" value="All">全部</option>
+                            <option data-filter="*" value="All">All</option>
                             {JY:artype result="vo"}
                                 <option data-filter=".type_{$vo.id}" value="type_{$vo.id}">{$vo.name}</option>
                             {/JY:artype}
@@ -38,7 +38,7 @@
 				
 				<div class="clearfix mb_15">
 					<div class="col-sm-4 col-xs-5">
-						<p class="page_total">{$vo_total}位音乐人</p>
+						<p class="page_total">{$vo_total}Musicians</p>
 					</div>
 					<div class="col-sm-8 col-xs-7 t_align_r">
 						<ul class="horizontal_list clearfix d_inline_middle ml_10 page_list">{$vo_page}</ul>				
@@ -49,7 +49,7 @@
 			
 			<div class="col-sm-4 col-xs-12">
 				<!--侧边栏-->
-				<h2 class="pt_10">新晋艺人<a href="{JY:url name='Artist')}" class="">/更多</a></h2>
+				<h2 class="pt_10">New artist<a href="{JY:url name='Artist')}" class="">/More</a></h2>
 				<hr>
 				<div class="sidebar_content">
 					{JY:artist result="v" limit="6" cache_time="86400" order="create_time"}
@@ -58,14 +58,14 @@
 							<a href="{$v.url}" class="d_block ">{$v['name']}</a>
 							<p class="scheme_color">
 								<span class="pull-left"><i class="jy jy-fire"></i> {$v['hits']}</span>
-								<a href="{$v['url']}" class=" button_type_19  pull-right tr_delay_hover  bg_dark_color">详细</a>
+								<a href="{$v['url']}" class=" button_type_19  pull-right tr_delay_hover  bg_dark_color">detailed</a>
 							</p>
 						</div>
 						<hr class="mb_15">
 					{/JY:artist}
 				</div>
 
-				<h2 class="pt_10">热门试听</h2>
+				<h2 class="pt_10">Hot Listening</h2>
 				<hr>
 				<div class="sidebar_content">
 					{JY:songs result="v" limit="10" cache="86400" order="listens"}

@@ -4,27 +4,27 @@
 <div class="tabbable tabbable-custom tabbable-reversed">
 	<ul class="nav nav-tabs">
 		<li>
-			<a href="{JY:url name='user_account'}">账户总览</a>
+			<a href="{JY:url name='user_account'}">Account overview</a>
 		</li>
 		<li>
-			<a href="{JY:url name='user_charge'}">金币充值</a>
+			<a href="{JY:url name='user_charge'}">Gold coins recharge</a>
 		</li>
 		<li class="active">
-			<a href="javascript:;"> 升级用户组</a>
+			<a href="javascript:;"> Upgrade user groups</a>
 		</li>
 		<li>
-			<a href="{JY:url name='musician_auth'}"> 认证音乐人</a>
+			<a href="{JY:url name='musician_auth'}"> Certified musicians</a>
 		</li>
 	</ul>
 	<div class="tab-content clearfix">
-		<p class="mb_10">你的余额：
+		<p class="mb_10">Your balance:
             <span class="d_inline_b ml_10 text-danger">{$user['coin']}</span>
-			<a class="ml_10 text-info" href="{JY:url name='user_charge'}">[充值]</a>
+			<a class="ml_10 text-info" href="{JY:url name='user_charge'}">[Recharge]</a>
         </p>
 
 		<div class="vip-select clearfix">
 			<div class="form-group">
-				<label class="col-md-2 control-label">选择类型</label>
+				<label class="col-md-2 control-label">Choose a type</label>
 				<div class="col-md-6">
                     {JY:loop name="list" result="vo" index="gi"}
                     <label class="radio-inline">
@@ -46,28 +46,28 @@
                 {/if}
                     <div class="row clearfix mt_20 mb_15">
                         <label class="col-md-2 control-label">
-                            {eq name="user['group']['id']" value="$vo['id']"}续费{else/}购买{/eq}
+                            {eq name="user['group']['id']" value="$vo['id']"}Renewal fee{else/}buy{/eq}
                         </label>
                     </div>
                     <ul class="package-list clearfix">
                         <li data-type="month_coin" class="item active">
                             <a href="javascript:void(0);">
-                                <b class="amount">一个月</b>
-                                <b class="price">{$vo['rule']['month_coin']}金币</b>
+                                <b class="amount">A month</b>
+                                <b class="price">{$vo['rule']['month_coin']}gold</b>
                             </a>
                         </li>
 
                         <li  data-type="half_year_coin" class="item">
                             <a href="javascript:void(0);">
-                                <b class="amount">半年</b>
-                                <b class="price">{$vo['rule']['half_year_coin']}金币</b>
+                                <b class="amount">Six months</b>
+                                <b class="price">{$vo['rule']['half_year_coin']}gold</b>
                             </a>
                         </li>
 
                         <li data-type="year_coin" class="item">
                             <a href="javascript:void(0);">
-                                <b class="amount">一年</b>
-                                <b class="price">{$vo['rule']['year_coin']}金币</b>
+                                <b class="amount">A year</b>
+                                <b class="price">{$vo['rule']['year_coin']}gold</b>
                             </a>
                         </li>
                     </ul>
@@ -82,7 +82,7 @@
 				<form class="form-horizontal" action="{JY:url name='user_upgrade'}" method="post" id="pay-vip-form">
 					<input type="hidden" name="pay_type" value="month_coin" />
                     <input type="hidden" name="pay_group" value="" />
-					<button class="btn btn-danger" id="pay-vip-btn">确认提交</button>
+					<button class="btn btn-danger" id="pay-vip-btn">confirm submission</button>
 				</form>
 			</div>
 		</div>

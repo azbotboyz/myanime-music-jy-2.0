@@ -11,17 +11,17 @@
 	<div class="tour_info">
 		<ul>
 			<li>
-				<span class="info_ti">所属类别:</span>
+				<span class="info_ti">category:</span>
 				<span class="info_dt">{$data.type_name}</span>
 			</li>
 			
 			<li>
-				<span class="info_ti">所属地区:</span>
-				<span class="info_dt">{$data.region|default="未知"}</span>
+				<span class="info_ti">district belong to:</span>
+				<span class="info_dt">{$data.region|default="unknown"}</span>
 			</li>
 			<li>
-				<span class="info_ti">详细介绍:</span>
-				<span class="info_dt">{$data['introduce']|default="暂无介绍"}</span>
+				<span class="info_ti">Detailed description:</span>
+				<span class="info_dt">{$data['introduce']|default="No introduction"}</span>
 			</li>
 		</ul>
 	</div>
@@ -29,8 +29,8 @@
 
 <div class="tour_div tabs">
 	<div class="tour_title tc0">
-		<a class="show_tab active" href="#tab1">{$data['name']}新歌</a>
-		<a class="show_tab" href="#tab2">{$data['name']}专辑 </a>
+		<a class="show_tab active" href="#tab1">{$data['name']}New song</a>
+		<a class="show_tab" href="#tab2">{$data['name']}Album </a>
 		<!--a class="tour_more">>></a-->
 	</div>
 	<div class="tab_con in" id="tab1">

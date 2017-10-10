@@ -7,11 +7,11 @@
 			<!--搜索列表-->			
 			<section class="col-sm-10 col-sm-offset-1">
 				<div class="clearfix">
-					<h3 class="pull-left pt_10"> [ {$keys} ]</span>的搜索结果</h3>
+					<h3 class="pull-left pt_10"> [ {$keys} ]</span>Search results</h3>
 					<ul class="tabs_nav pull-right">
-						<li><a href="{:url('home/Search/index','type=1&keys='.$keys)}" class="tr_delay_hover d_block">搜索相关歌曲</a></li>
+						<li><a href="{:url('home/Search/index','type=1&keys='.$keys)}" class="tr_delay_hover d_block">Search for related songs</a></li>
 						<li class="active"><a href="JavaScript:;" class="tr_delay_hover d_block ">专辑</a></li>
-						<li><a href="{:url('home/Search/index','type=2&keys='.$keys)}" class="tr_delay_hover d_block">搜索相关艺人</a></li>
+						<li><a href="{:url('home/Search/index','type=2&keys='.$keys)}" class="tr_delay_hover d_block">Search Related Artists</a></li>
 					</ul>
 				</div>
 				<hr>
@@ -37,14 +37,14 @@
 						<hr class="mb_10 ">
 						<div class="row clearfix mb_5">
 							<div class="col-sm-6">
-								<span class="page_total">共查询到相关专辑【{$_total}】个</span>
+								<span class="page_total">Check the relevant album{$_total}】个</span>
 							</div>
 							<div class="col-sm-6">
 								<ul class="horizontal_list pull-right page_list">{$_page}</ul>
 							</div>
 						</div>
 						{else /}
-							很抱歉，没有找到相关的结果						 
+							Sorry, no related results found						 
 					{/present} 
 					</div>
 				</div>

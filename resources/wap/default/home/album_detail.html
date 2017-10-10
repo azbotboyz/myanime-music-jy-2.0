@@ -11,26 +11,26 @@
 	<div class="tour_info">
 		<ul>
 			<li>
-				<span class="info_ti">发行时间:</span>
+				<span class="info_ti">publish time:</span>
 				<span class="info_dt">{$data['pub_time']}</span>
 			</li>
 			
 			<li>
-				<span class="info_ti">所属类型:</span>
-				<span class="info_dt">{$data['type_name']|default="未知"}</span>
+				<span class="info_ti">Belong to type:</span>
+				<span class="info_dt">{$data['type_name']|default="unknown"}</span>
 			</li>
 			<li>
-				<span class="info_ti">唱片公司:</span>
-				<span class="info_dt">{$data['company']|default="未知"}</span>
+				<span class="info_ti">Record company:</span>
+				<span class="info_dt">{$data['company']|default="unknown"}</span>
 			</li>
 			<li>
-				<span class="info_ti">所属歌手:</span>
+				<span class="info_ti">Singer:</span>
 				<span class="info_dt"><a href="{$data['artist_url']}">{$data['artist_name']}</a></span>
 			</li>
 			
 			<li>
-				<span class="info_ti">详细介绍:</span>
-				<span class="info_dt">{$data['introduce']|default="暂无介绍"}</span>
+				<span class="info_ti">Detailed description:</span>
+				<span class="info_dt">{$data['introduce']|default="No introduction"}</span>
 			</li>
 		
 		</ul>
@@ -38,7 +38,7 @@
 </div>
 
 <div class="tour_div">
-	<div class="tour_title tc0">{$data['name']}的全部歌曲</div>
+	<div class="tour_title tc0">{$data['name']}All the songs</div>
 	<ul class="song_con">
 		{JY:songs result="v" album="$data['id']" limit="15" order="listens"}
 		<li>

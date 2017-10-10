@@ -19,7 +19,7 @@
 						<div>
 							<h1>{$v['title']}</h1>
 							<p>{$v['create_time']|time_format}</p>
-							<span>{$v['description']|msubstr=0,80}[详细]</span>
+							<span>{$v['description']|msubstr=0,80}[detailed]</span>
 						</div>
 					</a>
 					{/JY:info}		
@@ -48,7 +48,7 @@
 				<div class="side_info_con">{:hook('Ads','right_up')}</div>
 				<div class="side_info_con">
 					<div class="top_list ">
-						<h2 class="hd">最新推荐</h2>
+						<h2 class="hd">Latest Recommended</h2>
 						<ul>
 							{JY:info result="v" limit="10" cache="86400" key="li"}
 		

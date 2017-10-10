@@ -2,8 +2,8 @@
 {block name="content"}
 <div class="tour_div tabs">
 	<div class="tour_title tc0">
-		<a class="show_tab active" href="#tab1">新歌推荐</a>
-		<a class="show_tab" href="#tab2">热门试听 </a>
+		<a class="show_tab active" href="#tab1">New song recommended</a>
+		<a class="show_tab" href="#tab2">Hot Listening </a>
 		<!--a class="tour_more">>></a-->
 	</div>
 	<div class="tab_con in" id="tab1">
@@ -36,8 +36,8 @@
 
 <div class="tour_div clearfix">
 	<div class="tour_title tc0">
-		<a  href="javascript:;">新碟首发</a>
-		<a class="tour_more" href="{JY:url name='album'}">更多>></a>
+		<a  href="javascript:;">New disc starting</a>
+		<a class="tour_more" href="{JY:url name='album'}">More>></a>
 	</div>
 	{JY:album result="v" limit="8" order="create_time" cache="86400"}
 	<div class="al_con">
@@ -51,8 +51,8 @@
 
 <div class="tour_div clearfix">
 	<div class="tour_title tc0">
-		<a  href="javascript:;">热门分类</a>
-		<a class="tour_more" href="{JY:url name='genre'}">更多>></a>
+		<a  href="javascript:;">Top Categories</a>
+		<a class="tour_more" href="{JY:url name='genre'}">More>></a>
 	</div>
 	<div class="clearfix">
 		{JY:genre result="v" limit="10" order="create_time" cache="86400"}
@@ -64,8 +64,8 @@
 
 <div class="tour_div clearfix">
 	<div class="tour_title tc0">
-		<a  href="javascript:;">热门歌手</a>
-		<a class="tour_more" href="{JY:url name='artist'}">更多>></a>
+		<a  href="javascript:;">Popular singer</a>
+		<a class="tour_more" href="{JY:url name='artist'}">More>></a>
 	</div>
 	{JY:artist result="v" limit="21" order="create_time" cache="86400"}
 	<div class="ar_con">

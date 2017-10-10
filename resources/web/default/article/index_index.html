@@ -15,7 +15,7 @@
 			</section>
 
 			<aside class="col-sm-4">
-				<h2 class="hd">热门推荐</h2>
+				<h2 class="hd">Popular recommendation</h2>
 				<div class="row">
 					{JY:info result="v"  limit="4" order="hits" cache="86400"}
 					<div class="col-sm-6 top_info">
@@ -79,7 +79,7 @@
 				{:hook('Ads','right_up')}
 				</div>
 				<div class="side_info_con">
-					<h2 class="hd">热点资讯</h2>
+					<h2 class="hd">Hot news</h2>
 					<ul class="side_info_list">
 						{JY:info result="v" cover="1" limit="4,8" order="hits" cache="86400"}
 						<li><a target="_blank" href="{$v['url']}"><img width="74" height="56" border="0" src="{$v['cover_url']}" alt="{$v['title']}"></a>

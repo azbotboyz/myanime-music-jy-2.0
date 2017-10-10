@@ -17,7 +17,7 @@
 		var uploader, file;
 
 		if ( !Uploader.support() ) {
-			alert( 'Web Uploader 不支持您的浏览器！');
+			alert( 'Web Uploader Do not support your browser!');
 			throw new Error( 'WebUploader does not support the browser you are using.' );
 		}
 		// hook,
@@ -109,14 +109,14 @@
 					var text;
 					switch( code ) {
 						case 'F_EXCEED_SIZE':
-							text = '单个文件大小超出限制';
+							text = 'A single file size exceeds the limit';
 							break;
 
 						case 'Q_TYPE_DENIED':
-							text = '文件类型错误';
+							text = 'File type is wrong';
 
 						default:
-							text = '上传失败，请重试';
+							text = 'Upload failed, please try again';
 							break;
 					}
 					$('#up-avatar-msg').text(text).addClass('error').removeClass('success').show();
@@ -124,7 +124,7 @@
 				//上传成功
 				uploader.on( 'uploadSuccess', function( file , res) {
 					if (res.status){
-						infoAlert('头像保存成功,页面即将自动跳转~',true);
+						infoAlert('Avatar saved successfully,The page is about to jump automatically~',true);
 						setTimeout(function(){
 							location.href=JY.U('/user/profile');
 						},1500);
@@ -134,7 +134,7 @@
 				});
 				//上传出错
 				uploader.on( 'uploadError', function( file ) {
-					$('#up-avatar-msg').text('上传失败，请重试').addClass('error').removeClass('success').show();
+					$('#up-avatar-msg').text('Upload failed, please try again').addClass('error').removeClass('success').show();
 				});
 			},
 

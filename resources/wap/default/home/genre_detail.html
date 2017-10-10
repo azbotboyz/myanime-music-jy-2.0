@@ -2,7 +2,7 @@
 
 {block name="content"}
 <div class="tm_div  clearfix">
-	<div class="tour_title tc0" >{$data['name']} - 所有歌曲</div>
+	<div class="tour_title tc0" >{$data['name']} - All songs</div>
 </div>
 <div class="tour_div ">
 	<ul class="song_con">
@@ -11,10 +11,10 @@
 			<span class="numb"></span>
 			<a class="sname text-ellipsis" title="{$v['name']}" href="{$v['url']}">{$v['name']}</a>
 			<a class="gname text-ellipsis" title="{$v['name']}" href="{$v['artist_url']}">{$v['artist_name']}</a>
-			<a class="play" title="播放小{$v['name']}" href="{$v['url']}"></a>		
+			<a class="play" title="Play small{$v['name']}" href="{$v['url']}"></a>		
 		</li>
 		{/JY:songs}	
-		<div id="load-more" class="more clearfix" style="margin-top:20px;" data-url="{:url('api/v1.Songs/index', ['genre' => $data['id'], 'field'=>'id,name,artist_id,artist_name'])}"  data-limit="15">点击查看更多</div>
+		<div id="load-more" class="more clearfix" style="margin-top:20px;" data-url="{:url('api/v1.Songs/index', ['genre' => $data['id'], 'field'=>'id,name,artist_id,artist_name'])}"  data-limit="15">click to see more</div>
 	</ul>				
 </div>	
 {/block}

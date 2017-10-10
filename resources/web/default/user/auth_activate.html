@@ -5,32 +5,32 @@
 		<div class="row clearfix">
 			<!--left content column-->
 			<section class="col-sm-6 col-sm-offset-3 login-box">
-				<h3 style="line-height:30px">激活用户</h3><br>
+				<h3 style="line-height:30px">Activate the user</h3><br>
 				<form class="form-horizontal" action="<{:U()}>">
 					<div class="form-group">
-						<label class="col-lg-2 control-label">邮箱<span class="scheme_color">*</span></label>
+						<label class="col-lg-2 control-label">mailbox<span class="scheme_color">*</span></label>
 						<div class="col-lg-8">
-							<input type="email" name="email" class="form-control" placeholder="请使用正确的E-mail">
+							<input type="email" name="email" class="form-control" placeholder="Please use the correct E-mail">
 						</div>                               	                           	
 					</div>
 					
 					
 					 <div class="form-group">
-						<label class="control-label col-lg-2">验证码<span class="scheme_color">*</span></label>
+						<label class="control-label col-lg-2">Verification code<span class="scheme_color">*</span></label>
 						<div class="col-lg-8">
-							<input type="text" class="form-control" placeholder="请输入验证码" name="verify">
+							<input type="text" class="form-control" placeholder="please enter verification code" name="verify">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-lg-2"></label>
 						<div class="col-lg-8">
-							<img class="verifyimg reloadverify" alt="点击切换" src="{:url(''user/Auth/captcha'')}" style="cursor:pointer;">
+							<img class="verifyimg reloadverify" alt="Click toggle" src="{:url(''user/Auth/captcha'')}" style="cursor:pointer;">
 						</div>
 					</div>
                     <input type="hidden" name="__token__" value="{$Request.token}" />
 					<div class="form-group">
 						<div class="col-sm-offset-1 col-sm-10">
-							<button class="btn_8 mr_20">重新激活</button>或者使用第三方登录
+							<button class="btn_8 mr_20">Reactivate</button>Or use a third party login
 						</div>
 					</div>							
 				</form>	
@@ -58,7 +58,7 @@
 
     		function success(data){
     			if(data.status){
-    				infoAlert(data.info + ' 页面即将自动跳转~',true);
+    				infoAlert(data.info + ' The page is about to jump automatically~',true);
                    	setTimeout(function(){
                         if (data.url) {
                             location.href=data.url;

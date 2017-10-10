@@ -11,19 +11,19 @@
 					</div>
 					<figcaption>
 						<h2 class="mb_10 mt_10">{$data.name}</h2>
-						<button class="btn_1  tr_all_hover mb_5 music-action-btn" data-id="{$data['id']}" data-action="fav"  data-type="artist" ><i class="jy jy-fav"></i>收藏 ({$data.favtimes})</button>
+						<button class="btn_1  tr_all_hover mb_5 music-action-btn" data-id="{$data['id']}" data-action="fav"  data-type="artist" ><i class="jy jy-fav"></i>Collection ({$data.favtimes})</button>
 						<ul class="horizontal_list l_width_divider row clearfix pt_10">
 							<li class="f_md_none  t_align_c col-lg-4">
 								<strong><JY:count artist_id="$data['id']" /></strong>
-								<span>首歌曲</span>
+								<span>Song</span>
 							</li>
 							<li class="f_md_none t_align_c col-lg-4">
 								<strong><JY:count name="album" artist_id="$data['id']" /></strong>
-								<span>张专辑</span>
+								<span>Album</span>
 							</li>
 							<li class="f_md_none col-lg-4 t_align_c">
 								<strong>{$data['hits']}</strong>
-								<span>次浏览</span>
+								<span>Times to browse</span>
 							</li>
 						</ul>
 						<hr class="mb_10 ">
@@ -31,8 +31,8 @@
 				</figure>
 				<div class="sidebar_content">
 					<div class="mb_15 pt_10">
-						<p class="d_inline_b mr_20">所属类别: {$data.type_name}</p>
-						<p class="d_inline_b">所属地区: {$data.region}</p>
+						<p class="d_inline_b mr_20">category: {$data.type_name}</p>
+						<p class="d_inline_b">district belong to: {$data.region}</p>
 					</div>
 				</div>
 
@@ -41,11 +41,11 @@
 			<section class="col-sm-8 mb_10">
 				<div class="clearfix pt_10 mb_10">
 					<ul class="tabs_nav pull-left">
-						<li><a href="{$data['url']}" target="_self">详细介绍</a></li>
-						<li><a href="{$data['song_url']}" target="_self">歌曲列表</a></li>
-						<li class="active"><a href="javascript:;" target="_self">专辑列表</a></li>
+						<li><a href="{$data['url']}" target="_self">Detailed description</a></li>
+						<li><a href="{$data['song_url']}" target="_self">Song list</a></li>
+						<li class="active"><a href="javascript:;" target="_self">Album list</a></li>
 					</ul>
-					<h3 class="pull-right"> {$data['name']} - 全部专辑</h3>
+					<h3 class="pull-right"> {$data['name']} - All albums</h3>
 				</div>
 				<hr>
 				<div class="tab-content">
@@ -60,10 +60,10 @@
 							<div class="col-sm-6 col-xs-8">
 								<h3 class="mb_15">{$vo.name}</h3>
 								<p class="scheme_color mb_15">
-									发行时间：{:empty($vo.pub_time)? '未知' : $vo.pub_time}
-									唱片公司：{:empty($vo.company)? '未知'  : $vo.company}
+									发行时间：{:empty($vo.pub_time)? 'unknown' : $vo.pub_time}
+									唱片公司：{:empty($vo.company)? 'unknown'  : $vo.company}
 								</p>
-								<p class="a_list_info">{$vo.description|msubstr=0,92} <a href="{$vo['url']}" class="ml_10" target="_album">详细</a></p>
+								<p class="a_list_info">{$vo.description|msubstr=0,92} <a href="{$vo['url']}" class="ml_10" target="_album">detailed</a></p>
 							</div>
 
 							<div class="col-sm-3 t_align_r ">
@@ -72,7 +72,7 @@
 									<a href="{$vo['artist_url']}" target="_singer">{$vo['artist_name']}</a>
 									<a href="javascript:;">{$vo.type_name}</a>
 								</p>
-								<button class="album_play btn_4 tr_all_hover mb_15" title="{$vo.name}" data-id="{$vo.id}">播放专辑</button><br class="d_sm_none">
+								<button class="album_play btn_4 tr_all_hover mb_15" title="{$vo.name}" data-id="{$vo.id}">Play the album</button><br class="d_sm_none">
 								<button class="btn_1 tr_all_hover pull-right ml_5 music-action-btn" data-id="{$vo['id']}" data-action="fav" data-type="album" href="javascript:;">
 									<i class="jy jy-fav"></i>
 								</button>
@@ -86,7 +86,7 @@
 						{/JY:album}
 						<div class="row clearfix mb_15">
 							<div class="col-sm-4">
-								<span class="page_total">共{$vo_total}张专辑</span>
+								<span class="page_total">Altogether{$vo_total}Album</span>
 							</div>
 							<div class="col-sm-8 t_align_r">
 								<ul class="horizontal_list clearfix ml_10 page_list">{$vo_page}</ul>
@@ -96,7 +96,7 @@
 					</div>
 
 					<div id="info" class="tab-pane fade">
-						<p>简介：<empty name="data['introduce']">暂无<else /> {$data.introduce}</empty></p>
+						<p>Introduction:<empty name="data['introduce']">No time<else /> {$data.introduce}</empty></p>
 					</div>
 				</div>
 			</section>
