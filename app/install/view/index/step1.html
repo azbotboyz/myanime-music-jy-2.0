@@ -4,35 +4,35 @@
 	<hr>
 	<div class="progress">
 		<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
-		环境检测
+		environmental test
 		</div>
 	</div>
 		
 	<div class="bs-example">
 	    <ol style="margin-bottom: 5px;" class="breadcrumb">
-	      	<li> <a href="javascript:;">协议</a></li>
-	      	<li class="active">检测</li>
-	      	<li><a href="javascript:;">配置</a></li>
-	      	<li><a href="javascript:;"><eq name="Think.session.update" value="1">升级<else/>安装</eq></a></li>
-	      	<li><a href="javascript:;">完成</a></li>
+	      	<li> <a href="javascript:;">protocol</a></li>
+	      	<li class="active">Detection</li>
+	      	<li><a href="javascript:;">Configuration</a></li>
+	      	<li><a href="javascript:;"><eq name="Think.session.update" value="1">upgrade<else/>installation</eq></a></li>
+	      	<li><a href="javascript:;">carry out</a></li>
 	    </ol>
 	</div>
 {/block}
 
 {block name="btn"}
   	<p>
-    	<a role="button" href="{:url('index')}" class="btn btn-success">上一步</a>
-    	<a role="button" href="{:url('step2')}" class="btn btn-primary">下一步</a>
+    	<a role="button" href="{:url('index')}" class="btn btn-success">Previous</a>
+    	<a role="button" href="{:url('step2')}" class="btn btn-primary">The next step</a>
     </p>
 {/block}
 {block name="content"}
     <table class="table">
-        <caption><h4>运行环境检查</h4></caption>
+        <caption><h4>Operating environment check</h4></caption>
         <thead>
             <tr>
-                <th>项目</th>
-                <th>所需配置</th>
-                <th>当前配置</th>
+                <th>project</th>
+                <th>Required configuration</th>
+                <th>Current configuration</th>
             </tr>
         </thead>
         <tbody>
@@ -47,19 +47,19 @@
     </table>
 	{present name="dirfile"}
     <table class="table">
-        <caption><h4>目录、文件权限检查</h4></caption>
+        <caption><h4>Directory, file permissions check</h4></caption>
         <thead>
             <tr>
-                <th>目录/文件</th>
-                <th>所需状态</th>
-                <th>当前状态</th>
+                <th>table of Contents/file</th>
+                <th>Required state</th>
+                <th>Current state</th>
             </tr>
         </thead>
         <tbody>
             {volist name="dirfile" id="item"}
                 <tr>
                     <td>{$item[3]}</td>
-                    <td><i class="jy jy-check">&nbsp;</i>可写</td>
+                    <td><i class="jy jy-check">&nbsp;</i>Can be written</td>
                     <td><i class="jy jy-{$item[2]}">&nbsp;</i>{$item[1]}</td>
                 </tr>
             {/volist}
@@ -67,11 +67,11 @@
     </table>
 	{/present}
     <table class="table">
-        <caption><h4>函数依赖性检查</h4></caption>
+        <caption><h4>Function dependency check</h4></caption>
         <thead>
             <tr>
-                <th>函数名称</th>
-                <th>检查结果</th>
+                <th>Function name</th>
+                <th>test result</th>
             </tr>
         </thead>
         <tbody>
@@ -80,10 +80,10 @@
                 <td>
                     {if condition="!extension_loaded('fileinfo')"}
                     <span class="text-warning">
-                        <i class="jy jy-warning-f"></i>强烈建议开启fileinfo扩展[可以继续安装]
+                        <i class="jy jy-warning-f"></i>It is strongly recommended to open the fileinfo extension[Can continue to install]
                     </span>
                     {else /}
-                    <i class="jy jy-check">&nbsp;</i>支持
+                    <i class="jy jy-check">&nbsp;</i>stand by
                     {/if}
                 </td>
             </tr>
