@@ -2,18 +2,18 @@
 {block name="warp"}
 <div class="tabbable tabbable-custom tabbable-reversed">
 	<ul class="nav nav-tabs">
-		<li><a href="{JY:url name='user_music_index'}">我的分享</a></li>
-		<li><a href="{JY:url name='user_music_audit'}">正在审核</a></li>
-		<li class="active"><a href="javascript:;">驳回列表</a></li>
-		<li><a href="{JY:url name='user_music_down'}">我的下载</a></li>
+		<li><a href="{JY:url name='user_music_index'}">My share</a></li>
+		<li><a href="{JY:url name='user_music_audit'}">Is under review</a></li>
+		<li class="active"><a href="javascript:;">Reject the list</a></li>
+		<li><a href="{JY:url name='user_music_down'}">My download</a></li>
 	</ul>
 	<div class="tab-content clearfix">
 		<div class="mb_10 clearfix relative play_box">
 			<div class="row clearfix song_list">
-				<span class="col-sm-5 col-xs-8 text-center">音乐标题</span>
+				<span class="col-sm-5 col-xs-8 text-center">Music title</span>
 				<span class="col-sm-3 col-xs-2 p_hr_0"></span>
-				<span class="col-sm-2 hidden-xs singer">所属分类</span>
-				<span class="col-sm-2 col-xs-2">操作</span>
+				<span class="col-sm-2 hidden-xs singer">category</span>
+				<span class="col-sm-2 col-xs-2">operating</span>
 			</div>
 			<hr class="l_hr">
 		</div>
@@ -27,7 +27,7 @@
 				<span class="col-sm-3 col-xs-2 p_hr_0"></span>
 				<span class="col-sm-2 hidden-xs singer"><a href="{$v['genre_url']}">{$v['genre_name']}</a></span>
 				<span class="col-sm-2 col-xs-2">
-					<a class="edit-music relative"  href="{:url('user/Music/edit', ['id' =>$v['id']])}"><span class="tooltip tr_all_hover">编辑音乐</span><i class="jy jy-edit-music"></i></a>
+					<a class="edit-music relative"  href="{:url('user/Music/edit', ['id' =>$v['id']])}"><span class="tooltip tr_all_hover">Edit music</span><i class="jy jy-edit-music"></i></a>
 				</span>
 			</div>
 			<hr class="l_hr">

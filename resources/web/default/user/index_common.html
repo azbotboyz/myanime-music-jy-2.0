@@ -20,7 +20,7 @@
 					<div class="search-box mt_15" >
 						<form role="search" class="relative type_2" id="search_form" method="get" action="{JY:url name='search'}">
 							<input type="text" class="d_none" name="type" value="1" >
-							<input type="text" class="full_width" name="keys" placeholder="搜索">
+							<input type="text" class="full_width" name="keys" placeholder="search for">
 							<button class="search_button tr_all_hover">
 								<i class="jy jy-search"></i>
 							</button>
@@ -33,9 +33,9 @@
 						<li class="user-show">
 							<span><i class="jy jy-login"></i></span>
 							<span >
-								<a href="{JY:url name='user_login'}" class=" user-show" id="login_btn">登录</a>
+								<a href="{JY:url name='user_login'}" class=" user-show" id="login_btn">log in</a>
 								|
-								<a href="{JY:url name='user_signup'}" class="reg_btn" >注册</a>
+								<a href="{JY:url name='user_signup'}" class="reg_btn" >registered</a>
 							</span>
 						</li>
 						<li class="user-hide">
@@ -46,33 +46,33 @@
 						<li>
 							<a href="{JY:url name='music_share'}" class="reg_btn" >
 								<span><i class="jy jy-cloud-up"></i></span>
-								<span>上传</span>
+								<span>Upload</span>
 							</a>
 						</li>
 						<li>
 							<a href="{JY:url name='musician_auth'}" class="reg_btn" >
 								<span><i class="jy jy-round-music"></i></span>
-								<span>认证</span>
+								<span>Certification</span>
 							</a>
 						</li>
 
 						<li class="user-hide">
 							<a id="upage-url" href="" target="_user">
 								<span><i class="jy jy-Profile"></i></span>
-								<span>主页</span>
+								<span>Home page</span>
 							</a>
 						</li>
 
 						<li class="user-hide">
 							<a href="{JY:url name='user_account'}">
 								<span><i class="jy jy-edit"></i></span>
-								<span>中心</span>
+								<span>center</span>
 							</a>
 						</li>
 						<li id="login_out" class="user-hide">
 							<a href="javascript:;" url="{JY:url name='logout')}">
 								<span><i class="jy jy-logout"></i></span>
-								<span>退出</span>
+								<span>drop out</span>
 							</a>
 						</li>
 					</ul>
@@ -99,16 +99,16 @@
 								
 								<a class="btn btn-default on" id="btn-unfollow" style="display: none" data-action="follow" data-uid="{$user['uid']}">
 									<i class="jy jy-user-add on"></i>
-									已关注
+									Has been concerned
 								</a>		
 								<a class="btn btn-default" id="btn-follow"  data-action="follow" data-uid="{$user['uid']}">
 									<i class="jy jy-user-add"></i>
-									关注
+									attention
 								</a>
 								{if condition="UID neq $user['uid'] "}
 								<a class="btn btn-default" data-toggle="modal" data-target="#msgModal" data-whatever="@{$user['nickname']}">
 									<i class="jy jy-edit-f"></i>
-									私信
+									Private letter
 								</a>
 								{/if}
 							</div>
@@ -118,19 +118,19 @@
 						<ul class="clearfix list-ucount">
 							<li>
 								<strong>{$user['hits']}</strong>
-								<p>人气</p>
+								<p>Popularity</p>
 							</li>
 							<li>
 								<strong>{$user['fans']}</strong>
-								<p>粉丝</p>
+								<p>Fans</p>
 							</li>
 							<li class="last">
 								<strong class="album-count">{$user['songs']}</strong>
-								<p>歌曲</p>
+								<p>song</p>
 							</li>
 							<li class="last">
 								<strong class="album-count">{$user['albums']}</strong>
-								<p>专辑</p>
+								<p>Album</p>
 							</li>
 						</ul>
 
@@ -146,19 +146,19 @@
 			<div class="tabbable-custom zoom-nav">
 				<ul class="nav nav-tabs">
 					<li {eq name="$Request.action" value="read"} class="active"{/eq}>
-						<a href="{JY:url name='user_home']}">首页</a>
+						<a href="{JY:url name='user_home']}">Home</a>
 					</li>
 					<li {eq name="$Request.action" value="music"} class="active"{/eq}>
-						<a href="{JY:url name='user_home_music']}">分享</a>
+						<a href="{JY:url name='user_home_music']}">share it</a>
 					</li>
 					<li {eq name="$Request.action" value="album"} class="active"{/eq}>
-						<a href="{JY:url name='user_home_album']}">专辑</a>
+						<a href="{JY:url name='user_home_album']}">Album</a>
 					</li>
 					<!--li <eq name="ACTION_NAME" value="profile"> class="active"</eq>>
 						<a href="{:url('home/profile?uid='.$user['uid'])}">资料</a>
 					</li-->
 					<li {eq name="$Request.action" value="fans"} class="active"{/eq}>
-						<a href="{JY:url name='user_home_fans']}">粉丝</a>
+						<a href="{JY:url name='user_home_fans']}">Fans</a>
 					</li>
 				</ul>
 			</div>
@@ -184,17 +184,17 @@
 		<div class="modal-content">
 			<div class="modal-header">
 			    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			    <h4 class="modal-title" id="exampleModalLabel">发送私信到@{$user['nickname']}</h4>
+			    <h4 class="modal-title" id="exampleModalLabel">Send a private message to@{$user['nickname']}</h4>
 			</div>
 			<div class="modal-body">
 			    <form action="{:url('msgcenter/send')}" method="post" id="msg-form">
 			        <div class="form-group">
-			            <label for="message-text" class="control-label">消息内容:</label>
+			            <label for="message-text" class="control-label">Message content:</label>
 			            <textarea class="form-control" name="content" id="message-text"></textarea>
 			        </div>
 			        <input type="hidden" class="form-control" name="to_uid" value="{$user['uid']}">
 					<div class="form-group">
-			 			<button type="submit" tagform="#msg-form" class="btn btn-success">提交</button>
+			 			<button type="submit" tagform="#msg-form" class="btn btn-success">submit</button>
 			 		</div>
 			    </form>
 			</div>
@@ -217,12 +217,12 @@ $().ready(function() {
 		},
 		messages: {
 			content: {
-				required: '信息不能为空',
-				rangelength:'信息长度2-400个字符'
+				required: 'The information can not be empty',
+				rangelength:'Information length 2-400 characters'
 			},
 			to_uid: {
-				required: "无效操作",
-				digits: "无效操作"
+				required: "Invalid operation",
+				digits: "Invalid operation"
 			}
 
 		}

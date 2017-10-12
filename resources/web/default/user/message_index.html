@@ -4,11 +4,11 @@
 <div class="tabbable tabbable-custom tabbable-reversed">
     <ul class="nav nav-tabs">
         <li class="active">
-            <a href="{JY:url name='user_msg'}">我的消息</a>
+            <a href="{JY:url name='user_msg'}">My message</a>
         </li>
 
         <li>
-            <a href="{JY:url name='user_notice'}">系统消息</a>
+            <a href="{JY:url name='user_notice'}">system information</a>
         </li>
     </ul>
     <div class="tab-content clearfix">
@@ -29,11 +29,11 @@
                         <span class="m-time pull-left"><i class="jy jy-clock-o"></i>{$v['create_time']|time_format="Y-m-d"}</span>
                         <span class="m-btns pull-right">
                             {eq name="v['is_read']" value="1"}
-                                <a class="text-success" href="javascript:;">已读</a>
+                                <a class="text-success" href="javascript:;">Have read</a>
                             {else /}
-                                <a href="{:url('user/Message/read','id='.$v['id'])}">查看</a>
+                                <a href="{:url('user/Message/read','id='.$v['id'])}">To view</a>
                             {/eq}
-                            |<a href="{:url('user/Message/read','id='.$v['id'])}">回复</a>
+                            |<a href="{:url('user/Message/read','id='.$v['id'])}">Reply</a>
                         </span>
                     </div>
                 </div>

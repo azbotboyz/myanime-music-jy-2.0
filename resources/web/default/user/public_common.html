@@ -21,7 +21,7 @@
 						<div class="search-box mt_15" >
 							<form role="search" class="relative type_2" id="search_form" method="get" action="{JY:url name='search'}">
 								<input type="text" class="d_none" name="type" value="songs" >
-								<input type="text" class="full_width" name="keys" placeholder="搜索">
+								<input type="text" class="full_width" name="keys" placeholder="search for">
 								<button class="search_button tr_all_hover">
 									<i class="jy jy-search"></i>
 								</button>
@@ -40,27 +40,27 @@
 							<li>
 								<a href="{JY:url name='music_share'}" class="reg_btn" >
 									<span><i class="jy jy-cloud-up"></i></span>
-									<span>上传</span>
+									<span>Upload</span>
 								</a>
 							</li>
 
 							<li>
 								<a id="upage-url" href="{JY:url name='user_home'}">
 									<span><i class="jy jy-Profile"></i></span>
-									<span>主页</span>
+									<span>Home page</span>
 								</a>
 							</li>
 
 							<li>
 								<a href="{JY:url name='user_set'}">
 									<span><i class="jy jy-edit"></i></span>
-									<span>设置</span>
+									<span>Set up</span>
 								</a>
 							</li>
 							<li>
 								<a id="user-login-out" href="javascript:;" data-url="{JY:url name='user_logout'}" >
 									<span><i class="jy jy-logout"></i></span>
-									<span>退出</span>
+									<span>drop out</span>
 								</a>
 							</li>
 						</ul>
@@ -81,29 +81,29 @@
 						<ul class="nav nav-tabs">
 							<li class="title">个人中心</li>
 							<li {if condition="$Request.controller eq 'Account' "}class="active"{/if}>
-								<a title="我的账户" target="_self" href="{JY:url name='user_account'}">我的账户</a>
+								<a title="my account" target="_self" href="{JY:url name='user_account'}">my account</a>
 							</li>
 							<li {if condition="$Request.controller eq 'Profile' "}class="active"{/if}>
-								<a title="个人资料" target="_self" href="{JY:url name='user_set'}">个人资料</a>
+								<a title="personal information" target="_self" href="{JY:url name='user_set'}">personal information</a>
 							</li>
 							<li {if condition="$Request.controller eq 'Music' "}class="active"{/if}>
-								<a title="我的音乐" target="_self" href="{JY:url name='user_music'}">我的音乐</a>
+								<a title="my music" target="_self" href="{JY:url name='user_music'}">my music</a>
 							</li>
 							<li {if condition="$Request.controller eq 'Favs' "}class="active"{/if}>
-								<a title="我的收藏" target="_self" href="{JY:url name='user_fav'}">我的收藏</a>
+								<a title="my collection" target="_self" href="{JY:url name='user_fav'}">my collection</a>
 							</li>
 							<li {if condition="$Request.controller eq 'Relation' "}class="active"{/if}>
-								<a title="我的关系" target="_self" href="{JY:url name='user_relation'}">我的关系</a>
+								<a title="My relationship" target="_self" href="{JY:url name='user_relation'}">My relationship</a>
 							</li>
 							<li  {if condition="$Request.controller eq 'Album' "}class="active"{/if}>
-								<a title="我的专辑" target="_self" href="{JY:url name='user_album'}">我的专辑</a>
+								<a title="My album" target="_self" href="{JY:url name='user_album'}">My album</a>
 							</li>
 							<li  {if condition="$Request.controller eq 'Message' "}class="active"{/if}>
-								<a title="消息中心" target="_self" href="{JY:url name='user_msg')}">消息中心</a>
+								<a title="Message Center" target="_self" href="{JY:url name='user_msg')}">Message Center</a>
 							</li>
 
 							<li class="reture">
-								<a  href="{JY:url name='music_share'}">分享音乐</a>
+								<a  href="{JY:url name='music_share'}">Share music</a>
 							</li>
 						</ul>
 					</div>
@@ -121,17 +121,17 @@
 							<dd class="hy_no">
 								<span>
 									<p>{$user['follows']}</p>
-									<p class="pt_10">关注</p>
+									<p class="pt_10">attention</p>
 								</span>
 
 								<span>
 									<p>{$user['fans']}</p>
-									<p class="pt_10">粉丝</p>
+									<p class="pt_10">Fans</p>
 								</span>
 
 								<span class="last">
 									<p>{$user['songs']}</p>
-									<p class="pt_10">分享</p>
+									<p class="pt_10">share it</p>
 								</span>
 						    </dd>
 						</dl>

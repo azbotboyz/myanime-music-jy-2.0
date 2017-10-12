@@ -3,16 +3,16 @@
 <div class="tabbable tabbable-custom tabbable-reversed">
 	<ul class="nav nav-tabs">
 		<li>
-			<a href="{JY:url name='user_account'}">账户总览</a>
+			<a href="{JY:url name='user_account'}">Account overview</a>
 		</li>
 		<li>
-			<a href="{JY:url name='user_charge'}">金币充值</a>
+			<a href="{JY:url name='user_charge'}">Gold coins recharge</a>
 		</li>
         <li>
-            <a href="{JY:url name='user_upgrade'}"> 升级用户组</a>
+            <a href="{JY:url name='user_upgrade'}"> Upgrade user groups</a>
         </li>
 		<li class="active">
-			<a href="javascript:;">认证音乐人</a>
+			<a href="javascript:;">Certified musicians</a>
 		</li>
 	</ul>
 	<div class="tab-content">
@@ -20,23 +20,23 @@
 			{if condition="!empty($musician)"}
 				{if condition="$musician['status'] eq 2"/}
 				<div class="alert alert-warning">
-					<p>你的认证正在审核中，请耐心等待...</p>
+					<p>Your certification is under review, please be patient...</p>
 				</div>
 				{else /}
 				<div class="alert alert-success">
-					<p>你已经成功认证为音乐人</p>
+					<p>You have successfully certified as a musician</p>
 				</div>
 				{/if}
 			{else /}
 			<div class="alert alert-warning">
-				<p>感谢你申请认证音乐人，确保你填写的信息真实有效否者不予通过</p>
-				<p>认证通过后认证资料将无法修改</p>
+				<p>Thank you for applying for certified musicians to make sure that the information you fill in is true or not</p>
+				<p>Certification will not be modified after certification</p>
 			</div>
 			<form class="form-horizontal" action="{JY:url name='musician_save'}" onsubmit="return false;" method="post" id="auth-form">
 				<div class="form-body">
 				    <div class="form-group">
 				    	<label class="col-lg-3 control-label">
-				    		音乐人名称<b class="text-danger">*</b>
+				    		Musician name<b class="text-danger">*</b>
 				    	</label>
                     	<div class="col-lg-4">
 							<input type="text" name="artist_name" value="{$data['artist_name']|default=$user['nickname']}" class="form-control">									
@@ -44,10 +44,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">认证类型</label>
+                        <label class="col-sm-3 control-label">Type of authentication</label>
                         <div class="col-sm-4">
                             <select name="type" class="form-control" >
-                                <option selected='selected' value=" ">选择艺人类型</option>
+                                <option selected='selected' value=" ">Choose artist type</option>
                                 {volist name=":get_artist_types()" id="at"}
                                 <option {if condition="isset($info['type'])"} {eq name="info['type']" value="$at['id']"} selected='selected'{/eq}{/if} value="{$at['id']}">{$at.name}</option>
                                 {/volist}
@@ -57,17 +57,17 @@
 
 				    <div class="form-group">
 				    	<label class="col-lg-3 control-label">
-				    		真实姓名<b class="text-danger">*</b>
+				    		actual name<b class="text-danger">*</b>
 				    	</label>
                     	<div class="col-lg-4">
 							<input type="text" name="realname" value="{$data['realname']|default=''}" class="form-control">
-							<span class="help-block">请保证姓名真实有效</span>										
+							<span class="help-block">Please ensure that the name is true and effective</span>										
 						</div>                           
                     </div>
 					
 					<div class="form-group">
                    		<label class="col-lg-3 control-label">
-                   			身份证号码<b class="text-danger">*</b>
+                   			identification number<b class="text-danger">*</b>
                    		</label>
                     	<div class="col-lg-4">
 							<input type="text" name="idcard" value="{$data['idcard']|default=''}" class="form-control">										
@@ -76,7 +76,7 @@
 
 		            <div class="form-group">
                         <label class="col-md-3 control-label">
-                        	身份证正面照片<b class="text-danger">*</b>
+                        	ID card positive photo<b class="text-danger">*</b>
                         </label>
                         <div class="col-md-8">
                         	<div id="cover-view">{present name="data['idcard_img1']"}<img height="80" src="{$data['cover_url']}">{/present}</div>
@@ -86,9 +86,9 @@
                                     <label class="btn btn-default fileinput-button" style="padding: 7px 12px;">
                                         <span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span>
                                         {present name="data['idcard_img1']"}
-										<span class="buttonText">重新上传</span>
+										<span class="buttonText">re-upload</span>
                                         {else /}
-                                        <span class="buttonText">选择文件</span>
+                                        <span class="buttonText">Select a document</span>
                                         {/present}
                                         <input id="upload-cover" type="file" name="files[]" multiple
                                         data-file-type="image"
@@ -103,17 +103,17 @@
 		            
                    	<div class="form-group">
                    		<label class="col-lg-3 control-label">
-                   			手机号码<b class="text-danger">*</b>
+                   			cellphone number<b class="text-danger">*</b>
                    		</label>
                     	<div class="col-lg-4">
 							<input type="text" name="phone" value="{$data.phone|default=''}" class="form-control">	
-							<span class="help-block">请填写你的手机</span>							
+							<span class="help-block">Please fill in your cell phone</span>							
 						</div>                           
                     </div>
 
                     <div class="form-group form-inline">
 						<label class="col-md-3 control-label">
-							所在地<b class="text-danger">*</b>
+							location<b class="text-danger">*</b>
 						</label>
 						<div class="col-md-9">
 							<div id="distpicker">
@@ -128,17 +128,17 @@
 					<input type="hidden" name="__token__" value="{$Request.token}" />
                     <div class="form-group">
 						<label class="col-md-3 control-label">
-							认证理由<b class="text-danger">*</b>
+							Reasons for certification<b class="text-danger">*</b>
 						</label>
 	                    <div class="col-md-9">
 	                       <textarea class="form-control" name="reason" rows="6" placeholder="">{$data.reason|default=''}</textarea>
-	                       <span class="help-block">填写认证补充说明</span>
+	                       <span class="help-block">Fill in the certification supplement</span>
 	                    </div>
 	                </div>
 
 					<div class="form-group ">
 						<div class="col-md-4 col-md-offset-3">
-							<button class="btn btn-danger" tagform="#auth-form">确认提交</button>
+							<button class="btn btn-danger" tagform="#auth-form">confirm submission</button>
 						</div>
 					</div>
 				</div>
@@ -161,9 +161,9 @@ $.validator.setDefaults({
 });
 $().ready(function() {
 	$("#distpicker").distpicker({
-	  	province: "---- 所在省 ----",
-	  	city: "---- 所在市 ----",
-	  	district: "---- 所在区 ----"
+	  	province: "---- Where the province ----",
+	  	city: "---- Where the city is located ----",
+	  	district: "---- Where the area is ----"
 	});
 	$("#auth-form").validate({
 		rules: {
@@ -197,31 +197,31 @@ $().ready(function() {
 		},
 		messages: {
 			artist_name: {
-				required: '真实姓名不能为空',
-				rangelength:'真实姓名长度2-32个字符'
+				required: 'Do not leave blank for real name',
+				rangelength:'Real name length 2-32 characters'
 			},
 			type:{
-				required: '请选择认证的音乐人类型',
-				digits: '请选择认证的音乐人类型'
+				required: 'Please select a certified artist type',
+				digits: 'Please select a certified artist type'
 			},
 			realname: {
-				required: '真实姓名不能为空',
-				rangelength:'真实姓名长度2-32个字符'
+				required: 'Do not leave blank for real name',
+				rangelength:'Real name length 2-32 characters'
 			},
 			idcard: {
-				required: "身份证号码不能为空",
+				required: "ID card number can not be empty",
 			},
 			phone:{
-				required: '请填写手机号码',
-				digits: '手机号码不正确'
+				required: 'please fill in cell phone number',
+				digits: 'the phone number is incorrect'
 			},
 			idcard_img1:{
-				required: '请上传身份证照片',
-				rangelength:'请上传身份证照片'
+				required: 'Please upload your ID card photo',
+				rangelength:'Please upload your ID card photo'
 			},
 			reason:{
-				required: '认证理由不能为空',
-				rangelength:'认证理由长度10-255个字符'
+				required: 'The reason for the certification can not be empty',
+				rangelength:'Reason for certification 10-255 characters'
 			}
 		}
 	});

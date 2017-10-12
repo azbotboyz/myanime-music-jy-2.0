@@ -4,15 +4,15 @@
 <div class="tabbable tabbable-custom tabbable-reversed">
     <ul class="nav nav-tabs">
         <li>
-            <a href="{JY:url name='user_msg'}">我的消息</a>
+            <a href="{JY:url name='user_msg'}">My message</a>
         </li>
 
         <li>
-            <a href="{JY:url name='user_notice'}">系统消息</a>
+            <a href="{JY:url name='user_notice'}">system information</a>
         </li>
 
         <li class="active">
-            <a href="javascript:;">消息详情</a>
+            <a href="javascript:;">Message details</a>
         </li>
     </ul>
     <div class="tab-content clearfix">
@@ -50,7 +50,7 @@
                         <input type="hidden" name="__token__" value="{$Request.token}" />
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <button class="btn btn-success" id="send-msg">发送</button>
+                                <button class="btn btn-success" id="send-msg">send</button>
                             </div>
                         </div>
                     <form >
@@ -78,12 +78,12 @@ $().ready(function() {
         },
         messages: {
             content: {
-                required: '信息不能为空',
-                rangelength:'信息长度2-400个字符'
+                required: 'The information can not be empty',
+                rangelength:'Information length 2-400 characters'
             },
             reply_id: {
-                required: "你回复的消息不存在",
-                digits: "你回复的消息不存在"
+                required: "The message you reply does not exist",
+                digits: "The message you reply does not exist"
             }
         }
     });

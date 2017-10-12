@@ -3,7 +3,7 @@
 {block name="content"}
 <div class="row">
 	<div class="col-sm-8">
-		<div class="header">TA的分享</div>
+		<div class="header">TA to share</div>
 		{JY:songs result="v" uid="$user['uid']" limit="20" page="1" order="create_time"}
 		<div class="row clearfix song_list">								
 			<span class="col-sm-5 col-xs-8">	
@@ -27,7 +27,7 @@
 	</div>
 	<div class="col-sm-4 aside">
 		<div class="user-fans">
-			<div class="header">TA的粉丝<a class="more" href="{JY:url name='user_home_fans']}">更多&gt;&gt;</a></div>
+			<div class="header">TA fans<a class="more" href="{JY:url name='user_home_fans']}">More&gt;&gt;</a></div>
 			<ul class="clearfix">
 				{JY:fans result="v" uid="$user['uid']" limit="12"}
 				<li>
@@ -42,7 +42,7 @@
 		</div>
 
 		<div class="user-fans">
-			<div class="header">TA的访客</div>
+			<div class="header">TA visitors</div>
 			<ul class="clearfix">				
 				{JY:visitor result="v" uid="$user['uid']" limit="12"}
 				<li>

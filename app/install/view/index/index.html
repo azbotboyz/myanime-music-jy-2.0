@@ -1,47 +1,47 @@
 {extend name="public/base"/}
 {block name="nav"}
-<h4>安装进度</h4>
+<h4>Installation progress</h4>
 	<hr>
 	<div class="progress">
 		<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
-		安装协议
+		Installation agreement
 		</div>
 	</div>
 		
 	<div class="bs-example">
 	    <ol style="margin-bottom: 5px;" class="breadcrumb">
-	      	<li class="active">协议</li>
-	      	<li><a href="javascript:;">检测</a></li>
-	      	<li><a href="javascript:;">配置</a></li>
-	      	<li><a href="javascript:;"><eq name="Think.session.update" value="1">升级<else/>安装</eq></a></li>
-	      	<li><a href="javascript:;">完成</a></li>
+	      	<li class="active">protocol</li>
+	      	<li><a href="javascript:;">Detection</a></li>
+	      	<li><a href="javascript:;">Configuration</a></li>
+	      	<li><a href="javascript:;"><eq name="Think.session.update" value="1">upgrade<else/>installation</eq></a></li>
+	      	<li><a href="javascript:;">carry out</a></li>
 	    </ol>
 	</div>
 {/block}
 
 {block name="btn"}
   	<p>
-    	<a role="button" href="{:url('index/step1')}" class="btn btn-success">同意并安装</a>
-    	<a role="button" href="http://www.jyuu.cn" class="btn btn-danger">退出安装</a>			        	
+    	<a role="button" href="{:url('index/step1')}" class="btn btn-success">Agree and install</a>
+    	<a role="button" href="http://www.jyuu.cn" class="btn btn-danger">Exit the installation</a>			        	
     </p>
 {/block}
 
 {block name="content"}
     <h3>安装协议</h3>
     <p class="text-lowercase">
-    	感谢您选择JYmusic音乐程序，希望我们的努力能为您提供一个高效快速、强大的站点解决方案。
-    	为了你正确并合法使用本程序，请在使用前务必阅读并理解下面的协议条款：<br><br>
-    	一、一旦你同意将被视为完全接受本协议。 JYmusic官方拥有本协议的最终解释权！<br><br>
-    	二、 协议许可的权利<br><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;1. 本协议是您与JYmusic之间关于您使用本产品及服务的法律协议。只要使用JYmusic 的整体或任何部分，未经书面许可，页面页脚处的版权标识（Powered by JYmusic© 2014-{:date('Y')} 保留所有权利） 和JYmusic官方网站（http://www.jyuu.cn）的链接都必须保留，而不能清除或修改。<br><br>
+    	Thank you for choosing JYmusic music program and hope that our efforts will provide you with an efficient fast and powerful site solution.
+    	For the correct and legal use of the Program, please read and understand the following terms and conditions before use:<br><br>
+    	Once you agree, you will be deemed to have fully accepted this Agreement. JYmusic official has the final interpretation of this agreement!<br><br>
+    	two, The right to license the agreement<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;1. This Agreement is a legal agreement between you and JYmusic regarding your use of the Product and Services. Just use JYmusic Or any part of the copyright notice at the footer of the page without written permission) by JYmusic© 2014-{:date('Y')} all rights reserved) And JYmusic official website (http://www.jyuu.cn) must be retained and can not be cleared or modified.<br><br>
 		
-		&nbsp;&nbsp;&nbsp;&nbsp;2.本服务条款一旦发生变更, JYmusic将在官网上公布修改内容。修改后的服务条款一旦在网站公布即有效代替原来的服务条款。您可随时登陆官网查阅最新版服务条款。<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;2.This Terms of Service are subject to change, JYmusic will announce changes on the official website. The revised terms of service are effectively replaced by the original terms of service once published on the website. You can visit the official website at any time access to the latest version of the terms of service.<br><br>
 								
-		&nbsp;&nbsp;&nbsp;&nbsp;3.您从应用中心下载的应用程序，未经应用程序开发者/所有者的书面许可，不得对其进行反向工程、反向汇编、反向编译等，不得擅自复制、修改、链接、转载、汇编、发表、出版、发展与之有关的衍生产品、作品等。<br><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;4.如果您未能遵守本协议的条款，您的授权将被终止，所被许可的权利将被收回，并承担相应法律责任。<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;3.You downloaded the application from the application center, without the application developer/The owner of the written permission, not to reverse engineer, reverse compilation, reverse compilation, etc., shall not copy, modify, link, reprint, compilation, publication, publishing, development and related derivative products, works and so on.<br><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;4.If you fail to comply with the terms of this Agreement, your license will be terminated and the rights granted will be withdrawn and liable accordingly.<br><br>
 
-    	三、免责声明<br><br>
-    	&nbsp;&nbsp;&nbsp;&nbsp;JYmusic是一款免费开源的程序，仅供交流和学习，严禁用于商业用途，因此带来的后果与本程序作者无关！
+    	Third, the disclaimer<br><br>
+    	&nbsp;&nbsp;&nbsp;&nbsp;JYmusic is a free open source program, only for communication and learning, is strictly prohibited for commercial use, so the consequences and the program has nothing to do with the author!
     </p>
 {/block}
 

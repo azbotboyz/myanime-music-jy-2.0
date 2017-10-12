@@ -4,32 +4,32 @@
 <div class="tabbable tabbable-custom tabbable-reversed">
 	<ul class="nav nav-tabs">
 		<li class="active">
-			<a data-toggle="tab" href="#tab_in">{:isset($data['id'])?'编辑':'分享'}音乐</a>
+			<a data-toggle="tab" href="#tab_in">{:isset($data['id'])?'edit':'share it'}music</a>
 		</li>
 		<li>
-			<a data-toggle="tab" id="tab-tk" href="#tab_tk">上传条款</a>
+			<a data-toggle="tab" id="tab-tk" href="#tab_tk">Upload terms</a>
 		</li>
 	</ul>
 	<div class="tab-content">
 		<div id="tab_in" class="tab-pane active">
 			<div class="alert alert-warning">
-				<b>上传音乐，即表示您已同意 <a class="text-success" href="#"
-				 onclick="$('#tab-tk').click(); return false;">上传服务条款</a> ，请勿上传色情及反动等违法音乐 </b>
+				<b>Uploading music means that you have agreed <a class="text-success" href="#"
+				 onclick="$('#tab-tk').click(); return false;">Upload the terms of service</a> , Do not upload illegal music such as pornography and reactionary </b>
 			</div>
 			<form class="form-horizontal" action="{JY:url name='music_save'}" method="post" id="song-form">
 				<div class="form-body">
 				    <div class="form-group">
-                   		<label class="col-lg-3 control-label">音乐名称*</label>
+                   		<label class="col-lg-3 control-label">Music name*</label>
                     	<div class="col-lg-4">
 							<input type="text" name="name" value="{$data.name|default=''}" class="form-control">
-							<span class="help-block">合理的名字才会通过审核</span>										
+							<span class="help-block">Reasonable names will be reviewed</span>										
 						</div>                           
                     </div>
 					<div class="form-group">
-                        <label class="col-lg-3 control-label">所属分类*</label>                                
+                        <label class="col-lg-3 control-label">category*</label>                                
                         <div class="col-lg-4">
                             <select class="form-control" name="genre_id">
-                                <option value="">---选择分类---</option>
+                                <option value="">---Choose category---</option>
                                 {volist name=":get_genre_tree('', '', true)" id="genre"}
                                 <option {if condition="isset($data['genre_id'])"} {eq name="data['genre_id']" value="$genre['id']"} selected='selected'{/eq}{/if} value="{$genre['id']}">{$genre.title_show}</option>
                                 {/volist}
@@ -37,20 +37,20 @@
                         </div>
                     </div>
 					<div class="form-group">
-                        <label class="col-lg-3 control-label">所属专辑*</label>                                
+                        <label class="col-lg-3 control-label">Belongs to the album*</label>                                
                         <div class="col-lg-4">
                             <select class="form-control" name="album_id" >
-							<option selected='selected' value="0">单曲</option>
+							<option selected='selected' value="0">Singles</option>
 							{volist name="albums" id="vo"}
                           	    <option {notempty name="data['album_id']"} {if condition="$data['album_id'] eq $vo['id'] "}selected='selected'{/if}{/notempty} value="{$vo.id}">{$vo.name}</option>
                             {/volist}
                             </select>
-							<span class="help-block">如果没有请点击<a href="{JY:url name='album_create'}">添加专辑</a></span>	
+							<span class="help-block">If not please click here<a href="{JY:url name='album_create'}">Add album</a></span>	
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-3 control-label">上传封面</label>
+                        <label class="col-md-3 control-label">Upload cover</label>
                         <div class="col-md-8">
                         	<div id="cover-view">{present name="data['cover_url']"}<img height="80" src="{$data['cover_url']}">{/present}</div>
                             <div class="bootstrap-filestyle input-group" id="cover-upload-warp">
@@ -59,7 +59,7 @@
                                 <span class="input-group-btn">
                                     <label class="btn btn-default fileinput-button" style="padding: 7px 12px;">
                                         <span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span>
-                                        <span class="buttonText">选择文件</span>
+                                        <span class="buttonText">Select a document</span>
                                         <input id="upload-cover" type="file" name="files[]" multiple
                                         data-file-type="image"
                                         data-upload-type="cover"
@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-3 control-label">上传音乐</label>
+                        <label class="col-md-3 control-label">Upload music</label>
                         <div class="col-md-8">
                             <div id="audio-view"></div>
                             <div class="bootstrap-filestyle input-group"  id="audio-upload-warp">
@@ -86,9 +86,9 @@
                                     <label class="btn btn-default fileinput-button" style="padding: 7px 12px;">
                                         <span class="icon-span-filestyle glyphicon glyphicon-folder-open"></span>
                                         {present name="data['listen_url']"}
-                                        <span class="buttonText">重新上传</span>
+                                        <span class="buttonText">re-upload</span>
                                         {else /}
-                                        <span class="buttonText">选择文件</span>
+                                        <span class="buttonText">Select a document</span>
                                         {/present}
                                         <input id="upload-listen" type="file" name="files[]" multiple
                                             data-file-type="audio"
@@ -103,24 +103,24 @@
                     </div>
 
                     <div class="form-group">
-						<label class="col-md-3 control-label">歌曲歌词</label>
+						<label class="col-md-3 control-label">Song lyrics</label>
 	                    <div class="col-md-8">
 	                       <textarea class="form-control" name="extend[lrc]" rows="6" placeholder="">{$data.lrc|default=''}</textarea>
-	                       <span class="help-block">支持LRC歌词和文本歌词</span>
+	                       <span class="help-block">Support LRC lyrics and text lyrics</span>
 	                    </div>
 	                </div>
 
 					<div class="form-group">
-						<label class="col-md-3 control-label">歌曲介绍</label>
+						<label class="col-md-3 control-label">Song introduction</label>
 	                    <div class="col-md-8">
-	                        <textarea class="form-control" name="extend[introduce]" rows="4" placeholder="请填上传音乐的简介">{$data.introduce|default=''}</textarea>
+	                        <textarea class="form-control" name="extend[introduce]" rows="4" placeholder="Please fill in the introduction of the music">{$data.introduce|default=''}</textarea>
 	                    </div>
 	                </div>
 					<input type="hidden" name="id" value="{$data.id|default=''}" />
 					<input type="hidden" name="__token__" value="{$Request.token}" />
 					<div class="form-group ">
 						<div class="col-md-4 col-md-offset-3">
-							<button class="btn btn-danger" tagform="#song-form">确认提交</button>
+							<button class="btn btn-danger" tagform="#song-form">confirm submission</button>
 						</div>
 					</div>
 				</div>
@@ -128,14 +128,14 @@
 		</div>
 
 		<div id="tab_tk" class="tab-pane">
-			<p>1．音乐上传服务的具体内容由{:config('web_site_name')}根据实际情况提供，{:config('web_site_name')}保留随时变更、中断或终止部分或全部音乐上传服务的权利。</p><br>
-			<P>2. 用户不得剽窃或抄袭他人作品。用户在上传任何音乐作品时均必须根据作品的实际情况清楚标示作品的词作者、曲作者、演唱者、演奏者、录制者等作品相关权利人的名称以及作品名称。</P><br>
-			<P>3. 用户独立承担其在{:config('web_site_name')}所发布内容的责任。用户对{:config('web_site_name')}服务的使用必须遵守所有适用于服务的地方法律、国家法律和国际法律。</P><br>
-			<P>4. 用户在不违反《中华人民共和国著作权法》以及《中华人民共和国著作权法实施条例》、《信息网络传播权保护条例》等其他有关法律法规和本条款的前提下，可以无限次上传音乐作品，并可以无限次修改、编辑自己所上传的作品。</P><br>
-			<P>5. 用户可以上传的音乐包括由用户自行创作的原创作品、改编作品（包括但不限于由用户改编原有音乐作品的词或曲后形成的歪唱音乐）及演绎作品（包括但不限于由用户演唱的翻唱音乐）。</P><br>
-			<P>6. 用户应当依本条款的规定上传音乐作品，并保证作品的上传人为音乐作品的原创者本人或已取得合法授权的用户。</P><br>
-			<P>7．用户上传原有音乐作品的翻唱作品或歪唱作品时，应尊重原有音乐作品的完整性，并尊重和维护原有音乐作品的词曲作者的身份，尊重原表演者的表演形象。</P><br>
-			<P class="text-center">{:config('web_site_name')}保留对本协议的最终解释权。在你点击确认按钮后即表示其同意签署了本条款。。</P>
+			<p>1. The details of the music upload service are made by{:config('web_site_name')}According to the actual situation,{:config('web_site_name')}Reserves the right to change, discontinue or terminate some or all of the music upload services at any time.</p><br>
+			<P>2. Users may not plagiarize or copy other works. The user must upload any music works must be based on the actual situation of the work clearly marked the author of the work, songwriters, singers, players, recorders and other works related rights and names of the work.</P><br>
+			<P>3. The user is solely responsible for it{:config('web_site_name')}The responsibility for the content published. User is right{:config('web_site_name')}The use of the service must comply with all applicable local laws, national laws and international law applicable to the service.</P><br>
+			<P>4. The User may upload music works indefinitely without violating the Copyright Law of the People's Republic of China and the relevant laws and regulations and the provisions of the Regulations on the Implementation of the Copyright Law of the People's Republic of China and the Regulations on the Protection of the Right of Information Network Transmission and You can edit unlimited, edit their own uploaded works.</P><br>
+			<P>5. The music that the user can upload includes the original works created by the user, the adapted works (including but not limited to the words or songs formed by the user's adaptation of the original music) and the derivative works (including but not limited to the user's singing Of the cover music).</P><br>
+			<P>6. The user shall upload the music works in accordance with the provisions of this article and shall ensure that the person who has made the work is the original person of the musical work or has obtained a legally authorized user.</P><br>
+			<P>7. When a user uploads a cover or a crooked piece of original music, the user should respect the integrity of the original musical work and respect and maintain the identity of the original songwriter and respect the performance of the original performer.</P><br>
+			<P class="text-center">{:config('web_site_name')}Reserves the right of final interpretation of this Agreement. After you click the confirmation button, it means that it has signed this clause. The</P>
 		</div>
 
 	</div>
@@ -168,16 +168,16 @@ $().ready(function() {
 		},
 		messages: {
 			'name' : {
-				required: '歌曲名称不能为空',
-				rangelength:'歌曲名称长度2-80个字符'
+				required: 'The song name can not be empty',
+				rangelength:'Song name length 2-80 characters'
 			},
 			'genre_id' : {
-				required: "请选择所属分类",
-				digits: "请选择所属分类"
+				required: "Please choose your category",
+				digits: "Please choose your category"
 			},
 			'extend[listen_url]' : {
-				required: "请上传音乐文件",
-				rangelength : "试听地址超过限制"
+				required: "Please upload music files",
+				rangelength : "Audition address exceeds limit"
 			}
 		}
 	});
@@ -194,7 +194,7 @@ var imageCall = function(res) {
 var audioCall = function(res) {
 	var file = res.files[0];
 	if (file.code == 0) {
-		$('#audio-view').html('<p class="form-control-static">'+file.result.name+'<span class="label label-success">上传成功</span></p>');
+		$('#audio-view').html('<p class="form-control-static">'+file.result.name+'<span class="label label-success">Uploaded successfully</span></p>');
 		$('#audio-upload-warp').hide();
 	}
 }
