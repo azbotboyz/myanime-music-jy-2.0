@@ -58,7 +58,7 @@ class ArtistController extends HomeController
         }
     
         if (empty($info)) {
-            abort(404,'你查看的歌手不存在！');
+            abort(404,'You see the singer does not exist!');
         }
         
         $info = $info->parseData();

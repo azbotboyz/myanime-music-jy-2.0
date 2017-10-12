@@ -38,6 +38,6 @@ class IndexController extends HomeController
         if (is_file($tplPath)) {
             return $this->fetch($tplPath);
         }
-        abort(500, '页面不存在');
+        abort(500, 'The page does not exist');
     }
 }

@@ -24,7 +24,7 @@ $(document).ready(function($) {
 	//退出登录
 	$(document).on('click', '#logout-action', function(e){
         e.preventDefault();
-        $.Notify.confirm('你确定要退出登录？', function(){
+        $.Notify.confirm('Are you sure you want to log out?', function(){
         	$.Action.ajaxGet(url('/user/logout'));
         });
     });
@@ -71,7 +71,7 @@ $(document).ready(function($) {
     	var inputs  = $($this.data('target') + ':checked');
         
 	    if (inputs.size() < 1) {
-	        $.Notify.msg('请至少选中一个');
+	        $.Notify.msg('Please select at least one');
 	        return false;
 	    }
 
@@ -79,18 +79,18 @@ $(document).ready(function($) {
 
 	    if (typeof(tip) == 'undefined' || tip == '') {
 	    	if ($this.hasClass('disable-batch')) {
-				tip = '你确定要批量禁用？';
+				tip = 'Are you sure you want to batch disable?';
 	    	} else if($this.hasClass('delete-batch')) {
-				tip = '你确定要批量删除这些数据，删除有可能将无法恢复？';
+				tip = 'Are you sure you want to delete these data in batches and that the deletion may not be recoverable?';
 	    	} else if($this.hasClass('clear-batch')) {
-                tip = '你确定要清空这些数据，清空后将无法恢复？';
+                tip = 'Are you sure you want to empty the data and will not be able to recover after emptying?';
             } else {
-	    		tip = '你确定要执行这个操作？';
+	    		tip = 'Are you sure you want to do this?';
 	    	}
 	    }
 
     	$.Notify.confirm(tip, function(){
-            $.Notify.loading('正在提交数据，请稍后...', 'warning', 200);  
+            $.Notify.loading('Please submit the data later please...', 'warning', 200);  
             $.ajax({
                 type   : 'GET',
                 url    : $this.data('url'),
@@ -133,7 +133,7 @@ $(document).ready(function($) {
     });
 
     $('#test-desktop').click(function(event) {
-        layer.msg('页面将自动跳转');
+        layer.msg('The page will automatically jump');
     });
 
     var $customModal = $('#custom-modal'),

@@ -175,8 +175,8 @@ function($) {
 
     Notify.prototype.confirm = function (msg, func) {    
         this.curBox = layer.confirm(msg, {
-            title:'系统提示',
-            btn: ['确定','取消'] //按钮
+            title:'system hint',
+            btn: ['determine','cancel'] //按钮
         }, function(){
             func();
         });
@@ -184,7 +184,7 @@ function($) {
 
     Notify.prototype.loading = function (msg, timer) {
         if (typeof msg === 'undefined') {
-            msg = "正在加载，请稍后...";
+            msg = "Loading, please wait...";
         }
 
         if (isNaN(timer)) {
@@ -279,7 +279,7 @@ function($) {
             var noRefresh = !$.Action.curDom? $.Action.curDom : $.Action.curDom.hasClass('no-refresh');
             
             if (res.url && !noRefresh) {
-                msg = msg + ' 页面即将自动跳转~';
+                msg = msg + ' The page is about to jump automatically~';
             }
     
             $.Notify.msg(msg, 'success');
@@ -294,7 +294,7 @@ function($) {
             }
         } else {
             if (typeof res.data === 'undefined' ) {
-                $.Notify.msg('无法解析的数据响应格式！', 'error');
+                $.Notify.msg('Unable to parse the data response format!', 'error');
             }else if (typeof res.data['input_error'] === 'undefined') {
                 $.Notify.topMsg(res.msg, 'error');
             } else {
@@ -310,7 +310,7 @@ function($) {
     Action.prototype.error = function (res, func) {
         layer.closeAll();
         this.isSubmit = false;
-        $.Notify.msg('请求失败,服务端响应失败！');
+        $.Notify.msg('Request failed,The server response failed!');
     };
 
     /**
@@ -331,7 +331,7 @@ function($) {
         }
         
         // $this.isSubmit = true;
-        $.Notify.loading('正在提交数据，请稍后...', 'warning', 200);  
+        $.Notify.loading('Please submit the data later please...', 'warning', 200);  
         $.ajax({
             type     : 'POST',
             url      : url,
@@ -358,8 +358,8 @@ function($) {
         }
 
         if(confirm === 'true' || typeof remove !== 'undefined') {      
-            $.Notify.confirm('你确定要执行该操作？', function(){
-                $.Notify.loading('正在提交数据，请稍后...', 'warning', 200);  
+            $.Notify.confirm('Are you sure you want to do this?', function(){
+                $.Notify.loading('Please submit the data later please...', 'warning', 200);  
                 $.ajax({
                     'type'    : 'GET',
                     'url'     : url,
@@ -370,7 +370,7 @@ function($) {
             return false;
         }
 
-        $.Notify.loading('正在提交数据，请稍后...', 'warning', 200);       
+        $.Notify.loading('Please submit the data later please...', 'warning', 200);       
         $.ajax({
             type    : 'GET',
             url     : url,
@@ -396,7 +396,7 @@ function($) {
         }
 
         if (typeof(url) === 'undefined') {
-            $.Notify.msg('请求地址不能为空！');
+            $.Notify.msg('Request address can not be empty!');
             return false;
         }
 
@@ -405,15 +405,15 @@ function($) {
         }
 
         if (typeof(text) === 'undefined') {
-            text = '这个数据'
+            text = 'This data'
         } else {
             text = '['+text+']'
         }
 
         $this.submit = true;
 
-        $.Notify.confirm('你确定要删除<b class="text-danger">'+text+'</b>，有可能无法恢复', function(){
-            $.Notify.loading('正在提交数据，请稍后...', 'warning', 200);  
+        $.Notify.confirm('You are sure to delete<b class="text-danger">'+text+'</b>, May not be able to recover', function(){
+            $.Notify.loading('Please submit the data later please...', 'warning', 200);  
             $.ajax({
                 type   : 'GET',
                 url    : url,
@@ -441,7 +441,7 @@ function($) {
             $customModalTitle = $('#custom-modal-title'),
             url = $this.attr('href') || $this.data('url');
         if (typeof url == 'undefined') {
-            $.Notify.msg('未指定加载的URL地址');
+            $.Notify.msg('The URL address is not specified');
             return;
         }
         $.ajax({
@@ -452,7 +452,7 @@ function($) {
                 var $body = $(closeBtn + html.replace("/r/n", ""));
                 var form  = $($body).find('form');
                 form.find('.btn-return').attr('data-dismiss', 'modal')
-                .removeClass('btn-return').text('关闭');
+                .removeClass('btn-return').text('shut down');
                 $customModalBody.html($body)  
                            
                 $.Notify.close();
@@ -576,7 +576,7 @@ function($) {
 
         var parse = url.match(/^(?:([a-z]+):\/\/)?([\w-]+(?:\.[\w-]+)+)?(?::(\d+))?([\w-\/]+)?(?:\?((?:\w+=[^#&=\/]*)?(?:&\w+=[^#&=\/]*)*))?(?:#([\w-]+))?$/i);
         
-        parse || $.error("url格式不正确！");
+        parse || $.error("url format is incorrect!");
 
         return {
             "scheme"   : parse[1],
@@ -597,7 +597,7 @@ function($) {
         
         var info = this.parse(url), root = this.parseRoot(), path = [], param = {}, reg;
         /* 验证info */
-        info.path || $.error("url格式错误！");
+        info.path || $.error("url is wrong!");
         url = info.path;
         /* 去掉右侧分割符 */
         if("/" == url.substr(-1)){

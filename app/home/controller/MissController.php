@@ -16,6 +16,6 @@ class MissController
     //歌曲首页
     public function index()
     {
-        abort(404, '页面不存在');
+        abort(404, 'The page does not exist');
     }
 }
